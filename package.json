@@ -2,7 +2,7 @@
   "name": "@coderwyd/eslint-config-monorepo",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@8.6.7",
+  "packageManager": "pnpm@8.6.11",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "license": "MIT",
   "scripts": {
@@ -10,14 +10,16 @@
     "test": "pnpm -r run test",
     "build": "pnpm -r run build",
     "prepare": "pnpm -r run stub",
-    "release": "bumpp -r && pnpm -r publish"
+    "release": "bumpp -r && pnpm -r publish",
+    "up": "taze major -r -I"
   },
   "devDependencies": {
     "@coderwyd/eslint-config": "workspace:*",
     "bumpp": "^9.1.1",
-    "eslint": "^8.45.0",
+    "eslint": "^8.46.0",
     "eslint-plugin-coderwyd": "link:./packages/eslint-plugin-coderwyd",
     "rimraf": "^5.0.1",
+    "taze": "^0.11.2",
     "typescript": "^5.1.6"
   }
 }

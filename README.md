@@ -1,12 +1,13 @@
 # @coderwyd/eslint-config
 
+## Feature
+
 - Single quotes, no semi
 - Auto fix for formatting (aimed to be used standalone **without** Prettier)
 - Designed to work with TypeScript, Vue out-of-box
 - Lint also for json, yaml, markdown
 - Sorted imports, dangling commas
 - Reasonable defaults, best practices, only one-line of config
-- **Style principle**: Minimal for reading, stable for diff
 
 ## Usage
 
@@ -40,8 +41,6 @@ For example:
 ```
 
 ### VS Code support (auto fix)
-
-Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 Add the following settings to your `settings.json`:
 
@@ -97,15 +96,11 @@ and then
 npm i -D lint-staged simple-git-hooks
 ```
 
-## Badge
-
-If you enjoy this code style, and would like to mention it in your project, here is the badge you can use:
-
 ## FAQ
 
-### I prefer XXX...
+### Customization rules
 
-Sure, you can override the rules in your `.eslintrc` file.
+add you like rules to your .eslintrc file.
 
 <!-- eslint-skip -->
 
@@ -118,7 +113,9 @@ Sure, you can override the rules in your `.eslintrc` file.
 }
 ```
 
-Or you can always fork this repo and make your own.
+## Thanks
+
+This project is based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 ## License
 
