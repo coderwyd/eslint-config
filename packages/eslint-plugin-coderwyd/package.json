@@ -1,8 +1,8 @@
 {
   "name": "eslint-plugin-coderwyd",
   "version": "1.0.2",
-  "license": "MIT",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
+  "license": "MIT",
   "homepage": "https://github.com/coderwyd/eslint-config",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
