@@ -1,6 +1,5 @@
-const { defineConfig } = require('eslint-define-config')
-
-module.exports = defineConfig({
+/** @type {import('eslint-define-config').ESLintConfig} */
+module.exports = {
   env: {
     es6: true,
     browser: true,
@@ -195,7 +194,23 @@ module.exports = defineConfig({
   ],
   rules: {
     // import
-    'import/order': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
+        pathGroups: [{ pattern: '@/**', group: 'internal' }],
+        pathGroupsExcludedImportTypes: ['type'],
+      },
+    ],
     'import/first': 'error',
     'import/no-mutable-exports': 'error',
     'import/no-unresolved': 'off',
@@ -378,4 +393,4 @@ module.exports = defineConfig({
     'coderwyd/top-level-function': 'error',
     // 'coderwyd/prefer-inline-type-import': 'error',
   },
-})
+}

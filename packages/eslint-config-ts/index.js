@@ -1,12 +1,12 @@
 const fs = require('node:fs')
 const { join } = require('node:path')
 const process = require('node:process')
-const { defineConfig } = require('eslint-define-config')
 const basic = require('@coderwyd/eslint-config-basic')
 
 const tsconfig = process.env.ESLINT_TSCONFIG || 'tsconfig.eslint.json'
 
-module.exports = defineConfig({
+/** @type {import('eslint-define-config').ESLintConfig} */
+module.exports = {
   extends: ['@coderwyd/eslint-config-basic', 'plugin:import/typescript', 'plugin:@typescript-eslint/recommended'],
   settings: {
     'import/resolver': {
@@ -184,4 +184,4 @@ module.exports = defineConfig({
     // handled by unused-imports/no-unused-imports
     '@typescript-eslint/no-unused-vars': 'off',
   },
-})
+}

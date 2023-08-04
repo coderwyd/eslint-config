@@ -1,6 +1,5 @@
-const { defineConfig } = require('eslint-define-config')
-
-module.exports = defineConfig({
+/** @type {import('eslint-define-config').ESLintConfig} */
+module.exports = {
   extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', '@coderwyd/eslint-config-ts'],
   settings: {
     react: {
@@ -11,4 +10,4 @@ module.exports = defineConfig({
     'jsx-quotes': ['error', 'prefer-double'],
     'react/react-in-jsx-scope': 'off',
   },
-})
+}
