@@ -1,6 +1,6 @@
 {
   "name": "@coderwyd/eslint-config-monorepo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "packageManager": "pnpm@8.6.11",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
