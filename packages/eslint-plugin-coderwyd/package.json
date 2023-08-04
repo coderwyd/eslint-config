@@ -8,6 +8,8 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
+    "eslint",
+    "plugin",
     "dist"
   ],
   "scripts": {

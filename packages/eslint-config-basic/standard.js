@@ -1,7 +1,9 @@
 // Inline from https://github.com/standard/eslint-config-standard/blob/master/.eslintrc.json
 // Until it upgrades
 
-module.exports = {
+const { defineConfig } = require('eslint-define-config')
+
+module.exports = defineConfig({
   parserOptions: {
     ecmaVersion: 2022,
     ecmaFeatures: {
@@ -244,4 +246,4 @@ module.exports = {
 
     'promise/param-names': 'error',
   },
-}
+})

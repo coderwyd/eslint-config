@@ -17,6 +17,7 @@
   "dependencies": {
     "@coderwyd/eslint-config-basic": "workspace:*",
     "@coderwyd/eslint-config-ts": "workspace:*",
+    "eslint-define-config": "^1.22.0",
     "eslint-plugin-vue": "^9.16.1",
     "local-pkg": "^0.4.3"
   },

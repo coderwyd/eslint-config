@@ -19,6 +19,7 @@
     "eslint": ">=7.4.0"
   },
   "dependencies": {
+    "eslint-define-config": "^1.22.0",
     "eslint-plugin-coderwyd": "workspace:*",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-html": "^7.1.0",

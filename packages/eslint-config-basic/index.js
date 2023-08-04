@@ -1,4 +1,6 @@
-module.exports = {
+const { defineConfig } = require('eslint-define-config')
+
+module.exports = defineConfig({
   env: {
     es6: true,
     browser: true,
@@ -376,4 +378,4 @@ module.exports = {
     'coderwyd/top-level-function': 'error',
     // 'coderwyd/prefer-inline-type-import': 'error',
   },
-}
+})

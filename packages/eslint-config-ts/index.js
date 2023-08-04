@@ -1,17 +1,19 @@
 const fs = require('node:fs')
 const { join } = require('node:path')
 const process = require('node:process')
+const { defineConfig } = require('eslint-define-config')
 const basic = require('@coderwyd/eslint-config-basic')
 
 const tsconfig = process.env.ESLINT_TSCONFIG || 'tsconfig.eslint.json'
 
-module.exports = {
+module.exports = defineConfig({
   extends: ['@coderwyd/eslint-config-basic', 'plugin:import/typescript', 'plugin:@typescript-eslint/recommended'],
   settings: {
     'import/resolver': {
       node: { extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.d.ts'] },
     },
   },
+  // ignorePatterns: ['auto-import.d.ts', 'components.d.ts'],
   overrides: basic.overrides.concat(
     !fs.existsSync(join(process.cwd(), tsconfig))
       ? []
@@ -182,4 +184,4 @@ module.exports = {
     // handled by unused-imports/no-unused-imports
     '@typescript-eslint/no-unused-vars': 'off',
   },
-}
+})
