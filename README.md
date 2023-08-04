@@ -18,7 +18,12 @@
 ### Install
 
 ```bash
-pnpm add -D eslint @coderwyd/eslint-config
+pnpm add -D eslint @coderwyd/eslint-config # JavaScript, TypeScript and Vue 3
+# Or yarn add eslint @coderwyd/eslint-config -D / npm install eslint @coderwyd/eslint-config -D
+pnpm add -D @coderwyd/eslint-config-basic # JavaScript only
+pnpm add -D @coderwyd/eslint-config-ts # JavaScript and TypeScript
+pnpm add -D @coderwyd/eslint-config-react # JavaScript, TypeScript and React
+pnpm add -D @coderwyd/eslint-config-vue # JavaScript, TypeScript and Vue 3
 ```
 
 ### Config `.eslintrc`
