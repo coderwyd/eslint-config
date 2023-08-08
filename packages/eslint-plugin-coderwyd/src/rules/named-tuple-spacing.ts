@@ -4,7 +4,7 @@ export const RULE_NAME = 'named-tuple-spacing'
 export type MessageIds = 'expectedSpaceAfter' | 'unexpectedSpaceBetween' | 'unexpectedSpaceBefore'
 export type Options = []
 
-const REG = /^([\w_$]+)(\s*)(\?\s*)?:(\s*)(.*)$/
+const RE = /^([\w_$]+)(\s*)(\?\s*)?:(\s*)(.*)$/
 
 export default createEslintRule<Options, MessageIds>({
   name: RULE_NAME,
@@ -26,10 +26,10 @@ export default createEslintRule<Options, MessageIds>({
   create: (context) => {
     const sourceCode = context.getSourceCode()
     return {
-      TSNamedTupleMember: (node) => {
+      TSNamedTupleMember: (node: any) => {
         const code = sourceCode.text.slice(node.range[0], node.range[1])
 
-        const match = code.match(REG)
+        const match = code.match(RE)
         if (!match)
           return
 
@@ -53,7 +53,7 @@ export default createEslintRule<Options, MessageIds>({
             node,
             messageId: 'unexpectedSpaceBetween',
             *fix(fixer) {
-              yield fixer.replaceTextRange(node.range, code.replace(REG, getReplaceValue()))
+              yield fixer.replaceTextRange(node.range, code.replace(RE, getReplaceValue()))
             },
           })
         }
@@ -63,7 +63,7 @@ export default createEslintRule<Options, MessageIds>({
             node,
             messageId: 'unexpectedSpaceBefore',
             *fix(fixer) {
-              yield fixer.replaceTextRange(node.range, code.replace(REG, getReplaceValue()))
+              yield fixer.replaceTextRange(node.range, code.replace(RE, getReplaceValue()))
             },
           })
         }
@@ -73,7 +73,7 @@ export default createEslintRule<Options, MessageIds>({
             node,
             messageId: 'expectedSpaceAfter',
             *fix(fixer) {
-              yield fixer.replaceTextRange(node.range, code.replace(REG, getReplaceValue()))
+              yield fixer.replaceTextRange(node.range, code.replace(RE, getReplaceValue()))
             },
           })
         }

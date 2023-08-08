@@ -6,7 +6,6 @@
   "homepage": "https://github.com/coderwyd/eslint-config",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "eslint",
     "plugin",
@@ -23,6 +22,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
+    "@typescript-eslint/rule-tester": "^6.3.0",
     "unbuild": "^1.2.1",
     "vitest": "^0.34.1"
   }
