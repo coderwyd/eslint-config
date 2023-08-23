@@ -18,10 +18,10 @@
     "@coderwyd/eslint-config-basic": "workspace:*",
     "@coderwyd/eslint-config-ts": "workspace:*",
     "eslint-define-config": "^1.23.0",
-    "eslint-plugin-vue": "^9.16.1",
+    "eslint-plugin-vue": "^9.17.0",
     "local-pkg": "^0.4.3"
   },
   "devDependencies": {
-    "eslint": "^8.46.0"
+    "eslint": "^8.47.0"
   }
 }
