@@ -348,6 +348,8 @@ module.exports = {
     'n/no-callback-literal': 'off',
 
     // unicorns
+    // Improve regexes by making them shorter, consistent
+    'unicorn/better-regex': 'error',
     // Pass error message when throwing errors
     'unicorn/error-message': 'error',
     // Uppercase regex escapes
