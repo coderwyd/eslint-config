@@ -21,9 +21,9 @@
     "@typescript-eslint/utils": "^6.4.1"
   },
   "devDependencies": {
-    "@types/node": "^20.5.4",
+    "@types/node": "^20.5.7",
     "@typescript-eslint/rule-tester": "^6.4.1",
     "unbuild": "^2.0.0",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.3"
   }
 }
