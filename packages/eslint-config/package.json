@@ -15,7 +15,7 @@
     "index.js"
   ],
   "peerDependencies": {
-    "eslint": ">=7.4.0"
+    "eslint": ">=8.48.0"
   },
   "dependencies": {
     "@coderwyd/eslint-config-vue": "workspace:*"
