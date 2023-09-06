@@ -14,7 +14,7 @@
   ],
   "peerDependencies": {
     "eslint": ">=7.4.0",
-    "typescript": ">=5.2.2"
+    "typescript": ">=3.9"
   },
   "dependencies": {
     "@coderwyd/eslint-config-basic": "workspace:*",
