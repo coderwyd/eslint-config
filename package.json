@@ -16,7 +16,7 @@
   "devDependencies": {
     "@coderwyd/eslint-config": "workspace:*",
     "bumpp": "^9.2.0",
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "eslint-plugin-coderwyd": "link:./packages/eslint-plugin-coderwyd",
     "rimraf": "^5.0.1",
     "taze": "^0.11.2",
