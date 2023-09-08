@@ -2,7 +2,7 @@
   "name": "@coderwyd/eslint-config-monorepo",
   "version": "1.0.9",
   "private": true,
-  "packageManager": "pnpm@8.7.1",
+  "packageManager": "pnpm@8.7.4",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "license": "MIT",
   "scripts": {
