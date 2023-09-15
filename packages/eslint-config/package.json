@@ -1,6 +1,6 @@
 {
   "name": "@coderwyd/eslint-config",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Donny's ESLint config",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "license": "MIT",
