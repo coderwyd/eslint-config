@@ -10,7 +10,15 @@ module.exports = {
     node: true,
   },
   reportUnusedDisableDirectives: true,
-  extends: ['./standard', 'plugin:import/recommended', 'plugin:eslint-comments/recommended', 'plugin:jsonc/recommended-with-jsonc', 'plugin:yml/standard', 'plugin:markdown/recommended'],
+  extends: [
+    './standard',
+    'plugin:import/recommended',
+    'plugin:eslint-comments/recommended',
+    'plugin:jsonc/recommended-with-jsonc',
+    'plugin:yml/standard',
+    'plugin:markdown/recommended',
+    'plugin:jsdoc/recommended',
+  ],
   ignorePatterns: [
     '*.min.*',
     '*.d.ts',
@@ -43,7 +51,14 @@ module.exports = {
     // force exclude
     '**/.vitepress/cache',
   ],
-  plugins: ['html', 'unicorn', 'coderwyd', 'no-only-tests', 'unused-imports'],
+  plugins: [
+    'html',
+    'unicorn',
+    'coderwyd',
+    'no-only-tests',
+    'unused-imports',
+    'jsdoc',
+  ],
   settings: {
     'import/resolver': {
       node: { extensions: ['.js', '.mjs'] },
@@ -399,6 +414,20 @@ module.exports = {
     // yml
     'yml/quotes': ['error', { prefer: 'single', avoidEscape: false }],
     'yml/no-empty-document': 'off',
+
+    // jsdoc
+    'jsdoc/require-jsdoc': 'off',
+    'jsdoc/require-param': 'off',
+    'jsdoc/require-param-type': 'off',
+    'jsdoc/require-param-description': 'off',
+    'jsdoc/require-yields': 'off',
+    'jsdoc/tag-lines': 'off',
+    'jsdoc/check-values': 'off',
+    'jsdoc/check-tag-names': 'off',
+    'jsdoc/no-undefined-types': 'off',
+    'jsdoc/require-returns': 'off',
+    'jsdoc/require-returns-type': 'off',
+    'jsdoc/require-throws': 'off',
 
     // coderwyd
     'coderwyd/no-import-node-modules-by-path': 'error',
