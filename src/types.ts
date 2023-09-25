@@ -46,6 +46,20 @@ export interface OptionsConfig {
   vue?: boolean
 
   /**
+   * Enable React support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  react?: boolean
+
+  /**
+   * Enable Astro support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  astro?: boolean
+
+  /**
    * Enable JSONC support.
    *
    * @default true

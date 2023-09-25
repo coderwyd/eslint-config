@@ -1,5 +1,10 @@
 {
-  "cSpell.words": ["bumpp", "coderwyd", "taze"],
+  "cSpell.words": [
+    "Astro",
+    "bumpp",
+    "coderwyd",
+    "taze"
+  ],
   "prettier.enable": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {

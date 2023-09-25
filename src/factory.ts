@@ -2,6 +2,7 @@ import process from 'node:process'
 import type { FlatESLintConfigItem } from 'eslint-define-config'
 import { isPackageExists } from 'local-pkg'
 import {
+  astro,
   comments,
   ignores,
   imports,
@@ -29,8 +30,11 @@ import { combine } from './utils'
  */
 export function coderwyd(options: OptionsConfig = {}, ...userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[]) {
   const isInEditor = options.isInEditor ?? !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI)
+
   const enableVue = options.vue ?? (isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress') || isPackageExists('@slidev/cli'))
-  const enableReact = options.vue ?? (isPackageExists('react') || isPackageExists('next'))
+  const enableReact = options.react ?? (isPackageExists('react') || isPackageExists('next') || isPackageExists('react-dom'))
+  const enableAstro = options.astro ?? (isPackageExists('astro'))
+
   const enableTypeScript = options.typescript ?? (isPackageExists('typescript'))
   const enableStylistic = options.stylistic ?? true
 
@@ -74,6 +78,9 @@ export function coderwyd(options: OptionsConfig = {}, ...userConfigs: (FlatESLin
 
   if (enableReact)
     configs.push(react({ typescript: !!enableTypeScript }))
+
+  if (enableAstro)
+    configs.push(astro({ typescript: !!enableTypeScript }))
 
   if (options.jsonc ?? true) {
     configs.push(
