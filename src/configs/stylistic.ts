@@ -12,6 +12,8 @@ export const javascriptStylistic: FlatESLintConfigItem[] = [
     },
     rules: {
       'antfu/if-newline': 'error',
+      'antfu/consistent-object-newline': 'error',
+
       'comma-dangle': ['error', 'always-multiline'],
       'curly': ['error', 'multi-or-nest', 'consistent'],
       'quotes': ['error', 'single'],
