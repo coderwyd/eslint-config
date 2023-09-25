@@ -8,9 +8,6 @@ dependencies:
   '@eslint-stylistic/metadata':
     specifier: 0.0.4
     version: 0.0.4
-  '@eslint/js':
-    specifier: ^8.49.0
-    version: 8.49.0
   '@stylistic/eslint-plugin-js':
     specifier: 0.0.4
     version: 0.0.4
