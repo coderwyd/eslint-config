@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format esm --clean --dts",
-    "stub": "tsup src/index.ts --format esm --clean",
+    "stub": "tsup src/index.ts --format esm",
     "lint": "pnpm run stub && eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^6.7.2",
     "astro-eslint-parser": "^0.15.0",
     "eslint-define-config": "^1.23.0",
-    "eslint-plugin-antfu": "^1.0.0-beta.2",
+    "eslint-plugin-antfu": "1.0.0-beta.6",
     "eslint-plugin-astro": "^0.29.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i": "^2.28.1",

@@ -27,8 +27,8 @@ dependencies:
     specifier: ^1.23.0
     version: 1.23.0
   eslint-plugin-antfu:
-    specifier: ^1.0.0-beta.2
-    version: 1.0.0-beta.2(eslint@8.49.0)(typescript@5.2.2)
+    specifier: 1.0.0-beta.6
+    version: 1.0.0-beta.6(eslint@8.49.0)(typescript@5.2.2)
   eslint-plugin-astro:
     specifier: ^0.29.0
     version: 0.29.0(eslint@8.49.0)
@@ -1362,7 +1362,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /chownr@2.0.0:
@@ -1787,8 +1787,8 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-antfu@1.0.0-beta.2(eslint@8.49.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-jrgUzJ/R+mFCX8f3x2HUQZfF4vMRFyGT/MQNKKFO1DcEGnVVq3zmYife+uYpLQUd4sfySo5wVOY3a/pvnfSYIg==}
+  /eslint-plugin-antfu@1.0.0-beta.6(eslint@8.49.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-AbHAYYVv8BhjH4FkoSZWV+FxYwZUspqr0Zo5y4K0Jm8BhwXo6+UaQrpW3exxraJmsVTXty+Hlkcd4ysQV6DICw==}
     dependencies:
       '@typescript-eslint/utils': 6.7.2(eslint@8.49.0)(typescript@5.2.2)
     transitivePeerDependencies:
@@ -2241,8 +2241,8 @@ packages:
   /fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+  /fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -3519,7 +3519,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /run-applescript@5.0.0:
@@ -4083,7 +4083,7 @@ packages:
       resolve: 1.22.3
       rollup: 3.28.1
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /vitest@0.34.5:
