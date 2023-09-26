@@ -10,8 +10,8 @@ export function astro(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[
       languageOptions: {
         parser: parserAstro,
         parserOptions: {
-          parser: options.typescript ? (parserTs as any) : null,
           extraFileExtensions: ['.astro'],
+          parser: options.typescript ? (parserTs as any) : null,
         },
       },
       plugins: {

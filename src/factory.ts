@@ -21,7 +21,8 @@ import {
   typescript,
   typescriptWithLanguageServer,
   unicorn,
-  vue, yml,
+  vue,
+  yml,
 } from './configs'
 import type { OptionsConfig } from './types'
 import { combine } from './utils'

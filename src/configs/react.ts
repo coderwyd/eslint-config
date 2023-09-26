@@ -21,11 +21,6 @@ export function react(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[
         'react': pluginReact,
         'react-hooks': pluginReactHooks,
       },
-      settings: {
-        react: {
-          version: 'detect',
-        },
-      },
       rules: {
         'jsx-quotes': ['error', 'prefer-double'],
 
@@ -33,6 +28,11 @@ export function react(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[
         'react/react-in-jsx-scope': OFF,
 
         ...pluginReactHooks.configs.recommended.rules,
+      },
+      settings: {
+        react: {
+          version: 'detect',
+        },
       },
     },
   ]
