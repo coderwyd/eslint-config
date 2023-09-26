@@ -41,9 +41,7 @@
     "eslint": ">=8.0.0"
   },
   "dependencies": {
-    "@eslint-stylistic/metadata": "0.0.4",
-    "@stylistic/eslint-plugin-js": "0.0.4",
-    "@stylistic/eslint-plugin-ts": "0.0.4",
+    "@stylistic/eslint-plugin": "^0.0.5",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "astro-eslint-parser": "^0.15.0",
@@ -71,7 +69,6 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-migrate": "0.0.4",
     "@types/node": "^20.6.3",
     "@types/react": "^18.2.22",
     "bumpp": "^9.2.0",
