@@ -11,7 +11,7 @@ require('sucrase/register')
 export default coderwyd(
   undefined,
   {
-    files: ['**/eslint-config/src/**/*.ts'],
+    files: ['src/**/*.ts'],
     plugins: {
       '@stylistic/migrate': stylisticMigrate,
       'sort-keys': sortKeys,

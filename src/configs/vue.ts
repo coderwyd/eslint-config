@@ -55,6 +55,8 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
       rules: {
         ...(isVue3 ? vue3Rules : vue2Rules),
 
+        'node/prefer-global/process': OFF,
+
         'vue/array-bracket-spacing': ['error', 'never'],
         'vue/arrow-spacing': ['error', { after: true, before: true }],
         'vue/block-order': ['error', {
@@ -86,7 +88,6 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
         'vue/keyword-spacing': ['error', { after: true, before: true }],
         'vue/max-attributes-per-line': OFF,
         'vue/multi-word-component-names': OFF,
-        'vue/no-constant-condition': 'warn',
         'vue/no-dupe-keys': OFF,
         'vue/no-empty-pattern': 'error',
         'vue/no-extra-parens': ['error', 'functions'],
@@ -100,7 +101,6 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
         ],
         'vue/no-restricted-v-bind': ['error', '/^v-/'],
 
-        // reactivity transform
         'vue/no-setup-props-reactivity-loss': OFF,
         'vue/no-sparse-arrays': 'error',
         'vue/no-unused-refs': 'error',
