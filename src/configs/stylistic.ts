@@ -1,7 +1,7 @@
 import type { FlatESLintConfigItem } from 'eslint-define-config'
 import { pluginStylistic } from '../plugins'
 
-export const javascriptStylistic: FlatESLintConfigItem[] = [
+export const stylistic: FlatESLintConfigItem[] = [
   {
     plugins: {
       style: pluginStylistic,

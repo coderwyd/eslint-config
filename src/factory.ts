@@ -9,7 +9,6 @@ import {
   ignores,
   imports,
   javascript,
-  javascriptStylistic,
   jsdoc,
   jsonc,
   markdown,
@@ -17,9 +16,9 @@ import {
   react,
   sortPackageJson,
   sortTsconfig,
+  stylistic,
   test,
   typescript,
-  typescriptStylistic,
   typescriptWithLanguageServer,
   unicorn,
   vue, yml,
@@ -79,9 +78,6 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
   if (enableVue)
     componentExts.push('vue')
 
-  if (enableStylistic)
-    configs.push(javascriptStylistic)
-
   if (enableTypeScript) {
     configs.push(typescript({ componentExts }))
 
@@ -91,10 +87,10 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
         componentExts,
       }))
     }
-
-    if (enableStylistic)
-      configs.push(typescriptStylistic)
   }
+
+  if (enableStylistic)
+    configs.push(stylistic)
 
   if (options.test ?? true)
     configs.push(test({ isInEditor }))
@@ -132,8 +128,10 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
   if (Object.keys(fusedConfig).length)
     configs.push([fusedConfig])
 
-  return combine(
+  const merged = combine(
     ...configs,
     ...userConfigs,
   )
+
+  return merged
 }
