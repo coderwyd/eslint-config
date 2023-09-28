@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.6.3",
-    "@types/react": "^18.2.22",
+    "@types/react": "^18.2.23",
     "bumpp": "^9.2.0",
     "eslint": "^8.49.0",
     "eslint-plugin-sort-keys": "^2.3.5",
