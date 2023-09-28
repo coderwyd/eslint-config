@@ -36,6 +36,11 @@ const vue2Rules: Rules = {
 export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] {
   return [
     {
+      plugins: {
+        vue: pluginVue,
+      },
+    },
+    {
       files: [GLOB_VUE],
       languageOptions: {
         parser: parserVue,
@@ -48,9 +53,7 @@ export function vue(options: OptionsHasTypeScript = {}): FlatESLintConfigItem[] 
           sourceType: 'module',
         },
       },
-      plugins: {
-        vue: pluginVue,
-      },
+
       processor: pluginVue.processors['.vue'],
       rules: {
         ...(isVue3 ? vue3Rules : vue2Rules),

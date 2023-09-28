@@ -13,6 +13,13 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
 
   return [
     {
+      plugins: {
+        antfu: pluginAntfu,
+        import: pluginImport,
+        ts: pluginTs as any,
+      },
+    },
+    {
       files: [
         GLOB_TS,
         GLOB_TSX,
@@ -23,11 +30,6 @@ export function typescript(options?: OptionsComponentExts): FlatESLintConfigItem
         parserOptions: {
           sourceType: 'module',
         },
-      },
-      plugins: {
-        antfu: pluginAntfu,
-        import: pluginImport,
-        ts: pluginTs as any,
       },
       rules: {
         ...renameRules(
