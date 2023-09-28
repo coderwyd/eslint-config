@@ -6,35 +6,34 @@
 
 ## Feature
 
-- Single quotes, no semi
-- Auto fix for formatting (aimed to be used standalone **without** Prettier)
-- Designed to work with TypeScript, Vue out-of-box
-- Lint also for json, yaml, markdown
-- Sorted imports, dangling commas
-- Reasonable defaults, best practices, only one-line of config
+- ✨ Single quotes, no semi
+- 🛠️ Auto fix for formatting (aimed to be used standalone **without** Prettier)
+- 🎯 Designed to work with TypeScript, Vue out-of-box
+- 🔍 Lints also for json, yaml, markdown
+- 🧩 Sorted imports, dangling commas
+- 🏆 Reasonable defaults, best practices, only one-line of config
+- 🚀 [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), compose easily!
+- 🎨 Using [ESLint Stylistic](https://github.com/eslint-stylistic/eslint-stylistic)
+- 📖 **Style principle**: Minimal for reading, stable for diff, consistent
 
 ## Usage
 
 ### Install
 
 ```bash
-pnpm add -D eslint @coderwyd/eslint-config # JavaScript, TypeScript and Vue 3
-# Or yarn add eslint @coderwyd/eslint-config -D / npm install eslint @coderwyd/eslint-config -D
-pnpm add -D @coderwyd/eslint-config-basic # JavaScript only
-pnpm add -D @coderwyd/eslint-config-ts # JavaScript and TypeScript
-pnpm add -D @coderwyd/eslint-config-react # JavaScript, TypeScript and React
-pnpm add -D @coderwyd/eslint-config-vue # JavaScript, TypeScript and Vue 3
+pnpm i -D eslint @coderwyd/eslint-config
 ```
 
-### Config `.eslintrc`
+### Create config file
 
-```json
-{
-  "extends": "@coderwyd"
-}
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd()
 ```
 
-> You don't need `.eslintignore` normally as it has been provided by the preset.
+> Note that `.eslintignore` no longer works in Flat config, see [customization](#customization) for more details.
 
 ### Add script for package.json
 
@@ -49,40 +48,237 @@ For example:
 }
 ```
 
-### VS Code support (auto fix)
+## VS Code support (auto fix)
 
-Add the following settings to your `settings.json`:
+Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+Add the following settings to your `.vscode/settings.json`:
 
 ```jsonc
 {
+  // Enable the ESlint flat config support
+  "eslint.experimental.useFlatConfig": true,
+
+  // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
+
+  // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.organizeImports": false
   },
 
-  // The following is optional.
-  // It's better to put under project setting `.vscode/settings.json`
-  // to avoid conflicts with working with different eslint configs
-  // that does not support all formats.
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "html", "markdown", "json", "jsonc", "yaml"]
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml"
+  ]
 }
 ```
 
-### TypeScript Aware Rules
+## Customization
 
-Type aware rules are enabled when a `tsconfig.eslint.json` is found in the project root, which will introduce some stricter rules into your project. If you want to enable it while have no `tsconfig.eslint.json` in the project root, you can change tsconfig name by modifying `ESLINT_TSCONFIG` env.
+Since v1.0, we migrated to [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), provides a much better organization and composition.
+
+Normally you only need to import the `coderwyd` preset:
 
 ```js
-// .eslintrc.js
-const process = require('node:process')
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
 
-process.env.ESLINT_TSCONFIG = 'tsconfig.json'
+export default coderwyd()
+```
 
-module.exports = {
-  extends: '@coderwyd',
-}
+And that's it! Or you can configure each integration individually, for example:
+
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd({
+  stylistic: true, // enable stylistic formatting rules
+  typescript: true,
+  vue: true,
+  jsonc: false, // disable jsonc support
+  yaml: false,
+
+  // `.eslintignore` is no longer supported in Flat config, use `ignores` instead
+  ignores: [
+    './fixtures',
+    // ...globs
+  ]
+})
+```
+
+The `coderwyd` factory functions also accepts arbitrary numbers of constom configs overrides:
+
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd(
+  {
+    // Configures for coderwyd's config
+  },
+
+  // From the second arguments they are ESLint Flat Configs
+  // you can have multiple configs
+  {
+    files: ['**/*.ts'],
+    rules: {},
+  },
+  {
+    rules: {},
+  },
+)
+```
+
+Going more advanced, you can also import the very fine-grained configs and compose them as you wish:
+
+```js
+// eslint.config.js
+import {
+  astro,
+  comments,
+  ignores,
+  imports,
+  javascript,
+  jsdoc,
+  jsonc,
+  markdown,
+  node,
+  react,
+  sortPackageJson,
+  sortTsconfig,
+  stylistic,
+  typescript,
+  unicorn,
+  vue,
+  yml,
+} from '@coderwyd/eslint-config'
+
+export default [
+  ...astro(),
+  ...react(),
+  ...ignores(),
+  ...javascript(),
+  ...comments(),
+  ...node(),
+  ...jsdoc(),
+  ...imports(),
+  ...unicorn(),
+  ...typescript(),
+  ...stylistic(),
+  ...vue(),
+  ...jsonc(),
+  ...yml(),
+  ...markdown(),
+]
+```
+
+Check out the [configs](https://github.com/coderwyd/eslint-config/blob/main/src/configs) and [factory](https://github.com/coderwyd/eslint-config/blob/main/src/factory.ts) for more details.
+
+## Plugins Renaming
+
+Since flat config requires us to explicitly provide the plugin names (instead of mandatory convention from npm package name), we renamed some plugins to make overall scope more consistent and easier to write.
+
+| New Prefix | Original Prefix | Source Plugin |
+| --- | --- | --- |
+| `import/*` | `i/*` | [eslint-plugin-i](https://github.com/un-es/eslint-plugin-i) |
+| `node/*` | `n/*` | [eslint-plugin-n](https://github.com/eslint-community/eslint-plugin-n) |
+| `yaml/*` | `yml/*` | [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml) |
+| `ts/*` | `@typescript-eslint/*` | [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint) |
+| `style/*` | `@stylistic/*` | [@stylistic/eslint-plugin](https://github.com/eslint-stylistic/eslint-stylistic) |
+
+When you want to overrides rules, or disable them inline, you need to update to the new prefix:
+
+```diff
+-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
++// eslint-disable-next-line ts/consistent-type-definitions
+type foo = { bar: 2 }
+```
+
+### Rules Overrides
+
+Certain rules would only be enabled in specific files, for example, `ts/*` rules would only be enabled in `.ts` files and `vue/*` rules would only be enabled in `.vue` files. If you want to override the rules, you need to specify the file extension:
+
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd(
+  { vue: true, typescript: true },
+  {
+    // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
+    files: ['**/*.vue'],
+    rules: {
+      'vue/operator-linebreak': ['error', 'before'],
+    },
+  },
+  {
+    // Without `files`, they are general rules for all files
+    rules: {
+      'style/semi': ['error', 'never'],
+    },
+  }
+)
+```
+
+We also provided an `overrides` options to make it easier:
+
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd({
+  overrides: {
+    vue: {
+      'vue/operator-linebreak': ['error', 'before'],
+    },
+    typescript: {
+      'ts/consistent-type-definitions': ['error', 'interface'],
+    },
+    yaml: {},
+    // ...
+  }
+})
+```
+
+### Type Aware Rules
+
+You can optionally enable the [type aware rules](https://typescript-eslint.io/linting/typed-linting/) by passing the options object to the `typescript` config:
+
+```js
+// eslint.config.js
+import coderwyd from '@coderwyd/eslint-config'
+
+export default coderwyd({
+  typescript: {
+    tsconfigPath: 'tsconfig.json',
+  },
+})
 ```
 
 ### Lint Staged
@@ -106,27 +302,10 @@ and then
 npm i -D lint-staged simple-git-hooks
 ```
 
-## FAQ
-
-### Customization rules
-
-add you like rules to your .eslintrc file.
-
-<!-- eslint-skip -->
-
-```jsonc
-{
-  "extends": "@coderwyd",
-  "rules": {
-    // your rules...
-  }
-}
-```
-
 ## Thanks
 
 This project is based on [@antfu/eslint-config](https://github.com/antfu/eslint-config)
 
 ## License
 
-[MIT](./LICENSE) License &copy; 2019-PRESENT [Donny Wang](https://github.com/coderwyd)
+[MIT](./LICENSE) License &copy; 2023-PRESENT [Donny Wang](https://github.com/coderwyd)
