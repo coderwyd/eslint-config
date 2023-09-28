@@ -1,7 +1,7 @@
 import { createRequire } from 'node:module'
 import sortKeys from 'eslint-plugin-sort-keys'
 
-import { coderwyd } from './dist/index.js'
+import coderwyd from './dist/index.js'
 
 const require = createRequire(import.meta.url)
 require('sucrase/register')
