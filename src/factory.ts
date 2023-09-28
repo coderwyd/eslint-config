@@ -19,10 +19,9 @@ import {
   stylistic,
   test,
   typescript,
-  typescriptWithLanguageServer,
   unicorn,
   vue,
-  yml,
+  yaml,
 } from './configs'
 import type { OptionsConfig } from './types'
 import { combine } from './utils'
@@ -38,19 +37,36 @@ const flatConfigProps: (keyof FlatESLintConfigItem)[] = [
   'settings',
 ]
 
+const VuePackages = [
+  'vue',
+  'nuxt',
+  'vitepress',
+  '@slidev/cli',
+]
+
+const ReactPackages = [
+  'react',
+  'next',
+]
+
+const AstroPackages = [
+  'astro',
+]
+
 /**
  * Construct an array of ESLint flat config items.
  */
 export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[]) {
-  const isInEditor = options.isInEditor ?? !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI)
-
-  const enableVue = options.vue ?? (isPackageExists('vue') || isPackageExists('nuxt') || isPackageExists('vitepress') || isPackageExists('@slidev/cli'))
-  const enableReact = options.react ?? (isPackageExists('react') || isPackageExists('next') || isPackageExists('react-dom'))
-  const enableAstro = options.astro ?? (isPackageExists('astro'))
-
-  const enableTypeScript = options.typescript ?? (isPackageExists('typescript'))
-  const enableStylistic = options.stylistic ?? true
-  const enableGitignore = options.gitignore ?? true
+  const {
+    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
+    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
+    react: enableReact = ReactPackages.some(i => isPackageExists(i)),
+    astro: enableAstro = AstroPackages.some(i => isPackageExists(i)),
+    typescript: enableTypeScript = isPackageExists('typescript'),
+    stylistic: enableStylistic = true,
+    gitignore: enableGitignore = true,
+    overrides = {},
+  } = options
 
   const configs: FlatESLintConfigItem[][] = []
   if (enableGitignore) {
@@ -65,13 +81,17 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
 
   // Base configs
   configs.push(
-    ignores,
+    ignores(),
     javascript({ isInEditor }),
-    comments,
-    node,
-    jsdoc,
-    imports,
-    unicorn,
+    comments(),
+    node(),
+    jsdoc({
+      stylistic: enableStylistic,
+    }),
+    imports({
+      stylistic: enableStylistic,
+    }),
+    unicorn(),
   )
 
   // In the future we may support more component extensions like Svelte or so
@@ -80,44 +100,60 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     componentExts.push('vue')
 
   if (enableTypeScript) {
-    configs.push(typescript({ componentExts }))
-
-    if (typeof enableTypeScript !== 'boolean') {
-      configs.push(typescriptWithLanguageServer({
-        ...enableTypeScript,
-        componentExts,
-      }))
-    }
+    configs.push(typescript({
+      ...typeof enableTypeScript !== 'boolean'
+        ? enableTypeScript
+        : {},
+      componentExts,
+      overrides: overrides.typescript,
+    }))
   }
 
   if (enableStylistic)
-    configs.push(stylistic)
+    configs.push(stylistic())
 
   if (options.test ?? true)
-    configs.push(test({ isInEditor }))
+    configs.push(test({ isInEditor, overrides: overrides.test }))
 
-  if (enableVue)
-    configs.push(vue({ typescript: !!enableTypeScript }))
+  if (enableVue) {
+    configs.push(vue({
+      overrides: overrides.vue,
+      stylistic: enableStylistic,
+      typescript: !!enableTypeScript,
+    }))
+  }
 
-  if (enableReact)
-    configs.push(react({ typescript: !!enableTypeScript }))
+  if (enableReact) {
+    configs.push(react({
+      overrides: overrides.react,
+      typescript: !!enableTypeScript,
+    }))
+  }
 
-  if (enableAstro)
-    configs.push(astro({ typescript: !!enableTypeScript }))
+  if (enableAstro) {
+    configs.push(astro({
+      overrides: overrides.astro,
+      typescript: !!enableTypeScript,
+    }))
+  }
 
   if (options.jsonc ?? true) {
     configs.push(
-      jsonc,
-      sortPackageJson,
-      sortTsconfig,
+      jsonc(),
+      sortPackageJson(),
+      sortTsconfig(),
     )
   }
 
-  if (options.yaml ?? true)
-    configs.push(yml)
+  if (options.yaml ?? true) {
+    configs.push(yaml({
+      overrides: overrides.yaml,
+      stylistic: enableStylistic,
+    }))
+  }
 
   if (options.markdown ?? true)
-    configs.push(markdown({ componentExts }))
+    configs.push(markdown({ componentExts, overrides: overrides.markdown }))
 
   // User can optionally pass a flat config item to the first argument
   // We pick the known keys as ESLint would do schema validation

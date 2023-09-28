@@ -1,4 +1,6 @@
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
+import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { ParserOptions } from '@typescript-eslint/parser'
 
 export interface OptionsComponentExts {
   /**
@@ -10,13 +12,31 @@ export interface OptionsComponentExts {
   componentExts?: string[]
 }
 
-export interface OptionsTypeScriptWithLanguageServer {
-  tsconfigPath: string
-  tsconfigRootDir?: string
+export interface OptionsTypeScriptParserOptions {
+  /**
+   * Additional parser options for TypeScript.
+   */
+  parserOptions?: Partial<ParserOptions>
+}
+
+export interface OptionsTypeScriptWithTypes {
+  /**
+   * When this options is provided, type aware rules will be enabled.
+   * @see https://typescript-eslint.io/linting/typed-linting/
+   */
+  tsconfigPath?: string
 }
 
 export interface OptionsHasTypeScript {
   typescript?: boolean
+}
+
+export interface OptionsStylistic {
+  stylistic?: boolean
+}
+
+export interface OptionsOverrides {
+  overrides?: FlatESLintConfigItem['rules']
 }
 
 export interface OptionsIsInEditor {
@@ -41,7 +61,7 @@ export interface OptionsConfig {
    *
    * @default auto-detect based on the dependencies
    */
-  typescript?: boolean | OptionsTypeScriptWithLanguageServer
+  typescript?: boolean | OptionsTypeScriptWithTypes
 
   /**
    * Enable test support.
@@ -104,4 +124,20 @@ export interface OptionsConfig {
    * @default auto-detect based on the process.env
    */
   isInEditor?: boolean
+
+  /**
+   * Provide overrides for rules for each integration.
+   */
+  overrides?: {
+    javascript?: FlatESLintConfigItem['rules']
+    typescript?: FlatESLintConfigItem['rules']
+
+    test?: FlatESLintConfigItem['rules']
+    vue?: FlatESLintConfigItem['rules']
+    react?: FlatESLintConfigItem['rules']
+    astro?: FlatESLintConfigItem['rules']
+    jsonc?: FlatESLintConfigItem['rules']
+    markdown?: FlatESLintConfigItem['rules']
+    yaml?: FlatESLintConfigItem['rules']
+  }
 }
