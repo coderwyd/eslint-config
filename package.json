@@ -72,7 +72,7 @@
     "@types/node": "^20.6.5",
     "@types/react": "^18.2.23",
     "bumpp": "^9.2.0",
-    "eslint": "^8.49.0",
+    "eslint": "^8.50.0",
     "eslint-plugin-sort-keys": "^2.3.5",
     "nano-staged": "^0.8.0",
     "react": "^18.2.0",
