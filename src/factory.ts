@@ -66,6 +66,7 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     stylistic: enableStylistic = true,
     gitignore: enableGitignore = true,
     overrides = {},
+    componentExts = [],
   } = options
 
   const configs: FlatESLintConfigItem[][] = []
@@ -94,8 +95,6 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     unicorn(),
   )
 
-  // In the future we may support more component extensions like Svelte or so
-  const componentExts: string[] = []
   if (enableVue)
     componentExts.push('vue')
 
