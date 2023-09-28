@@ -42,8 +42,8 @@
   },
   "dependencies": {
     "@stylistic/eslint-plugin": "^0.0.5",
-    "@typescript-eslint/eslint-plugin": "^6.7.2",
-    "@typescript-eslint/parser": "^6.7.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
     "astro-eslint-parser": "^0.15.0",
     "eslint-config-flat-gitignore": "^0.1.0",
     "eslint-define-config": "^1.23.0",
@@ -69,7 +69,7 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20.6.3",
+    "@types/node": "^20.6.5",
     "@types/react": "^18.2.23",
     "bumpp": "^9.2.0",
     "eslint": "^8.49.0",
