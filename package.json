@@ -28,6 +28,7 @@
     "node": ">=16.14.0"
   },
   "scripts": {
+    "dev": "tsup src/index.ts --format esm,cjs --watch & eslint-flat-config-viewer",
     "build": "tsup src/index.ts --format esm,cjs --clean --dts",
     "stub": "tsup src/index.ts --format esm",
     "lint": "pnpm run stub && eslint .",
@@ -60,6 +61,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "eslint-plugin-unused-imports": "^3.0.0",
+    "eslint-plugin-vitest": "^0.3.2",
     "eslint-plugin-vue": "^9.17.0",
     "eslint-plugin-yml": "^1.9.0",
     "globals": "^13.22.0",
@@ -73,6 +75,7 @@
     "@types/react": "^18.2.25",
     "bumpp": "^9.2.0",
     "eslint": "^8.50.0",
+    "eslint-flat-config-viewer": "^0.0.9",
     "eslint-plugin-sort-keys": "^2.3.5",
     "nano-staged": "^0.8.0",
     "react": "^18.2.0",
