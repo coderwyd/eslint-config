@@ -21,6 +21,7 @@ export function typescript(
     'no-implied-eval': OFF,
     'no-throw-literal': OFF,
     'ts/await-thenable': 'error',
+    'ts/ban-types': ['error', { types: { Function: false } }],
     'ts/dot-notation': ['error', { allowKeywords: true }],
     'ts/no-floating-promises': 'error',
     'ts/no-for-in-array': 'error',
