@@ -1,8 +1,7 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { FlatESLintConfigItem, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_YAML } from '../globs'
 import { parserYaml, pluginYaml } from '../plugins'
 import { OFF } from '../flags'
-import type { OptionsOverrides, OptionsStylistic } from '../types'
 
 export function yaml(options: OptionsOverrides & OptionsStylistic = {}): FlatESLintConfigItem[] {
   const {
@@ -12,6 +11,7 @@ export function yaml(options: OptionsOverrides & OptionsStylistic = {}): FlatESL
 
   return [
     {
+      name: 'coderwyd:yaml:setup',
       plugins: {
         yaml: pluginYaml as any,
       },
@@ -21,6 +21,7 @@ export function yaml(options: OptionsOverrides & OptionsStylistic = {}): FlatESL
       languageOptions: {
         parser: parserYaml,
       },
+      name: 'coderwyd:yaml:rules',
       rules: {
         'style/spaced-comment': OFF,
 

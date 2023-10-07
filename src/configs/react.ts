@@ -1,7 +1,6 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
-import { GLOB_JSX, GLOB_TSX } from 'src/globs'
+import type { FlatESLintConfigItem, OptionsHasTypeScript, OptionsOverrides } from '../types'
+import { GLOB_JSX, GLOB_TSX } from '../globs'
 import { parserTs, pluginReact, pluginReactHooks } from '../plugins'
-import type { OptionsHasTypeScript, OptionsOverrides } from '../types'
 import { OFF } from './../flags'
 
 export function react(options: OptionsHasTypeScript & OptionsOverrides = {}): FlatESLintConfigItem[] {
@@ -9,12 +8,6 @@ export function react(options: OptionsHasTypeScript & OptionsOverrides = {}): Fl
     overrides = {},
   } = options
   return [
-    {
-      plugins: {
-        'react': pluginReact,
-        'react-hooks': pluginReactHooks,
-      },
-    },
     {
       files: [GLOB_JSX, GLOB_TSX],
       languageOptions: {
@@ -25,6 +18,11 @@ export function react(options: OptionsHasTypeScript & OptionsOverrides = {}): Fl
           parser: options.typescript ? parserTs as any : null,
           sourceType: 'module',
         },
+      },
+      name: 'coderwyd:react',
+      plugins: {
+        'react': pluginReact,
+        'react-hooks': pluginReactHooks,
       },
       rules: {
         'jsx-quotes': ['error', 'prefer-double'],

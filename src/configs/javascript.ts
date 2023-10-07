@@ -1,8 +1,7 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
 import globals from 'globals'
+import type { FlatESLintConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types'
 import { pluginAntfu, pluginUnusedImports } from '../plugins'
 import { OFF } from '../flags'
-import type { OptionsIsInEditor, OptionsOverrides } from '../types'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 
 export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): FlatESLintConfigItem[] {
@@ -12,12 +11,6 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
   } = options
 
   return [
-    {
-      plugins: {
-        'antfu': pluginAntfu,
-        'unused-imports': pluginUnusedImports,
-      },
-    },
     {
       languageOptions: {
         ecmaVersion: 2022,
@@ -37,6 +30,11 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
           sourceType: 'module',
         },
         sourceType: 'module',
+      },
+      name: 'coderwyd:javascript',
+      plugins: {
+        'antfu': pluginAntfu,
+        'unused-imports': pluginUnusedImports,
       },
 
       rules: {
@@ -235,6 +233,7 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
     },
     {
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
+      name: 'coderwyd:scripts-overrides',
       rules: {
         'no-console': OFF,
       },

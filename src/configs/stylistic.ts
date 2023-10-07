@@ -1,9 +1,10 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { FlatESLintConfigItem } from '../types'
 import { pluginAntfu, pluginStylistic } from '../plugins'
 
 export function stylistic(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'coderwyd:stylistic',
       plugins: {
         antfu: pluginAntfu,
         style: pluginStylistic,

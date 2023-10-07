@@ -1,8 +1,8 @@
 import process from 'node:process'
 import fs from 'node:fs'
-import type { FlatESLintConfigItem } from 'eslint-define-config'
 import { isPackageExists } from 'local-pkg'
 import gitignore from 'eslint-config-flat-gitignore'
+import type { FlatESLintConfigItem, OptionsConfig } from './types'
 import {
   astro,
   comments,
@@ -23,7 +23,6 @@ import {
   vue,
   yaml,
 } from './configs'
-import type { OptionsConfig } from './types'
 import { combine } from './utils'
 
 const flatConfigProps: (keyof FlatESLintConfigItem)[] = [
@@ -158,7 +157,7 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
   // We pick the known keys as ESLint would do schema validation
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
     if (key in options)
-      acc[key] = options[key]
+      acc[key] = options[key] as any
     return acc
   }, {} as FlatESLintConfigItem)
   if (Object.keys(fusedConfig).length)

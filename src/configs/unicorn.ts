@@ -1,14 +1,13 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { FlatESLintConfigItem } from '../types'
 import { pluginUnicorn } from '../plugins'
 
 export function unicorn(): FlatESLintConfigItem[] {
   return [
     {
+      name: 'coderwyd:unicorn',
       plugins: {
         unicorn: pluginUnicorn,
       },
-    },
-    {
       rules: {
         // Pass error message when throwing errors
         'unicorn/error-message': 'error',

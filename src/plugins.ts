@@ -19,7 +19,7 @@ export { default as pluginVitest } from 'eslint-plugin-vitest'
 export { default as pluginVue } from 'eslint-plugin-vue'
 export { default as pluginReact } from 'eslint-plugin-react'
 export { default as pluginReactHooks } from 'eslint-plugin-react-hooks'
-export { default as pluginAstro } from 'eslint-plugin-astro'
+export * as pluginAstro from 'eslint-plugin-astro'
 
 export * as parserTs from '@typescript-eslint/parser'
 export { default as parserVue } from 'vue-eslint-parser'

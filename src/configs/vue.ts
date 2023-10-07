@@ -1,10 +1,9 @@
 import process from 'node:process'
-import type { FlatESLintConfigItem, Rules } from 'eslint-define-config'
 import { getPackageInfoSync } from 'local-pkg'
+import type { FlatESLintConfigItem, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_VUE } from '../globs'
 import { parserTs, parserVue, pluginVue } from '../plugins'
 import { OFF } from '../flags'
-import type { OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 
 export function getVueVersion() {
   const pkg = getPackageInfoSync('vue', { paths: [process.cwd()] })
@@ -19,14 +18,14 @@ export function getVueVersion() {
 }
 const isVue3 = getVueVersion() === 3
 
-const vue3Rules: Rules = {
+const vue3Rules: FlatESLintConfigItem['rules'] = {
   ...pluginVue.configs.base.rules,
   ...pluginVue.configs['vue3-essential'].rules,
   ...pluginVue.configs['vue3-strongly-recommended'].rules,
   ...pluginVue.configs['vue3-recommended'].rules,
 }
 
-const vue2Rules: Rules = {
+const vue2Rules: FlatESLintConfigItem['rules'] = {
   ...pluginVue.configs.base.rules,
   ...pluginVue.configs.essential.rules,
   ...pluginVue.configs['strongly-recommended'].rules,
@@ -40,6 +39,7 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
   } = options
   return [
     {
+      name: 'coderwyd:vue:setup',
       plugins: {
         vue: pluginVue,
       },
@@ -57,7 +57,7 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
           sourceType: 'module',
         },
       },
-
+      name: 'coderwyd:vue:rules',
       processor: pluginVue.processors['.vue'],
       rules: {
         ...(isVue3 ? vue3Rules : vue2Rules),

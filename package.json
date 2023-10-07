@@ -71,6 +71,7 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
+    "@types/eslint": "^8.44.3",
     "@types/node": "^20.8.2",
     "@types/react": "^18.2.25",
     "bumpp": "^9.2.0",

@@ -1,7 +1,6 @@
-import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { FlatESLintConfigItem, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
 import { parserJsonc, pluginJsonc } from '../plugins'
-import type { OptionsOverrides, OptionsStylistic } from '../types'
 
 export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatESLintConfigItem[] {
   const {
@@ -10,6 +9,7 @@ export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatES
   } = options
   return [
     {
+      name: 'coderwyd:jsonc:setup',
       plugins: {
         jsonc: pluginJsonc as any,
       },
@@ -19,6 +19,7 @@ export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatES
       languageOptions: {
         parser: parserJsonc,
       },
+      name: 'coderwyd:jsonc:rules',
       rules: {
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',

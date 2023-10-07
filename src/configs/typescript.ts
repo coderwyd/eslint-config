@@ -1,9 +1,8 @@
 import process from 'node:process'
-import type { FlatESLintConfigItem } from 'eslint-define-config'
+import type { FlatESLintConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
 import { GLOB_JS, GLOB_SRC, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '../globs'
 import { parserTs, pluginAntfu, pluginImport, pluginTs } from '../plugins'
 import { OFF } from '../flags'
-import type { OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
 import { renameRules } from '../utils'
 
 export function typescript(
@@ -41,6 +40,7 @@ export function typescript(
 
   return [
     {
+      name: 'coderwyd:typescript:setup',
       plugins: {
         antfu: pluginAntfu,
         import: pluginImport,
@@ -65,6 +65,7 @@ export function typescript(
           ...parserOptions as any,
         },
       },
+      name: 'coderwyd:typescript:rules',
       rules: {
         ...renameRules(
           pluginTs.configs['eslint-recommended'].overrides![0].rules!,
@@ -119,6 +120,7 @@ export function typescript(
     },
     {
       files: ['**/*.d.ts'],
+      name: 'coderwyd:typescript:dts-overrides',
       rules: {
         'eslint-comments/no-unlimited-disable': OFF,
         'import/no-duplicates': OFF,
@@ -127,12 +129,14 @@ export function typescript(
     },
     {
       files: GLOB_TESTS,
+      name: 'coderwyd:typescript:tests-overrides',
       rules: {
         'no-unused-expressions': OFF,
       },
     },
     {
       files: [GLOB_JS],
+      name: 'coderwyd:typescript:javascript-overrides',
       rules: {
         'ts/no-require-imports': OFF,
         'ts/no-var-requires': OFF,

@@ -26,11 +26,22 @@ pnpm i -D eslint @coderwyd/eslint-config
 
 ### Create config file
 
+With [`"type": "module"`](https://nodejs.org/api/packages.html#type) in `package.json` (recommended):
+
 ```js
 // eslint.config.js
 import coderwyd from '@coderwyd/eslint-config'
 
 export default coderwyd()
+```
+
+With CJS:
+
+```js
+// eslint.config.js
+const coderwyd = require('@coderwyd/eslint-config').default
+
+module.exports = coderwyd()
 ```
 
 > Note that `.eslintignore` no longer works in Flat config, see [customization](#customization) for more details.
