@@ -1,6 +1,6 @@
 import process from 'node:process'
 import type { FlatESLintConfigItem } from 'eslint-define-config'
-import { GLOB_JSX, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '../globs'
+import { GLOB_JS, GLOB_SRC, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '../globs'
 import { parserTs, pluginAntfu, pluginImport, pluginTs } from '../plugins'
 import { OFF } from '../flags'
 import type { OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
@@ -49,8 +49,7 @@ export function typescript(
     },
     {
       files: [
-        GLOB_TS,
-        GLOB_TSX,
+        GLOB_SRC,
         ...componentExts.map(ext => `**/*.${ext}`),
       ],
       languageOptions: {
@@ -100,6 +99,7 @@ export function typescript(
         'ts/no-dynamic-delete': OFF,
         'ts/no-explicit-any': OFF,
         'ts/no-extra-parens': ['error', 'functions'],
+        'ts/no-extraneous-class': OFF,
         'ts/no-invalid-this': 'error',
         'ts/no-invalid-void-type': OFF,
         'ts/no-loss-of-precision': 'error',
@@ -108,8 +108,10 @@ export function typescript(
         'ts/no-require-imports': 'error',
         'ts/no-unused-vars': OFF,
         'ts/no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
+        'ts/no-useless-constructor': OFF,
         'ts/prefer-ts-expect-error': 'error',
         'ts/triple-slash-reference': OFF,
+        'ts/unified-signatures': OFF,
 
         ...tsconfigPath ? typeAwareRules : {},
         ...overrides,
@@ -130,7 +132,7 @@ export function typescript(
       },
     },
     {
-      files: [GLOB_JSX],
+      files: [GLOB_JS],
       rules: {
         'ts/no-require-imports': OFF,
         'ts/no-var-requires': OFF,
