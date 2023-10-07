@@ -25,7 +25,7 @@ export function react(options: OptionsHasTypeScript & OptionsOverrides = {}): Fl
         'react-hooks': pluginReactHooks,
       },
       rules: {
-        'jsx-quotes': ['error', 'prefer-double'],
+        'style/jsx-quotes': ['error', 'prefer-double'],
 
         ...pluginReact.configs.recommended.rules,
         'react/react-in-jsx-scope': OFF,
