@@ -2,11 +2,11 @@
   "compilerOptions": {
     "target": "es2020",
     "jsx": "preserve",
+    "baseUrl": ".",
     "module": "es2020",
     "moduleResolution": "Bundler",
-    "baseUrl": ".",
-    "esModuleInterop": true,
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true
   }
 }

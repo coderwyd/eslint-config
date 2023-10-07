@@ -1,6 +1,6 @@
 import process from 'node:process'
 import type { FlatESLintConfigItem, OptionsComponentExts, OptionsOverrides, OptionsTypeScriptParserOptions, OptionsTypeScriptWithTypes } from '../types'
-import { GLOB_JS, GLOB_SRC, GLOB_TESTS, GLOB_TS, GLOB_TSX } from '../globs'
+import { GLOB_JS, GLOB_SRC, GLOB_TESTS } from '../globs'
 import { parserTs, pluginAntfu, pluginImport, pluginTs } from '../plugins'
 import { OFF } from '../flags'
 import { renameRules } from '../utils'

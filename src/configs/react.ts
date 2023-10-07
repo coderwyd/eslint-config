@@ -1,7 +1,7 @@
 import globals from 'globals'
 import type { FlatESLintConfigItem, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
-import { parserTs, pluginReact, pluginReactHooks } from '../plugins'
+import { pluginReact, pluginReactHooks } from '../plugins'
 import { OFF } from './../flags'
 
 export function react(options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic = {}): FlatESLintConfigItem[] {
@@ -11,7 +11,7 @@ export function react(options: OptionsHasTypeScript & OptionsOverrides & Options
   } = options
 
   const {
-    indent = 4,
+    indent = 2,
   } = typeof stylistic === 'boolean' ? {} : stylistic
 
   const extensions = [GLOB_JSX, ...[options.typescript ? GLOB_TSX : '']]
