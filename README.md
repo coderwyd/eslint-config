@@ -242,7 +242,24 @@ Certain rules would only be enabled in specific files, for example, `ts/*` rules
 import coderwyd from '@coderwyd/eslint-config'
 
 export default coderwyd(
-  { vue: true, typescript: true },
+  {
+    // Enable stylistic formatting rules
+    // stylistic: true,
+
+    // Or customize the stylistic rules
+    stylistic: {
+      indent: 2, // 4, or 'tab'
+      quotes: 'single', // or 'double'
+    },
+
+    // TypeScript and Vue are auto-detected, you can also explicitly enable them:
+    typescript: true,
+    vue: true,
+
+    // Disable jsonc and yaml support
+    jsonc: false,
+    yaml: false,
+  },
   {
     // Remember to specify the file glob here, otherwise it might cause the vue plugin to handle non-vue files
     files: ['**/*.vue'],

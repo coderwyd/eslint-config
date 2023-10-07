@@ -107,8 +107,13 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     }))
   }
 
-  if (enableStylistic)
-    configs.push(stylistic())
+  if (enableStylistic) {
+    configs.push(stylistic(
+      typeof enableStylistic === 'boolean'
+        ? {}
+        : enableStylistic,
+    ))
+  }
 
   if (options.test ?? true)
     configs.push(test({ isInEditor, overrides: overrides.test }))

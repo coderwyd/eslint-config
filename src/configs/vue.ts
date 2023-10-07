@@ -37,6 +37,11 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
     overrides = {},
     stylistic = true,
   } = options
+
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic
+
   return [
     {
       name: 'coderwyd:vue:setup',
@@ -76,6 +81,8 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
         'vue/dot-location': ['error', 'property'],
         'vue/dot-notation': ['error', { allowKeywords: true }],
         'vue/eqeqeq': ['error', 'smart'],
+        'vue/html-indent': ['error', indent],
+        'vue/html-quotes': ['error', 'double'],
         'vue/max-attributes-per-line': OFF,
         'vue/multi-word-component-names': OFF,
         'vue/no-dupe-keys': OFF,

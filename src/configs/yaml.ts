@@ -9,6 +9,11 @@ export function yaml(options: OptionsOverrides & OptionsStylistic = {}): FlatESL
     stylistic = true,
   } = options
 
+  const {
+    indent = 2,
+    quotes = 'single',
+  } = typeof stylistic === 'boolean' ? {} : stylistic
+
   return [
     {
       name: 'coderwyd:yaml:setup',
@@ -42,10 +47,10 @@ export function yaml(options: OptionsOverrides & OptionsStylistic = {}): FlatESL
               'yaml/flow-mapping-curly-spacing': 'error',
               'yaml/flow-sequence-bracket-newline': 'error',
               'yaml/flow-sequence-bracket-spacing': 'error',
-              'yaml/indent': ['error', 2],
+              'yaml/indent': ['error', indent],
               'yaml/key-spacing': 'error',
-              'yaml/no-tab-indent': 'error',
-              'yaml/quotes': ['error', { avoidEscape: false, prefer: 'single' }],
+              'yaml/no-tab-indent': indent === 'tab' ? 'off' : 'error',
+              'yaml/quotes': ['error', { avoidEscape: false, prefer: quotes }],
               'yaml/spaced-comment': 'error',
             }
           : {},
