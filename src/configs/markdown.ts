@@ -38,16 +38,15 @@ export function markdown(options: OptionsComponentExts & OptionsOverrides = {}):
         'antfu/no-cjs-exports': OFF,
         'antfu/no-ts-export-equal': OFF,
 
-        'eol-last': OFF,
         'no-alert': OFF,
         'no-console': OFF,
         'no-undef': OFF,
         'no-unused-expressions': OFF,
         'no-unused-vars': OFF,
-
         'node/prefer-global/process': OFF,
 
         'style/comma-dangle': OFF,
+        'style/eol-last': OFF,
 
         'ts/consistent-type-imports': OFF,
         'ts/no-namespace': OFF,

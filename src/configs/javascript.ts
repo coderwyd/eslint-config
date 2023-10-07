@@ -40,19 +40,14 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
       rules: {
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
 
-        'antfu/top-level-function': 'error',
-
         'array-callback-return': 'error',
         'arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
         'block-scoped-var': 'error',
         'constructor-super': 'error',
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
-        'eol-last': 'error',
         'eqeqeq': ['error', 'smart'],
-        'max-statements-per-line': ['error', { max: 1 }],
         'new-cap': ['error', { capIsNew: false, newIsCap: true, properties: true }],
-        'new-parens': 'error',
         'no-alert': 'error',
         'no-array-constructor': 'error',
         'no-async-promise-executor': 'error',
@@ -63,7 +58,6 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
         'no-cond-assign': ['error', 'always'],
         'no-console': ['error', { allow: ['warn', 'error'] }],
         'no-const-assign': 'error',
-        'no-constant-condition': 'warn',
         'no-control-regex': 'error',
         'no-debugger': 'error',
         'no-delete-var': 'error',
@@ -79,9 +73,7 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
         'no-extend-native': 'error',
         'no-extra-bind': 'error',
         'no-extra-boolean-cast': 'error',
-        'no-extra-parens': ['error', 'functions'],
         'no-fallthrough': 'error',
-        'no-floating-decimal': 'error',
         'no-func-assign': 'error',
         'no-global-assign': 'error',
         'no-implied-eval': 'error',
@@ -94,14 +86,6 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
         'no-lone-blocks': 'error',
         'no-loss-of-precision': 'error',
         'no-misleading-character-class': 'error',
-        'no-mixed-operators': ['error', {
-          allowSamePrecedence: true,
-          groups: [
-            ['==', '!=', '===', '!==', '>', '>=', '<', '<='],
-            ['&&', '||'],
-            ['in', 'instanceof'],
-          ],
-        }],
         'no-multi-str': 'error',
         'no-new': 'error',
         'no-new-func': 'error',
@@ -133,6 +117,8 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
           'DebuggerStatement',
           'LabeledStatement',
           'WithStatement',
+          'TSEnumDeclaration[const=true]',
+          'TSExportAssignment',
         ],
         'no-self-assign': ['error', { props: true }],
         'no-self-compare': 'error',
@@ -202,7 +188,6 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
-        'quote-props': ['error', 'consistent-as-needed'],
         'sort-imports': [
           'error',
           {
@@ -213,19 +198,18 @@ export function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): 
             memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
           },
         ],
+
         'symbol-description': 'error',
         'unicode-bom': ['error', 'never'],
-
         'unused-imports/no-unused-imports': isInEditor ? OFF : 'error',
+
         'unused-imports/no-unused-vars': [
           'error',
           { args: 'after-used', argsIgnorePattern: '^_', vars: 'all', varsIgnorePattern: '^_' },
         ],
-
         'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
-        'wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
         'yoda': ['error', 'never'],
 
         ...overrides,

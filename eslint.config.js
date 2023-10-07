@@ -1,6 +1,6 @@
 import { createRequire } from 'node:module'
 import sortKeys from 'eslint-plugin-sort-keys'
-
+import styleMigrate from '@stylistic/eslint-plugin-migrate'
 import coderwyd from './dist/index.js'
 
 const require = createRequire(import.meta.url)
@@ -16,6 +16,15 @@ export default coderwyd(
     },
     rules: {
       'sort-keys/sort-keys-fix': 'error',
+    },
+  },
+  {
+    files: ['src/configs/*.ts'],
+    plugins: {
+      'style-migrate': styleMigrate,
+    },
+    rules: {
+      'style-migrate/migrate': ['error', { namespaceTo: 'style' }],
     },
   },
 )

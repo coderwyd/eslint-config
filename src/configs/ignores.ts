@@ -5,7 +5,6 @@ export function ignores(): FlatESLintConfigItem[] {
   return [
     {
       ignores: GLOB_EXCLUDE,
-      name: 'coderwyd:ignores:basic',
     },
   ]
 }
