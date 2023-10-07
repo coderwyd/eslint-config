@@ -7,6 +7,9 @@ export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatES
     stylistic = true,
     overrides = {},
   } = options
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic
   return [
     {
       name: 'coderwyd:jsonc:setup',
@@ -53,7 +56,7 @@ export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatES
               'jsonc/array-bracket-spacing': ['error', 'never'],
               'jsonc/comma-dangle': ['error', 'never'],
               'jsonc/comma-style': ['error', 'last'],
-              'jsonc/indent': ['error', 2],
+              'jsonc/indent': ['error', indent],
               'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
               'jsonc/object-curly-spacing': ['error', 'always'],
