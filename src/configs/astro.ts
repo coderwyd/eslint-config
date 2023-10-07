@@ -16,7 +16,7 @@ export function astro(options: OptionsHasTypeScript & OptionsOverrides = {}): Fl
       },
       name: 'coderwyd:astro',
       plugins: {
-        astro: pluginAstro,
+        astro: pluginAstro as any,
       },
       rules: {
         ...(pluginAstro.configs.recommended.rules as any),
