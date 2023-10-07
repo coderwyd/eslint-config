@@ -28,6 +28,8 @@ export const GLOB_TESTS = [
   `**/__tests__/**/*.${GLOB_SRC_EXT}`,
   `**/*.spec.${GLOB_SRC_EXT}`,
   `**/*.test.${GLOB_SRC_EXT}`,
+  `**/*.bench.${GLOB_SRC_EXT}`,
+  `**/*.benchmark.${GLOB_SRC_EXT}`,
 ]
 
 export const GLOB_ALL_SRC = [
@@ -47,6 +49,7 @@ export const GLOB_EXCLUDE = [
   '**/package-lock.json',
   '**/yarn.lock',
   '**/pnpm-lock.yaml',
+  '**/bun.lockb',
 
   '**/output',
   '**/coverage',
