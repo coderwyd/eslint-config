@@ -24,8 +24,8 @@ dependencies:
     specifier: ^1.23.0
     version: 1.23.0
   eslint-plugin-antfu:
-    specifier: 1.0.0-beta.10
-    version: 1.0.0-beta.10(eslint@8.50.0)(typescript@5.2.2)
+    specifier: 1.0.0-beta.12
+    version: 1.0.0-beta.12(eslint@8.50.0)(typescript@5.2.2)
   eslint-plugin-astro:
     specifier: ^0.29.1
     version: 0.29.1(eslint@8.50.0)
@@ -1831,12 +1831,14 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-antfu@1.0.0-beta.10(eslint@8.50.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-7hgLK1wuHDKl3vHtlKPmcE9jZir1l7QN1RiQnsd2rKwRz5kx3BV4G/Lnn5YBFobJOmGjrSNM0DNY3/IBMJrQEQ==}
+  /eslint-plugin-antfu@1.0.0-beta.12(eslint@8.50.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-vPe0vigzDMmStU/hSZLAXfe6vdc26bOaxQt1a92tuOp3jkp0iT3/VXKlkMxsD9XTV/UL8/SNNTprMOUABC1vhQ==}
+    peerDependencies:
+      eslint: '*'
     dependencies:
-      '@typescript-eslint/utils': 6.7.3(eslint@8.50.0)(typescript@5.2.2)
+      '@typescript-eslint/utils': 6.7.4(eslint@8.50.0)(typescript@5.2.2)
+      eslint: 8.50.0
     transitivePeerDependencies:
-      - eslint
       - supports-color
       - typescript
     dev: false
