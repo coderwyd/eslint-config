@@ -67,7 +67,7 @@
     "globals": "^13.22.0",
     "jsonc-eslint-parser": "^2.3.0",
     "local-pkg": "^0.4.3",
-    "vue-eslint-parser": "^9.3.1",
+    "vue-eslint-parser": "^9.3.2",
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
