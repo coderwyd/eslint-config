@@ -76,8 +76,8 @@ Add the following settings to your `.vscode/settings.json`:
 
   // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll": "explicit",
+    "source.organizeImports": "never"
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them
@@ -187,7 +187,7 @@ import {
   typescript,
   unicorn,
   vue,
-  yml,
+  yaml,
 } from '@coderwyd/eslint-config'
 
 export default [
@@ -204,7 +204,7 @@ export default [
   ...stylistic(),
   ...vue(),
   ...jsonc(),
-  ...yml(),
+  ...yaml(),
   ...markdown(),
 ]
 ```
