@@ -42,7 +42,7 @@
     "eslint": ">=8.0.0"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^0.0.8",
+    "@stylistic/eslint-plugin": "^0.0.11",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "astro-eslint-parser": "^0.16.0",
