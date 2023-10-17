@@ -107,8 +107,8 @@ devDependencies:
     specifier: ^8.51.0
     version: 8.51.0
   eslint-flat-config-viewer:
-    specifier: ^0.0.9
-    version: 0.0.9
+    specifier: ^0.1.0
+    version: 0.1.0
   eslint-plugin-sort-keys:
     specifier: ^2.3.5
     version: 2.3.5
@@ -1321,7 +1321,7 @@ packages:
       defu: 6.1.2
       dotenv: 16.3.1
       giget: 1.1.2
-      jiti: 1.19.3
+      jiti: 1.20.0
       mlly: 1.4.0
       ohash: 1.1.2
       pathe: 1.1.1
@@ -1768,8 +1768,8 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>= 8.6.0'}
     dev: false
 
-  /eslint-flat-config-viewer@0.0.9:
-    resolution: {integrity: sha512-r+0joc0p1Qc8+vrgzUiOdY8gfptlyDQCriomSjA1J/fy855pIcryOTgIKwb9tbBiOtCMOqQPiKluAcI2KRBW7w==}
+  /eslint-flat-config-viewer@0.1.0:
+    resolution: {integrity: sha512-esOGgW2NBJsQQk+nzZwfqPNQEPiYPXwCsvt4VlErCm/Fx49ILKN0FRrKcIhEfteFi9kKRLSRgv66mPDvAvLblg==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
@@ -2777,11 +2777,6 @@ packages:
       reflect.getprototypeof: 1.0.4
       set-function-name: 2.0.1
     dev: false
-
-  /jiti@1.19.3:
-    resolution: {integrity: sha512-5eEbBDQT/jF1xg6l36P+mWGGoH9Spuy0PCdSr2dtWRDGC6ph/w9ZCL4lmESW8f8F7MwT3XKescfP0wnZWAKL9w==}
-    hasBin: true
-    dev: true
 
   /jiti@1.20.0:
     resolution: {integrity: sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==}
