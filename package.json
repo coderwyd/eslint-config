@@ -76,7 +76,7 @@
     "@types/node": "^20.8.7",
     "@types/react": "^18.2.31",
     "bumpp": "^9.2.0",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "eslint-flat-config-viewer": "^0.1.0",
     "eslint-plugin-sort-keys": "^2.3.5",
     "nano-staged": "^0.8.0",
