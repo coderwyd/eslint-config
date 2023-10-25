@@ -69,8 +69,8 @@ dependencies:
     specifier: ^9.17.0
     version: 9.17.0(eslint@8.52.0)
   eslint-plugin-yml:
-    specifier: ^1.9.0
-    version: 1.9.0(eslint@8.52.0)
+    specifier: ^1.10.0
+    version: 1.10.0(eslint@8.52.0)
   globals:
     specifier: ^13.22.0
     version: 13.22.0
@@ -2176,14 +2176,15 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-yml@1.9.0(eslint@8.52.0):
-    resolution: {integrity: sha512-ayuC57WyVQ5+QZ02y62GiB//5+zsiyzUGxUX/mrhLni+jfsKA4KoITjkbR65iUdjjhWpyTJHPcAIFLKQIOwgsw==}
+  /eslint-plugin-yml@1.10.0(eslint@8.52.0):
+    resolution: {integrity: sha512-53SUwuNDna97lVk38hL/5++WXDuugPM9SUQ1T645R0EHMRCdBIIxGye/oOX2qO3FQ7aImxaUZJU/ju+NMUBrLQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
     dependencies:
       debug: 4.3.4
       eslint: 8.52.0
+      eslint-compat-utils: 0.1.2(eslint@8.52.0)
       lodash: 4.17.21
       natural-compare: 1.4.0
       yaml-eslint-parser: 1.2.2
