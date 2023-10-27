@@ -24,8 +24,8 @@ dependencies:
     specifier: ^1.24.1
     version: 1.24.1
   eslint-plugin-antfu:
-    specifier: 1.0.0-beta.12
-    version: 1.0.0-beta.12(eslint@8.52.0)(typescript@5.2.2)
+    specifier: 1.0.1
+    version: 1.0.1(eslint@8.52.0)
   eslint-plugin-astro:
     specifier: ^0.29.1
     version: 0.29.1(eslint@8.52.0)
@@ -875,6 +875,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.7.4
       '@typescript-eslint/visitor-keys': 6.7.4
+    dev: true
 
   /@typescript-eslint/scope-manager@6.7.5:
     resolution: {integrity: sha512-GAlk3eQIwWOJeb9F7MKQ6Jbah/vx1zETSDw8likab/eFcqkjSD7BI75SDAeC5N2L0MmConMoPvTsmkrg71+B1A==}
@@ -940,6 +941,7 @@ packages:
   /@typescript-eslint/types@6.7.4:
     resolution: {integrity: sha512-o9XWK2FLW6eSS/0r/tgjAGsYasLAnOWg7hvZ/dGYSSNjCh+49k5ocPN8OmG5aZcSJ8pclSOyVKP2x03Sj+RrCA==}
     engines: {node: ^16.0.0 || >=18.0.0}
+    dev: true
 
   /@typescript-eslint/types@6.7.5:
     resolution: {integrity: sha512-WboQBlOXtdj1tDFPyIthpKrUb+kZf2VroLZhxKa/VlwLlLyqv/PwUNgL30BlTVZV1Wu4Asu2mMYPqarSO4L5ZQ==}
@@ -970,6 +972,7 @@ packages:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@typescript-eslint/typescript-estree@6.7.5(typescript@5.2.2):
     resolution: {integrity: sha512-NhJiJ4KdtwBIxrKl0BqG1Ur+uw7FiOnOThcYx9DpOGJ/Abc9z2xNzLeirCG02Ig3vkvrc2qFLmYSSsaITbKjlg==}
@@ -1030,6 +1033,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
+    dev: true
 
   /@typescript-eslint/utils@6.7.5(eslint@8.52.0)(typescript@5.2.2):
     resolution: {integrity: sha512-pfRRrH20thJbzPPlPc4j0UNGvH1PjPlhlCMq4Yx7EGjV7lvEeGX0U6MJYe8+SyFutWgSHsdbJ3BXzZccYggezA==}
@@ -1083,6 +1087,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.7.4
       eslint-visitor-keys: 3.4.3
+    dev: true
 
   /@typescript-eslint/visitor-keys@6.7.5:
     resolution: {integrity: sha512-3MaWdDZtLlsexZzDSdQWsFQ9l9nL8B80Z4fImSpyllFC/KLqWQRdEcB+gGGO+N3Q2uL40EsG66wZLsohPxNXvg==}
@@ -1917,16 +1922,12 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-antfu@1.0.0-beta.12(eslint@8.52.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-vPe0vigzDMmStU/hSZLAXfe6vdc26bOaxQt1a92tuOp3jkp0iT3/VXKlkMxsD9XTV/UL8/SNNTprMOUABC1vhQ==}
+  /eslint-plugin-antfu@1.0.1(eslint@8.52.0):
+    resolution: {integrity: sha512-NL89JeF73mMwPMaLALLizOk7m+WboEJn4QB+GKRufG3a7jm4fpnkxZPPd2gu8X81ad9eUo3y+RsZ9TczjPFdQQ==}
     peerDependencies:
       eslint: '*'
     dependencies:
-      '@typescript-eslint/utils': 6.7.4(eslint@8.52.0)(typescript@5.2.2)
       eslint: 8.52.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
     dev: false
 
   /eslint-plugin-astro@0.29.1(eslint@8.52.0):
