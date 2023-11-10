@@ -107,8 +107,8 @@ devDependencies:
     specifier: ^8.53.0
     version: 8.53.0
   eslint-flat-config-viewer:
-    specifier: ^0.1.0
-    version: 0.1.0
+    specifier: ^0.1.1
+    version: 0.1.1
   eslint-plugin-sort-keys:
     specifier: ^2.3.5
     version: 2.3.5
@@ -1926,15 +1926,15 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>= 8.6.0'}
     dev: false
 
-  /eslint-flat-config-viewer@0.1.0:
-    resolution: {integrity: sha512-esOGgW2NBJsQQk+nzZwfqPNQEPiYPXwCsvt4VlErCm/Fx49ILKN0FRrKcIhEfteFi9kKRLSRgv66mPDvAvLblg==}
+  /eslint-flat-config-viewer@0.1.1:
+    resolution: {integrity: sha512-ajbg1Kiqi7h/h757/F0So07w8sLLaUVau9KN+x0aeLuRuJmI2lCQnZBl9U6f7tkV3VQgNgmARZ96XvDI1nhovA==}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
       consola: 3.2.3
       eslint: 8.53.0
       get-port-please: 3.1.1
-      jiti: 1.20.0
+      jiti: 1.21.0
       open: 9.1.0
       ws: 8.14.2
     transitivePeerDependencies:
@@ -2939,6 +2939,11 @@ packages:
 
   /jiti@1.20.0:
     resolution: {integrity: sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==}
+    hasBin: true
+    dev: true
+
+  /jiti@1.21.0:
+    resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
     dev: true
 
