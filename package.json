@@ -71,7 +71,7 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-migrate": "^0.0.6",
+    "@stylistic/eslint-plugin-migrate": "^0.1.2",
     "@types/eslint": "^8.44.7",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.38",
