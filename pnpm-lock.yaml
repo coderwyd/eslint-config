@@ -104,7 +104,7 @@ dependencies:
 
 devDependencies:
   '@antfu/ni':
-    specifier: ^0.21.10
+    specifier: ^0.21.12
     version: 0.21.12
   '@stylistic/eslint-plugin-migrate':
     specifier: ^1.4.0
