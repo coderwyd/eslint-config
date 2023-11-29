@@ -1,72 +1,80 @@
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
 import type { ParserOptions } from '@typescript-eslint/parser'
-import type { ESLint, Linter } from 'eslint'
-import type { LanguageOptions, LinterOptions } from 'eslint-define-config'
+import type { Linter } from 'eslint'
+import type {
+  EslintCommentsRules,
+  EslintRules,
+  FlatESLintConfigItem,
+  ImportRules,
+  JsoncRules,
+  MergeIntersection,
+  NRules,
+  Prefix,
+  ReactHooksRules,
+  ReactRules,
+  RenamePrefix,
+  RuleConfig,
+  VitestRules,
+  VueRules,
+  YmlRules,
+} from '@antfu/eslint-define-config'
+import type { RuleOptions as JSDocRules } from '@eslint-types/jsdoc/types'
+import type { RuleOptions as TypeScriptRules } from '@eslint-types/typescript-eslint/types'
+import type { RuleOptions as UnicornRules } from '@eslint-types/unicorn/types'
+import type { Rules as AntfuRules } from 'eslint-plugin-antfu'
+import type { StylisticCustomizeOptions, UnprefixedRuleOptions as StylisticRules } from '@stylistic/eslint-plugin'
 
-/**
- * Flat ESLint Configuration.
- *
- * @see [Configuration Files (New)](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new)
- */
-export interface FlatESLintConfigItem {
+export type WrapRuleConfig<T extends { [key: string]: any }> = {
+  [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
+}
+
+export type Awaitable<T> = T | Promise<T>
+
+export type Rules = WrapRuleConfig<
+  MergeIntersection<
+    RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
+    RenamePrefix<VitestRules, 'vitest/', 'test/'> &
+    RenamePrefix<YmlRules, 'yml/', 'yaml/'> &
+    RenamePrefix<NRules, 'n/', 'node/'> &
+    Prefix<StylisticRules, 'style/'> &
+    Prefix<AntfuRules, 'antfu/'> &
+    ReactHooksRules &
+    ReactRules &
+    JSDocRules &
+    ImportRules &
+    EslintRules &
+    JsoncRules &
+    VueRules &
+    UnicornRules &
+    EslintCommentsRules &
+    {
+      'test/no-only-tests': RuleConfig<[]>
+    }
+  >
+>
+
+export type FlatConfigItem = Omit<FlatESLintConfigItem<Rules, false>, 'plugins'> & {
   /**
-   * The name of the configuration object.
+   * Custom name of each config item
    */
   name?: string
 
-  /**
-   * An array of glob patterns indicating the files that the configuration object should apply to. If not specified, the configuration object applies to all files.
-   *
-   * @see [Ignore Patterns](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#excluding-files-with-ignores)
-   */
-  files?: string[]
-
-  /**
-   * An array of glob patterns indicating the files that the configuration object should not apply to. If not specified, the configuration object applies to all files matched by files.
-   *
-   * @see [Ignore Patterns](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#excluding-files-with-ignores)
-   */
-  ignores?: string[]
-
-  /**
-   * An object containing settings related to how JavaScript is configured for linting.
-   *
-   * @see [Configuring language options](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuring-language-options)
-   */
-  languageOptions?: LanguageOptions
-
-  /**
-   * An object containing settings related to the linting process.
-   */
-  linterOptions?: LinterOptions
-
-  /**
-   * Either an object containing `preprocess()` and `postprocess()` methods or a string indicating the name of a processor inside of a plugin (i.e., `"pluginName/processorName"`).
-   *
-   * @see [Using processors](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-processors)
-   */
-  processor?: string | Linter.Processor
-
+  // Relax plugins type limitation, as most of the plugins did not have correct type info yet.
   /**
    * An object containing a name-value mapping of plugin names to plugin objects. When `files` is specified, these plugins are only available to the matching files.
    *
    * @see [Using plugins in your configuration](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#using-plugins-in-your-configuration)
    */
-  plugins?: Record<string, ESLint.Plugin>
+  plugins?: Record<string, any>
+}
 
-  /**
-   * An object containing the configured rules. When `files` or `ignores` are specified, these rule configurations are only available to the matching files.
-   *
-   * @see [Configuring rules](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuring-rules)
-   */
-  rules?: Record<string, Linter.RuleLevel | Linter.RuleLevelAndOptions>
+export type UserConfigItem = FlatConfigItem | Linter.FlatConfig
 
+export interface OptionsFiles {
   /**
-   * An object containing name-value pairs of information that should be available to all rules.
-   *
-   * @see [Configuring shared settings](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new#configuring-shared-settings)
+   * Override the `files` option to provide custom globs.
    */
-  settings?: Record<string, any>
+  files?: string[]
 }
 
 export interface OptionsComponentExts {
@@ -91,7 +99,7 @@ export interface OptionsTypeScriptWithTypes {
    * When this options is provided, type aware rules will be enabled.
    * @see https://typescript-eslint.io/linting/typed-linting/
    */
-  tsconfigPath?: string
+  tsconfigPath?: string | string[]
 }
 
 export interface OptionsHasTypeScript {
@@ -102,17 +110,28 @@ export interface OptionsStylistic {
   stylistic?: boolean | StylisticConfig
 }
 
-export interface StylisticConfig {
-  indent?: number | 'tab'
-  quotes?: 'single' | 'double'
+export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi'> {
 }
 
 export interface OptionsOverrides {
-  overrides?: FlatESLintConfigItem['rules']
+  overrides?: FlatConfigItem['rules']
 }
 
 export interface OptionsIsInEditor {
   isInEditor?: boolean
+}
+
+export interface OptionsUnoCSS {
+  /**
+   * Enable attributify support.
+   * @default true
+   */
+  attributify?: boolean
+  /**
+   * Enable strict mode by throwing errors about blocklisted classes.
+   * @default false
+   */
+  strict?: boolean
 }
 
 export interface OptionsConfig extends OptionsComponentExts {
@@ -133,7 +152,16 @@ export interface OptionsConfig extends OptionsComponentExts {
    *
    * @default auto-detect based on the dependencies
    */
-  typescript?: boolean | OptionsTypeScriptWithTypes
+  typescript?: boolean | OptionsTypeScriptWithTypes | OptionsTypeScriptParserOptions
+
+  /**
+   * Enable JSX related rules.
+   *
+   * Currently only stylistic rules are included.
+   *
+   * @default true
+   */
+  jsx?: boolean
 
   /**
    * Enable test support.
@@ -148,20 +176,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the dependencies
    */
   vue?: boolean
-
-  /**
-   * Enable React support.
-   *
-   * @default auto-detect based on the dependencies
-   */
-  react?: boolean
-
-  /**
-   * Enable Astro support.
-   *
-   * @default auto-detect based on the dependencies
-   */
-  astro?: boolean
 
   /**
    * Enable JSONC support.
@@ -192,6 +206,28 @@ export interface OptionsConfig extends OptionsComponentExts {
   stylistic?: boolean | StylisticConfig
 
   /**
+   * Enable react rules.
+   *
+   * Requires installing:
+   * - `eslint-plugin-react`
+   * - `eslint-plugin-react-hooks`
+   * - `eslint-plugin-react-refresh`
+   *
+   * @default false
+   */
+  react?: boolean
+
+  /**
+   * Enable unocss rules.
+   *
+   * Requires installing:
+   * - `@unocss/eslint-plugin`
+   *
+   * @default false
+   */
+  unocss?: boolean | OptionsUnoCSS
+
+  /**
    * Control to disable some rules in editors.
    * @default auto-detect based on the process.env
    */
@@ -201,15 +237,13 @@ export interface OptionsConfig extends OptionsComponentExts {
    * Provide overrides for rules for each integration.
    */
   overrides?: {
-    javascript?: FlatESLintConfigItem['rules']
-    typescript?: FlatESLintConfigItem['rules']
-
-    test?: FlatESLintConfigItem['rules']
-    vue?: FlatESLintConfigItem['rules']
-    react?: FlatESLintConfigItem['rules']
-    astro?: FlatESLintConfigItem['rules']
-    jsonc?: FlatESLintConfigItem['rules']
-    markdown?: FlatESLintConfigItem['rules']
-    yaml?: FlatESLintConfigItem['rules']
+    javascript?: FlatConfigItem['rules']
+    typescript?: FlatConfigItem['rules']
+    test?: FlatConfigItem['rules']
+    vue?: FlatConfigItem['rules']
+    jsonc?: FlatConfigItem['rules']
+    markdown?: FlatConfigItem['rules']
+    yaml?: FlatConfigItem['rules']
+    react?: FlatConfigItem['rules']
   }
 }

@@ -1,11 +1,11 @@
-import type { FlatESLintConfigItem } from '../types'
+import type { FlatConfigItem } from '../types'
 
 /**
  * Sort package.json
  *
  * Requires `jsonc` config
  */
-export function sortPackageJson(): FlatESLintConfigItem[] {
+export async function sortPackageJson(): Promise<FlatConfigItem[]> {
   return [
     {
       files: ['**/package.json'],
@@ -64,7 +64,6 @@ export function sortPackageJson(): FlatESLintConfigItem[] {
               'husky',
               'simple-git-hooks',
               'lint-staged',
-              'nano-staged',
               'eslintConfig',
             ],
             pathPattern: '^$',
@@ -101,7 +100,7 @@ export function sortPackageJson(): FlatESLintConfigItem[] {
  * Requires `jsonc` config
  */
 
-export function sortTsconfig(): FlatESLintConfigItem[] {
+export function sortTsconfig(): FlatConfigItem[] {
   return [
     {
       files: ['**/tsconfig.json', '**/tsconfig.*.json'],

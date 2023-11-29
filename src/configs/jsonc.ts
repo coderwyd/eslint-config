@@ -1,15 +1,28 @@
-import type { FlatESLintConfigItem, OptionsOverrides, OptionsStylistic } from '../types'
+import type { FlatConfigItem, OptionsFiles, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
-import { parserJsonc, pluginJsonc } from '../plugins'
+import { interopDefault } from '../utils'
 
-export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatESLintConfigItem[] {
+export async function jsonc(
+  options: OptionsFiles & OptionsStylistic & OptionsOverrides = {},
+): Promise<FlatConfigItem[]> {
   const {
-    stylistic = true,
+    files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
     overrides = {},
+    stylistic = true,
   } = options
+
   const {
     indent = 2,
   } = typeof stylistic === 'boolean' ? {} : stylistic
+
+  const [
+    pluginJsonc,
+    parserJsonc,
+  ] = await Promise.all([
+    interopDefault(import('eslint-plugin-jsonc')),
+    interopDefault(import('jsonc-eslint-parser')),
+  ] as const)
+
   return [
     {
       name: 'coderwyd:jsonc:setup',
@@ -18,7 +31,7 @@ export function jsonc(options: OptionsStylistic & OptionsOverrides = {}): FlatES
       },
     },
     {
-      files: [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
+      files,
       languageOptions: {
         parser: parserJsonc,
       },

@@ -1,39 +1,12 @@
-import process from 'node:process'
-import { getPackageInfoSync } from 'local-pkg'
-import type { FlatESLintConfigItem, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
+import { getVueVersion, interopDefault } from '../utils'
+import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
 import { GLOB_VUE } from '../globs'
-import { parserTs, parserVue, pluginVue } from '../plugins'
-import { OFF } from '../flags'
 
-export function getVueVersion() {
-  const pkg = getPackageInfoSync('vue', { paths: [process.cwd()] })
-  if (
-    pkg
-    && typeof pkg.version === 'string'
-    && !Number.isNaN(+pkg.version[0])
-  )
-    return +pkg.version[0]
-
-  return 3
-}
-const isVue3 = getVueVersion() === 3
-
-const vue3Rules: FlatESLintConfigItem['rules'] = {
-  ...pluginVue.configs.base.rules,
-  ...pluginVue.configs['vue3-essential'].rules,
-  ...pluginVue.configs['vue3-strongly-recommended'].rules,
-  ...pluginVue.configs['vue3-recommended'].rules,
-}
-
-const vue2Rules: FlatESLintConfigItem['rules'] = {
-  ...pluginVue.configs.base.rules,
-  ...pluginVue.configs.essential.rules,
-  ...pluginVue.configs['strongly-recommended'].rules,
-  ...pluginVue.configs.recommended.rules,
-}
-
-export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic = {}): FlatESLintConfigItem[] {
+export async function vue(
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+): Promise<FlatConfigItem[]> {
   const {
+    files = [GLOB_VUE],
     overrides = {},
     stylistic = true,
   } = options
@@ -41,6 +14,31 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
   const {
     indent = 2,
   } = typeof stylistic === 'boolean' ? {} : stylistic
+
+  const isVue3 = getVueVersion() === 3
+
+  const [
+    pluginVue,
+    parserVue,
+  ] = await Promise.all([
+    // @ts-expect-error missing types
+    interopDefault(import('eslint-plugin-vue')),
+    interopDefault(import('vue-eslint-parser')),
+  ] as const)
+
+  const vue3Rules = {
+    ...pluginVue.configs.base.rules,
+    ...pluginVue.configs['vue3-essential'].rules,
+    ...pluginVue.configs['vue3-strongly-recommended'].rules,
+    ...pluginVue.configs['vue3-recommended'].rules,
+  }
+
+  const vue2Rules = {
+    ...pluginVue.configs.base.rules,
+    ...pluginVue.configs.essential.rules,
+    ...pluginVue.configs['strongly-recommended'].rules,
+    ...pluginVue.configs.recommended.rules,
+  }
 
   return [
     {
@@ -50,7 +48,7 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
       },
     },
     {
-      files: [GLOB_VUE],
+      files,
       languageOptions: {
         parser: parserVue,
         parserOptions: {
@@ -58,7 +56,9 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
             jsx: true,
           },
           extraFileExtensions: ['.vue'],
-          parser: options.typescript ? parserTs as any : null,
+          parser: options.typescript
+            ? await interopDefault(import('@typescript-eslint/parser')) as any
+            : null,
           sourceType: 'module',
         },
       },
@@ -67,7 +67,7 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
       rules: {
         ...(isVue3 ? vue3Rules : vue2Rules),
 
-        'node/prefer-global/process': OFF,
+        'node/prefer-global/process': 'off',
 
         'vue/block-order': ['error', {
           order: ['script', 'template', 'style'],
@@ -83,9 +83,9 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
         'vue/eqeqeq': ['error', 'smart'],
         'vue/html-indent': ['error', indent],
         'vue/html-quotes': ['error', 'double'],
-        'vue/max-attributes-per-line': OFF,
-        'vue/multi-word-component-names': OFF,
-        'vue/no-dupe-keys': OFF,
+        'vue/max-attributes-per-line': 'off',
+        'vue/multi-word-component-names': 'off',
+        'vue/no-dupe-keys': 'off',
         'vue/no-empty-pattern': 'error',
         'vue/no-extra-parens': ['error', 'functions'],
         'vue/no-irregular-whitespace': 'error',
@@ -97,11 +97,11 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
           'WithStatement',
         ],
         'vue/no-restricted-v-bind': ['error', '/^v-/'],
-        'vue/no-setup-props-reactivity-loss': OFF,
+        'vue/no-setup-props-reactivity-loss': 'off',
         'vue/no-sparse-arrays': 'error',
         'vue/no-unused-refs': 'error',
         'vue/no-useless-v-bind': 'error',
-        'vue/no-v-html': OFF,
+        'vue/no-v-html': 'off',
         'vue/object-shorthand': [
           'error',
           'always',
@@ -112,8 +112,9 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
         ],
         'vue/prefer-separate-static-class': 'error',
         'vue/prefer-template': 'error',
-        'vue/require-default-prop': OFF,
-        'vue/require-prop-types': OFF,
+        'vue/prop-name-casing': ['error', 'camelCase'],
+        'vue/require-default-prop': 'off',
+        'vue/require-prop-types': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
 
@@ -135,7 +136,7 @@ export function vue(options: OptionsHasTypeScript & OptionsOverrides & OptionsSt
               }],
               'vue/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'vue/keyword-spacing': ['error', { after: true, before: true }],
-              'vue/object-curly-newline': OFF,
+              'vue/object-curly-newline': 'off',
               'vue/object-curly-spacing': ['error', 'always'],
               'vue/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
               'vue/operator-linebreak': ['error', 'before'],

@@ -1,7 +1,7 @@
-import type { FlatESLintConfigItem } from '../types'
+import type { FlatConfigItem } from '../types'
 import { pluginUnicorn } from '../plugins'
 
-export function unicorn(): FlatESLintConfigItem[] {
+export async function unicorn(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'coderwyd:unicorn',

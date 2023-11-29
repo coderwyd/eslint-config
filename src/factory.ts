@@ -1,10 +1,8 @@
 import process from 'node:process'
 import fs from 'node:fs'
 import { isPackageExists } from 'local-pkg'
-import gitignore from 'eslint-config-flat-gitignore'
-import type { FlatESLintConfigItem, OptionsConfig } from './types'
+import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from './types'
 import {
-  astro,
   comments,
   ignores,
   imports,
@@ -13,6 +11,7 @@ import {
   jsonc,
   markdown,
   node,
+  perfectionist,
   react,
   sortPackageJson,
   sortTsconfig,
@@ -20,12 +19,13 @@ import {
   test,
   typescript,
   unicorn,
+  unocss,
   vue,
   yaml,
 } from './configs'
-import { combine } from './utils'
+import { combine, interopDefault } from './utils'
 
-const flatConfigProps: (keyof FlatESLintConfigItem)[] = [
+const flatConfigProps: (keyof FlatConfigItem)[] = [
   'files',
   'ignores',
   'languageOptions',
@@ -43,55 +43,63 @@ const VuePackages = [
   '@slidev/cli',
 ]
 
-const ReactPackages = [
-  'react',
-  'next',
-]
-
-const AstroPackages = [
-  'astro',
-]
-
 /**
  * Construct an array of ESLint flat config items.
  */
-export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...userConfigs: (FlatESLintConfigItem | FlatESLintConfigItem[])[]) {
+export async function coderwyd(
+  options: OptionsConfig & FlatConfigItem = {},
+  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
+): Promise<UserConfigItem[]> {
   const {
-    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
-    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
-    react: enableReact = ReactPackages.some(i => isPackageExists(i)),
-    astro: enableAstro = AstroPackages.some(i => isPackageExists(i)),
-    typescript: enableTypeScript = isPackageExists('typescript'),
-    stylistic: enableStylistic = true,
-    gitignore: enableGitignore = true,
-    overrides = {},
     componentExts = [],
+    gitignore: enableGitignore = true,
+    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE) && !process.env.CI),
+    overrides = {},
+    react: enableReact = false,
+    typescript: enableTypeScript = isPackageExists('typescript'),
+    unocss: enableUnoCSS = false,
+    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
   } = options
 
-  const configs: FlatESLintConfigItem[][] = []
+  const stylisticOptions = options.stylistic === false
+    ? false
+    : typeof options.stylistic === 'object'
+      ? options.stylistic
+      : {}
+  if (stylisticOptions && !('jsx' in stylisticOptions))
+    stylisticOptions.jsx = options.jsx ?? true
+
+  const configs: Awaitable<FlatConfigItem[]>[] = []
+
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
-      configs.push([gitignore(enableGitignore)])
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r(enableGitignore)]))
     }
     else {
       if (fs.existsSync('.gitignore'))
-        configs.push([gitignore()])
+        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]))
     }
   }
 
   // Base configs
   configs.push(
     ignores(),
-    javascript({ isInEditor }),
+    javascript({
+      isInEditor,
+      overrides: overrides.javascript,
+    }),
     comments(),
     node(),
     jsdoc({
-      stylistic: enableStylistic,
+      stylistic: stylisticOptions,
     }),
     imports({
-      stylistic: enableStylistic,
+      stylistic: stylisticOptions,
     }),
     unicorn(),
+
+    // Optional plugins (installed but not enabled by default)
+    perfectionist(),
   )
 
   if (enableVue)
@@ -107,21 +115,20 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     }))
   }
 
-  if (enableStylistic) {
-    configs.push(stylistic(
-      typeof enableStylistic === 'boolean'
-        ? {}
-        : enableStylistic,
-    ))
-  }
+  if (stylisticOptions)
+    configs.push(stylistic(stylisticOptions))
 
-  if (options.test ?? true)
-    configs.push(test({ isInEditor, overrides: overrides.test }))
+  if (options.test ?? true) {
+    configs.push(test({
+      isInEditor,
+      overrides: overrides.test,
+    }))
+  }
 
   if (enableVue) {
     configs.push(vue({
       overrides: overrides.vue,
-      stylistic: enableStylistic,
+      stylistic: stylisticOptions,
       typescript: !!enableTypeScript,
     }))
   }
@@ -133,16 +140,18 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     }))
   }
 
-  if (enableAstro) {
-    configs.push(astro({
-      overrides: overrides.astro,
-      typescript: !!enableTypeScript,
-    }))
+  if (enableUnoCSS) {
+    configs.push(unocss(
+      typeof enableUnoCSS === 'boolean' ? {} : enableUnoCSS,
+    ))
   }
 
   if (options.jsonc ?? true) {
     configs.push(
-      jsonc(),
+      jsonc({
+        overrides: overrides.jsonc,
+        stylistic: stylisticOptions,
+      }),
       sortPackageJson(),
       sortTsconfig(),
     )
@@ -151,12 +160,16 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
   if (options.yaml ?? true) {
     configs.push(yaml({
       overrides: overrides.yaml,
-      stylistic: enableStylistic,
+      stylistic: stylisticOptions,
     }))
   }
 
-  if (options.markdown ?? true)
-    configs.push(markdown({ componentExts, overrides: overrides.markdown }))
+  if (options.markdown ?? true) {
+    configs.push(markdown({
+      componentExts,
+      overrides: overrides.markdown,
+    }))
+  }
 
   // User can optionally pass a flat config item to the first argument
   // We pick the known keys as ESLint would do schema validation
@@ -164,7 +177,7 @@ export function coderwyd(options: OptionsConfig & FlatESLintConfigItem = {}, ...
     if (key in options)
       acc[key] = options[key] as any
     return acc
-  }, {} as FlatESLintConfigItem)
+  }, {} as FlatConfigItem)
   if (Object.keys(fusedConfig).length)
     configs.push([fusedConfig])
 

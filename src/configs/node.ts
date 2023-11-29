@@ -1,7 +1,7 @@
-import type { FlatESLintConfigItem } from '../types'
+import type { FlatConfigItem } from '../types'
 import { pluginNode } from '../plugins'
 
-export function node(): FlatESLintConfigItem[] {
+export async function node(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'coderwyd:node',
