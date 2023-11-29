@@ -9,6 +9,7 @@ export async function unicorn(): Promise<FlatConfigItem[]> {
         unicorn: pluginUnicorn,
       },
       rules: {
+        'unicorn/better-regex': 'error',
         // Pass error message when throwing errors
         'unicorn/error-message': 'error',
         // Uppercase regex escapes
