@@ -4,12 +4,13 @@ import type {
   FlatConfigItem,
   OptionsFiles,
   OptionsHasTypeScript,
+  OptionsOverrides,
 } from '../types'
 
 export async function vue(
-  options: OptionsHasTypeScript & OptionsFiles = {},
+  options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<FlatConfigItem[]> {
-  const { files = [GLOB_VUE] } = options
+  const { files = [GLOB_VUE], overrides = {} } = options
 
   type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
 
@@ -124,6 +125,8 @@ export async function vue(
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
         'vue/valid-define-options': 'warn',
+
+        ...overrides,
       },
     },
   ]

@@ -6,8 +6,6 @@
   "eslint.experimental.useFlatConfig": true,
   "editor.formatOnSave": false,
   "eslint.validate": [
-    "svelte",
-    "astro",
     "html",
     "css",
     "less",
@@ -20,11 +18,5 @@
     "toml"
   ],
   "prettier.enable": false,
-  "cSpell.words": [
-    "antfu",
-    "coderwyd",
-    "rspack",
-    "unocss"
-  ]
+  "cSpell.words": ["antfu", "coderwyd", "rspack", "unocss"]
 }
- 

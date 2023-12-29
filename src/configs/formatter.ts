@@ -19,19 +19,19 @@ import type {
 } from '../types'
 
 export async function formatter(
-  options: OptionsFormatters | true = {},
+  options: OptionsFormatters = {},
   prettierRules: PartialPrettierExtendedOptions = {},
 ): Promise<FlatConfigItem[]> {
   await ensurePackages(['eslint-plugin-prettier'])
 
-  if (options === true) {
-    options = {
-      css: true,
-      graphql: true,
-      html: true,
-      markdown: true,
-    }
-  }
+  const {
+    css = true,
+    graphql,
+    html = true,
+    markdown,
+    toml,
+    yaml,
+  } = options || {}
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
@@ -54,7 +54,7 @@ export async function formatter(
       languageOptions: {
         parser: parserPlain,
       },
-      name: `coderwyd:formatters:${parser}`,
+      name: `coderwyd:formatter:${parser}`,
       plugins: {
         prettier: pluginPrettier,
       },
@@ -68,14 +68,14 @@ export async function formatter(
 
   const configs: FlatConfigItem[] = [
     {
-      name: 'coderwyd:formatters:setup',
+      name: 'coderwyd:formatter:setup',
       plugins: {
         prettier: pluginPrettier,
       },
     },
   ]
 
-  if (options.css) {
+  if (css) {
     const cssConfig = createPrettierFormatter([GLOB_CSS, GLOB_POSTCSS], 'css')
     const scssConfig = createPrettierFormatter([GLOB_SCSS], 'scss')
     const lessConfig = createPrettierFormatter([GLOB_LESS], 'less')
@@ -83,27 +83,27 @@ export async function formatter(
     configs.push(cssConfig, scssConfig, lessConfig)
   }
 
-  if (options.html) {
+  if (html) {
     const htmlConfig = createPrettierFormatter([GLOB_HTML], 'html')
     configs.push(htmlConfig)
   }
 
-  if (options.markdown) {
+  if (markdown) {
     const markdownConfig = createPrettierFormatter([GLOB_MARKDOWN], 'markdown')
     configs.push(markdownConfig)
   }
 
-  if (options.graphql) {
+  if (graphql) {
     const graphqlConfig = createPrettierFormatter([GLOB_GRAPHQL], 'graphql')
     configs.push(graphqlConfig)
   }
 
-  if (options.yaml) {
+  if (yaml) {
     const yamlConfig = createPrettierFormatter([GLOB_YAML], 'yaml')
     configs.push(yamlConfig)
   }
 
-  if (options.toml) {
+  if (toml) {
     await ensurePackages(['@toml-tools/parser', 'prettier-plugin-toml'])
 
     const tomlConfig = createPrettierFormatter([GLOB_TOML], 'toml', [

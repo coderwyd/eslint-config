@@ -24,6 +24,7 @@ import {
 } from './configs'
 import {
   combine,
+  getOverrides,
   interopDefault,
   loadPrettierConfig,
   resolveSubOptions,
@@ -95,7 +96,7 @@ export async function defineConfig(
     ignores(),
     javascript({
       isInEditor,
-      overrides: {},
+      overrides: getOverrides(options, 'javascript'),
     }),
     comments(),
     node(),
@@ -122,7 +123,7 @@ export async function defineConfig(
     configs.push(
       test({
         isInEditor,
-        overrides: {},
+        overrides: getOverrides(options, 'test'),
       }),
     )
   }
@@ -139,7 +140,7 @@ export async function defineConfig(
   if (enableReact) {
     configs.push(
       react({
-        overrides: {},
+        overrides: getOverrides(options, 'react'),
         typescript: !!enableTypeScript,
       }),
     )
@@ -149,7 +150,7 @@ export async function defineConfig(
     configs.push(
       unocss({
         ...resolveSubOptions(options, 'unocss'),
-        overrides: {},
+        overrides: getOverrides(options, 'unocss'),
       }),
     )
   }
@@ -157,7 +158,7 @@ export async function defineConfig(
   if (options.jsonc ?? true) {
     configs.push(
       jsonc({
-        overrides: {},
+        overrides: getOverrides(options, 'jsonc'),
       }),
       sortPackageJson(),
       sortTsconfig(),

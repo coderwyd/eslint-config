@@ -38,8 +38,7 @@
     "prepack": "nr build",
     "release": "bumpp && pnpm publish",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks",
-    "up": "taze major -r -I"
+    "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
     "@unocss/eslint-plugin": ">=0.50.0",
@@ -59,12 +58,6 @@
       "optional": true
     },
     "eslint-plugin-react-refresh": {
-      "optional": true
-    },
-    "eslint-plugin-svelte": {
-      "optional": true
-    },
-    "svelte-eslint-parser": {
       "optional": true
     }
   },
@@ -123,7 +116,6 @@
     "lint-staged": "^15.2.0",
     "rimraf": "^5.0.5",
     "simple-git-hooks": "^2.9.0",
-    "taze": "^0.13.1",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   },
