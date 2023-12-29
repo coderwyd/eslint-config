@@ -74,7 +74,6 @@
     "@eslint-types/jsdoc": "46.9.0",
     "@eslint-types/typescript-eslint": "^6.16.0",
     "@eslint-types/unicorn": "^50.0.1",
-    "@stylistic/eslint-plugin": "^1.5.1",
     "@toml-tools/parser": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",

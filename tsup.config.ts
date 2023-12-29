@@ -6,7 +6,6 @@ export default defineConfig({
   dts: true,
   format: ['cjs', 'esm'],
   external: [
-    '@antfu/eslint-define-config',
     'eslint-plugin-react',
     'eslint-plugin-react-hooks',
     'eslint-plugin-react-refresh',
