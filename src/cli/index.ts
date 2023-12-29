@@ -16,16 +16,20 @@ const instance = yargs(hideBin(process.argv))
   .command(
     '*',
     'Run the initialization or migration',
-    args => args
-      .option('yes', { alias: 'y', description: 'Skip prompts and use default values', type: 'boolean' })
-      .help(),
-    async (args) => {
+    args =>
+      args
+        .option('yes', {
+          alias: 'y',
+          description: 'Skip prompts and use default values',
+          type: 'boolean',
+        })
+        .help(),
+    async args => {
       header()
       console.log()
       try {
         await run(args)
-      }
-      catch (error) {
+      } catch (error) {
         console.error(c.inverse(c.red(' Failed to migrate ')))
         console.error(c.red(`${CROSS} ${String(error)}`))
         process.exit(1)
@@ -38,6 +42,4 @@ const instance = yargs(hideBin(process.argv))
   .alias('v', 'version')
 
 // eslint-disable-next-line no-unused-expressions
-instance
-  .help()
-  .argv
+instance.help().argv

@@ -23,30 +23,19 @@ export const vscodeSettingsString = `
     "source.organizeImports": "never"
   },
 
-  // Silent the stylistic rules in you IDE, but still auto fix them
-  "eslint.rules.customizations": [
-    { "rule": "style/*", "severity": "off" },
-    { "rule": "*-indent", "severity": "off" },
-    { "rule": "*-spacing", "severity": "off" },
-    { "rule": "*-spaces", "severity": "off" },
-    { "rule": "*-order", "severity": "off" },
-    { "rule": "*-dangle", "severity": "off" },
-    { "rule": "*-newline", "severity": "off" },
-    { "rule": "*quotes", "severity": "off" },
-    { "rule": "*semi", "severity": "off" }
-  ],
-
   // Enable eslint for all supported languages
   "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue",
+    "svelte",
+    "astro",
     "html",
-    "markdown",
+    "css",
+    "less",
+    "scss",
     "json",
     "jsonc",
-    "yaml"
+    "yaml",
+    "yml",
+    "markdown",
+    "toml"
   ]
 `

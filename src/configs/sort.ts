@@ -70,23 +70,15 @@ export async function sortPackageJson(): Promise<FlatConfigItem[]> {
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
+            pathPattern:
+              '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^resolutions$',
+            pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$',
           },
           {
-            order: { type: 'asc' },
-            pathPattern: '^pnpm.overrides$',
-          },
-          {
-            order: [
-              'types',
-              'import',
-              'require',
-              'default',
-            ],
+            order: ['types', 'import', 'require', 'default'],
             pathPattern: '^exports.*$',
           },
         ],

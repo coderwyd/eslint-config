@@ -1,5 +1,5 @@
+import { GLOB_EXCLUDE } from '../constants/glob'
 import type { FlatConfigItem } from '../types'
-import { GLOB_EXCLUDE } from '../globs'
 
 export async function ignores(): Promise<FlatConfigItem[]> {
   return [

@@ -1,44 +1,36 @@
-import { getVueVersion, interopDefault } from '../utils'
-import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides, OptionsStylistic } from '../types'
-import { GLOB_VUE } from '../globs'
+import { getVueVersion, interopDefault } from '../shared'
+import { GLOB_VUE } from '../constants/glob'
+import type {
+  FlatConfigItem,
+  OptionsFiles,
+  OptionsHasTypeScript,
+} from '../types'
 
 export async function vue(
-  options: OptionsHasTypeScript & OptionsOverrides & OptionsStylistic & OptionsFiles = {},
+  options: OptionsHasTypeScript & OptionsFiles = {},
 ): Promise<FlatConfigItem[]> {
-  const {
-    files = [GLOB_VUE],
-    overrides = {},
-    stylistic = true,
-  } = options
+  const { files = [GLOB_VUE] } = options
 
-  const {
-    indent = 2,
-  } = typeof stylistic === 'boolean' ? {} : stylistic
+  type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
 
   const isVue3 = getVueVersion() === 3
 
-  const [
-    pluginVue,
-    parserVue,
-  ] = await Promise.all([
-    // @ts-expect-error missing types
+  const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
   ] as const)
 
-  const vue3Rules = {
-    ...pluginVue.configs.base.rules,
-    ...pluginVue.configs['vue3-essential'].rules,
-    ...pluginVue.configs['vue3-strongly-recommended'].rules,
-    ...pluginVue.configs['vue3-recommended'].rules,
-  }
+  const configKeys: VueConfigKey[] = isVue3
+    ? ['vue3-essential', 'vue3-strongly-recommended', 'vue3-recommended']
+    : ['essential', 'strongly-recommended', 'recommended']
 
-  const vue2Rules = {
-    ...pluginVue.configs.base.rules,
-    ...pluginVue.configs.essential.rules,
-    ...pluginVue.configs['strongly-recommended'].rules,
-    ...pluginVue.configs.recommended.rules,
-  }
+  const vueRules = configKeys.reduce((preRules, key) => {
+    const config = pluginVue.configs[key]
+    return {
+      ...preRules,
+      ...config.rules,
+    }
+  }, {})
 
   return [
     {
@@ -57,31 +49,45 @@ export async function vue(
           },
           extraFileExtensions: ['.vue'],
           parser: options.typescript
-            ? await interopDefault(import('@typescript-eslint/parser')) as any
+            ? ((await interopDefault(
+                import('@typescript-eslint/parser'),
+              )) as any)
             : null,
           sourceType: 'module',
         },
       },
       name: 'coderwyd:vue:rules',
-      processor: pluginVue.processors['.vue'],
+      processor: pluginVue.processors!['.vue'],
       rules: {
-        ...(isVue3 ? vue3Rules : vue2Rules),
+        ...pluginVue.configs.base.rules,
+        ...vueRules,
 
         'node/prefer-global/process': 'off',
 
-        'vue/block-order': ['error', {
-          order: ['script', 'template', 'style'],
-        }],
+        'vue/block-order': [
+          'error',
+          {
+            order: ['script', 'template', 'style'],
+          },
+        ],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
         'vue/component-options-name-casing': ['error', 'PascalCase'],
         'vue/custom-event-name-casing': ['error', 'camelCase'],
-        'vue/define-macros-order': ['error', {
-          order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
-        }],
+        'vue/define-macros-order': [
+          'error',
+          {
+            order: [
+              'defineOptions',
+              'defineProps',
+              'defineEmits',
+              'defineSlots',
+            ],
+          },
+        ],
         'vue/dot-location': ['error', 'property'],
         'vue/dot-notation': ['error', { allowKeywords: true }],
         'vue/eqeqeq': ['error', 'smart'],
-        'vue/html-indent': ['error', indent],
+        'vue/html-indent': ['error', 2],
         'vue/html-quotes': ['error', 'double'],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
@@ -117,37 +123,7 @@ export async function vue(
         'vue/require-prop-types': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
-
-        ...stylistic
-          ? {
-              'vue/array-bracket-spacing': ['error', 'never'],
-              'vue/arrow-spacing': ['error', { after: true, before: true }],
-              'vue/block-spacing': ['error', 'always'],
-              'vue/block-tag-newline': ['error', {
-                multiline: 'always',
-                singleline: 'always',
-              }],
-              'vue/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-              'vue/comma-dangle': ['error', 'always-multiline'],
-              'vue/comma-spacing': ['error', { after: true, before: false }],
-              'vue/comma-style': ['error', 'last'],
-              'vue/html-comment-content-spacing': ['error', 'always', {
-                exceptions: ['-'],
-              }],
-              'vue/key-spacing': ['error', { afterColon: true, beforeColon: false }],
-              'vue/keyword-spacing': ['error', { after: true, before: true }],
-              'vue/object-curly-newline': 'off',
-              'vue/object-curly-spacing': ['error', 'always'],
-              'vue/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-              'vue/operator-linebreak': ['error', 'before'],
-              'vue/padding-line-between-blocks': ['error', 'always'],
-              'vue/quote-props': ['error', 'consistent-as-needed'],
-              'vue/space-in-parens': ['error', 'never'],
-              'vue/template-curly-spacing': 'error',
-            }
-          : {},
-
-        ...overrides,
+        'vue/valid-define-options': 'warn',
       },
     },
   ]

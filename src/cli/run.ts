@@ -8,7 +8,14 @@ import c from 'picocolors'
 
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
-import { ARROW, CHECK, WARN, eslintVersion, version, vscodeSettingsString } from './constants'
+import {
+  ARROW,
+  CHECK,
+  WARN,
+  eslintVersion,
+  version,
+  vscodeSettingsString,
+} from './constants'
 import { isGitClean } from './utils'
 
 export interface RuleOptions {
@@ -29,12 +36,24 @@ export async function run(options: RuleOptions = {}) {
   const pathESLintIngore = path.join(cwd, '.eslintignore')
 
   if (fs.existsSync(pathFlatConfig)) {
-    console.log(c.yellow(`${WARN} eslint.config.js already exists, migration wizard exited.`))
-    return
+    console.log(
+      c.yellow(
+        `${WARN} eslint.config.js already exists, migration wizard exited.`,
+      ),
+    )
+    return process.exit(1)
   }
 
-  if (!SKIP_GIT_CHECK && !isGitClean())
-    throw new Error('There are uncommitted changes in the current repository, please commit them and try again')
+  if (!SKIP_GIT_CHECK && !isGitClean()) {
+    const { confirmed } = await prompts({
+      initial: false,
+      message:
+        'There are uncommitted changes in the current repository, are you sure to continue?',
+      name: 'confirmed',
+      type: 'confirm',
+    })
+    if (!confirmed) return process.exit(1)
+  }
 
   // Update package.json
   console.log(c.cyan(`${ARROW} bumping @coderwyd/eslint-config to v${version}`))
@@ -44,8 +63,7 @@ export async function run(options: RuleOptions = {}) {
   pkg.devDependencies ??= {}
   pkg.devDependencies['@coderwyd/eslint-config'] = `^${version}`
 
-  if (!pkg.devDependencies.eslint)
-    pkg.devDependencies.eslint = eslintVersion
+  if (!pkg.devDependencies.eslint) pkg.devDependencies.eslint = eslintVersion
 
   await fsp.writeFile(pathPackageJSON, JSON.stringify(pkg, null, 2))
   console.log(c.green(`${CHECK} changes wrote to package.json`))
@@ -60,28 +78,30 @@ export async function run(options: RuleOptions = {}) {
     const globs = parsed.globs()
 
     for (const glob of globs) {
-      if (glob.type === 'ignore')
-        eslintIgnores.push(...glob.patterns)
+      if (glob.type === 'ignore') eslintIgnores.push(...glob.patterns)
       else if (glob.type === 'unignore')
-        eslintIgnores.push(...glob.patterns.map((pattern: string) => `!${pattern}`))
+        eslintIgnores.push(
+          ...glob.patterns.map((pattern: string) => `!${pattern}`),
+        )
     }
   }
 
   let eslintConfigContent: string = ''
 
-  const coderwydConfig = `${eslintIgnores.length ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''}`
+  const coderwydConfig = `${
+    eslintIgnores.length ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''
+  }`
   if (pkg.type === 'module') {
     eslintConfigContent = `
-import coderwyd from '@coderwyd/eslint-config'
+import { defineConfig } from '@coderwyd/eslint-config'
 
-export default coderwyd({\n${coderwydConfig}\n})
+export default defineConfig({\n${coderwydConfig}\n})
 `.trimStart()
-  }
-  else {
+  } else {
     eslintConfigContent = `
-const coderwyd = require('@coderwyd/eslint-config').default
+const { defineConfig } = require('@coderwyd/eslint-config')
 
-module.exports = coderwyd({\n${coderwydConfig}\n})
+module.exports = defineConfig({\n${coderwydConfig}\n})
 `.trimStart()
   }
 
@@ -90,7 +110,7 @@ module.exports = coderwyd({\n${coderwydConfig}\n})
 
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
-  files.forEach((file) => {
+  files.forEach(file => {
     if (file.includes('eslint') || file.includes('prettier'))
       legacyConfig.push(file)
   })
@@ -107,18 +127,21 @@ module.exports = coderwyd({\n${coderwydConfig}\n})
 
   if (!SKIP_PROMPT) {
     try {
-      promptResult = await prompts({
-        initial: true,
-        message: 'Update .vscode/settings.json for better VS Code experience?',
-        name: 'updateVscodeSettings',
-        type: 'confirm',
-      }, {
-        onCancel: () => {
-          throw new Error(`Cancelled`)
+      promptResult = await prompts(
+        {
+          initial: true,
+          message:
+            'Update .vscode/settings.json for better VS Code experience?',
+          name: 'updateVscodeSettings',
+          type: 'confirm',
         },
-      })
-    }
-    catch (cancelled: any) {
+        {
+          onCancel: () => {
+            throw new Error(`Cancelled`)
+          },
+        },
+      )
+    } catch (cancelled: any) {
       console.log(cancelled.message)
       return
     }
@@ -134,12 +157,14 @@ module.exports = coderwyd({\n${coderwydConfig}\n})
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
       console.log(c.green(`${CHECK} created .vscode/settings.json`))
-    }
-    else {
+    } else {
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
       settingsContent = settingsContent.trim().replace(/\s*}$/, '')
-      settingsContent += settingsContent.endsWith(',') || settingsContent.endsWith('{') ? '' : ','
+      settingsContent +=
+        settingsContent.endsWith(',') || settingsContent.endsWith('{')
+          ? ''
+          : ','
       settingsContent += `${vscodeSettingsString}}\n`
 
       await fsp.writeFile(settingsPath, settingsContent, 'utf-8')
@@ -149,5 +174,7 @@ module.exports = coderwyd({\n${coderwydConfig}\n})
 
   // End update .vscode/settings.json
   console.log(c.green(`${CHECK} migration completed`))
-  console.log(`Now you can update the dependencies and run ${c.blue('eslint . --fix')}\n`)
+  console.log(
+    `Now you can update the dependencies and run ${c.blue('eslint . --fix')}\n`,
+  )
 }

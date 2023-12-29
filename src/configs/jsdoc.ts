@@ -1,11 +1,7 @@
-import { interopDefault } from '../utils'
-import type { FlatConfigItem, OptionsStylistic } from '../types'
+import { interopDefault } from '../shared'
+import type { FlatConfigItem } from '../types'
 
-export async function jsdoc(options: OptionsStylistic = {}): Promise<FlatConfigItem[]> {
-  const {
-    stylistic = true,
-  } = options
-
+export async function jsdoc(): Promise<FlatConfigItem[]> {
   return [
     {
       name: 'coderwyd:jsdoc',
@@ -30,12 +26,11 @@ export async function jsdoc(options: OptionsStylistic = {}): Promise<FlatConfigI
         'jsdoc/require-returns-description': 'warn',
         'jsdoc/require-yields-check': 'warn',
 
-        ...stylistic
-          ? {
-              'jsdoc/check-alignment': 'warn',
-              'jsdoc/multiline-blocks': 'warn',
-            }
-          : {},
+        // style
+        // ...{
+        //   'jsdoc/check-alignment': 'warn',
+        // 'jsdoc/multiline-blocks': 'warn',
+        // }
       },
     },
   ]
