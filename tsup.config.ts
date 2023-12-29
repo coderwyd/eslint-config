@@ -5,14 +5,14 @@ export default defineConfig({
   clean: true,
   dts: true,
   format: ['cjs', 'esm'],
-  // external: [
-  //   '@antfu/eslint-define-config',
-  //   'eslint-plugin-react',
-  //   'eslint-plugin-react-hooks',
-  //   'eslint-plugin-react-refresh',
-  // ],
+  external: [
+    '@antfu/eslint-define-config',
+    'eslint-plugin-react',
+    'eslint-plugin-react-hooks',
+    'eslint-plugin-react-refresh',
+  ],
   sourcemap: false,
-  // target: 'node14',
+  target: 'node14',
   minify: false,
   shims: true,
 })
