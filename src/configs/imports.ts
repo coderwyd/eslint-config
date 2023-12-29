@@ -64,7 +64,7 @@ export async function imports(): Promise<FlatConfigItem[]> {
     },
     {
       files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'antfu:imports:bin',
+      name: 'coderwyd:imports:bin',
       rules: {
         'antfu/no-import-dist': 'off',
         'antfu/no-import-node-modules-by-path': 'off',
