@@ -9,10 +9,11 @@
 - ✨ Single quotes, no semi
 - 🛠️ Auto fix for formatting
 - 🎯 Designed to work with TypeScript, Vue out-of-box
-- 🔍 Lints also for json, yaml, markdown
+- 🔍 Lints also for json
 - 🧩 Sorted imports, dangling commas
 - 🏆 Reasonable defaults, best practices, only one-line of config
 - 🚀 [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), compose easily!
+- 🎨 Use ESlint and Prettier to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown.
 
 ## Usage
 
