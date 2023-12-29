@@ -11,11 +11,20 @@ export async function vue(
 ): Promise<FlatConfigItem[]> {
   const { files = [GLOB_VUE] } = options
 
-  type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
+  type VueConfigKey =
+    | 'base'
+    | 'essential'
+    | 'no-layout-rules'
+    | 'recommended'
+    | 'strongly-recommended'
+    | 'vue3-essential'
+    | 'vue3-recommended'
+    | 'vue3-strongly-recommended'
 
   const isVue3 = getVueVersion() === 3
 
   const [pluginVue, parserVue] = await Promise.all([
+    // @ts-expect-error missing types
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
   ] as const)
