@@ -8,14 +8,14 @@ const require = createRequire(import.meta.url)
 
 const { defineConfig: defineConfig1 } = require('./src/index.ts')
 
-const useBuild = true
+const useBuild = false
 
 /** @type {import('./src/index.ts').defineConfig} */
 const defineConfig = useBuild ? defineConfig2 : defineConfig1
 export default defineConfig(
   {
     vue: true,
-    // react: true,
+    react: false,
     typescript: true,
     ignores: ['fixtures', '_fixtures'],
   },

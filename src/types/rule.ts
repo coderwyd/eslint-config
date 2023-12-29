@@ -15,6 +15,7 @@ import type {
   TypeScriptRules,
   UnicornRules,
   VitestRules,
+  VueRules,
 } from '@antfu/eslint-define-config'
 import type { Linter } from 'eslint'
 import type { Rules as AntfuRules } from 'eslint-plugin-antfu'
@@ -46,6 +47,7 @@ export type EslintFlatRules = WrapRuleConfig<
       ImportRules &
       EslintRules &
       JsoncRules &
+      VueRules &
       UnicornRules &
       EslintCommentsRules & {
         // TODO: TOML rules
