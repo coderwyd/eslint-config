@@ -1,17 +1,13 @@
 import 'tsx'
 import { createRequire } from 'node:module'
 
-// eslint-disable-next-line antfu/no-import-dist
-import { defineConfig as defineConfig2 } from './dist/index.js'
-
 const require = createRequire(import.meta.url)
+require('sucrase/register')
 
-const { defineConfig: defineConfig1 } = require('./src/index.ts')
+/** @type {typeof import('./src/index.ts')} */
+const { defineConfig } = require('./src/index.ts')
 
-const useBuild = true
-
-/** @type {import('./src/index.ts').defineConfig} */
-const defineConfig = useBuild ? defineConfig2 : defineConfig1
+// import { defineConfig } from './dist/index.js'
 
 export default defineConfig(
   {
