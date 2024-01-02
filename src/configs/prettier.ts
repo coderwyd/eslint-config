@@ -20,9 +20,10 @@ export async function prettier(rules: PartialPrettierExtendedOptions) {
       },
       rules: {
         ...eslintRules,
+        'prettier/prettier': ['warn', pRules],
+        // eslint-disable-next-line perfectionist/sort-objects
         'arrow-body-style': 'off',
         'prefer-arrow-callback': 'off',
-        'prettier/prettier': ['warn', pRules],
       },
     },
   ]

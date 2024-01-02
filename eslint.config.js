@@ -4,7 +4,6 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 require('sucrase/register')
 
-/** @type {typeof import('./src/index.ts')} */
 const { defineConfig } = require('./src/index.ts')
 
 // import { defineConfig } from './dist/index.js'
