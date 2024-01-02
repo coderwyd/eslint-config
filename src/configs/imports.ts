@@ -1,5 +1,5 @@
 import { pluginAntfu, pluginImport } from '../plugins'
-import { GLOB_MARKDOWN, GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
+import { GLOB_SRC_EXT } from '../constants/glob'
 import type { FlatConfigItem } from '../types'
 
 export async function imports(): Promise<FlatConfigItem[]> {
@@ -23,7 +23,6 @@ export async function imports(): Promise<FlatConfigItem[]> {
         'import/no-default-export': 'error',
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
-        'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
         'import/order': [
@@ -43,23 +42,6 @@ export async function imports(): Promise<FlatConfigItem[]> {
             pathGroupsExcludedImportTypes: ['type'],
           },
         ],
-      },
-    },
-    {
-      files: [
-        `**/*config*.${GLOB_SRC_EXT}`,
-        `**/views/${GLOB_SRC}`,
-        `**/pages/${GLOB_SRC}`,
-        `**/{index,vite,esbuild,rollup,webpack,rspack}.ts`,
-        '**/*.d.ts',
-        `${GLOB_MARKDOWN}/**`,
-        '**/.prettierrc*',
-      ],
-      plugins: {
-        import: pluginImport,
-      },
-      rules: {
-        'import/no-default-export': 'off',
       },
     },
     {
