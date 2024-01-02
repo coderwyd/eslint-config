@@ -125,7 +125,7 @@ devDependencies:
     specifier: ^17.0.32
     version: 17.0.32
   '@unocss/eslint-plugin':
-    specifier: ^0.58.2
+    specifier: ^0.58.3
     version: 0.58.3(eslint@8.56.0)(typescript@5.3.3)
   bumpp:
     specifier: ^9.2.1
