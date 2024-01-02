@@ -20,7 +20,6 @@ export async function imports(): Promise<FlatConfigItem[]> {
           'error',
           { considerComments: true, count: 1 },
         ],
-        'import/no-default-export': 'error',
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-self-import': 'error',
