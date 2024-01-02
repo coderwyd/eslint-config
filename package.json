@@ -100,7 +100,7 @@
     "@antfu/ni": "^0.21.12",
     "@types/eslint": "^8.56.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.10.6",
     "@types/prompts": "^2.4.9",
     "@types/yargs": "^17.0.32",
     "@unocss/eslint-plugin": "^0.58.2",
