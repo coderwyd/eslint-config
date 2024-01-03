@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.3.1
     version: 0.3.1
   '@eslint-types/jsdoc':
-    specifier: 46.9.1
-    version: 46.9.1
+    specifier: 47.0.2
+    version: 47.0.2
   '@eslint-types/typescript-eslint':
     specifier: ^6.17.0
     version: 6.17.0
@@ -477,8 +477,8 @@ packages:
     resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  /@eslint-types/jsdoc@46.9.1:
-    resolution: {integrity: sha512-oKH2l8HALyZ3bQzSecoWYsJSgdTLILAYlY8dprNBg3LzUZtnfcq0P8ixDmE7UdMCujGAmmGtmgYbzmUDRxSkzg==}
+  /@eslint-types/jsdoc@47.0.2:
+    resolution: {integrity: sha512-sMgWlMHh25ULecVemL1ID3CNrYEaUSmB3W/ZoUBwGz4ktnpIKTAUa9x1e4RHVbJa0SpnVwfJf+ul1Rqx0dh9cA==}
     dev: false
 
   /@eslint-types/typescript-eslint@6.17.0:
