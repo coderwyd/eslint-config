@@ -2,7 +2,7 @@
   "name": "@coderwyd/eslint-config",
   "type": "module",
   "version": "2.0.2",
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "description": "Donny's ESLint config",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "license": "MIT",
