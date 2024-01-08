@@ -93,7 +93,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-toml": "^2.0.1",
     "prompts": "^2.4.2",
-    "vue-eslint-parser": "^9.3.2",
+    "vue-eslint-parser": "^9.4.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
