@@ -51,7 +51,7 @@ dependencies:
     specifier: ^2.11.2
     version: 2.11.2(eslint@8.56.0)
   eslint-plugin-n:
-    specifier: ^16.6.1
+    specifier: ^16.6.2
     version: 16.6.2(eslint@8.56.0)
   eslint-plugin-no-only-tests:
     specifier: ^3.1.0
@@ -1472,7 +1472,7 @@ packages:
     dev: false
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
