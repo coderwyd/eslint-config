@@ -115,6 +115,7 @@ export async function defineConfig(
       typescript({
         ...resolveSubOptions(options, 'typescript'),
         componentExts,
+        overrides: getOverrides(options, 'typescript'),
       }),
     )
   }
@@ -132,6 +133,7 @@ export async function defineConfig(
     configs.push(
       vue({
         ...resolveSubOptions(options, 'vue'),
+        overrides: getOverrides(options, 'typescript'),
         typescript: !!enableTypeScript,
       }),
     )

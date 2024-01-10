@@ -6,7 +6,6 @@ export async function jsdoc(): Promise<FlatConfigItem[]> {
     {
       name: 'coderwyd:jsdoc',
       plugins: {
-        // @ts-expect-error missing types
         jsdoc: await interopDefault(import('eslint-plugin-jsdoc')),
       },
       rules: {
@@ -25,12 +24,6 @@ export async function jsdoc(): Promise<FlatConfigItem[]> {
         'jsdoc/require-returns-check': 'warn',
         'jsdoc/require-returns-description': 'warn',
         'jsdoc/require-yields-check': 'warn',
-
-        // style
-        // ...{
-        //   'jsdoc/check-alignment': 'warn',
-        // 'jsdoc/multiline-blocks': 'warn',
-        // }
       },
     },
   ]
