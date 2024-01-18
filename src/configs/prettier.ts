@@ -14,10 +14,14 @@ export async function prettier(rules: PartialPrettierExtendedOptions) {
 
   const configs: FlatConfigItem[] = [
     {
-      files: GLOB_PRETTIER_LINT,
+      name: 'coderwyd:prettier:setup',
       plugins: {
         prettier: pluginPrettier,
       },
+    },
+    {
+      files: GLOB_PRETTIER_LINT,
+      name: 'coderwyd:prettier:rules',
       rules: {
         ...eslintRules,
         'prettier/prettier': ['warn', pRules],
