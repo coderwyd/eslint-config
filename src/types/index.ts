@@ -234,7 +234,7 @@ export interface OptionsConfig extends OptionsComponentExts {
    * {
    *   "arrowParens": "avoid",
    *   "htmlWhitespaceSensitivity": "ignore"
-   *   "printWidth": 80,
+   *   "printWidth": 120,
    *   "semi": false,
    *   "singleQuote": true,
    * }
