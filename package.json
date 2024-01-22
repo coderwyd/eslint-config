@@ -8,7 +8,12 @@
   "license": "MIT",
   "homepage": "https://github.com/coderwyd/eslint-config",
   "keywords": [
-    "eslint-config"
+    "eslint",
+    "eslint-config",
+    "eslint-config-vue",
+    "eslint-config-react",
+    "eslint-config-svelte",
+    "prettier"
   ],
   "exports": {
     ".": {
