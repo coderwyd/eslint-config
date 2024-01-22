@@ -6,14 +6,11 @@
 
 ## Feature
 
-- ✨ Single quotes, no semi
 - 🛠️ Auto fix for formatting
+- ✨ Support Vue, React, Svelte.
 - 🎯 Designed to work with TypeScript, Vue out-of-box
-- 🔍 Lints also for json
-- 🧩 Sorted imports, dangling commas
 - 🏆 Reasonable defaults, best practices, only one-line of config
-- 🚀 [ESLint Flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new), compose easily!
-- 🎨 Use ESlint and Prettier to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown.
+- 🎨 Use ESlint and Prettier to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown, JSON, JSONC.
 
 ## Usage
 
@@ -59,8 +56,6 @@ For example:
 ```
 
 ## VS Code support (auto fix)
-
-Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 Add the following settings to your `.vscode/settings.json`:
 
@@ -109,11 +104,165 @@ If you want to apply lint and auto-fix before every commit, you can add the foll
   }
 }
 ```
-
 and then
 
 ```bash
 npm i -D lint-staged simple-git-hooks
+```
+## Options
+
+### interface Options
+
+```ts
+interface OptionsConfig {
+  /**
+   * The current working directory
+   *
+   * @default process.cwd()
+   */
+  cwd?: string
+
+  /**
+   * Enable gitignore support.
+   *
+   * Passing an object to configure the options.
+   *
+   * @see https://github.com/antfu/eslint-config-flat-gitignore
+   * @default true
+   */
+  gitignore?: boolean | FlatGitignoreOptions
+
+  /**
+   * Core rules. Can't be disabled.
+   */
+  javascript?: OptionsOverrides
+
+  /**
+   * Enable TypeScript support.
+   *
+   * Passing an object to enable TypeScript Language Server support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  typescript?: boolean | OptionsTypescript
+
+  /**
+   * Enable test support.
+   *
+   * @default true
+   */
+  test?: boolean | OptionsOverrides
+
+  /**
+   * Enable Vue support.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  vue?: boolean | OptionsVue
+
+  /**
+   * Enable JSONC support.
+   *
+   * @default true
+   */
+  jsonc?: boolean | OptionsOverrides
+
+  /**
+   * Enable react rules.
+   *
+   * Requires installing:
+   * - `eslint-plugin-react`
+   * - `eslint-plugin-react-hooks`
+   * - `eslint-plugin-react-refresh`
+   *
+   * @default false
+   */
+  react?: boolean | OptionsOverrides
+
+  /**
+   * Enable svelte rules.
+   *
+   * Requires installing:
+   * - `eslint-plugin-svelte`
+   *
+   * @default false
+   */
+  svelte?: boolean | OptionsOverrides
+
+  /**
+   * Enable unocss rules.
+   *
+   * Requires installing:
+   * - `@unocss/eslint-plugin`
+   *
+   * @default false
+   */
+  unocss?: boolean | OptionsUnoCSS
+
+  /**
+   * Whether to use prettierrc
+   *
+   * If true, the rules in prettierrc will override the default rules
+   *
+   * @default true
+   */
+  usePrettierrc?: boolean
+
+  /**
+   * Use external formatters to format files.
+   *
+   * Requires installing:
+   * - `eslint-plugin-prettier`
+   *
+   * @default
+   * {
+   *  "html": true,
+   *  "css": true,
+   *  "graphql": true,
+   *  "markdown": true
+   *  "yaml": true
+   *  "toml": true
+   * }
+   */
+  formatter?: OptionsFormatters
+
+  /**
+   * Default prettier rules
+   *
+   * @default
+   * ```json
+   * {
+   *   "arrowParens": "avoid",
+   *   "htmlWhitespaceSensitivity": "ignore"
+   *   "printWidth": 120,
+   *   "semi": false,
+   *   "singleQuote": true,
+   * }
+   * ```
+   */
+  prettierRules?: PartialPrettierExtendedOptions
+
+  /**
+   * Control to disable some rules in editors.
+   * @default auto-detect based on the process.env
+   */
+  isInEditor?: boolean
+
+  /**
+   * Provide overrides for rules for each integration.
+   *
+   * @deprecated use `overrides` option in each integration key instead
+   */
+  overrides?: {
+    javascript?: FlatConfigItem['rules']
+    typescript?: FlatConfigItem['rules']
+    test?: FlatConfigItem['rules']
+    vue?: FlatConfigItem['rules']
+    jsonc?: FlatConfigItem['rules']
+    react?: FlatConfigItem['rules']
+    svelte?: FlatConfigItem['rules']
+  }
+}
 ```
 
 ## Thanks
