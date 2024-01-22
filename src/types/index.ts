@@ -218,10 +218,10 @@ export interface OptionsConfig extends OptionsComponentExts {
    * {
    *  "html": true,
    *  "css": true,
-   *  "graphql": true,
-   *  "markdown": true
-   *  "yaml": true
-   *  "toml": true
+   *  "graphql": false,
+   *  "markdown": false
+   *  "yaml": false
+   *  "toml": false
    * }
    */
   formatter?: OptionsFormatters
