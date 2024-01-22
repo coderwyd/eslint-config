@@ -20,24 +20,16 @@ export type OptionsTypescript =
 export interface OptionsFormatters {
   /**
    * Enable formatting support for CSS, Less, Sass, and SCSS.
-   *
-   * Currently only support Prettier.
    */
   css?: boolean
 
   /**
    * Enable formatting support for HTML.
-   *
-   * Currently only support Prettier.
    */
   html?: boolean
 
   /**
    * Enable formatting support for Markdown.
-   *
-   * Support both Prettier.
-   *
-   * When set to `true`, it will use Prettier.
    */
   markdown?: boolean
 
@@ -268,6 +260,7 @@ export interface OptionsConfig extends OptionsComponentExts {
     vue?: FlatConfigItem['rules']
     jsonc?: FlatConfigItem['rules']
     react?: FlatConfigItem['rules']
+    svelte?: FlatConfigItem['rules']
   }
 }
 

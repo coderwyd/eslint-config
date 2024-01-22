@@ -16,6 +16,7 @@ import {
   react,
   sortPackageJson,
   sortTsconfig,
+  svelte,
   test,
   typescript,
   unicorn,
@@ -66,6 +67,7 @@ export async function defineConfig(
       !process.env.CI
     ),
     react: enableReact = false,
+    svelte: enableSvelte = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
     unocss: enableUnoCSS = false,
     usePrettierrc = true,
@@ -143,6 +145,15 @@ export async function defineConfig(
     configs.push(
       react({
         overrides: getOverrides(options, 'react'),
+        typescript: !!enableTypeScript,
+      }),
+    )
+  }
+
+  if (enableSvelte) {
+    configs.push(
+      svelte({
+        overrides: getOverrides(options, 'svelte'),
         typescript: !!enableTypeScript,
       }),
     )

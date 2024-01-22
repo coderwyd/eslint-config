@@ -12,14 +12,14 @@ export async function vue(
 ): Promise<FlatConfigItem[]> {
   const { files = [GLOB_VUE], overrides = {} } = options
 
-  type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
-
-  const isVue3 = getVueVersion() === 3
-
   const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
   ] as const)
+
+  type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
+
+  const isVue3 = getVueVersion() === 3
 
   const configKeys: VueConfigKey[] = isVue3
     ? ['vue3-essential', 'vue3-strongly-recommended', 'vue3-recommended']
