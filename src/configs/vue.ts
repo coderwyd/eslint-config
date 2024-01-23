@@ -68,7 +68,7 @@ export async function vue(
         'vue/block-order': [
           'error',
           {
-            order: ['script', 'template', 'style'],
+            order: isVue3 ? ['script', 'template', 'style'] : ['template', 'script', 'style'],
           },
         ],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
