@@ -90,6 +90,7 @@ export async function vue(
         ],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
+        'vue/no-constant-condition': 'warn',
         'vue/no-dupe-keys': 'off',
         'vue/no-empty-pattern': 'error',
         'vue/no-extra-parens': ['error', 'functions'],
