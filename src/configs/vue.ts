@@ -111,6 +111,7 @@ export async function vue(
             ignoreConstructors: false,
           },
         ],
+        'vue/padding-line-between-blocks': ['error', 'always'],
         'vue/prefer-separate-static-class': 'error',
         'vue/prefer-template': 'error',
         'vue/prop-name-casing': ['error', 'camelCase'],
