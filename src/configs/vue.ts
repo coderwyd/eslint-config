@@ -1,11 +1,6 @@
 import { getVueVersion, interopDefault } from '../shared'
 import { GLOB_VUE } from '../constants/glob'
-import type {
-  FlatConfigItem,
-  OptionsFiles,
-  OptionsHasTypeScript,
-  OptionsOverrides,
-} from '../types'
+import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides } from '../types'
 
 export async function vue(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
@@ -49,11 +44,7 @@ export async function vue(
             jsx: true,
           },
           extraFileExtensions: ['.vue'],
-          parser: options.typescript
-            ? ((await interopDefault(
-                import('@typescript-eslint/parser'),
-              )) as any)
-            : null,
+          parser: options.typescript ? ((await interopDefault(import('@typescript-eslint/parser'))) as any) : null,
           sourceType: 'module',
         },
       },
@@ -77,12 +68,7 @@ export async function vue(
         'vue/define-macros-order': [
           'error',
           {
-            order: [
-              'defineOptions',
-              'defineProps',
-              'defineEmits',
-              'defineSlots',
-            ],
+            order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
           },
         ],
         'vue/dot-location': ['error', 'property'],
@@ -90,6 +76,18 @@ export async function vue(
         'vue/eqeqeq': ['error', 'smart'],
         'vue/html-indent': ['error', 2],
         'vue/html-quotes': ['error', 'double'],
+        'vue/html-self-closing': [
+          'error',
+          {
+            html: {
+              component: 'always',
+              normal: 'always',
+              void: 'any',
+            },
+            math: 'always',
+            svg: 'always',
+          },
+        ],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         'vue/no-dupe-keys': 'off',
@@ -97,12 +95,7 @@ export async function vue(
         'vue/no-extra-parens': ['error', 'functions'],
         'vue/no-irregular-whitespace': 'error',
         'vue/no-loss-of-precision': 'error',
-        'vue/no-restricted-syntax': [
-          'error',
-          'DebuggerStatement',
-          'LabeledStatement',
-          'WithStatement',
-        ],
+        'vue/no-restricted-syntax': ['error', 'DebuggerStatement', 'LabeledStatement', 'WithStatement'],
         'vue/no-restricted-v-bind': ['error', '/^v-/'],
         'vue/no-setup-props-reactivity-loss': 'off',
         'vue/no-sparse-arrays': 'error',
