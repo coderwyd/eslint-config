@@ -1,16 +1,12 @@
 import { ensurePackages, interopDefault } from '../shared'
 import type { FlatConfigItem, OptionsUnoCSS } from '../types'
 
-export async function unocss(
-  options: OptionsUnoCSS = {},
-): Promise<FlatConfigItem[]> {
+export async function unocss(options: OptionsUnoCSS = {}): Promise<FlatConfigItem[]> {
   const { attributify = true, strict = false } = options
 
   await ensurePackages(['@unocss/eslint-plugin'])
 
-  const [pluginUnoCSS] = await Promise.all([
-    interopDefault(import('@unocss/eslint-plugin')),
-  ] as const)
+  const [pluginUnoCSS] = await Promise.all([interopDefault(import('@unocss/eslint-plugin'))] as const)
 
   return [
     {

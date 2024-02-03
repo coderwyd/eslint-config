@@ -20,16 +20,11 @@ export async function typescript(
 ): Promise<FlatConfigItem[]> {
   const { componentExts = [], overrides = {}, parserOptions = {} } = options
 
-  const files = options.files ?? [
-    GLOB_SRC,
-    ...componentExts.map(ext => `**/*.${ext}`),
-  ]
+  const files = options.files ?? [GLOB_SRC, ...componentExts.map(ext => `**/*.${ext}`)]
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX]
 
-  const tsconfigPath = options?.tsconfigPath
-    ? toArray(options.tsconfigPath)
-    : undefined
+  const tsconfigPath = options?.tsconfigPath ? toArray(options.tsconfigPath) : undefined
   const isTypeAware = !!tsconfigPath
 
   const typeAwareRules: FlatConfigItem['rules'] = {
@@ -59,11 +54,7 @@ export async function typescript(
     interopDefault(import('@typescript-eslint/parser')),
   ] as const)
 
-  function makeParser(
-    typeAware: boolean,
-    files: string[],
-    ignores?: string[],
-  ): FlatConfigItem {
+  function makeParser(typeAware: boolean, files: string[], ignores?: string[]): FlatConfigItem {
     return {
       files,
       ...(ignores ? { ignores } : {}),
@@ -96,40 +87,23 @@ export async function typescript(
     },
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...(isTypeAware
-      ? [
-          makeParser(true, filesTypeAware),
-          makeParser(false, files, filesTypeAware),
-        ]
+      ? [makeParser(true, filesTypeAware), makeParser(false, files, filesTypeAware)]
       : [makeParser(false, files)]),
     {
       files,
       name: 'coderwyd:typescript:rules',
       rules: {
-        ...renameRules(
-          pluginTs.configs['eslint-recommended'].overrides![0].rules!,
-          '@typescript-eslint/',
-          'ts/',
-        ),
-        ...renameRules(
-          pluginTs.configs.strict.rules!,
-          '@typescript-eslint/',
-          'ts/',
-        ),
+        ...renameRules(pluginTs.configs['eslint-recommended'].overrides![0].rules!, '@typescript-eslint/', 'ts/'),
+        ...renameRules(pluginTs.configs.strict.rules!, '@typescript-eslint/', 'ts/'),
         'no-dupe-class-members': 'off',
         'no-loss-of-precision': 'off',
         'no-redeclare': 'off',
         'no-use-before-define': 'off',
         'no-useless-constructor': 'off',
-        'ts/ban-ts-comment': [
-          'error',
-          { 'ts-ignore': 'allow-with-description' },
-        ],
+        'ts/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
         'ts/ban-types': ['error', { types: { Function: false } }],
         'ts/consistent-type-definitions': ['error', 'interface'],
-        'ts/consistent-type-imports': [
-          'error',
-          { disallowTypeAnnotations: false, prefer: 'type-imports' },
-        ],
+        'ts/consistent-type-imports': ['error', { disallowTypeAnnotations: false, prefer: 'type-imports' }],
         'ts/no-dupe-class-members': 'error',
         'ts/no-dynamic-delete': 'off',
         'ts/no-explicit-any': 'off',
@@ -141,10 +115,7 @@ export async function typescript(
         'ts/no-redeclare': 'error',
         'ts/no-require-imports': 'error',
         'ts/no-unused-vars': 'off',
-        'ts/no-use-before-define': [
-          'error',
-          { classes: false, functions: false, variables: true },
-        ],
+        'ts/no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
         'ts/no-useless-constructor': 'off',
         'ts/prefer-ts-expect-error': 'error',
         'ts/triple-slash-reference': 'off',

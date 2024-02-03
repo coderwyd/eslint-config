@@ -34,18 +34,12 @@ export const parserPlain = {
 /**
  * Combine array and non-array configs into a single array.
  */
-export async function combine(
-  ...configs: Awaitable<UserConfigItem | UserConfigItem[]>[]
-): Promise<UserConfigItem[]> {
+export async function combine(...configs: Awaitable<UserConfigItem | UserConfigItem[]>[]): Promise<UserConfigItem[]> {
   const resolved = await Promise.all(configs)
   return resolved.flat()
 }
 
-export function renameRules(
-  rules: Record<string, any>,
-  from: string,
-  to: string,
-) {
+export function renameRules(rules: Record<string, any>, from: string, to: string) {
   return Object.fromEntries(
     Object.entries(rules).map(([key, value]) => {
       if (key.startsWith(from)) return [to + key.slice(from.length), value]
@@ -56,8 +50,7 @@ export function renameRules(
 
 export function getVueVersion() {
   const pkg = getPackageInfoSync('vue', { paths: [process.cwd()] })
-  if (pkg && typeof pkg.version === 'string' && !Number.isNaN(+pkg.version[0]))
-    return +pkg.version[0]
+  if (pkg && typeof pkg.version === 'string' && !Number.isNaN(+pkg.version[0])) return +pkg.version[0]
 
   return 3
 }
@@ -66,9 +59,7 @@ export function toArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value]
 }
 
-export async function interopDefault<T>(
-  m: Awaitable<T>,
-): Promise<T extends { default: infer U } ? U : T> {
+export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
   const resolved = await m
   return (resolved as any).default || resolved
 }
@@ -84,17 +75,12 @@ export async function ensurePackages(packages: string[]) {
     {
       message: `${
         nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'
-      } required for this config: ${nonExistingPackages.join(
-        ', ',
-      )}. Do you want to install them?`,
+      } required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`,
       name: 'result',
       type: 'confirm',
     },
   ])
-  if (result)
-    await import('@antfu/install-pkg').then(i =>
-      i.installPackage(nonExistingPackages, { dev: true }),
-    )
+  if (result) await import('@antfu/install-pkg').then(i => i.installPackage(nonExistingPackages, { dev: true }))
 }
 
 export async function loadPrettierConfig(cwd: string) {
@@ -116,10 +102,7 @@ export function resolveSubOptions<K extends keyof OptionsConfig>(
   return typeof options[key] === 'boolean' ? ({} as any) : options[key] || {}
 }
 
-export function getOverrides<K extends keyof OptionsConfig>(
-  options: OptionsConfig,
-  key: K,
-) {
+export function getOverrides<K extends keyof OptionsConfig>(options: OptionsConfig, key: K) {
   const sub = resolveSubOptions(options, key)
   return {
     ...(options.overrides as any)?.[key],

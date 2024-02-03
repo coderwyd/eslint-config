@@ -11,12 +11,7 @@ import {
 } from '../constants/glob'
 
 import { ensurePackages, interopDefault, parserPlain } from '../shared'
-import type {
-  FlatConfigItem,
-  OptionsFormatters,
-  PartialPrettierExtendedOptions,
-  PrettierParser,
-} from '../types'
+import type { FlatConfigItem, OptionsFormatters, PartialPrettierExtendedOptions, PrettierParser } from '../types'
 
 export async function formatter(
   options: OptionsFormatters = {},
@@ -24,22 +19,11 @@ export async function formatter(
 ): Promise<FlatConfigItem[]> {
   await ensurePackages(['eslint-plugin-prettier'])
 
-  const {
-    css = true,
-    graphql,
-    html = true,
-    markdown,
-    toml,
-    yaml,
-  } = options || {}
+  const { css = true, graphql, html = true, markdown, toml, yaml } = options || {}
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
-  function createPrettierFormatter(
-    files: string[],
-    parser: PrettierParser,
-    plugins?: string[],
-  ) {
+  function createPrettierFormatter(files: string[], parser: PrettierParser, plugins?: string[]) {
     const rules = {
       ...prettierRules,
       parser,
@@ -106,9 +90,7 @@ export async function formatter(
   if (toml) {
     await ensurePackages(['@toml-tools/parser', 'prettier-plugin-toml'])
 
-    const tomlConfig = createPrettierFormatter([GLOB_TOML], 'toml', [
-      'prettier-plugin-toml',
-    ])
+    const tomlConfig = createPrettierFormatter([GLOB_TOML], 'toml', ['prettier-plugin-toml'])
 
     configs.push(tomlConfig)
   }

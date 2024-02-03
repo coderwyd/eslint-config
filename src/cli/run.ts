@@ -8,14 +8,7 @@ import c from 'picocolors'
 
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
-import {
-  ARROW,
-  CHECK,
-  WARN,
-  eslintVersion,
-  version,
-  vscodeSettingsString,
-} from './constants'
+import { ARROW, CHECK, WARN, eslintVersion, version, vscodeSettingsString } from './constants'
 import { isGitClean } from './utils'
 
 export interface RuleOptions {
@@ -36,19 +29,14 @@ export async function run(options: RuleOptions = {}) {
   const pathESLintIngore = path.join(cwd, '.eslintignore')
 
   if (fs.existsSync(pathFlatConfig)) {
-    console.log(
-      c.yellow(
-        `${WARN} eslint.config.js already exists, migration wizard exited.`,
-      ),
-    )
+    console.log(c.yellow(`${WARN} eslint.config.js already exists, migration wizard exited.`))
     return process.exit(1)
   }
 
   if (!SKIP_GIT_CHECK && !isGitClean()) {
     const { confirmed } = await prompts({
       initial: false,
-      message:
-        'There are uncommitted changes in the current repository, are you sure to continue?',
+      message: 'There are uncommitted changes in the current repository, are you sure to continue?',
       name: 'confirmed',
       type: 'confirm',
     })
@@ -79,18 +67,13 @@ export async function run(options: RuleOptions = {}) {
 
     for (const glob of globs) {
       if (glob.type === 'ignore') eslintIgnores.push(...glob.patterns)
-      else if (glob.type === 'unignore')
-        eslintIgnores.push(
-          ...glob.patterns.map((pattern: string) => `!${pattern}`),
-        )
+      else if (glob.type === 'unignore') eslintIgnores.push(...glob.patterns.map((pattern: string) => `!${pattern}`))
     }
   }
 
   let eslintConfigContent: string = ''
 
-  const coderwydConfig = `${
-    eslintIgnores.length ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''
-  }`
+  const coderwydConfig = `${eslintIgnores.length ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''}`
   if (pkg.type === 'module') {
     eslintConfigContent = `
 import { defineConfig } from '@coderwyd/eslint-config'
@@ -111,8 +94,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
   files.forEach(file => {
-    if (file.includes('eslint') || file.includes('prettier'))
-      legacyConfig.push(file)
+    if (file.includes('eslint') || file.includes('prettier')) legacyConfig.push(file)
   })
   if (legacyConfig.length) {
     console.log(`${WARN} you can now remove those files manually:`)
@@ -130,8 +112,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
       promptResult = await prompts(
         {
           initial: true,
-          message:
-            'Update .vscode/settings.json for better VS Code experience?',
+          message: 'Update .vscode/settings.json for better VS Code experience?',
           name: 'updateVscodeSettings',
           type: 'confirm',
         },
@@ -151,8 +132,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
     const dotVscodePath: string = path.join(cwd, '.vscode')
     const settingsPath: string = path.join(dotVscodePath, 'settings.json')
 
-    if (!fs.existsSync(dotVscodePath))
-      await fsp.mkdir(dotVscodePath, { recursive: true })
+    if (!fs.existsSync(dotVscodePath)) await fsp.mkdir(dotVscodePath, { recursive: true })
 
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
@@ -161,10 +141,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
       settingsContent = settingsContent.trim().replace(/\s*}$/, '')
-      settingsContent +=
-        settingsContent.endsWith(',') || settingsContent.endsWith('{')
-          ? ''
-          : ','
+      settingsContent += settingsContent.endsWith(',') || settingsContent.endsWith('{') ? '' : ','
       settingsContent += `${vscodeSettingsString}}\n`
 
       await fsp.writeFile(settingsPath, settingsContent, 'utf-8')
@@ -174,7 +151,5 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
 
   // End update .vscode/settings.json
   console.log(c.green(`${CHECK} migration completed`))
-  console.log(
-    `Now you can update the dependencies and run ${c.blue('eslint . --fix')}\n`,
-  )
+  console.log(`Now you can update the dependencies and run ${c.blue('eslint . --fix')}\n`)
 }

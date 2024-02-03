@@ -40,6 +40,7 @@
     "build": "tsup",
     "dev": "tsup --format esm,cjs --watch & eslint-flat-config-viewer",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepack": "nr build",
     "release": "bumpp && pnpm publish",
     "typecheck": "tsc --noEmit",

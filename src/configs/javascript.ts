@@ -1,15 +1,9 @@
 import globals from 'globals'
 import { pluginUnusedImports } from '../plugins'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
-import type {
-  FlatConfigItem,
-  OptionsIsInEditor,
-  OptionsOverrides,
-} from '../types'
+import type { FlatConfigItem, OptionsIsInEditor, OptionsOverrides } from '../types'
 
-export async function javascript(
-  options: OptionsIsInEditor & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+export async function javascript(options: OptionsIsInEditor & OptionsOverrides = {}): Promise<FlatConfigItem[]> {
   const { isInEditor = false, overrides = {} } = options
 
   return [
@@ -41,10 +35,7 @@ export async function javascript(
         'unused-imports': pluginUnusedImports,
       },
       rules: {
-        'accessor-pairs': [
-          'error',
-          { enforceForClassMembers: true, setWithoutGet: true },
-        ],
+        'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
 
         'array-callback-return': 'error',
         'block-scoped-var': 'error',
@@ -52,10 +43,7 @@ export async function javascript(
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
         eqeqeq: ['error', 'smart'],
-        'new-cap': [
-          'error',
-          { capIsNew: false, newIsCap: true, properties: true },
-        ],
+        'new-cap': ['error', { capIsNew: false, newIsCap: true, properties: true }],
         'no-alert': 'error',
         'no-array-constructor': 'error',
         'no-async-promise-executor': 'error',
@@ -114,8 +102,7 @@ export async function javascript(
         'no-restricted-properties': [
           'error',
           {
-            message:
-              'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+            message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
             property: '__proto__',
           },
           {
@@ -177,10 +164,7 @@ export async function javascript(
             vars: 'all',
           },
         ],
-        'no-use-before-define': [
-          'error',
-          { classes: false, functions: false, variables: true },
-        ],
+        'no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
         'no-useless-backreference': 'error',
         'no-useless-call': 'error',
         'no-useless-catch': 'error',
@@ -243,10 +227,7 @@ export async function javascript(
             varsIgnorePattern: '^_',
           },
         ],
-        'use-isnan': [
-          'error',
-          { enforceForIndexOf: true, enforceForSwitchCase: true },
-        ],
+        'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
         yoda: ['error', 'never'],
