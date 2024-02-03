@@ -175,7 +175,7 @@ export async function defineConfig(
     if (key in options) acc[key] = options[key] as any
     return acc
   }, {} as FlatConfigItem)
-  if (Object.keys(fusedConfig).length) configs.push([fusedConfig])
+  if (Object.keys(fusedConfig).length > 0) configs.push([fusedConfig])
 
   const merged = combine(...configs, ...userConfigs)
 

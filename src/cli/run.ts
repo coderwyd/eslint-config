@@ -73,7 +73,7 @@ export async function run(options: RuleOptions = {}) {
 
   let eslintConfigContent: string = ''
 
-  const coderwydConfig = `${eslintIgnores.length ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''}`
+  const coderwydConfig = `${eslintIgnores.length > 0 ? `ignores: ${JSON.stringify(eslintIgnores)}` : ''}`
   if (pkg.type === 'module') {
     eslintConfigContent = `
 import { defineConfig } from '@coderwyd/eslint-config'
@@ -96,7 +96,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   files.forEach(file => {
     if (file.includes('eslint') || file.includes('prettier')) legacyConfig.push(file)
   })
-  if (legacyConfig.length) {
+  if (legacyConfig.length > 0) {
     console.log(`${WARN} you can now remove those files manually:`)
     console.log(`   ${c.dim(legacyConfig.join(', '))}`)
   }
@@ -122,8 +122,8 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
           },
         },
       )
-    } catch (cancelled: any) {
-      console.log(cancelled.message)
+    } catch (error: any) {
+      console.log(error.message)
       return
     }
   }
