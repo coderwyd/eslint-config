@@ -234,7 +234,7 @@ interface OptionsConfig {
    * {
    *   "arrowParens": "avoid",
    *   "htmlWhitespaceSensitivity": "ignore"
-   *   "printWidth": 120,
+   *   "printWidth": 80,
    *   "semi": false,
    *   "singleQuote": true,
    * }

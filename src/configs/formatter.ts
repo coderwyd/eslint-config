@@ -29,6 +29,12 @@ export async function formatter(
       parser,
     }
 
+    const markdownRules = {
+      printWidth: 120,
+      ...rules,
+      embeddedLanguageFormatting: 'off',
+    }
+
     if (plugins?.length) {
       rules.plugins = [...(rules.plugins || []), ...plugins]
     }
@@ -43,7 +49,7 @@ export async function formatter(
         prettier: pluginPrettier,
       },
       rules: {
-        'prettier/prettier': ['warn', rules],
+        'prettier/prettier': ['warn', parser === 'markdown' ? markdownRules : rules],
       },
     }
 
