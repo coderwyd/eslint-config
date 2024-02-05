@@ -38,6 +38,7 @@ import type {
 } from './types'
 
 const flatConfigProps: (keyof FlatConfigItem)[] = [
+  'name',
   'files',
   'ignores',
   'languageOptions',
