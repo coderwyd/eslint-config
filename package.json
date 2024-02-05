@@ -1,7 +1,7 @@
 {
   "name": "@coderwyd/eslint-config",
   "type": "module",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "packageManager": "pnpm@8.15.1",
   "description": "Donny's ESLint config",
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
@@ -29,7 +29,10 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": "./bin/index.js",
-  "files": ["bin", "dist"],
+  "files": [
+    "bin",
+    "dist"
+  ],
   "engines": {
     "node": ">=16.14.0"
   },
