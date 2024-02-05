@@ -218,7 +218,6 @@ interface OptionsConfig {
    * {
    *  "html": true,
    *  "css": true,
-   *  "json": true,
    *  "graphql": false,
    *  "markdown": false
    *  "yaml": false

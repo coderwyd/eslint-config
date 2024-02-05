@@ -29,11 +29,6 @@ export interface OptionsFormatters {
   css?: boolean
 
   /**
-   * Enable formatting support for Json.
-   */
-  json?: boolean
-
-  /**
    * Enable formatting support for Markdown.
    */
   markdown?: boolean
@@ -223,7 +218,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * {
    *  "html": true,
    *  "css": true,
-   *  "json": true,
    *  "graphql": false,
    *  "markdown": false
    *  "yaml": false

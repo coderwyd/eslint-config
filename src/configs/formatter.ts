@@ -2,9 +2,6 @@ import {
   GLOB_CSS,
   GLOB_GRAPHQL,
   GLOB_HTML,
-  GLOB_JSON,
-  GLOB_JSON5,
-  GLOB_JSONC,
   GLOB_LESS,
   GLOB_MARKDOWN,
   GLOB_POSTCSS,
@@ -31,7 +28,6 @@ export async function formatter(
     css = true,
     graphql,
     html = true,
-    json = true,
     markdown,
     toml,
     yaml,
@@ -99,12 +95,6 @@ export async function formatter(
     const lessConfig = createPrettierFormatter([GLOB_LESS], 'less')
 
     configs.push(cssConfig, scssConfig, lessConfig)
-  }
-
-  if (json) {
-    const jsonConfig = createPrettierFormatter([GLOB_JSON, GLOB_JSONC], 'json')
-    const json5Config = createPrettierFormatter([GLOB_JSON5], 'json5')
-    configs.push(jsonConfig, json5Config)
   }
 
   if (markdown) {

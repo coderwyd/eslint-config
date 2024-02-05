@@ -24,6 +24,12 @@ export async function jsdoc(): Promise<FlatConfigItem[]> {
         'jsdoc/require-returns-check': 'warn',
         'jsdoc/require-returns-description': 'warn',
         'jsdoc/require-yields-check': 'warn',
+
+        ...{
+          // format
+          'jsdoc/check-alignment': 'warn',
+          'jsdoc/multiline-blocks': 'warn',
+        },
       },
     },
   ]

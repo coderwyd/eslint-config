@@ -15,6 +15,9 @@
     "eslint-config-svelte",
     "prettier"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -27,9 +30,6 @@
   "types": "./dist/index.d.ts",
   "bin": "./bin/index.js",
   "files": ["bin", "dist"],
-  "publishConfig": {
-    "access": "public"
-  },
   "engines": {
     "node": ">=16.14.0"
   },
@@ -39,9 +39,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepack": "nr build",
+    "prepare": "simple-git-hooks",
     "release": "bumpp && pnpm publish",
-    "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "@unocss/eslint-plugin": ">=0.50.0",

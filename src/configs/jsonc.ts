@@ -54,6 +54,29 @@ export async function jsonc(
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
 
+        ...{
+          // format
+          'jsonc/array-bracket-spacing': ['error', 'never'],
+          'jsonc/comma-dangle': ['error', 'never'],
+          'jsonc/comma-style': ['error', 'last'],
+          'jsonc/indent': ['error', 2],
+          'jsonc/key-spacing': [
+            'error',
+            { afterColon: true, beforeColon: false },
+          ],
+          'jsonc/object-curly-newline': [
+            'error',
+            { consistent: true, multiline: true },
+          ],
+          'jsonc/object-curly-spacing': ['error', 'always'],
+          'jsonc/object-property-newline': [
+            'error',
+            { allowMultiplePropertiesPerLine: true },
+          ],
+          'jsonc/quote-props': 'error',
+          'jsonc/quotes': 'error',
+        },
+
         ...overrides,
       },
     },

@@ -87,6 +87,22 @@ export async function svelte(
           },
         ],
 
+        ...{
+          // format
+          'style/no-trailing-spaces': 'off', // superseded by svelte/no-trailing-spaces
+          'svelte/derived-has-same-inputs-outputs': 'error',
+          'svelte/html-closing-bracket-spacing': 'error',
+          'svelte/html-quotes': ['error', { prefer: 'single' }],
+          'svelte/indent': [
+            'error',
+            { alignAttributesVertically: true, indent: 2 },
+          ],
+          'svelte/mustache-spacing': 'error',
+          'svelte/no-spaces-around-equal-signs-in-attribute': 'error',
+          'svelte/no-trailing-spaces': 'error',
+          'svelte/spaced-html-comment': 'error',
+        },
+
         ...overrides,
       },
     },
