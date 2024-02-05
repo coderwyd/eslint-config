@@ -261,5 +261,11 @@ export async function javascript(
         'no-console': 'off',
       },
     },
+    {
+      files: ['**/*.{test,spec}.js?(x)'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
+    },
   ]
 }
