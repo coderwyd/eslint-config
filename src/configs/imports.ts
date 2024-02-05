@@ -16,7 +16,10 @@ export async function imports(): Promise<FlatConfigItem[]> {
         'antfu/no-import-node-modules-by-path': 'error',
 
         'import/first': 'error',
-        'import/newline-after-import': ['error', { considerComments: true, count: 1 }],
+        'import/newline-after-import': [
+          'error',
+          { considerComments: true, count: 1 },
+        ],
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-named-default': 'error',
@@ -25,7 +28,16 @@ export async function imports(): Promise<FlatConfigItem[]> {
         'import/order': [
           'error',
           {
-            groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+            groups: [
+              'builtin',
+              'external',
+              'internal',
+              'parent',
+              'sibling',
+              'index',
+              'object',
+              'type',
+            ],
             pathGroups: [{ group: 'internal', pattern: '{{@,~}/,#}**' }],
             pathGroupsExcludedImportTypes: ['type'],
           },

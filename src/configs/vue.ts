@@ -1,6 +1,11 @@
 import { getVueVersion, interopDefault } from '../shared'
 import { GLOB_VUE } from '../constants/glob'
-import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides } from '../types'
+import type {
+  FlatConfigItem,
+  OptionsFiles,
+  OptionsHasTypeScript,
+  OptionsOverrides,
+} from '../types'
 
 export async function vue(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
@@ -44,7 +49,11 @@ export async function vue(
             jsx: true,
           },
           extraFileExtensions: ['.vue'],
-          parser: options.typescript ? ((await interopDefault(import('@typescript-eslint/parser'))) as any) : null,
+          parser: options.typescript
+            ? ((await interopDefault(
+                import('@typescript-eslint/parser'),
+              )) as any)
+            : null,
           sourceType: 'module',
         },
       },
@@ -59,7 +68,9 @@ export async function vue(
         'vue/block-order': [
           'error',
           {
-            order: isVue3 ? ['script', 'template', 'style'] : ['template', 'script', 'style'],
+            order: isVue3
+              ? ['script', 'template', 'style']
+              : ['template', 'script', 'style'],
           },
         ],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
@@ -68,7 +79,12 @@ export async function vue(
         'vue/define-macros-order': [
           'error',
           {
-            order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
+            order: [
+              'defineOptions',
+              'defineProps',
+              'defineEmits',
+              'defineSlots',
+            ],
           },
         ],
         'vue/dot-location': ['error', 'property'],
@@ -96,7 +112,12 @@ export async function vue(
         'vue/no-extra-parens': ['error', 'functions'],
         'vue/no-irregular-whitespace': 'error',
         'vue/no-loss-of-precision': 'error',
-        'vue/no-restricted-syntax': ['error', 'DebuggerStatement', 'LabeledStatement', 'WithStatement'],
+        'vue/no-restricted-syntax': [
+          'error',
+          'DebuggerStatement',
+          'LabeledStatement',
+          'WithStatement',
+        ],
         'vue/no-restricted-v-bind': ['error', '/^v-/'],
         'vue/no-setup-props-reactivity-loss': 'off',
         'vue/no-sparse-arrays': 'error',

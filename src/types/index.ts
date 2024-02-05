@@ -19,14 +19,19 @@ export type OptionsTypescript =
 
 export interface OptionsFormatters {
   /**
+   * Enable formatting support for HTML.
+   */
+  html?: boolean
+
+  /**
    * Enable formatting support for CSS, Less, Sass, and SCSS.
    */
   css?: boolean
 
   /**
-   * Enable formatting support for HTML.
+   * Enable formatting support for Json.
    */
-  html?: boolean
+  json?: boolean
 
   /**
    * Enable formatting support for Markdown.
@@ -218,6 +223,7 @@ export interface OptionsConfig extends OptionsComponentExts {
    * {
    *  "html": true,
    *  "css": true,
+   *  "json": true,
    *  "graphql": false,
    *  "markdown": false
    *  "yaml": false

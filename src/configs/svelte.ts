@@ -1,6 +1,11 @@
 import { ensurePackages, interopDefault } from '../shared'
 import { GLOB_SVELTE } from '../constants/glob'
-import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides } from '../types'
+import type {
+  FlatConfigItem,
+  OptionsFiles,
+  OptionsHasTypeScript,
+  OptionsOverrides,
+} from '../types'
 
 export async function svelte(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
@@ -27,7 +32,11 @@ export async function svelte(
         parser: parserSvelte,
         parserOptions: {
           extraFileExtensions: ['.svelte'],
-          parser: options.typescript ? ((await interopDefault(import('@typescript-eslint/parser'))) as any) : null,
+          parser: options.typescript
+            ? ((await interopDefault(
+                import('@typescript-eslint/parser'),
+              )) as any)
+            : null,
         },
       },
       name: 'coderwyd:svelte:rules',

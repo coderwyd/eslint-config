@@ -1,7 +1,12 @@
 import { isPackageExists } from 'local-pkg'
 import { ensurePackages, interopDefault } from '../shared'
 import { GLOB_JSX, GLOB_TSX } from '../constants/glob'
-import type { FlatConfigItem, OptionsFiles, OptionsHasTypeScript, OptionsOverrides } from '../types'
+import type {
+  FlatConfigItem,
+  OptionsFiles,
+  OptionsHasTypeScript,
+  OptionsOverrides,
+} from '../types'
 
 // react refresh
 const ReactRefreshAllowConstantExportPackages = ['vite']
@@ -9,17 +14,29 @@ const ReactRefreshAllowConstantExportPackages = ['vite']
 export async function react(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<FlatConfigItem[]> {
-  const { files = [GLOB_JSX, GLOB_TSX], overrides = {}, typescript = true } = options
+  const {
+    files = [GLOB_JSX, GLOB_TSX],
+    overrides = {},
+    typescript = true,
+  } = options
 
-  await ensurePackages(['eslint-plugin-react', 'eslint-plugin-react-hooks', 'eslint-plugin-react-refresh'])
+  await ensurePackages([
+    'eslint-plugin-react',
+    'eslint-plugin-react-hooks',
+    'eslint-plugin-react-refresh',
+  ])
 
-  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all([
-    interopDefault(import('eslint-plugin-react')),
-    interopDefault(import('eslint-plugin-react-hooks')),
-    interopDefault(import('eslint-plugin-react-refresh')),
-  ] as const)
+  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all(
+    [
+      interopDefault(import('eslint-plugin-react')),
+      interopDefault(import('eslint-plugin-react-hooks')),
+      interopDefault(import('eslint-plugin-react-refresh')),
+    ] as const,
+  )
 
-  const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some(i => isPackageExists(i))
+  const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some(
+    i => isPackageExists(i),
+  )
 
   return [
     {
@@ -51,7 +68,10 @@ export async function react(
         'react-hooks/rules-of-hooks': 'error',
 
         // react refresh
-        'react-refresh/only-export-components': ['warn', { allowConstantExport: isAllowConstantExport }],
+        'react-refresh/only-export-components': [
+          'warn',
+          { allowConstantExport: isAllowConstantExport },
+        ],
 
         // recommended rules react
         'react/display-name': 'error',

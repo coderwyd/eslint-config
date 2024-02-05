@@ -23,8 +23,19 @@ import {
   unocss,
   vue,
 } from './configs'
-import { combine, getOverrides, interopDefault, loadPrettierConfig, resolveSubOptions } from './shared'
-import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from './types'
+import {
+  combine,
+  getOverrides,
+  interopDefault,
+  loadPrettierConfig,
+  resolveSubOptions,
+} from './shared'
+import type {
+  Awaitable,
+  FlatConfigItem,
+  OptionsConfig,
+  UserConfigItem,
+} from './types'
 
 const flatConfigProps: (keyof FlatConfigItem)[] = [
   'files',
@@ -49,7 +60,12 @@ export async function defineConfig(
   const {
     componentExts = [],
     gitignore: enableGitignore = true,
-    isInEditor = !!((process.env.VSCODE_PID || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
+    isInEditor = !!(
+      (process.env.VSCODE_PID ||
+        process.env.JETBRAINS_IDE ||
+        process.env.VIM) &&
+      !process.env.CI
+    ),
     react: enableReact = false,
     svelte: enableSvelte = false,
     typescript: enableTypeScript = isPackageExists('typescript'),
@@ -62,10 +78,18 @@ export async function defineConfig(
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
-      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r(enableGitignore)]))
+      configs.push(
+        interopDefault(import('eslint-config-flat-gitignore')).then(r => [
+          r(enableGitignore),
+        ]),
+      )
     } else {
       if (fs.existsSync('.gitignore'))
-        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]))
+        configs.push(
+          interopDefault(import('eslint-config-flat-gitignore')).then(r => [
+            r(),
+          ]),
+        )
     }
   }
 
@@ -163,11 +187,16 @@ export async function defineConfig(
   }
 
   if (usePrettierrc) {
-    const prettierConfig = await loadPrettierConfig(options.cwd ?? process.cwd())
+    const prettierConfig = await loadPrettierConfig(
+      options.cwd ?? process.cwd(),
+    )
     Object.assign(prettierRules, prettierConfig)
   }
 
-  configs.push(prettier(prettierRules), formatter(options.formatter, prettierRules))
+  configs.push(
+    prettier(prettierRules),
+    formatter(options.formatter, prettierRules),
+  )
 
   // User can optionally pass a flat config item to the first argument
   // We pick the known keys as ESLint would do schema validation

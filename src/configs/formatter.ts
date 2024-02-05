@@ -2,6 +2,9 @@ import {
   GLOB_CSS,
   GLOB_GRAPHQL,
   GLOB_HTML,
+  GLOB_JSON,
+  GLOB_JSON5,
+  GLOB_JSONC,
   GLOB_LESS,
   GLOB_MARKDOWN,
   GLOB_POSTCSS,
@@ -11,7 +14,12 @@ import {
 } from '../constants/glob'
 
 import { ensurePackages, interopDefault, parserPlain } from '../shared'
-import type { FlatConfigItem, OptionsFormatters, PartialPrettierExtendedOptions, PrettierParser } from '../types'
+import type {
+  FlatConfigItem,
+  OptionsFormatters,
+  PartialPrettierExtendedOptions,
+  PrettierParser,
+} from '../types'
 
 export async function formatter(
   options: OptionsFormatters = {},
@@ -19,11 +27,23 @@ export async function formatter(
 ): Promise<FlatConfigItem[]> {
   await ensurePackages(['eslint-plugin-prettier'])
 
-  const { css = true, graphql, html = true, markdown, toml, yaml } = options || {}
+  const {
+    css = true,
+    graphql,
+    html = true,
+    json = true,
+    markdown,
+    toml,
+    yaml,
+  } = options || {}
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
-  function createPrettierFormatter(files: string[], parser: PrettierParser, plugins?: string[]) {
+  function createPrettierFormatter(
+    files: string[],
+    parser: PrettierParser,
+    plugins?: string[],
+  ) {
     const rules = {
       ...prettierRules,
       parser,
@@ -49,7 +69,10 @@ export async function formatter(
         prettier: pluginPrettier,
       },
       rules: {
-        'prettier/prettier': ['warn', parser === 'markdown' ? markdownRules : rules],
+        'prettier/prettier': [
+          'warn',
+          parser === 'markdown' ? markdownRules : rules,
+        ],
       },
     }
 
@@ -65,6 +88,11 @@ export async function formatter(
     },
   ]
 
+  if (html) {
+    const htmlConfig = createPrettierFormatter([GLOB_HTML], 'html')
+    configs.push(htmlConfig)
+  }
+
   if (css) {
     const cssConfig = createPrettierFormatter([GLOB_CSS, GLOB_POSTCSS], 'css')
     const scssConfig = createPrettierFormatter([GLOB_SCSS], 'scss')
@@ -73,9 +101,10 @@ export async function formatter(
     configs.push(cssConfig, scssConfig, lessConfig)
   }
 
-  if (html) {
-    const htmlConfig = createPrettierFormatter([GLOB_HTML], 'html')
-    configs.push(htmlConfig)
+  if (json) {
+    const jsonConfig = createPrettierFormatter([GLOB_JSON, GLOB_JSONC], 'json')
+    const json5Config = createPrettierFormatter([GLOB_JSON5], 'json5')
+    configs.push(jsonConfig, json5Config)
   }
 
   if (markdown) {
@@ -96,7 +125,9 @@ export async function formatter(
   if (toml) {
     await ensurePackages(['@toml-tools/parser', 'prettier-plugin-toml'])
 
-    const tomlConfig = createPrettierFormatter([GLOB_TOML], 'toml', ['prettier-plugin-toml'])
+    const tomlConfig = createPrettierFormatter([GLOB_TOML], 'toml', [
+      'prettier-plugin-toml',
+    ])
 
     configs.push(tomlConfig)
   }

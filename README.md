@@ -218,10 +218,11 @@ interface OptionsConfig {
    * {
    *  "html": true,
    *  "css": true,
-   *  "graphql": true,
-   *  "markdown": true
-   *  "yaml": true
-   *  "toml": true
+   *  "json": true,
+   *  "graphql": false,
+   *  "markdown": false
+   *  "yaml": false
+   *  "toml": false
    * }
    */
   formatter?: OptionsFormatters
