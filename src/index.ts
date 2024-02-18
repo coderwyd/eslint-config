@@ -1,6 +1,5 @@
 import process from 'node:process'
 import fs from 'node:fs'
-import { isPackageExists } from 'local-pkg'
 import { DEFAULT_PRETTIER_RULES } from './constants/prettier'
 import {
   comments,
@@ -17,6 +16,7 @@ import {
   sortPackageJson,
   sortTsconfig,
   svelte,
+  tailwindcss,
   test,
   typescript,
   unicorn,
@@ -30,6 +30,12 @@ import {
   loadPrettierConfig,
   resolveSubOptions,
 } from './shared'
+import {
+  isInEditor as defaultIsInEditor,
+  hasTailwindCSS,
+  hasTypeScript,
+  hasVue,
+} from './env'
 import type {
   Awaitable,
   FlatConfigItem,
@@ -49,8 +55,6 @@ const flatConfigProps: (keyof FlatConfigItem)[] = [
   'settings',
 ]
 
-const VuePackages = ['vue', 'nuxt', 'vitepress', '@slidev/cli']
-
 /**
  * Construct an array of ESLint flat config items.
  */
@@ -61,18 +65,14 @@ export async function defineConfig(
   const {
     componentExts = [],
     gitignore: enableGitignore = true,
-    isInEditor = !!(
-      (process.env.VSCODE_PID ||
-        process.env.JETBRAINS_IDE ||
-        process.env.VIM) &&
-      !process.env.CI
-    ),
+    isInEditor = defaultIsInEditor,
     react: enableReact = false,
     svelte: enableSvelte = false,
-    typescript: enableTypeScript = isPackageExists('typescript'),
+    tailwindcss: enableTailwindCSS = hasTailwindCSS,
+    typescript: enableTypeScript = hasTypeScript,
     unocss: enableUnoCSS = false,
     usePrettierrc = true,
-    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
+    vue: enableVue = hasVue,
   } = options
 
   const configs: Awaitable<FlatConfigItem[]>[] = []
@@ -165,6 +165,14 @@ export async function defineConfig(
       unocss({
         ...resolveSubOptions(options, 'unocss'),
         overrides: getOverrides(options, 'unocss'),
+      }),
+    )
+  }
+  if (enableTailwindCSS) {
+    configs.push(
+      tailwindcss({
+        ...resolveSubOptions(options, 'tailwindcss'),
+        overrides: getOverrides(options, 'tailwindcss'),
       }),
     )
   }

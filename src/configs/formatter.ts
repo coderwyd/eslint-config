@@ -22,8 +22,6 @@ export async function formatter(
   options: OptionsFormatters = {},
   prettierRules: PartialPrettierExtendedOptions = {},
 ): Promise<FlatConfigItem[]> {
-  await ensurePackages(['eslint-plugin-prettier'])
-
   const {
     css = true,
     graphql,

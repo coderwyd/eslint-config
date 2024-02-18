@@ -17,24 +17,19 @@ import type {
   VitestRules,
   VueRules,
 } from '@antfu/eslint-define-config'
+import type { PrettierRule } from './rules/prettier'
+import type { TailwindCssRules } from './rules/tailwindcss'
 import type { Linter } from 'eslint'
 import type { Rules as AntfuRules } from 'eslint-plugin-antfu'
 
-import type { BuiltInParserName, LiteralUnion, RequiredOptions } from 'prettier'
-
-export type PrettierCustomParser = 'astro' | 'svelte' | 'toml'
-
-export type PrettierParser = BuiltInParserName | PrettierCustomParser
-export interface PrettierOptions extends RequiredOptions {
-  parser: LiteralUnion<PrettierParser>
-}
-
-export type PartialPrettierExtendedOptions = Partial<PrettierOptions>
+export type {
+  PartialPrettierExtendedOptions,
+  PrettierParser,
+} from './rules/prettier'
 
 export type WrapRuleConfig<T extends { [key: string]: any }> = {
   [K in keyof T]: T[K] extends RuleConfig ? T[K] : RuleConfig<T[K]>
 }
-
 export type EslintFlatRules = WrapRuleConfig<
   MergeIntersection<
     RenamePrefix<TypeScriptRules, '@typescript-eslint/', 'ts/'> &
@@ -49,6 +44,8 @@ export type EslintFlatRules = WrapRuleConfig<
       JsoncRules &
       VueRules &
       UnicornRules &
+      PrettierRule &
+      TailwindCssRules &
       EslintCommentsRules & {
         // TODO: TOML rules
         'test/no-only-tests': RuleConfig<[]>

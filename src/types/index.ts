@@ -190,6 +190,13 @@ export interface OptionsConfig extends OptionsComponentExts {
   svelte?: boolean | OptionsOverrides
 
   /**
+   * Enable tainwindcss rules.
+   *
+   * @default auto-detect based on the dependencies
+   */
+  tailwindcss?: boolean | OptionsOverrides
+
+  /**
    * Enable unocss rules.
    *
    * Requires installing:
@@ -247,21 +254,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the process.env
    */
   isInEditor?: boolean
-
-  /**
-   * Provide overrides for rules for each integration.
-   *
-   * @deprecated use `overrides` option in each integration key instead
-   */
-  overrides?: {
-    javascript?: FlatConfigItem['rules']
-    typescript?: FlatConfigItem['rules']
-    test?: FlatConfigItem['rules']
-    vue?: FlatConfigItem['rules']
-    jsonc?: FlatConfigItem['rules']
-    react?: FlatConfigItem['rules']
-    svelte?: FlatConfigItem['rules']
-  }
 }
 
 export type ResolvedOptions<T> = T extends boolean ? never : NonNullable<T>

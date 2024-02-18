@@ -120,7 +120,6 @@ export function getOverrides<K extends keyof OptionsConfig>(
 ) {
   const sub = resolveSubOptions(options, key)
   return {
-    ...(options.overrides as any)?.[key],
     ...('overrides' in sub ? sub.overrides || {} : {}),
   }
 }
