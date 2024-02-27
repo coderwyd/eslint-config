@@ -218,9 +218,6 @@ interface OptionsConfig {
   /**
    * Use external formatters to format files.
    *
-   * Requires installing:
-   * - `eslint-plugin-prettier`
-   *
    * @default
    * {
    *  "html": true,
