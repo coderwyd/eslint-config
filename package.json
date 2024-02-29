@@ -113,9 +113,9 @@
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.12",
-    "@types/eslint": "^8.56.3",
+    "@types/eslint": "^8.56.5",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.24",
     "@types/prompts": "^2.4.9",
     "@types/yargs": "^17.0.32",
     "@unocss/eslint-plugin": "^0.58.5",
