@@ -66,6 +66,7 @@ export async function javascript(
         'no-cond-assign': ['error', 'always'],
         'no-console': ['error', { allow: ['warn', 'error'] }],
         'no-const-assign': 'error',
+        'no-constant-condition': 'error',
         'no-control-regex': 'error',
         'no-debugger': 'error',
         'no-delete-var': 'error',
