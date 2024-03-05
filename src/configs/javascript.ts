@@ -53,6 +53,7 @@ export async function javascript(
         'dot-notation': ['error', { allowKeywords: true }],
         eqeqeq: ['error', 'smart'],
         'for-direction': 'error',
+        'getter-return': 'error',
         'new-cap': [
           'error',
           { capIsNew: false, newIsCap: true, properties: true },
