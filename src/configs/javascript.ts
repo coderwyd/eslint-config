@@ -52,6 +52,7 @@ export async function javascript(
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
         eqeqeq: ['error', 'smart'],
+        'for-direction': 'error',
         'new-cap': [
           'error',
           { capIsNew: false, newIsCap: true, properties: true },
