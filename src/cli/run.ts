@@ -109,7 +109,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
   files.forEach(file => {
-    if (file.includes('eslint') || file.includes('prettier'))
+    if (/eslint|prettier/.test(file) && !/eslint.config./.test(file))
       legacyConfig.push(file)
   })
   if (legacyConfig.length > 0) {
