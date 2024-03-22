@@ -5,6 +5,7 @@ import type { MigrationFromTailwind_2Rule } from './migration-from-tailwind-2'
 import type { NoArbitraryValueRule } from './no-arbitrary-value'
 import type { NoContradictingClassnameRule } from './no-contradicting-classname'
 import type { NoCustomClassnameRule } from './no-custom-classname'
+import type { NoUnnecessaryArbitraryValueRule } from './no-unnecessary-arbitrary-value'
 
 /**
  * All TailwindCss rules.
@@ -15,4 +16,5 @@ export type TailwindCssRules = ClassnamesOrderRule &
   MigrationFromTailwind_2Rule &
   NoArbitraryValueRule &
   NoContradictingClassnameRule &
-  NoCustomClassnameRule
+  NoCustomClassnameRule &
+  NoUnnecessaryArbitraryValueRule
