@@ -41,10 +41,7 @@ export async function imports(): Promise<FlatConfigItem[]> {
 
         ...{
           // format
-          'import/newline-after-import': [
-            'error',
-            { considerComments: true, count: 1 },
-          ],
+          'import/newline-after-import': ['error', { count: 1 }],
         },
       },
     },
