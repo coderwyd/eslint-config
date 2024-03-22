@@ -254,6 +254,13 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the process.env
    */
   isInEditor?: boolean
+
+  /**
+   * Automatically rename plugins in the config.
+   *
+   * @default true
+   */
+  autoRenamePlugins?: boolean
 }
 
 export type ResolvedOptions<T> = T extends boolean ? never : NonNullable<T>

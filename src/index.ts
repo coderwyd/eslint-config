@@ -28,6 +28,7 @@ import {
   getOverrides,
   interopDefault,
   loadPrettierConfig,
+  renamePluginInConfigs,
   resolveSubOptions,
 } from './shared'
 import {
@@ -55,6 +56,14 @@ const flatConfigProps: (keyof FlatConfigItem)[] = [
   'settings',
 ]
 
+export const defaultPluginRenaming = {
+  '@typescript-eslint': 'ts',
+  'import-x': 'import',
+  n: 'node',
+  vitest: 'test',
+  yml: 'yaml',
+}
+
 /**
  * Construct an array of ESLint flat config items.
  *
@@ -70,6 +79,7 @@ export async function defineConfig(
   ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
 ): Promise<UserConfigItem[]> {
   const {
+    autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
     isInEditor = defaultIsInEditor,
@@ -222,7 +232,13 @@ export async function defineConfig(
   }, {} as FlatConfigItem)
   if (Object.keys(fusedConfig).length > 0) configs.push([fusedConfig])
 
-  const merged = combine(...configs, ...userConfigs)
+  const merged = await combine(...configs, ...userConfigs)
+
+  if (autoRenamePlugins)
+    return renamePluginInConfigs(merged, defaultPluginRenaming)
 
   return merged
 }
+
+export * from './shared'
+export * from './types'

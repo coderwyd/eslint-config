@@ -107,14 +107,11 @@ export async function typescript(
       rules: {
         ...renameRules(
           pluginTs.configs['eslint-recommended'].overrides![0].rules!,
-          '@typescript-eslint/',
-          'ts/',
+          { '@typescript-eslint': 'ts' },
         ),
-        ...renameRules(
-          pluginTs.configs.strict.rules!,
-          '@typescript-eslint/',
-          'ts/',
-        ),
+        ...renameRules(pluginTs.configs.strict.rules!, {
+          '@typescript-eslint': 'ts',
+        }),
         'no-dupe-class-members': 'off',
         'no-loss-of-precision': 'off',
         'no-redeclare': 'off',
