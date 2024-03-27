@@ -81,6 +81,10 @@ export async function defineConfig(
   const {
     autoRenamePlugins = true,
     componentExts = [],
+    formatter: formatterOptions = {
+      css: true,
+      html: true,
+    },
     gitignore: enableGitignore = true,
     isInEditor = defaultIsInEditor,
     react: enableReact = false,
@@ -203,25 +207,27 @@ export async function defineConfig(
       sortTsconfig(),
     )
   }
+  if (formatterOptions) {
+    let prettierRules = {
+      ...DEFAULT_PRETTIER_RULES,
+    }
 
-  let prettierRules = {
-    ...DEFAULT_PRETTIER_RULES,
-  }
+    if (options.prettierRules) {
+      prettierRules = { ...prettierRules, ...options.prettierRules }
+    }
 
-  if (options.prettierRules) {
-    prettierRules = { ...prettierRules, ...options.prettierRules }
-  }
-
-  if (usePrettierrc) {
-    const prettierConfig = await loadPrettierConfig(
-      options.cwd ?? process.cwd(),
+    if (usePrettierrc) {
+      const prettierConfig = await loadPrettierConfig(
+        options.cwd ?? process.cwd(),
+      )
+      Object.assign(prettierRules, prettierConfig)
+    }
+    configs.push(
+      prettier(prettierRules),
+      formatter(formatterOptions, prettierRules),
     )
-    Object.assign(prettierRules, prettierConfig)
-  }
-  configs.push(prettier(options.formatter ? prettierRules : {}))
-
-  if (options.formatter) {
-    configs.push(formatter(options.formatter, prettierRules))
+  } else {
+    configs.push(prettier())
   }
 
   // User can optionally pass a flat config item to the first argument

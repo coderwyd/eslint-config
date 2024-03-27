@@ -5,7 +5,7 @@ import type { FlatConfigItem, PartialPrettierExtendedOptions } from '../types'
 
 const { rules: eslintRules } = prettierRules
 
-export async function prettier(rules: PartialPrettierExtendedOptions) {
+export async function prettier(rules: PartialPrettierExtendedOptions = {}) {
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
   const pRules: PartialPrettierExtendedOptions = {

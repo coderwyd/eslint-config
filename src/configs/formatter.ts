@@ -22,23 +22,17 @@ export async function formatter(
   options: OptionsFormatters | true = {},
   prettierRules: PartialPrettierExtendedOptions = {},
 ): Promise<FlatConfigItem[]> {
-  const {
-    css = true,
-    graphql = false,
-    html = true,
-    markdown = false,
-    toml = false,
-    yaml = false,
-  } = typeof options === 'object'
-    ? options
-    : {
-        css: true,
-        graphql: true,
-        html: true,
-        markdown: true,
-        toml: true,
-        yaml: true,
-      }
+  const { css, graphql, html, markdown, toml, yaml } =
+    options === true
+      ? {
+          css: true,
+          graphql: true,
+          html: true,
+          markdown: true,
+          toml: true,
+          yaml: true,
+        }
+      : options
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
