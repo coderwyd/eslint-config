@@ -15,7 +15,9 @@
     "yaml",
     "yml",
     "markdown",
-    "toml"
+    "toml",
+    "gql",
+    "graphql"
   ],
   "prettier.enable": false,
   "cSpell.words": ["antfu", "coderwyd", "rspack", "unocss"]

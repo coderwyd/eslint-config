@@ -26,7 +26,6 @@ export const vscodeSettingsString = `
   // Enable eslint for all supported languages
   "eslint.validate": [
     "svelte",
-    "astro",
     "html",
     "css",
     "less",
@@ -36,6 +35,8 @@ export const vscodeSettingsString = `
     "yaml",
     "yml",
     "markdown",
-    "toml"
+    "toml",
+    "gql",
+    "graphql"
   ]
 `
