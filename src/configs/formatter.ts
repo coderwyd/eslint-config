@@ -19,17 +19,26 @@ import type {
 } from '../types'
 
 export async function formatter(
-  options: OptionsFormatters = {},
+  options: OptionsFormatters | true = {},
   prettierRules: PartialPrettierExtendedOptions = {},
 ): Promise<FlatConfigItem[]> {
   const {
     css = true,
-    graphql,
+    graphql = false,
     html = true,
-    markdown,
-    toml,
-    yaml,
-  } = options || {}
+    markdown = false,
+    toml = false,
+    yaml = false,
+  } = typeof options === 'object'
+    ? options
+    : {
+        css: true,
+        graphql: true,
+        html: true,
+        markdown: true,
+        toml: true,
+        yaml: true,
+      }
 
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
@@ -38,7 +47,7 @@ export async function formatter(
     parser: PrettierParser,
     plugins?: string[],
   ) {
-    const rules = {
+    const rules: PartialPrettierExtendedOptions = {
       ...prettierRules,
       parser,
     }

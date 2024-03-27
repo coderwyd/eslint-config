@@ -218,9 +218,6 @@ export interface OptionsConfig extends OptionsComponentExts {
   /**
    * Use external formatters to format files.
    *
-   * Requires installing:
-   * - `eslint-plugin-prettier`
-   *
    * @default
    * {
    *  "html": true,
@@ -230,8 +227,10 @@ export interface OptionsConfig extends OptionsComponentExts {
    *  "yaml": false
    *  "toml": false
    * }
+   *
+   * When set to `true`, it will enable all formatters.
    */
-  formatter?: OptionsFormatters
+  formatter?: boolean | OptionsFormatters
 
   /**
    * Default prettier rules

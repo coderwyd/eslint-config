@@ -218,11 +218,11 @@ export async function defineConfig(
     )
     Object.assign(prettierRules, prettierConfig)
   }
+  configs.push(prettier(options.formatter ? prettierRules : {}))
 
-  configs.push(
-    prettier(prettierRules),
-    formatter(options.formatter, prettierRules),
-  )
+  if (options.formatter) {
+    configs.push(formatter(options.formatter, prettierRules))
+  }
 
   // User can optionally pass a flat config item to the first argument
   // We pick the known keys as ESLint would do schema validation
