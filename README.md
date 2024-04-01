@@ -104,16 +104,18 @@ If you want to apply lint and auto-fix before every commit, you can add the foll
   }
 }
 ```
+
 and then
 
 ```bash
 npm i -D lint-staged simple-git-hooks
 ```
+
 ## Options
 
 ### interface Options
 
-```ts
+````ts
 interface OptionsConfig {
   /**
    * The current working directory
@@ -252,7 +254,7 @@ interface OptionsConfig {
    */
   isInEditor?: boolean
 }
-```
+````
 
 ## Thanks
 

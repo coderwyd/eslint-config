@@ -2,7 +2,7 @@ import JITI from 'jiti'
 
 const jiti = JITI(import.meta.url)
 /**
- * @type {import('./src').default}
+ * @type {import('./src').defineConfig}
  */
 const { defineConfig } = jiti('./src')
 
