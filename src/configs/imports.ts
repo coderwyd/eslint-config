@@ -1,8 +1,8 @@
 import { pluginAntfu, pluginImport } from '../plugins'
 import { GLOB_SRC_EXT } from '../constants/glob'
-import type { FlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '../types'
 
-export async function imports(): Promise<FlatConfigItem[]> {
+export async function imports(): Promise<TypedFlatConfigItem[]> {
   return [
     {
       name: 'coderwyd:imports',
@@ -47,7 +47,7 @@ export async function imports(): Promise<FlatConfigItem[]> {
     },
     {
       files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'coderwyd:imports:bin',
+      name: 'coderwyd:disables:imports-bin',
       rules: {
         'antfu/no-import-dist': 'off',
         'antfu/no-import-node-modules-by-path': 'off',

@@ -1,15 +1,15 @@
 import { interopDefault } from '../shared'
 import { GLOB_TESTS } from '../constants/glob'
 import type {
-  FlatConfigItem,
   OptionsFiles,
   OptionsIsInEditor,
   OptionsOverrides,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function test(
   options: OptionsFiles & OptionsIsInEditor & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { files = GLOB_TESTS, isInEditor = false, overrides = {} } = options
 
   const [pluginVitest, pluginNoOnlyTests] = await Promise.all([

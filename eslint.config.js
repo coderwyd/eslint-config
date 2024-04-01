@@ -1,12 +1,10 @@
-import 'tsx'
-import { createRequire } from 'node:module'
+import JITI from 'jiti'
 
-const require = createRequire(import.meta.url)
-require('sucrase/register')
-
-const { defineConfig } = require('./src/index.ts')
-
-// import { defineConfig } from './dist/index.js'
+const jiti = JITI(import.meta.url)
+/**
+ * @type {import('./src').default}
+ */
+const { defineConfig } = jiti('./src')
 
 export default defineConfig(
   {

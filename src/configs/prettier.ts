@@ -1,18 +1,18 @@
 import prettierRules from 'eslint-config-prettier'
 import { GLOB_PRETTIER_LINT } from '../constants/glob'
 import { interopDefault } from '../shared'
-import type { FlatConfigItem, PartialPrettierExtendedOptions } from '../types'
+import type { TypedFlatConfigItem } from '../types'
 
 const { rules: eslintRules } = prettierRules
 
-export async function prettier(rules: PartialPrettierExtendedOptions = {}) {
+export async function prettier(rules = {}) {
   const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
 
-  const pRules: PartialPrettierExtendedOptions = {
+  const pRules = {
     ...rules,
   }
 
-  const configs: FlatConfigItem[] = [
+  const configs: TypedFlatConfigItem[] = [
     {
       name: 'coderwyd:prettier:setup',
       plugins: {

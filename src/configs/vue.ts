@@ -1,15 +1,15 @@
 import { getVueVersion, interopDefault } from '../shared'
 import { GLOB_VUE } from '../constants/glob'
 import type {
-  FlatConfigItem,
   OptionsFiles,
   OptionsHasTypeScript,
   OptionsOverrides,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function vue(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { files = [GLOB_VUE], overrides = {} } = options
 
   const [pluginVue, parserVue] = await Promise.all([

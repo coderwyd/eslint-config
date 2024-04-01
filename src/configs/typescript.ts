@@ -3,12 +3,12 @@ import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules, toArray } from '../shared'
 import type {
-  FlatConfigItem,
   OptionsComponentExts,
   OptionsFiles,
   OptionsOverrides,
   OptionsTypeScriptParserOptions,
   OptionsTypeScriptWithTypes,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function typescript(
@@ -17,7 +17,7 @@ export async function typescript(
     OptionsOverrides &
     OptionsTypeScriptWithTypes &
     OptionsTypeScriptParserOptions = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { componentExts = [], overrides = {}, parserOptions = {} } = options
 
   const files = options.files ?? [
@@ -32,7 +32,7 @@ export async function typescript(
     : undefined
   const isTypeAware = !!tsconfigPath
 
-  const typeAwareRules: FlatConfigItem['rules'] = {
+  const typeAwareRules: TypedFlatConfigItem['rules'] = {
     'dot-notation': 'off',
     'no-implied-eval': 'off',
     'no-throw-literal': 'off',
@@ -63,7 +63,7 @@ export async function typescript(
     typeAware: boolean,
     files: string[],
     ignores?: string[],
-  ): FlatConfigItem {
+  ): TypedFlatConfigItem {
     return {
       files,
       ...(ignores ? { ignores } : {}),

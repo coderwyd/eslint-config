@@ -37,14 +37,9 @@ import {
   hasTypeScript,
   hasVue,
 } from './env'
-import type {
-  Awaitable,
-  FlatConfigItem,
-  OptionsConfig,
-  UserConfigItem,
-} from './types'
+import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
 
-const flatConfigProps: (keyof FlatConfigItem)[] = [
+const flatConfigProps: (keyof TypedFlatConfigItem)[] = [
   'name',
   'files',
   'ignores',
@@ -67,17 +62,17 @@ export const defaultPluginRenaming = {
 /**
  * Construct an array of ESLint flat config items.
  *
- * @param {OptionsConfig & FlatConfigItem} options
+ * @param {OptionsConfig & TypedFlatConfigItem} options
  *  The options for generating the ESLint configurations.
- * @param {Awaitable<UserConfigItem | UserConfigItem[]>[]} userConfigs
+ * @param {Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]} userConfigs
  *  The user configurations to be merged with the generated configurations.
- * @returns {Promise<UserConfigItem[]>}
+ * @returns {Promise<TypedFlatConfigItem[]>}
  *  The merged ESLint configurations.
  */
 export async function defineConfig(
-  options: OptionsConfig & FlatConfigItem = {},
-  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
-): Promise<UserConfigItem[]> {
+  options: OptionsConfig & TypedFlatConfigItem = {},
+  ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]
+): Promise<TypedFlatConfigItem[]> {
   const {
     autoRenamePlugins = true,
     componentExts = [],
@@ -96,7 +91,7 @@ export async function defineConfig(
     vue: enableVue = hasVue,
   } = options
 
-  const configs: Awaitable<FlatConfigItem[]>[] = []
+  const configs: Awaitable<TypedFlatConfigItem[]>[] = []
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
@@ -235,7 +230,7 @@ export async function defineConfig(
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
     if (key in options) acc[key] = options[key] as any
     return acc
-  }, {} as FlatConfigItem)
+  }, {} as TypedFlatConfigItem)
   if (Object.keys(fusedConfig).length > 0) configs.push([fusedConfig])
 
   const merged = await combine(...configs, ...userConfigs)

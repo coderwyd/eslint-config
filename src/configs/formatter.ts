@@ -12,16 +12,16 @@ import {
 
 import { ensurePackages, interopDefault, parserPlain } from '../shared'
 import type {
-  FlatConfigItem,
   OptionsFormatters,
   PartialPrettierExtendedOptions,
   PrettierParser,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function formatter(
   options: OptionsFormatters | true = {},
   prettierRules: PartialPrettierExtendedOptions = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { css, graphql, html, markdown, toml, yaml } =
     options === true
       ? {
@@ -56,7 +56,7 @@ export async function formatter(
       rules.plugins = [...(rules.plugins || []), ...plugins]
     }
 
-    const config: FlatConfigItem = {
+    const config: TypedFlatConfigItem = {
       files,
       languageOptions: {
         parser: parserPlain,
@@ -76,7 +76,7 @@ export async function formatter(
     return config
   }
 
-  const configs: FlatConfigItem[] = [
+  const configs: TypedFlatConfigItem[] = [
     {
       name: 'coderwyd:formatter:setup',
       plugins: {

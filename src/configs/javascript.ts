@@ -2,14 +2,14 @@ import globals from 'globals'
 import { pluginUnusedImports } from '../plugins'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
 import type {
-  FlatConfigItem,
   OptionsIsInEditor,
   OptionsOverrides,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { isInEditor = false, overrides = {} } = options
 
   return [
@@ -260,7 +260,7 @@ export async function javascript(
     },
     {
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
-      name: 'coderwyd:scripts-overrides',
+      name: 'coderwyd:disables:cli',
       rules: {
         'no-console': 'off',
       },

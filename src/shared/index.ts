@@ -7,7 +7,7 @@ import type {
   OptionsConfig,
   PartialPrettierExtendedOptions,
   ResolvedOptions,
-  UserConfigItem,
+  TypedFlatConfigItem,
 } from '../types'
 
 export const parserPlain = {
@@ -35,8 +35,8 @@ export const parserPlain = {
  * Combine array and non-array configs into a single array.
  */
 export async function combine(
-  ...configs: Awaitable<UserConfigItem | UserConfigItem[]>[]
-): Promise<UserConfigItem[]> {
+  ...configs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]
+): Promise<TypedFlatConfigItem[]> {
   const resolved = await Promise.all(configs)
   return resolved.flat()
 }
@@ -89,9 +89,9 @@ export function renameRules(
  * ```
  */
 export function renamePluginInConfigs(
-  configs: UserConfigItem[],
+  configs: TypedFlatConfigItem[],
   map: Record<string, string>,
-): UserConfigItem[] {
+): TypedFlatConfigItem[] {
   return configs.map(i => {
     const clone = { ...i }
     if (clone.rules) clone.rules = renameRules(clone.rules, map)

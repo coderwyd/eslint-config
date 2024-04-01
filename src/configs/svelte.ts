@@ -1,15 +1,15 @@
 import { ensurePackages, interopDefault } from '../shared'
 import { GLOB_SVELTE } from '../constants/glob'
 import type {
-  FlatConfigItem,
   OptionsFiles,
   OptionsHasTypeScript,
   OptionsOverrides,
+  TypedFlatConfigItem,
 } from '../types'
 
 export async function svelte(
   options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { files = [GLOB_SVELTE], overrides = {} } = options
 
   await ensurePackages(['eslint-plugin-svelte'])

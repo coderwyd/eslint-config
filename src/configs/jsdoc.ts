@@ -1,7 +1,7 @@
 import { interopDefault } from '../shared'
-import type { FlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '../types'
 
-export async function jsdoc(): Promise<FlatConfigItem[]> {
+export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
   return [
     {
       name: 'coderwyd:jsdoc',

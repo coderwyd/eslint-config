@@ -1,9 +1,9 @@
 import { interopDefault } from '../shared'
-import type { FlatConfigItem, OptionsOverrides } from '../types'
+import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
 
 export async function tailwindcss(
   options: OptionsOverrides = {},
-): Promise<FlatConfigItem[]> {
+): Promise<TypedFlatConfigItem[]> {
   const { overrides } = options
   const pluginTailwindcss = await interopDefault(
     import('eslint-plugin-tailwindcss'),

@@ -1,6 +1,9 @@
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
 import type { ParserOptions } from '@typescript-eslint/parser'
-import type { FlatConfigItem, PartialPrettierExtendedOptions } from './rule'
+import type {
+  PartialPrettierExtendedOptions,
+  TypedFlatConfigItem,
+} from './rule'
 
 export * from './rule'
 
@@ -89,7 +92,7 @@ export interface OptionsIsInEditor {
 }
 
 export interface OptionsOverrides {
-  overrides?: FlatConfigItem['rules']
+  overrides?: TypedFlatConfigItem['rules']
 }
 
 export interface OptionsUnoCSS extends OptionsOverrides {
