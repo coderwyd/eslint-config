@@ -9,7 +9,7 @@ import type { TypedFlatConfigItem } from '../types'
 export async function perfectionist(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: 'coderwyd:perfectionist',
+      name: 'coderwyd/perfectionist/setup',
       plugins: {
         perfectionist: pluginPerfectionist,
       },

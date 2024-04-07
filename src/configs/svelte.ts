@@ -21,7 +21,7 @@ export async function svelte(
 
   return [
     {
-      name: 'coderwyd:svelte:setup',
+      name: 'coderwyd/svelte/setup',
       plugins: {
         svelte: pluginSvelte,
       },
@@ -39,7 +39,7 @@ export async function svelte(
             : null,
         },
       },
-      name: 'coderwyd:svelte:rules',
+      name: 'coderwyd/svelte/rules',
       processor: pluginSvelte.processors['.svelte'],
       rules: {
         'import/no-mutable-exports': 'off',

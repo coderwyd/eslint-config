@@ -55,7 +55,7 @@ export async function vue(
           watchEffect: 'readonly',
         },
       },
-      name: 'coderwyd:vue:setup',
+      name: 'coderwyd/vue/setup',
       plugins: {
         vue: pluginVue,
       },
@@ -77,7 +77,7 @@ export async function vue(
           sourceType: 'module',
         },
       },
-      name: 'coderwyd:vue:rules',
+      name: 'coderwyd/vue/rules',
       processor: pluginVue.processors!['.vue'],
       rules: {
         ...pluginVue.configs.base.rules,

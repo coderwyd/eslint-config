@@ -20,7 +20,7 @@ export async function test(
 
   return [
     {
-      name: 'coderwyd:test:setup',
+      name: 'coderwyd/test/setup',
       plugins: {
         test: {
           ...pluginVitest,
@@ -34,7 +34,7 @@ export async function test(
     },
     {
       files,
-      name: 'coderwyd:test:rules',
+      name: 'coderwyd/test/rules',
       rules: {
         'node/prefer-global/process': 'off',
 

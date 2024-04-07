@@ -5,7 +5,7 @@ import type { TypedFlatConfigItem } from '../types'
 export async function imports(): Promise<TypedFlatConfigItem[]> {
   return [
     {
-      name: 'coderwyd:imports',
+      name: 'coderwyd/imports/rules',
       plugins: {
         antfu: pluginAntfu,
         import: pluginImport,
@@ -47,7 +47,7 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
     },
     {
       files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'coderwyd:disables:imports-bin',
+      name: 'coderwyd/imports/disables/bin',
       rules: {
         'antfu/no-import-dist': 'off',
         'antfu/no-import-node-modules-by-path': 'off',

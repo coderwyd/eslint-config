@@ -61,7 +61,7 @@ export async function formatter(
       languageOptions: {
         parser: parserPlain,
       },
-      name: `coderwyd:formatter:${parser}`,
+      name: `coderwyd/formatter/${parser}`,
       plugins: {
         prettier: pluginPrettier,
       },
@@ -78,7 +78,7 @@ export async function formatter(
 
   const configs: TypedFlatConfigItem[] = [
     {
-      name: 'coderwyd:formatter:setup',
+      name: 'coderwyd/formatter/setup',
       plugins: {
         prettier: pluginPrettier,
       },

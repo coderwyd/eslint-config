@@ -36,7 +36,7 @@ export async function javascript(
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      name: 'coderwyd:javascript',
+      name: 'coderwyd/javascript/rules',
       plugins: {
         'unused-imports': pluginUnusedImports,
       },
@@ -260,13 +260,14 @@ export async function javascript(
     },
     {
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
-      name: 'coderwyd:disables:cli',
+      name: 'coderwyd/javascript/disables/cli',
       rules: {
         'no-console': 'off',
       },
     },
     {
       files: ['**/*.{test,spec}.js?(x)'],
+      name: 'coderwyd/javascript/disables/test',
       rules: {
         'no-unused-expressions': 'off',
       },

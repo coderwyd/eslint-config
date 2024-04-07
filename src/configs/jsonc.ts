@@ -19,7 +19,7 @@ export async function jsonc(
 
   return [
     {
-      name: 'coderwyd:jsonc:setup',
+      name: 'coderwyd/jsonc/setup',
       plugins: {
         jsonc: pluginJsonc as any,
       },
@@ -29,7 +29,7 @@ export async function jsonc(
       languageOptions: {
         parser: parserJsonc as any,
       },
-      name: 'coderwyd:jsonc:rules',
+      name: 'coderwyd/jsonc/rules',
       rules: {
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',

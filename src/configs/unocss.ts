@@ -14,7 +14,7 @@ export async function unocss(
 
   return [
     {
-      name: 'coderwyd:unocss',
+      name: 'coderwyd/unocss/rules',
       plugins: {
         unocss: pluginUnoCSS,
       },

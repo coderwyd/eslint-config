@@ -40,7 +40,7 @@ export async function react(
 
   return [
     {
-      name: 'coderwyd:react:setup',
+      name: 'coderwyd/react/setup',
       plugins: {
         react: pluginReact,
         'react-hooks': pluginReactHooks,
@@ -61,7 +61,7 @@ export async function react(
           },
         },
       },
-      name: 'coderwyd:react:rules',
+      name: 'coderwyd/react/rules',
       rules: {
         // recommended rules react-hooks
         'react-hooks/exhaustive-deps': 'warn',

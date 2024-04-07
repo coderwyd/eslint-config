@@ -11,7 +11,7 @@ export async function tailwindcss(
 
   return [
     {
-      name: 'coderwyd:tailwindcss',
+      name: 'coderwyd/tailwindcss/rules',
       plugins: {
         tailwindcss: pluginTailwindcss,
       },
