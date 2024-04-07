@@ -41,6 +41,7 @@
     "dev": "tsup --format esm,cjs --watch & npx @eslint/config-inspector",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "build:inspector": "pnpm build && npx @eslint/config-inspector build",
     "typegen": "tsx scripts/typegen.ts",
     "prepack": "nr build",
     "prepare": "simple-git-hooks",
