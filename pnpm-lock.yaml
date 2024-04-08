@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^0.4.6
     version: 0.4.6(eslint@9.0.0)
   eslint-plugin-svelte:
-    specifier: 2.36.0-next.13
-    version: 2.36.0-next.13(eslint@9.0.0)(svelte@4.2.12)
+    specifier: 2.36.0
+    version: 2.36.0(eslint@9.0.0)(svelte@4.2.12)
   execa:
     specifier: ^8.0.1
     version: 8.0.1
@@ -2463,12 +2463,12 @@ packages:
       string.prototype.matchall: 4.0.11
     dev: true
 
-  /eslint-plugin-svelte@2.36.0-next.13(eslint@9.0.0)(svelte@4.2.12):
-    resolution: {integrity: sha512-N4bLGdFkGbbAQiKvX17kLfBgnZ+Em00khOY3AReppO7fkP9jaSxwjdgTCcWf+Q5/uZWor58g4GleRqHcb2Dk2w==}
+  /eslint-plugin-svelte@2.36.0(eslint@9.0.0)(svelte@4.2.12):
+    resolution: {integrity: sha512-D30hSj13Y8YEn7yGXos7EYp0lpEb3Z2V/M+6a3MZ13KGVhaefdW2A9j8IBIcW4YR+j6fo901USzLeXQz/XbWeQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0-0 || ^9.0.0-0
-      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0-next.73
+      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0-next.95
     peerDependenciesMeta:
       svelte:
         optional: true
@@ -2486,7 +2486,7 @@ packages:
       postcss-selector-parser: 6.0.16
       semver: 7.6.0
       svelte: 4.2.12
-      svelte-eslint-parser: 0.34.0-next.12(svelte@4.2.12)
+      svelte-eslint-parser: 0.34.0(svelte@4.2.12)
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -4674,11 +4674,11 @@ packages:
       postcss-scss: 4.0.9(postcss@8.4.38)
       svelte: 4.2.12
 
-  /svelte-eslint-parser@0.34.0-next.12(svelte@4.2.12):
-    resolution: {integrity: sha512-KJTStZILapiwY6ULdUaAf+6GgJs0qGZJrRy5PHtgAGKr8xNHtst9Cax0xbxz2ONDvDGaR26SZRDl9vI2f1KBAQ==}
+  /svelte-eslint-parser@0.34.0(svelte@4.2.12):
+    resolution: {integrity: sha512-jOozxWbHVtIFt6fvettJK9T9aK1AyrcWBJzqcjqJxkr7QfgMYWjHNVlG/qFFOr72cw8mUVS/D/8BO6HlPEtNug==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0-next.69
+      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0-next.94
     peerDependenciesMeta:
       svelte:
         optional: true
