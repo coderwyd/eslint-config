@@ -40,8 +40,6 @@ const { defineConfig } = require('@coderwyd/eslint-config')
 module.exports = defineConfig()
 ```
 
-> Note that `.eslintignore` no longer works in Flat config, see [customization](#customization) for more details.
-
 ### Add script for package.json
 
 For example:
