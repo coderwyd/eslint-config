@@ -51,7 +51,7 @@ export async function svelte(
             caughtErrors: 'none',
             ignoreRestSiblings: true,
             vars: 'all',
-            varsIgnorePattern: '^\\$\\$Props$',
+            varsIgnorePattern: '^(\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)',
           },
         ],
 
@@ -83,7 +83,7 @@ export async function svelte(
             args: 'after-used',
             argsIgnorePattern: '^_',
             vars: 'all',
-            varsIgnorePattern: '^(_|\\$\\$Props$)',
+            varsIgnorePattern: '^(_|\\$\\$Props$|\\$\\$Events$|\\$\\$Slots$)',
           },
         ],
 
