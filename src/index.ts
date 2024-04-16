@@ -38,6 +38,7 @@ import {
   hasVue,
 } from './env'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
+import type { Linter } from 'eslint'
 
 const flatConfigProps: (keyof TypedFlatConfigItem)[] = [
   'name',
@@ -64,14 +65,16 @@ export const defaultPluginRenaming = {
  *
  * @param {OptionsConfig & TypedFlatConfigItem} options
  *  The options for generating the ESLint configurations.
- * @param {Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]} userConfigs
+ * @param {Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.FlatConfig[]>[]} userConfigs
  *  The user configurations to be merged with the generated configurations.
  * @returns {Promise<TypedFlatConfigItem[]>}
  *  The merged ESLint configurations.
  */
 export async function defineConfig(
   options: OptionsConfig & TypedFlatConfigItem = {},
-  ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[]>[]
+  ...userConfigs: Awaitable<
+    TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.FlatConfig[]
+  >[]
 ): Promise<TypedFlatConfigItem[]> {
   const {
     autoRenamePlugins = true,
