@@ -98,7 +98,7 @@
     "eslint-plugin-unused-imports": "^3.1.0",
     "eslint-plugin-vitest": "^0.5.3",
     "eslint-plugin-vue": "^9.24.1",
-    "eslint-typegen": "^0.2.2",
+    "eslint-typegen": "^0.2.3",
     "globals": "^15.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "local-pkg": "^0.5.0",
