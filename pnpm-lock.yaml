@@ -106,8 +106,8 @@ importers:
         specifier: ^0.21.12
         version: 0.21.12
       '@eslint/config-inspector':
-        specifier: ^0.4.7
-        version: 0.4.7(eslint@9.1.1)
+        specifier: ^0.4.8
+        version: 0.4.8(eslint@9.1.1)
       '@types/eslint':
         specifier: ^8.56.10
         version: 8.56.10
@@ -523,8 +523,8 @@ packages:
     resolution: {integrity: sha512-Cu96Sd2By9mCNTx2iyKOmq10v22jUVQv0lQnlGNy16oE9589yE+QADPbrMGCkA51cKZSg3Pu/aTJVTGfL/qjUA==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  '@eslint/config-inspector@0.4.7':
-    resolution: {integrity: sha512-F3zctj+MVBO6vaNHxEDH3+WKhHsMx5e+FGXsQG9apFE1yYUvxSwztgF0xxTfkPvQDdFfYWlaNKDXdh3kgOyXKw==}
+  '@eslint/config-inspector@0.4.8':
+    resolution: {integrity: sha512-gzsz5b4HII4l7JcbUlu4HPBojLOfsJG31hJqUdxD4Eg9tHZLOQ24+/qruzzGNjgaLWA7I9wINPkceNHfFsvgAQ==}
     hasBin: true
     peerDependencies:
       eslint: ^8.50.0 || ^9.0.0
@@ -1040,6 +1040,12 @@ packages:
 
   bundle-require@4.0.2:
     resolution: {integrity: sha512-jwzPOChofl67PSTW2SGubV9HBQAhhR2i6nskiOThauo9dzwDUgOWQScFVaJkjEfYX+UXiD+LEx8EblQMc2wIag==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    peerDependencies:
+      esbuild: '>=0.17'
+
+  bundle-require@4.1.0:
+    resolution: {integrity: sha512-FeArRFM+ziGkRViKRnSTbHZc35dgmR9yNog05Kn0+ItI59pOAISGvnnIwW1WgFZQW59IxD9QpJnUPkdIPfZuXg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       esbuild: '>=0.17'
@@ -2962,8 +2968,8 @@ packages:
     resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
     engines: {node: '>=18'}
 
-  ws@8.16.0:
-    resolution: {integrity: sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==}
+  ws@8.17.0:
+    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -3221,8 +3227,9 @@ snapshots:
 
   '@eslint-community/regexpp@4.10.0': {}
 
-  '@eslint/config-inspector@0.4.7(eslint@9.1.1)':
+  '@eslint/config-inspector@0.4.8(eslint@9.1.1)':
     dependencies:
+      bundle-require: 4.1.0(esbuild@0.20.2)
       cac: 6.7.14
       chokidar: 3.6.0
       esbuild: 0.20.2
@@ -3231,12 +3238,11 @@ snapshots:
       find-up: 7.0.0
       get-port-please: 3.1.2
       h3: 1.11.1
-      load-tsconfig: 0.2.5
       minimatch: 9.0.4
       mrmime: 2.0.0
       open: 10.1.0
       picocolors: 1.0.0
-      ws: 8.16.0
+      ws: 8.17.0
     transitivePeerDependencies:
       - bufferutil
       - uWebSockets.js
@@ -3869,6 +3875,11 @@ snapshots:
   bundle-require@4.0.2(esbuild@0.19.12):
     dependencies:
       esbuild: 0.19.12
+      load-tsconfig: 0.2.5
+
+  bundle-require@4.1.0(esbuild@0.20.2):
+    dependencies:
+      esbuild: 0.20.2
       load-tsconfig: 0.2.5
 
   c12@1.10.0:
@@ -6084,7 +6095,7 @@ snapshots:
       string-width: 7.1.0
       strip-ansi: 7.1.0
 
-  ws@8.16.0: {}
+  ws@8.17.0: {}
 
   xml-name-validator@4.0.0: {}
 
