@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
 import {
+  command,
   comments,
   formatter,
   imports,
@@ -47,6 +48,7 @@ const configs = await combine(
   unicorn(),
   unocss(),
   vue(),
+  command(),
 )
 
 const configNames = configs.map(i => i.name).filter(Boolean) as string[]

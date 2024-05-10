@@ -2,6 +2,7 @@ import process from 'node:process'
 import fs from 'node:fs'
 import { DEFAULT_PRETTIER_RULES } from './constants/prettier'
 import {
+  command,
   comments,
   formatter,
   ignores,
@@ -125,6 +126,7 @@ export async function defineConfig(
     jsdoc(),
     imports(),
     unicorn(),
+    command(),
 
     // Optional plugins (installed but not enabled by default)
     perfectionist(),
