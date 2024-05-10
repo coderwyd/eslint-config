@@ -14,7 +14,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         'unicorn/custom-error-definition': 'error',
         'unicorn/error-message': 'error',
         'unicorn/escape-case': 'error',
-        'unicorn/explicit-length-check': 'error',
+        // 'unicorn/explicit-length-check': 'error',
         // 'unicorn/filename-case': [
         //   'error',
         //   {
@@ -23,7 +23,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         //   },
         // ],
         'unicorn/new-for-builtins': 'error',
-        'unicorn/no-array-callback-reference': 'error',
+        // 'unicorn/no-array-callback-reference': 'error',
         'unicorn/no-array-method-this-argument': 'error',
         'unicorn/no-array-push-push': 'error',
         'unicorn/no-await-in-promise-methods': 'error',
@@ -68,7 +68,8 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         'unicorn/prefer-string-slice': 'error',
         'unicorn/prefer-string-starts-ends-with': 'error',
         'unicorn/prefer-string-trim-start-end': 'error',
-        'unicorn/prefer-top-level-await': 'error',
+        // top level await is not supported in all environments
+        // 'unicorn/prefer-top-level-await': 'error',
         'unicorn/prefer-type-error': 'error',
         'unicorn/throw-new-error': 'error',
       },
