@@ -9,7 +9,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         unicorn: pluginUnicorn,
       },
       rules: {
-        'unicorn/better-regex': 'error',
+        // 'unicorn/better-regex': 'error',
         'unicorn/catch-error-name': 'error',
         'unicorn/custom-error-definition': 'error',
         'unicorn/error-message': 'error',
@@ -63,7 +63,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         'unicorn/prefer-prototype-methods': 'error',
         'unicorn/prefer-query-selector': 'error',
         'unicorn/prefer-reflect-apply': 'error',
-        'unicorn/prefer-regexp-test': 'error',
+        // 'unicorn/prefer-regexp-test': 'error',
         'unicorn/prefer-string-replace-all': 'error',
         'unicorn/prefer-string-slice': 'error',
         'unicorn/prefer-string-starts-ends-with': 'error',
