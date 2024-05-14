@@ -95,6 +95,13 @@ export interface OptionsOverrides {
   overrides?: TypedFlatConfigItem['rules']
 }
 
+export interface OptionsRegExp {
+  /**
+   * Override rulelevels
+   */
+  level?: 'error' | 'warn'
+}
+
 export interface OptionsUnoCSS extends OptionsOverrides {
   /**
    * Enable attributify support.
@@ -208,6 +215,14 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default false
    */
   unocss?: boolean | OptionsUnoCSS
+
+  /**
+   * Enable regexp rules.
+   *
+   * @see https://ota-meshi.github.io/eslint-plugin-regexp/
+   * @default true
+   */
+  regexp?: boolean | (OptionsRegExp & OptionsOverrides)
 
   /**
    * Whether to use prettierrc

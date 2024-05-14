@@ -14,6 +14,7 @@ import {
   perfectionist,
   prettier,
   react,
+  regexp,
   sortPackageJson,
   sortTsconfig,
   svelte,
@@ -87,6 +88,7 @@ export async function defineConfig(
     gitignore: enableGitignore = true,
     isInEditor = defaultIsInEditor,
     react: enableReact = false,
+    regexp: enableRegexp = true,
     svelte: enableSvelte = false,
     tailwindcss: enableTailwindCSS = hasTailwindCSS,
     typescript: enableTypeScript = hasTypeScript,
@@ -143,6 +145,9 @@ export async function defineConfig(
       }),
     )
   }
+
+  if (enableRegexp)
+    configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
 
   if (options.test ?? true) {
     configs.push(

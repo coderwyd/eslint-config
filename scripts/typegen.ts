@@ -13,6 +13,7 @@ import {
   perfectionist,
   prettier,
   react,
+  regexp,
   sortPackageJson,
   svelte,
   test,
@@ -49,6 +50,7 @@ const configs = await combine(
   unocss(),
   vue(),
   command(),
+  regexp(),
 )
 
 const configNames = configs.map(i => i.name).filter(Boolean) as string[]
