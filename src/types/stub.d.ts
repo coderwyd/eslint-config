@@ -42,15 +42,6 @@ declare module 'eslint-plugin-vue' {
   export default plugin
 }
 
-declare module 'eslint-plugin-react' {
-  type ReactConfigKey = 'recommended' | 'all' | 'jsx-runtime'
-
-  const plugin: import('eslint').ESLint.Plugin & {
-    configs: Record<ReactConfigKey, import('eslint').ESLint.ConfigData>
-  }
-
-  export default plugin
-}
 declare module 'eslint-plugin-react-hooks' {
   const plugin: import('eslint').ESLint.Plugin
 

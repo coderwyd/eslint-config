@@ -172,7 +172,7 @@ export async function defineConfig(
     configs.push(
       react({
         overrides: getOverrides(options, 'react'),
-        typescript: !!enableTypeScript,
+        tsconfigPath: (getOverrides(options, 'typescript') as any).tsconfigPath,
       }),
     )
   }
