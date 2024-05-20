@@ -11,9 +11,9 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
       rules: {
         // 'unicorn/better-regex': 'error',
         'unicorn/catch-error-name': 'error',
+        'unicorn/consistent-empty-array-spread': 'error',
         'unicorn/custom-error-definition': 'error',
         'unicorn/error-message': 'error',
-        'unicorn/escape-case': 'error',
         // 'unicorn/explicit-length-check': 'error',
         // 'unicorn/filename-case': [
         //   'error',
@@ -21,6 +21,7 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         //     cases: { kebabCase: true, pascalCase: true },
         //     ignore: [/^[A-Z]+\..*$/],
         //   },
+        'unicorn/escape-case': 'error',
         // ],
         'unicorn/new-for-builtins': 'error',
         // 'unicorn/no-array-callback-reference': 'error',
