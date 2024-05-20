@@ -64,7 +64,6 @@ export async function unicorn(): Promise<TypedFlatConfigItem[]> {
         'unicorn/prefer-prototype-methods': 'error',
         'unicorn/prefer-query-selector': 'error',
         'unicorn/prefer-reflect-apply': 'error',
-        'unicorn/prefer-string-raw': 'error',
         // 'unicorn/prefer-regexp-test': 'error',
         'unicorn/prefer-string-replace-all': 'error',
         'unicorn/prefer-string-slice': 'error',
