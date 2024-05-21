@@ -38,6 +38,9 @@ importers:
       eslint-plugin-eslint-comments:
         specifier: ^3.2.0
         version: 3.2.0(eslint@9.3.0)
+      eslint-plugin-format:
+        specifier: ^0.1.1
+        version: 0.1.1(eslint@9.3.0)
       eslint-plugin-import-x:
         specifier: ^0.5.0
         version: 0.5.0(eslint@9.3.0)(typescript@5.4.5)
@@ -144,9 +147,6 @@ importers:
       eslint:
         specifier: ^9.3.0
         version: 9.3.0
-      eslint-plugin-format:
-        specifier: ^0.1.1
-        version: 0.1.1(eslint@9.3.0)
       eslint-plugin-react:
         specifier: ^7.34.1
         version: 7.34.1(eslint@9.3.0)
