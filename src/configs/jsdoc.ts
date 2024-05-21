@@ -1,7 +1,10 @@
 import { interopDefault } from '../shared'
-import type { TypedFlatConfigItem } from '../types'
+import type { OptionsStylistic, TypedFlatConfigItem } from '../types'
 
-export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
+export async function jsdoc(
+  options: OptionsStylistic = {},
+): Promise<TypedFlatConfigItem[]> {
+  const { stylistic = true } = options
   return [
     {
       name: 'coderwyd/jsdoc/rules',
@@ -25,11 +28,12 @@ export async function jsdoc(): Promise<TypedFlatConfigItem[]> {
         'jsdoc/require-returns-description': 'warn',
         'jsdoc/require-yields-check': 'warn',
 
-        ...{
-          // format
-          'jsdoc/check-alignment': 'warn',
-          'jsdoc/multiline-blocks': 'warn',
-        },
+        ...(stylistic
+          ? {
+              'jsdoc/check-alignment': 'warn',
+              'jsdoc/multiline-blocks': 'warn',
+            }
+          : {}),
       },
     },
   ]

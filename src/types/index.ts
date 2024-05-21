@@ -4,6 +4,8 @@ import type {
   PartialPrettierExtendedOptions,
   TypedFlatConfigItem,
 } from './rule'
+import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks'
+import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 
 export * from './rule'
 
@@ -50,6 +52,14 @@ export interface OptionsFormatters {
    * Enable formatting support for Toml.
    */
   toml?: boolean
+
+  /**
+   * Custom options for Prettier.
+   *
+   * By default it's controlled by our own config.
+   *
+   */
+  prettierOptions?: PartialPrettierExtendedOptions
 }
 
 export interface OptionsComponentExts {
@@ -87,6 +97,16 @@ export interface OptionsHasTypeScript {
   typescript?: boolean
 }
 
+export interface OptionsStylistic {
+  stylistic?: boolean | StylisticConfig
+}
+
+export interface StylisticConfig
+  extends Pick<
+    StylisticCustomizeOptions,
+    'indent' | 'quotes' | 'jsx' | 'semi'
+  > {}
+
 export interface OptionsIsInEditor {
   isInEditor?: boolean
 }
@@ -116,6 +136,14 @@ export interface OptionsUnoCSS extends OptionsOverrides {
 }
 
 export interface OptionsVue extends OptionsOverrides {
+  /**
+   * Create virtual files for Vue SFC blocks to enable linting.
+   *
+   * @see https://github.com/antfu/eslint-processor-vue-blocks
+   * @default true
+   */
+  sfcBlocks?: boolean | VueBlocksOptions
+
   /**
    * The vue version
    *
@@ -155,6 +183,15 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the dependencies
    */
   typescript?: boolean | OptionsTypescript
+
+  /**
+   * Enable JSX related rules.
+   *
+   * Currently only stylistic rules are included.
+   *
+   * @default true
+   */
+  jsx?: boolean
 
   /**
    * Enable test support.
@@ -217,21 +254,20 @@ export interface OptionsConfig extends OptionsComponentExts {
   unocss?: boolean | OptionsUnoCSS
 
   /**
+   * Enable stylistic rules.
+   *
+   * @see https://eslint.style/
+   * @default true
+   */
+  stylistic?: boolean | (StylisticConfig & OptionsOverrides)
+
+  /**
    * Enable regexp rules.
    *
    * @see https://ota-meshi.github.io/eslint-plugin-regexp/
    * @default true
    */
   regexp?: boolean | (OptionsRegExp & OptionsOverrides)
-
-  /**
-   * Whether to use prettierrc
-   *
-   * If true, the rules in prettierrc will override the default rules
-   *
-   * @default true
-   */
-  usePrettierrc?: boolean
 
   /**
    * Use external formatters to format files.
@@ -249,22 +285,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * When set to `true`, it will enable all formatters.
    */
   formatter?: boolean | OptionsFormatters
-
-  /**
-   * Default prettier rules
-   *
-   * @default
-   * ```json
-   * {
-   *   "arrowParens": "avoid",
-   *   "htmlWhitespaceSensitivity": "ignore"
-   *   "printWidth": 80,
-   *   "semi": false,
-   *   "singleQuote": true,
-   * }
-   * ```
-   */
-  prettierRules?: PartialPrettierExtendedOptions
 
   /**
    * Control to disable some rules in editors.

@@ -16,12 +16,6 @@ declare module 'eslint-plugin-import-x' {
   export default plugin
 }
 
-declare module 'eslint-config-prettier' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
-
 declare module 'eslint-plugin-vue' {
   export type VueConfigKey =
     | 'base'

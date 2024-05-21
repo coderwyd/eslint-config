@@ -1,8 +1,11 @@
 import { pluginAntfu, pluginImport } from '../plugins'
 import { GLOB_SRC_EXT } from '../constants/glob'
-import type { TypedFlatConfigItem } from '../types'
+import type { OptionsStylistic, TypedFlatConfigItem } from '../types'
 
-export async function imports(): Promise<TypedFlatConfigItem[]> {
+export async function imports(
+  options: OptionsStylistic = {},
+): Promise<TypedFlatConfigItem[]> {
+  const { stylistic = true } = options
   return [
     {
       name: 'coderwyd/imports/rules',
@@ -39,10 +42,11 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
           },
         ],
 
-        ...{
-          // format
-          'import/newline-after-import': ['error', { count: 1 }],
-        },
+        ...(stylistic
+          ? {
+              'import/newline-after-import': ['error', { count: 1 }],
+            }
+          : {}),
       },
     },
     {

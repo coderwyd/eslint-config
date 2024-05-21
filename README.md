@@ -10,7 +10,7 @@
 - ✨ Support Vue, React, Svelte.
 - 🎯 Designed to work with TypeScript, Vue out-of-box
 - 🏆 Reasonable defaults, best practices, only one-line of config
-- 🎨 Use ESlint and Prettier to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown, JSON, JSONC.
+- 🎨 Use ESlint to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown, JSON, JSONC.
 
 ## Usage
 
@@ -72,6 +72,20 @@ Add the following settings to your `.vscode/settings.json`:
     "source.organizeImports": "never"
   },
 
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off" },
+    { "rule": "format/*", "severity": "off" },
+    { "rule": "*-indent", "severity": "off" },
+    { "rule": "*-spacing", "severity": "off" },
+    { "rule": "*-spaces", "severity": "off" },
+    { "rule": "*-order", "severity": "off" },
+    { "rule": "*-dangle", "severity": "off" },
+    { "rule": "*-newline", "severity": "off" },
+    { "rule": "*quotes", "severity": "off" },
+    { "rule": "*semi", "severity": "off" }
+  ],
+
   // Enable eslint for all supported languages
   "eslint.validate": [
     "html",
@@ -113,8 +127,8 @@ npm i -D lint-staged simple-git-hooks
 
 ### interface Options
 
-````ts
-interface OptionsConfig {
+```ts
+interface OptionsConfig extends OptionsComponentExts {
   /**
    * The current working directory
    *
@@ -147,6 +161,15 @@ interface OptionsConfig {
   typescript?: boolean | OptionsTypescript
 
   /**
+   * Enable JSX related rules.
+   *
+   * Currently only stylistic rules are included.
+   *
+   * @default true
+   */
+  jsx?: boolean
+
+  /**
    * Enable test support.
    *
    * @default true
@@ -171,7 +194,7 @@ interface OptionsConfig {
    * Enable react rules.
    *
    * Requires installing:
-   * - `eslint-plugin-react`
+   * - `@eslint-react/eslint-plugin`
    * - `eslint-plugin-react-hooks`
    * - `eslint-plugin-react-refresh`
    *
@@ -207,13 +230,20 @@ interface OptionsConfig {
   unocss?: boolean | OptionsUnoCSS
 
   /**
-   * Whether to use prettierrc
+   * Enable stylistic rules.
    *
-   * If true, the rules in prettierrc will override the default rules
-   *
+   * @see https://eslint.style/
    * @default true
    */
-  usePrettierrc?: boolean
+  stylistic?: boolean | (StylisticConfig & OptionsOverrides)
+
+  /**
+   * Enable regexp rules.
+   *
+   * @see https://ota-meshi.github.io/eslint-plugin-regexp/
+   * @default true
+   */
+  regexp?: boolean | (OptionsRegExp & OptionsOverrides)
 
   /**
    * Use external formatters to format files.
@@ -227,32 +257,25 @@ interface OptionsConfig {
    *  "yaml": false
    *  "toml": false
    * }
-   */
-  formatter?: OptionsFormatters
-
-  /**
-   * Default prettier rules
    *
-   * @default
-   * ```json
-   * {
-   *   "arrowParens": "avoid",
-   *   "htmlWhitespaceSensitivity": "ignore"
-   *   "printWidth": 80,
-   *   "semi": false,
-   *   "singleQuote": true,
-   * }
-   * ```
+   * When set to `true`, it will enable all formatters.
    */
-  prettierRules?: PartialPrettierExtendedOptions
+  formatter?: boolean | OptionsFormatters
 
   /**
    * Control to disable some rules in editors.
    * @default auto-detect based on the process.env
    */
   isInEditor?: boolean
+
+  /**
+   * Automatically rename plugins in the config.
+   *
+   * @default true
+   */
+  autoRenamePlugins?: boolean
 }
-````
+```
 
 ## Thanks
 

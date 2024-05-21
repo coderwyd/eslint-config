@@ -24,12 +24,13 @@ const instance = yargs(hideBin(process.argv))
           type: 'boolean',
         })
         .help(),
-    async args => {
+    async (args) => {
       header()
       console.log()
       try {
         await run(args)
-      } catch (error) {
+      }
+      catch (error) {
         console.error(c.inverse(c.red(' Failed to migrate ')))
         console.error(c.red(`${CROSS} ${String(error)}`))
         process.exit(1)

@@ -1,20 +1,32 @@
+import { mergeProcessors } from 'eslint-merge-processors'
 import { getVueVersion, interopDefault } from '../shared'
 import { GLOB_VUE } from '../constants/glob'
 import type {
   OptionsFiles,
   OptionsHasTypeScript,
   OptionsOverrides,
+  OptionsStylistic,
+  OptionsVue,
   TypedFlatConfigItem,
 } from '../types'
 
 export async function vue(
-  options: OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
+  options: OptionsVue &
+  OptionsHasTypeScript &
+  OptionsOverrides &
+  OptionsStylistic &
+  OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_VUE], overrides = {} } = options
+  const { files = [GLOB_VUE], overrides = {}, stylistic = true } = options
 
-  const [pluginVue, parserVue] = await Promise.all([
+  const sfcBlocks = options.sfcBlocks === true ? {} : options.sfcBlocks ?? {}
+
+  const { indent = 2 } = typeof stylistic === 'boolean' ? {} : stylistic
+
+  const [pluginVue, parserVue, processorVueBlocks] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
     interopDefault(import('vue-eslint-parser')),
+    interopDefault(import('eslint-processor-vue-blocks')),
   ] as const)
 
   type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
@@ -78,7 +90,19 @@ export async function vue(
         },
       },
       name: 'coderwyd/vue/rules',
-      processor: pluginVue.processors!['.vue'],
+      processor:
+        sfcBlocks === false
+          ? pluginVue.processors!['.vue']
+          : mergeProcessors([
+            pluginVue.processors!['.vue'],
+            processorVueBlocks({
+              ...sfcBlocks,
+              blocks: {
+                styles: true,
+                ...sfcBlocks.blocks,
+              },
+            }),
+          ]),
       rules: {
         ...pluginVue.configs.base.rules,
         ...vueRules,
@@ -110,7 +134,7 @@ export async function vue(
         'vue/dot-location': ['error', 'property'],
         'vue/dot-notation': ['error', { allowKeywords: true }],
         'vue/eqeqeq': ['error', 'smart'],
-        'vue/html-indent': ['error', 2],
+        'vue/html-indent': ['error', indent],
         'vue/html-quotes': ['error', 'double'],
         'vue/html-self-closing': [
           'error',
@@ -161,46 +185,51 @@ export async function vue(
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
         'vue/valid-define-options': 'warn',
 
-        ...{
-          // format
-          'vue/array-bracket-spacing': ['error', 'never'],
-          'vue/arrow-spacing': ['error', { after: true, before: true }],
-          'vue/block-spacing': ['error', 'always'],
-          'vue/block-tag-newline': [
-            'error',
-            {
-              multiline: 'always',
-              singleline: 'always',
-            },
-          ],
-          'vue/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
-          'vue/comma-dangle': ['error', 'always-multiline'],
-          'vue/comma-spacing': ['error', { after: true, before: false }],
-          'vue/comma-style': ['error', 'last'],
-          'vue/html-comment-content-spacing': [
-            'error',
-            'always',
-            {
-              exceptions: ['-'],
-            },
-          ],
-          'vue/key-spacing': [
-            'error',
-            { afterColon: true, beforeColon: false },
-          ],
-          'vue/keyword-spacing': ['error', { after: true, before: true }],
-          'vue/object-curly-newline': 'off',
-          'vue/object-curly-spacing': ['error', 'always'],
-          'vue/object-property-newline': [
-            'error',
-            { allowMultiplePropertiesPerLine: true },
-          ],
-          'vue/operator-linebreak': ['error', 'before'],
-          'vue/padding-line-between-blocks': ['error', 'always'],
-          'vue/quote-props': ['error', 'consistent-as-needed'],
-          'vue/space-in-parens': ['error', 'never'],
-          'vue/template-curly-spacing': 'error',
-        },
+        ...(stylistic
+          ? {
+              'vue/array-bracket-spacing': ['error', 'never'],
+              'vue/arrow-spacing': ['error', { after: true, before: true }],
+              'vue/block-spacing': ['error', 'always'],
+              'vue/block-tag-newline': [
+                'error',
+                {
+                  multiline: 'always',
+                  singleline: 'always',
+                },
+              ],
+              'vue/brace-style': [
+                'error',
+                'stroustrup',
+                { allowSingleLine: true },
+              ],
+              'vue/comma-dangle': ['error', 'always-multiline'],
+              'vue/comma-spacing': ['error', { after: true, before: false }],
+              'vue/comma-style': ['error', 'last'],
+              'vue/html-comment-content-spacing': [
+                'error',
+                'always',
+                {
+                  exceptions: ['-'],
+                },
+              ],
+              'vue/key-spacing': [
+                'error',
+                { afterColon: true, beforeColon: false },
+              ],
+              'vue/keyword-spacing': ['error', { after: true, before: true }],
+              'vue/object-curly-newline': 'off',
+              'vue/object-curly-spacing': ['error', 'always'],
+              'vue/object-property-newline': [
+                'error',
+                { allowMultiplePropertiesPerLine: true },
+              ],
+              'vue/operator-linebreak': ['error', 'before'],
+              'vue/padding-line-between-blocks': ['error', 'always'],
+              'vue/quote-props': ['error', 'consistent-as-needed'],
+              'vue/space-in-parens': ['error', 'never'],
+              'vue/template-curly-spacing': 'error',
+            }
+          : {}),
 
         ...overrides,
       },

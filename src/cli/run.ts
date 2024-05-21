@@ -52,7 +52,8 @@ export async function run(options: RuleOptions = {}) {
       name: 'confirmed',
       type: 'confirm',
     })
-    if (!confirmed) return process.exit(1)
+    if (!confirmed)
+      return process.exit(1)
   }
 
   // Update package.json
@@ -63,7 +64,8 @@ export async function run(options: RuleOptions = {}) {
   pkg.devDependencies ??= {}
   pkg.devDependencies['@coderwyd/eslint-config'] = `^${version}`
 
-  if (!pkg.devDependencies.eslint) pkg.devDependencies.eslint = eslintVersion
+  if (!pkg.devDependencies.eslint)
+    pkg.devDependencies.eslint = eslintVersion
 
   await fsp.writeFile(pathPackageJSON, JSON.stringify(pkg, null, 2))
   console.log(c.green(`${CHECK} changes wrote to package.json`))
@@ -78,11 +80,14 @@ export async function run(options: RuleOptions = {}) {
     const globs = parsed.globs()
 
     for (const glob of globs) {
-      if (glob.type === 'ignore') eslintIgnores.push(...glob.patterns)
-      else if (glob.type === 'unignore')
+      if (glob.type === 'ignore') {
+        eslintIgnores.push(...glob.patterns)
+      }
+      else if (glob.type === 'unignore') {
         eslintIgnores.push(
           ...glob.patterns.map((pattern: string) => `!${pattern}`),
         )
+      }
     }
   }
 
@@ -95,7 +100,8 @@ import { defineConfig } from '@coderwyd/eslint-config'
 
 export default defineConfig({\n${coderwydConfig}\n})
 `.trimStart()
-  } else {
+  }
+  else {
     eslintConfigContent = `
 const { defineConfig } = require('@coderwyd/eslint-config')
 
@@ -108,7 +114,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
 
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
-  files.forEach(file => {
+  files.forEach((file) => {
     if (/eslint|prettier/.test(file) && !/eslint.config./.test(file))
       legacyConfig.push(file)
   })
@@ -139,7 +145,8 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
           },
         },
       )
-    } catch (error: any) {
+    }
+    catch (error: any) {
       console.log(error.message)
       return
     }
@@ -155,12 +162,13 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
       console.log(c.green(`${CHECK} created .vscode/settings.json`))
-    } else {
+    }
+    else {
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
       settingsContent = settingsContent.trim().replace(/\s*\}$/, '')
-      settingsContent +=
-        settingsContent.endsWith(',') || settingsContent.endsWith('{')
+      settingsContent
+        += settingsContent.endsWith(',') || settingsContent.endsWith('{')
           ? ''
           : ','
       settingsContent += `${vscodeSettingsString}}\n`

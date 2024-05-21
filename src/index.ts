@@ -1,6 +1,4 @@
-import process from 'node:process'
 import fs from 'node:fs'
-import { DEFAULT_PRETTIER_RULES } from './constants/prettier'
 import {
   command,
   comments,
@@ -12,11 +10,11 @@ import {
   jsonc,
   node,
   perfectionist,
-  prettier,
   react,
   regexp,
   sortPackageJson,
   sortTsconfig,
+  stylistic,
   svelte,
   tailwindcss,
   test,
@@ -29,7 +27,6 @@ import {
   combine,
   getOverrides,
   interopDefault,
-  loadPrettierConfig,
   renamePluginInConfigs,
   resolveSubOptions,
 } from './shared'
@@ -55,11 +52,17 @@ const flatConfigProps: (keyof TypedFlatConfigItem)[] = [
 ]
 
 export const defaultPluginRenaming = {
+  '@eslint-react': 'react',
+  '@eslint-react/dom': 'react-dom',
+  '@eslint-react/hooks-extra': 'react-hooks-extra',
+  '@eslint-react/naming-convention': 'react-naming-convention',
+
+  '@stylistic': 'style',
   '@typescript-eslint': 'ts',
   'import-x': 'import',
-  n: 'node',
-  vitest: 'test',
-  yml: 'yaml',
+  'n': 'node',
+  'vitest': 'test',
+  'yml': 'yaml',
 }
 
 /**
@@ -93,9 +96,18 @@ export async function defineConfig(
     tailwindcss: enableTailwindCSS = hasTailwindCSS,
     typescript: enableTypeScript = hasTypeScript,
     unocss: enableUnoCSS = false,
-    usePrettierrc = true,
     vue: enableVue = hasVue,
   } = options
+
+  const stylisticOptions
+    = options.stylistic === false
+      ? false
+      : typeof options.stylistic === 'object'
+        ? options.stylistic
+        : {}
+
+  if (stylisticOptions && !('jsx' in stylisticOptions))
+    stylisticOptions.jsx = options.jsx ?? true
 
   const configs: Awaitable<TypedFlatConfigItem[]>[] = []
 
@@ -106,13 +118,15 @@ export async function defineConfig(
           r(enableGitignore),
         ]),
       )
-    } else {
-      if (fs.existsSync('.gitignore'))
+    }
+    else {
+      if (fs.existsSync('.gitignore')) {
         configs.push(
           interopDefault(import('eslint-config-flat-gitignore')).then(r => [
             r(),
           ]),
         )
+      }
     }
   }
 
@@ -125,8 +139,12 @@ export async function defineConfig(
     }),
     comments(),
     node(),
-    jsdoc(),
-    imports(),
+    jsdoc({
+      stylistic: stylisticOptions,
+    }),
+    imports({
+      stylistic: stylisticOptions,
+    }),
     unicorn(),
     command(),
 
@@ -134,7 +152,8 @@ export async function defineConfig(
     perfectionist(),
   )
 
-  if (enableVue) componentExts.push('vue')
+  if (enableVue)
+    componentExts.push('vue')
 
   if (enableTypeScript) {
     configs.push(
@@ -142,6 +161,15 @@ export async function defineConfig(
         ...resolveSubOptions(options, 'typescript'),
         componentExts,
         overrides: getOverrides(options, 'typescript'),
+      }),
+    )
+  }
+
+  if (stylisticOptions) {
+    configs.push(
+      stylistic({
+        ...stylisticOptions,
+        overrides: getOverrides(options, 'stylistic'),
       }),
     )
   }
@@ -163,6 +191,7 @@ export async function defineConfig(
       vue({
         ...resolveSubOptions(options, 'vue'),
         overrides: getOverrides(options, 'typescript'),
+        stylistic: stylisticOptions,
         typescript: !!enableTypeScript,
       }),
     )
@@ -181,6 +210,7 @@ export async function defineConfig(
     configs.push(
       svelte({
         overrides: getOverrides(options, 'svelte'),
+        stylistic: stylisticOptions,
         typescript: !!enableTypeScript,
       }),
     )
@@ -207,41 +237,30 @@ export async function defineConfig(
     configs.push(
       jsonc({
         overrides: getOverrides(options, 'jsonc'),
+        stylistic: stylisticOptions,
       }),
       sortPackageJson(),
       sortTsconfig(),
     )
   }
   if (formatterOptions) {
-    let prettierRules = {
-      ...DEFAULT_PRETTIER_RULES,
-    }
-
-    if (options.prettierRules) {
-      prettierRules = { ...prettierRules, ...options.prettierRules }
-    }
-
-    if (usePrettierrc) {
-      const prettierConfig = await loadPrettierConfig(
-        options.cwd ?? process.cwd(),
-      )
-      Object.assign(prettierRules, prettierConfig)
-    }
     configs.push(
-      prettier(prettierRules),
-      formatter(formatterOptions, prettierRules),
+      formatter(
+        formatterOptions,
+        typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
+      ),
     )
-  } else {
-    configs.push(prettier())
   }
 
   // User can optionally pass a flat config item to the first argument
   // We pick the known keys as ESLint would do schema validation
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
-    if (key in options) acc[key] = options[key] as any
+    if (key in options)
+      acc[key] = options[key] as any
     return acc
   }, {} as TypedFlatConfigItem)
-  if (Object.keys(fusedConfig).length > 0) configs.push([fusedConfig])
+  if (Object.keys(fusedConfig).length > 0)
+    configs.push([fusedConfig])
 
   const merged = await combine(...configs, ...userConfigs)
 

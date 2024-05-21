@@ -51,7 +51,7 @@ export async function javascript(
         'constructor-super': 'error',
         'default-case-last': 'error',
         'dot-notation': ['error', { allowKeywords: true }],
-        eqeqeq: ['error', 'smart'],
+        'eqeqeq': ['error', 'smart'],
         'for-direction': 'error',
         'getter-return': 'error',
         'new-cap': [
@@ -254,7 +254,7 @@ export async function javascript(
         ],
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
-        yoda: ['error', 'never'],
+        'yoda': ['error', 'never'],
 
         ...overrides,
       },

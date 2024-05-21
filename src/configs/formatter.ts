@@ -9,21 +9,22 @@ import {
   GLOB_TOML,
   GLOB_YAML,
 } from '../constants/glob'
-
 import { ensurePackages, interopDefault, parserPlain } from '../shared'
+import { StylisticConfigDefaults } from './stylistic'
 import type {
   OptionsFormatters,
   PartialPrettierExtendedOptions,
   PrettierParser,
+  StylisticConfig,
   TypedFlatConfigItem,
 } from '../types'
 
 export async function formatter(
   options: OptionsFormatters | true = {},
-  prettierRules: PartialPrettierExtendedOptions = {},
+  stylistic: StylisticConfig = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { css, graphql, html, markdown, toml, yaml } =
-    options === true
+  const { css, graphql, html, markdown, toml, yaml }
+    = options === true
       ? {
           css: true,
           graphql: true,
@@ -34,15 +35,34 @@ export async function formatter(
         }
       : options
 
-  const pluginPrettier = await interopDefault(import('eslint-plugin-prettier'))
+  const { indent, quotes, semi } = {
+    ...StylisticConfigDefaults,
+    ...stylistic,
+  }
+
+  const prettierOptions: PartialPrettierExtendedOptions = Object.assign(
+    {
+      endOfLine: 'auto',
+      printWidth: 80,
+      semi,
+      singleQuote: quotes === 'single',
+      tabWidth: typeof indent === 'number' ? indent : 2,
+      trailingComma: 'all',
+      useTabs: indent === 'tab',
+    } satisfies PartialPrettierExtendedOptions,
+    typeof options === 'boolean' ? {} : options.prettierOptions || {},
+  )
+  await ensurePackages(['eslint-plugin-format'])
+
+  const pluginFormat = await interopDefault(import('eslint-plugin-format'))
 
   function createPrettierFormatter(
     files: string[],
     parser: PrettierParser,
     plugins?: string[],
   ) {
-    const rules: PartialPrettierExtendedOptions = {
-      ...prettierRules,
+    const rules = {
+      ...prettierOptions,
       parser,
     }
 
@@ -52,9 +72,8 @@ export async function formatter(
       embeddedLanguageFormatting: 'off',
     }
 
-    if (plugins?.length) {
+    if (plugins?.length)
       rules.plugins = [...(rules.plugins || []), ...plugins]
-    }
 
     const config: TypedFlatConfigItem = {
       files,
@@ -63,10 +82,10 @@ export async function formatter(
       },
       name: `coderwyd/formatter/${parser}`,
       plugins: {
-        prettier: pluginPrettier,
+        format: pluginFormat,
       },
       rules: {
-        'prettier/prettier': [
+        'format/prettier': [
           'warn',
           parser === 'markdown' ? markdownRules : rules,
         ],
@@ -80,7 +99,7 @@ export async function formatter(
     {
       name: 'coderwyd/formatter/setup',
       plugins: {
-        prettier: pluginPrettier,
+        format: pluginFormat,
       },
     },
   ]

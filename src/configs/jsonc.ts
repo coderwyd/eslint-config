@@ -3,14 +3,22 @@ import { interopDefault } from '../shared'
 import type {
   OptionsFiles,
   OptionsOverrides,
+  OptionsStylistic,
   TypedFlatConfigItem,
 } from '../types'
 
 export async function jsonc(
-  options: OptionsFiles & OptionsOverrides = {},
+  options: OptionsFiles & OptionsStylistic & OptionsOverrides = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC], overrides = {} } =
-    options || {}
+  const {
+    files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
+    overrides = {},
+    stylistic = true,
+  } = options || {}
+
+  const {
+    indent = 2,
+  } = typeof stylistic === 'boolean' ? {} : stylistic
 
   const [pluginJsonc, parserJsonc] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
@@ -58,28 +66,29 @@ export async function jsonc(
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
 
-        ...{
-          // format
-          'jsonc/array-bracket-spacing': ['error', 'never'],
-          'jsonc/comma-dangle': ['error', 'never'],
-          'jsonc/comma-style': ['error', 'last'],
-          'jsonc/indent': ['error', 2],
-          'jsonc/key-spacing': [
-            'error',
-            { afterColon: true, beforeColon: false },
-          ],
-          'jsonc/object-curly-newline': [
-            'error',
-            { consistent: true, multiline: true },
-          ],
-          'jsonc/object-curly-spacing': ['error', 'always'],
-          'jsonc/object-property-newline': [
-            'error',
-            { allowMultiplePropertiesPerLine: true },
-          ],
-          'jsonc/quote-props': 'error',
-          'jsonc/quotes': 'error',
-        },
+        ...(stylistic
+          ? {
+              'jsonc/array-bracket-spacing': ['error', 'never'],
+              'jsonc/comma-dangle': ['error', 'never'],
+              'jsonc/comma-style': ['error', 'last'],
+              'jsonc/indent': ['error', indent],
+              'jsonc/key-spacing': [
+                'error',
+                { afterColon: true, beforeColon: false },
+              ],
+              'jsonc/object-curly-newline': [
+                'error',
+                { consistent: true, multiline: true },
+              ],
+              'jsonc/object-curly-spacing': ['error', 'always'],
+              'jsonc/object-property-newline': [
+                'error',
+                { allowMultiplePropertiesPerLine: true },
+              ],
+              'jsonc/quote-props': 'error',
+              'jsonc/quotes': 'error',
+            }
+          : {}),
 
         ...overrides,
       },

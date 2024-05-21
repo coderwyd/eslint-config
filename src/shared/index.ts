@@ -1,11 +1,8 @@
 import process from 'node:process'
-import { readFile } from 'node:fs/promises'
-import path from 'node:path'
 import { getPackageInfoSync, isPackageExists } from 'local-pkg'
 import type {
   Awaitable,
   OptionsConfig,
-  PartialPrettierExtendedOptions,
   ResolvedOptions,
   TypedFlatConfigItem,
 } from '../types'
@@ -92,13 +89,15 @@ export function renamePluginInConfigs(
   configs: TypedFlatConfigItem[],
   map: Record<string, string>,
 ): TypedFlatConfigItem[] {
-  return configs.map(i => {
+  return configs.map((i) => {
     const clone = { ...i }
-    if (clone.rules) clone.rules = renameRules(clone.rules, map)
+    if (clone.rules)
+      clone.rules = renameRules(clone.rules, map)
     if (clone.plugins) {
       clone.plugins = Object.fromEntries(
         Object.entries(clone.plugins).map(([key, value]) => {
-          if (key in map) return [map[key], value]
+          if (key in map)
+            return [map[key], value]
           return [key, value]
         }),
       )
@@ -127,10 +126,12 @@ export async function interopDefault<T>(
 }
 
 export async function ensurePackages(packages: string[]) {
-  if (process.env.CI || process.stdout.isTTY === false) return
+  if (process.env.CI || process.stdout.isTTY === false)
+    return
 
   const nonExistingPackages = packages.filter(i => !isPackageExists(i))
-  if (nonExistingPackages.length === 0) return
+  if (nonExistingPackages.length === 0)
+    return
 
   const { default: prompts } = await import('prompts')
   const { result } = await prompts([
@@ -142,22 +143,11 @@ export async function ensurePackages(packages: string[]) {
       type: 'confirm',
     },
   ])
-  if (result)
+  if (result) {
     await import('@antfu/install-pkg').then(i =>
       i.installPackage(nonExistingPackages, { dev: true }),
     )
-}
-
-export async function loadPrettierConfig(cwd: string) {
-  let prettierConfig: PartialPrettierExtendedOptions = {}
-
-  try {
-    const prettierrc = await readFile(path.join(cwd, '.prettierrc'), 'utf-8')
-
-    prettierConfig = JSON.parse(prettierrc)
-  } catch {}
-
-  return prettierConfig
+  }
 }
 
 export function resolveSubOptions<K extends keyof OptionsConfig>(
