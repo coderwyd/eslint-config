@@ -32,7 +32,6 @@ import {
 } from './shared'
 import {
   isInEditor as defaultIsInEditor,
-  hasTailwindCSS,
   hasTypeScript,
   hasVue,
 } from './env'
@@ -93,7 +92,7 @@ export async function defineConfig(
     react: enableReact = false,
     regexp: enableRegexp = true,
     svelte: enableSvelte = false,
-    tailwindcss: enableTailwindCSS = hasTailwindCSS,
+    tailwindcss: enableTailwindCSS = false,
     typescript: enableTypeScript = hasTypeScript,
     unocss: enableUnoCSS = false,
     vue: enableVue = hasVue,
