@@ -9,14 +9,29 @@ export const isInEditor = !!(
   && !process.env.CI
 )
 export const hasTypeScript = isPackageExists('typescript')
-// export const hasReact = isPackageExists('react') || isPackageExists('next')
-export const hasVue
-  = isPackageExists('vue')
-  || isPackageExists('nuxt')
-  || isPackageExists('vitepress')
-  || isPackageExists('@slidev/cli')
-export const hasUnocss
-  = isPackageExists('unocss')
-  || isPackageExists('@unocss/webpack')
-  || isPackageExists('@unocss/nuxt')
-export const hasTailwindCSS = isPackageExists('tailwindcss') && !hasUnocss
+
+const VueJsPackages = [
+  'vue',
+  'nuxt',
+  'vitepress',
+  '@slidev/cli',
+]
+
+export const hasVue = hasPackages(VueJsPackages)
+
+const RemixPackages = [
+  '@remix-run/node',
+  '@remix-run/react',
+  '@remix-run/serve',
+  '@remix-run/dev',
+]
+
+const NextJsPackages = ['next']
+
+// export const hasReact = hasPackages(['react', ...RemixPackages, ...NextJsPackages])
+export const isUsingRemix = hasPackages(RemixPackages)
+export const isUsingNext = hasPackages(NextJsPackages)
+
+function hasPackages(packages: string[]) {
+  return packages.some(name => isPackageExists(name))
+}

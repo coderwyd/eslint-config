@@ -1,6 +1,7 @@
 import { isPackageExists } from 'local-pkg'
 import { ensurePackages, interopDefault, toArray } from '../shared'
 import { GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX } from '../constants/glob'
+import { isUsingNext, isUsingRemix } from '../env'
 import type {
   OptionsFiles,
   OptionsOverrides,
@@ -10,13 +11,6 @@ import type {
 
 // react refresh
 const ReactRefreshAllowConstantExportPackages = ['vite']
-const RemixPackages = [
-  '@remix-run/node',
-  '@remix-run/react',
-  '@remix-run/serve',
-  '@remix-run/dev',
-]
-const NextJsPackages = ['next']
 
 export async function react(
   options: OptionsTypeScriptWithTypes & OptionsOverrides & OptionsFiles = {},
@@ -45,8 +39,6 @@ export async function react(
   const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some(
     i => isPackageExists(i),
   )
-  const isUsingRemix = RemixPackages.some(i => isPackageExists(i))
-  const isUsingNext = NextJsPackages.some(i => isPackageExists(i))
 
   const plugins = pluginReact.configs.all.plugins
 
