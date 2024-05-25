@@ -157,8 +157,8 @@ importers:
         specifier: 2.39.0
         version: 2.39.0(eslint@9.3.0)(svelte@4.2.17)
       eslint-plugin-tailwindcss:
-        specifier: ^3.16.0
-        version: 3.16.0(tailwindcss@3.4.3)
+        specifier: ^3.17.0
+        version: 3.17.0(tailwindcss@3.4.3)
       execa:
         specifier: ^9.1.0
         version: 9.1.0
@@ -1523,9 +1523,9 @@ packages:
       svelte:
         optional: true
 
-  eslint-plugin-tailwindcss@3.16.0:
-    resolution: {integrity: sha512-OVMNBDvSc7eqZTfLVoEo900bxZUu74W5Cp/VPa2hYqKIGbfTq/UfKIX6df+xkPmD3jVW21n4VblLBLd8dHTjeQ==}
-    engines: {node: '>=12.13.0'}
+  eslint-plugin-tailwindcss@3.17.0:
+    resolution: {integrity: sha512-Ofl7tNh57a3W8BKHstKZSkD2gSCEkw54ycwZ958IK9zUR8TiNYdp8b0WGoLWLeyOAbeF1VPVJFBnlkJeIM2kVg==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       tailwindcss: ^3.4.0
 
@@ -4700,7 +4700,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  eslint-plugin-tailwindcss@3.16.0(tailwindcss@3.4.3):
+  eslint-plugin-tailwindcss@3.17.0(tailwindcss@3.4.3):
     dependencies:
       fast-glob: 3.3.2
       postcss: 8.4.38
