@@ -52,9 +52,9 @@ export async function stylistic(
 
         'antfu/consistent-list-newline': 'error',
 
+        'antfu/curly': 'error',
         'antfu/if-newline': 'warn',
         'antfu/top-level-function': 'warn',
-        'curly': ['error', 'multi-or-nest', 'consistent'],
 
         ...overrides,
       },
