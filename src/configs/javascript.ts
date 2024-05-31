@@ -210,7 +210,7 @@ export async function javascript(
           },
         ],
         'prefer-exponentiation-operator': 'error',
-        'prefer-promise-reject-errors': 'error',
+        // 'prefer-promise-reject-errors': 'error',
         'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
