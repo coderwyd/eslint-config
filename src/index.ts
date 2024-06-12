@@ -8,6 +8,7 @@ import {
   javascript,
   jsdoc,
   jsonc,
+  jsx,
   node,
   perfectionist,
   react,
@@ -89,6 +90,7 @@ export async function defineConfig(
     },
     gitignore: enableGitignore = true,
     isInEditor = defaultIsInEditor,
+    jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
     svelte: enableSvelte = false,
@@ -106,7 +108,7 @@ export async function defineConfig(
         : {}
 
   if (stylisticOptions && !('jsx' in stylisticOptions))
-    stylisticOptions.jsx = options.jsx ?? true
+    stylisticOptions.jsx = enableJsx
 
   const configs: Awaitable<TypedFlatConfigItem[]>[] = []
 
@@ -156,6 +158,10 @@ export async function defineConfig(
 
   if (enableVue)
     componentExts.push('vue')
+
+  if (enableJsx) {
+    configs.push(jsx())
+  }
 
   if (enableTypeScript) {
     configs.push(

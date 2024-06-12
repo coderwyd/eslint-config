@@ -36,6 +36,9 @@ export async function javascript(
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
+      name: 'coderwyd/javascript/setup',
+    },
+    {
       name: 'coderwyd/javascript/rules',
       plugins: {
         'unused-imports': pluginUnusedImports,
