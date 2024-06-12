@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { GLOB_SRC, GLOB_TS, GLOB_TSX } from '../constants/glob'
+import { GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules, toArray } from '../shared'
 import type {
@@ -21,7 +21,8 @@ export async function typescript(
   const { componentExts = [], overrides = {}, parserOptions = {} } = options
 
   const files = options.files ?? [
-    GLOB_SRC,
+    GLOB_TS,
+    GLOB_TSX,
     ...componentExts.map(ext => `**/*.${ext}`),
   ]
 
