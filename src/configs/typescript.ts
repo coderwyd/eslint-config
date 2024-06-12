@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { GLOB_TS, GLOB_TSX } from '../constants/glob'
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules, toArray } from '../shared'
 import type {
@@ -27,6 +27,10 @@ export async function typescript(
   ]
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX]
+  const ignoresTypeAware = options.ignoresTypeAware ?? [
+    `${GLOB_MARKDOWN}/**`,
+    GLOB_ASTRO_TS,
+  ]
 
   const tsconfigPath = options?.tsconfigPath
     ? toArray(options.tsconfigPath)
@@ -99,7 +103,7 @@ export async function typescript(
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...(isTypeAware
       ? [
-          makeParser(true, filesTypeAware),
+          makeParser(true, filesTypeAware, ignoresTypeAware),
           makeParser(false, files, filesTypeAware),
         ]
       : [makeParser(false, files)]),
@@ -156,6 +160,7 @@ export async function typescript(
       ? [
           {
             files: filesTypeAware,
+            ignores: ignoresTypeAware,
             name: 'coderwyd/typescript/rules-type-aware',
             rules: {
               ...(tsconfigPath ? typeAwareRules : {}),
@@ -165,7 +170,7 @@ export async function typescript(
         ]
       : []),
     {
-      files: ['**/*.d.ts'],
+      files: [GLOB_TS],
       name: 'coderwyd/typescript/disables/dts',
       rules: {
         'eslint-comments/no-unlimited-disable': 'off',
