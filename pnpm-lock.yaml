@@ -18,10 +18,10 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@typescript-eslint/eslint-plugin':
-        specifier: ^7.13.1
+        specifier: ^7.14.1
         version: 7.14.1(@typescript-eslint/parser@7.14.1(eslint@9.5.0)(typescript@5.4.5))(eslint@9.5.0)(typescript@5.4.5)
       '@typescript-eslint/parser':
-        specifier: ^7.13.1
+        specifier: ^7.14.1
         version: 7.14.1(eslint@9.5.0)(typescript@5.4.5)
       eslint-config-flat-gitignore:
         specifier: ^0.1.5
@@ -3138,9 +3138,9 @@ snapshots:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
       '@eslint-react/tools': 1.5.16
       '@eslint-react/types': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
-      '@typescript-eslint/scope-manager': 7.13.0
-      '@typescript-eslint/types': 7.13.0
-      '@typescript-eslint/utils': 7.13.0(eslint@9.5.0)(typescript@5.4.5)
+      '@typescript-eslint/scope-manager': 7.14.1
+      '@typescript-eslint/types': 7.14.1
+      '@typescript-eslint/utils': 7.14.1(eslint@9.5.0)(typescript@5.4.5)
       string-ts: 2.1.1
       ts-pattern: 5.2.0
     transitivePeerDependencies:
@@ -3156,10 +3156,10 @@ snapshots:
       '@eslint-react/tools': 1.5.16
       '@eslint-react/types': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
       '@eslint-react/var': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
-      '@typescript-eslint/scope-manager': 7.13.0
-      '@typescript-eslint/type-utils': 7.13.0(eslint@9.5.0)(typescript@5.4.5)
-      '@typescript-eslint/types': 7.13.0
-      '@typescript-eslint/utils': 7.13.0(eslint@9.5.0)(typescript@5.4.5)
+      '@typescript-eslint/scope-manager': 7.14.1
+      '@typescript-eslint/type-utils': 7.14.1(eslint@9.5.0)(typescript@5.4.5)
+      '@typescript-eslint/types': 7.14.1
+      '@typescript-eslint/utils': 7.14.1(eslint@9.5.0)(typescript@5.4.5)
       short-unique-id: 5.2.0
       ts-pattern: 5.2.0
       valibot: 0.32.0
@@ -3194,9 +3194,9 @@ snapshots:
       '@eslint-react/tools': 1.5.16
       '@eslint-react/types': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
       '@eslint-react/var': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
-      '@typescript-eslint/scope-manager': 7.13.0
-      '@typescript-eslint/types': 7.13.0
-      '@typescript-eslint/utils': 7.13.0(eslint@9.5.0)(typescript@5.4.5)
+      '@typescript-eslint/scope-manager': 7.14.1
+      '@typescript-eslint/types': 7.14.1
+      '@typescript-eslint/utils': 7.14.1(eslint@9.5.0)(typescript@5.4.5)
       micro-memoize: 4.1.2
       ts-pattern: 5.2.0
     transitivePeerDependencies:
@@ -3230,9 +3230,9 @@ snapshots:
       '@eslint-react/ast': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
       '@eslint-react/tools': 1.5.16
       '@eslint-react/types': 1.5.16(eslint@9.5.0)(typescript@5.4.5)
-      '@typescript-eslint/scope-manager': 7.13.0
-      '@typescript-eslint/types': 7.13.0
-      '@typescript-eslint/utils': 7.13.0(eslint@9.5.0)(typescript@5.4.5)
+      '@typescript-eslint/scope-manager': 7.14.1
+      '@typescript-eslint/types': 7.14.1
+      '@typescript-eslint/utils': 7.14.1(eslint@9.5.0)(typescript@5.4.5)
       string-ts: 2.1.1
       valibot: 0.32.0
     transitivePeerDependencies:
