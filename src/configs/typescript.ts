@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
+import { GLOB_ASTRO_TS, GLOB_DTS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules, toArray } from '../shared'
 import type {
@@ -170,7 +170,7 @@ export async function typescript(
         ]
       : []),
     {
-      files: [GLOB_TS],
+      files: [GLOB_DTS],
       name: 'coderwyd/typescript/disables/dts',
       rules: {
         'eslint-comments/no-unlimited-disable': 'off',
