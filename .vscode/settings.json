@@ -31,5 +31,11 @@
     { "rule": "*semi", "severity": "off" }
   ],
   "prettier.enable": false,
-  "cSpell.words": ["antfu", "coderwyd", "rspack", "unocss"]
+  "cSpell.words": [
+    "antfu",
+    "astro",
+    "coderwyd",
+    "rspack",
+    "unocss"
+  ]
 }
