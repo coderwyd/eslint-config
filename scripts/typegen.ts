@@ -17,6 +17,7 @@ import {
   sortPackageJson,
   stylistic,
   svelte,
+  tailwindcss,
   test,
   typescript,
   unicorn,
@@ -53,6 +54,7 @@ const configs = await combine(
   vue(),
   command(),
   regexp(),
+  tailwindcss(),
 )
 
 const configNames = configs.map(i => i.name).filter(Boolean) as string[]
