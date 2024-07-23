@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { GLOB_ASTRO_TS, GLOB_DTS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
-import { interopDefault, renameRules, toArray } from '../shared'
+import { interopDefault, renameRules } from '../shared'
 import type {
   OptionsComponentExts,
   OptionsFiles,
@@ -32,9 +32,7 @@ export async function typescript(
     GLOB_ASTRO_TS,
   ]
 
-  const tsconfigPath = options?.tsconfigPath
-    ? toArray(options.tsconfigPath)
-    : undefined
+  const tsconfigPath = options.tsconfigPath
   const isTypeAware = !!tsconfigPath
 
   const typeAwareRules: TypedFlatConfigItem['rules'] = {
@@ -129,7 +127,7 @@ export async function typescript(
         'no-useless-constructor': 'off',
         'ts/ban-ts-comment': [
           'error',
-          { 'ts-ignore': 'allow-with-description' },
+          { 'ts-expect-error': 'allow-with-description' },
         ],
         'ts/consistent-type-definitions': ['error', 'interface'],
         'ts/consistent-type-imports': [
@@ -155,7 +153,6 @@ export async function typescript(
         ],
         'ts/no-useless-constructor': 'off',
         'ts/no-wrapper-object-types': 'error',
-        'ts/prefer-ts-expect-error': 'error',
         'ts/triple-slash-reference': 'off',
         'ts/unified-signatures': 'off',
         ...overrides,

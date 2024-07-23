@@ -1,4 +1,3 @@
-import fs from 'node:fs'
 import {
   command,
   comments,
@@ -121,13 +120,8 @@ export async function defineConfig(
       )
     }
     else {
-      if (fs.existsSync('.gitignore')) {
-        configs.push(
-          interopDefault(import('eslint-config-flat-gitignore')).then(r => [
-            r(),
-          ]),
-        )
-      }
+      configs.push(interopDefault(import('eslint-config-flat-gitignore'))
+        .then(r => [r({ strict: false })]))
     }
   }
 
