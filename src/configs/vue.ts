@@ -1,6 +1,6 @@
 import { mergeProcessors } from 'eslint-merge-processors'
-import { getVueVersion, interopDefault } from '../shared'
 import { GLOB_VUE } from '../constants/glob'
+import { getVueVersion, interopDefault } from '../shared'
 import type {
   OptionsFiles,
   OptionsHasTypeScript,

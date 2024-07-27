@@ -1,7 +1,7 @@
 import { pluginUnicorn } from '../plugins'
 import type { TypedFlatConfigItem } from '../types'
 
-export async function unicorn(): Promise<TypedFlatConfigItem[]> {
+export function unicorn(): TypedFlatConfigItem[] {
   return [
     {
       name: 'coderwyd/unicorn/rules',

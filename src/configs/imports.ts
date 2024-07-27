@@ -1,10 +1,10 @@
-import { pluginAntfu, pluginImport } from '../plugins'
 import { GLOB_SRC_EXT } from '../constants/glob'
+import { pluginAntfu, pluginImport } from '../plugins'
 import type { OptionsStylistic, TypedFlatConfigItem } from '../types'
 
-export async function imports(
+export function imports(
   options: OptionsStylistic = {},
-): Promise<TypedFlatConfigItem[]> {
+): TypedFlatConfigItem[] {
   const { stylistic = true } = options
   return [
     {
@@ -24,23 +24,6 @@ export async function imports(
         'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
-        'import/order': [
-          'error',
-          {
-            groups: [
-              'builtin',
-              'external',
-              'internal',
-              'parent',
-              'sibling',
-              'index',
-              'object',
-              'type',
-            ],
-            pathGroups: [{ group: 'internal', pattern: '{{@,~}/,#}**' }],
-            pathGroupsExcludedImportTypes: ['type'],
-          },
-        ],
 
         ...(stylistic
           ? {

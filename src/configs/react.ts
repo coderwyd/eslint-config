@@ -1,7 +1,7 @@
 import { isPackageExists } from 'local-pkg'
-import { ensurePackages, interopDefault, toArray } from '../shared'
 import { GLOB_SRC } from '../constants/glob'
 import { isUsingNext, isUsingRemix } from '../env'
+import { ensurePackages, interopDefault, toArray } from '../shared'
 import type {
   OptionsFiles,
   OptionsOverrides,

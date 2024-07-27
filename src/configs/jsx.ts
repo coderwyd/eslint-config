@@ -1,7 +1,7 @@
 import { GLOB_JSX, GLOB_TSX } from '../constants/glob'
 import type { TypedFlatConfigItem } from '../types'
 
-export async function jsx(): Promise<TypedFlatConfigItem[]> {
+export function jsx(): TypedFlatConfigItem[] {
   return [
     {
       files: [GLOB_JSX, GLOB_TSX],

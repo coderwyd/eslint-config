@@ -3,18 +3,18 @@ import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
-import prompts from 'prompts'
-import c from 'picocolors'
-
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
+import c from 'picocolors'
+
+import prompts from 'prompts'
 import {
   ARROW,
   CHECK,
-  WARN,
   eslintVersion,
   version,
   vscodeSettingsString,
+  WARN,
 } from './constants'
 import { isGitClean } from './utils'
 

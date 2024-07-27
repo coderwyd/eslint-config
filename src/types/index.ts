@@ -1,11 +1,11 @@
-import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
-import type { ParserOptions } from '@typescript-eslint/parser'
 import type {
   PartialPrettierExtendedOptions,
   TypedFlatConfigItem,
 } from './rule'
-import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks'
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
+import type { ParserOptions } from '@typescript-eslint/parser'
+import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
+import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks'
 
 export * from './rule'
 

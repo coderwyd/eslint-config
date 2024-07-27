@@ -1,15 +1,15 @@
 import globals from 'globals'
-import { pluginUnusedImports } from '../plugins'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
+import { pluginUnusedImports } from '../plugins'
 import type {
   OptionsIsInEditor,
   OptionsOverrides,
   TypedFlatConfigItem,
 } from '../types'
 
-export async function javascript(
+export function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
-): Promise<TypedFlatConfigItem[]> {
+): TypedFlatConfigItem[] {
   const { isInEditor = false, overrides = {} } = options
 
   return [
@@ -218,16 +218,8 @@ export async function javascript(
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
-        'sort-imports': [
-          'error',
-          {
-            allowSeparatedGroups: false,
-            ignoreCase: false,
-            ignoreDeclarationSort: true,
-            ignoreMemberSort: false,
-            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-          },
-        ],
+        'require-await': 'error',
+        'require-yield': 'error',
 
         'symbol-description': 'error',
         'unicode-bom': ['error', 'never'],

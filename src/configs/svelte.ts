@@ -1,5 +1,5 @@
-import { ensurePackages, interopDefault } from '../shared'
 import { GLOB_SVELTE } from '../constants/glob'
+import { ensurePackages, interopDefault } from '../shared'
 import type {
   OptionsFiles,
   OptionsHasTypeScript,

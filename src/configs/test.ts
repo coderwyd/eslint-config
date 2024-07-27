@@ -1,5 +1,5 @@
-import { interopDefault } from '../shared'
 import { GLOB_TESTS } from '../constants/glob'
+import { interopDefault } from '../shared'
 import type {
   OptionsFiles,
   OptionsIsInEditor,
