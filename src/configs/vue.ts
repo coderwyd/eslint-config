@@ -153,7 +153,7 @@ export async function vue(
         //   },
         'vue/html-quotes': ['error', 'double'],
         // ],
-        'vue/max-attributes-per-line': 'off',
+        // 'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         // 'vue/next-tick-style': ['warn', 'promise'],
         'vue/no-constant-condition': 'warn',
