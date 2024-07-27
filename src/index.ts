@@ -24,17 +24,17 @@ import {
   vue,
 } from './configs'
 import {
+  isInEditor as defaultIsInEditor,
+  hasTypeScript,
+  hasVue,
+} from './env'
+import {
   combine,
   getOverrides,
   interopDefault,
   renamePluginInConfigs,
   resolveSubOptions,
 } from './shared'
-import {
-  isInEditor as defaultIsInEditor,
-  hasTypeScript,
-  hasVue,
-} from './env'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
 import type { Linter } from 'eslint'
 
@@ -69,7 +69,7 @@ export const defaultPluginRenaming = {
  *
  * @param {OptionsConfig & TypedFlatConfigItem} options
  *  The options for generating the ESLint configurations.
- * @param {Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.FlatConfig[]>[]} userConfigs
+ * @param {Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.Config[]>[]} userConfigs
  *  The user configurations to be merged with the generated configurations.
  * @returns {Promise<TypedFlatConfigItem[]>}
  *  The merged ESLint configurations.
@@ -77,7 +77,7 @@ export const defaultPluginRenaming = {
 export async function defineConfig(
   options: OptionsConfig & TypedFlatConfigItem = {},
   ...userConfigs: Awaitable<
-    TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.FlatConfig[]
+    TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.Config[]
   >[]
 ): Promise<TypedFlatConfigItem[]> {
   const {
