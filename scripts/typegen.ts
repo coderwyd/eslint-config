@@ -59,6 +59,7 @@ const configs = await combine(
 
 const configNames = configs.map(i => i.name).filter(Boolean) as string[]
 
+// @ts-expect-error eslint typegen version
 let dts = await flatConfigsToRulesDTS(configs, {
   includeAugmentation: false,
 })

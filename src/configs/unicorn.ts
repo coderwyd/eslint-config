@@ -33,6 +33,7 @@ export function unicorn(): TypedFlatConfigItem[] {
         'unicorn/no-hex-escape': 'error',
         'unicorn/no-instanceof-array': 'error',
         'unicorn/no-invalid-remove-event-listener': 'error',
+        'unicorn/no-length-as-slice-end': 'error',
         'unicorn/no-lonely-if': 'error',
         'unicorn/no-new-array': 'error',
         'unicorn/no-new-buffer': 'error',
