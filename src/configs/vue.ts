@@ -140,20 +140,20 @@ export async function vue(
         'vue/dot-notation': ['error', { allowKeywords: true }],
         'vue/eqeqeq': ['error', 'smart'],
         'vue/html-indent': ['error', indent],
-        // 'vue/html-self-closing': [
-        //   'error',
-        //   {
-        //     html: {
-        //       component: 'always',
-        //       normal: 'always',
-        //       void: 'any',
-        //     },
-        //     math: 'always',
-        //     svg: 'always',
-        //   },
         'vue/html-quotes': ['error', 'double'],
-        // ],
-        // 'vue/max-attributes-per-line': 'off',
+        'vue/html-self-closing': [
+          'error',
+          {
+            html: {
+              component: 'always',
+              normal: 'always',
+              void: 'any',
+            },
+            math: 'always',
+            svg: 'always',
+          },
+        ],
+        'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         // 'vue/next-tick-style': ['warn', 'promise'],
         'vue/no-constant-condition': 'warn',
@@ -205,6 +205,7 @@ export async function vue(
           },
         ],
         'vue/require-prop-types': 'off',
+        // 'vue/singleline-html-element-content-newline': 'off',
         'vue/space-infix-ops': 'error',
         'vue/space-unary-ops': ['error', { nonwords: false, words: true }],
         'vue/valid-define-options': 'warn',
