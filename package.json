@@ -89,7 +89,7 @@
     "@vitest/eslint-plugin": "^1.0.1",
     "eslint-config-flat-gitignore": "^0.1.8",
     "eslint-merge-processors": "^0.1.0",
-    "eslint-plugin-antfu": "^2.3.4",
+    "eslint-plugin-antfu": "^2.3.5",
     "eslint-plugin-command": "^0.2.3",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-format": "^0.1.2",
