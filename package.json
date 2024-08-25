@@ -138,7 +138,7 @@
     "lint-staged": "^15.2.9",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
-    "svelte": "^4.2.18",
+    "svelte": "^4.2.19",
     "svelte-eslint-parser": "^0.41.0",
     "tsup": "^8.2.4",
     "tsx": "^4.17.0",
