@@ -1,11 +1,8 @@
+// @ts-expect-error missing types
 import styleMigrate from '@stylistic/eslint-plugin-migrate'
-import JITI from 'jiti'
 
-const jiti = JITI(import.meta.url)
-/**
- * @type {import('./src').defineConfig}
- */
-const { defineConfig } = jiti('./src')
+import { defineConfig } from './src'
+
 export default defineConfig(
   {
     vue: true,

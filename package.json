@@ -38,7 +38,7 @@
   "scripts": {
     "build": "nr build:typegen && tsup",
     "dev": "npx @eslint/config-inspector",
-    "lint": "eslint .",
+    "lint": "eslint --flag unstable_ts_config .",
     "lint:fix": "eslint . --fix",
     "build:inspector": "pnpm build && npx @eslint/config-inspector build",
     "build:typegen": "tsx scripts/typegen.ts",
@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@eslint-react/eslint-plugin": "^1.5.8",
     "@unocss/eslint-plugin": ">=0.50.0",
-    "eslint": "^8.56.0 || ^9.0.0",
+    "eslint": "^9.5.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-svelte": ">=2.35.1",
@@ -136,6 +136,7 @@
     "execa": "^9.3.1",
     "fast-glob": "^3.3.2",
     "fs-extra": "^11.2.0",
+    "jiti": "^1.21.6",
     "lint-staged": "^15.2.9",
     "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1",
@@ -149,6 +150,6 @@
     "pre-commit": "pnpx nano-staged"
   },
   "nano-staged": {
-    "*": "eslint --fix"
+    "*": "eslint --flag unstable_ts_config --fix"
   }
 }
