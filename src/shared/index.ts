@@ -6,6 +6,10 @@ import type {
   ResolvedOptions,
   TypedFlatConfigItem,
 } from '../types'
+import { fileURLToPath } from 'node:url'
+
+const scopeUrl = fileURLToPath(new URL('.', import.meta.url))
+const isCwdInScope = isPackageExists('@coderwyd/eslint-config')
 
 export const parserPlain = {
   meta: {
@@ -125,11 +129,15 @@ export async function interopDefault<T>(
   return (resolved as any).default || resolved
 }
 
+export function isPackageInScope(name: string): boolean {
+  return isPackageExists(name, { paths: [scopeUrl] })
+}
+
 export async function ensurePackages(packages: string[]) {
-  if (process.env.CI || process.stdout.isTTY === false)
+  if (process.env.CI || process.stdout.isTTY === false || isCwdInScope === false)
     return
 
-  const nonExistingPackages = packages.filter(i => !isPackageExists(i))
+  const nonExistingPackages = packages.filter(i => !isPackageInScope(i))
   if (nonExistingPackages.length === 0)
     return
 
