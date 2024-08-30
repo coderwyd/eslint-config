@@ -144,9 +144,6 @@ export function javascript(
         ],
         'no-restricted-syntax': [
           'error',
-          'DebuggerStatement',
-          'LabeledStatement',
-          'WithStatement',
           'TSEnumDeclaration[const=true]',
           'TSExportAssignment',
         ],

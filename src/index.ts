@@ -24,7 +24,6 @@ import {
   vue,
 } from './configs'
 import {
-  isInEditor as defaultIsInEditor,
   hasTypeScript,
   hasVue,
 } from './env'
@@ -32,23 +31,22 @@ import {
   combine,
   getOverrides,
   interopDefault,
+  isInEditorEnv,
   renamePluginInConfigs,
   resolveSubOptions,
 } from './shared'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
 import type { Linter } from 'eslint'
 
-const flatConfigProps: (keyof TypedFlatConfigItem)[] = [
+const flatConfigProps = [
   'name',
-  'files',
-  'ignores',
   'languageOptions',
   'linterOptions',
   'processor',
   'plugins',
   'rules',
   'settings',
-]
+] satisfies (keyof TypedFlatConfigItem)[]
 
 export const defaultPluginRenaming = {
   '@eslint-react': 'react',
@@ -75,7 +73,7 @@ export const defaultPluginRenaming = {
  *  The merged ESLint configurations.
  */
 export async function defineConfig(
-  options: OptionsConfig & TypedFlatConfigItem = {},
+  options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
   ...userConfigs: Awaitable<
     TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.Config[]
   >[]
@@ -88,7 +86,6 @@ export async function defineConfig(
       html: true,
     },
     gitignore: enableGitignore = true,
-    isInEditor = defaultIsInEditor,
     jsx: enableJsx = true,
     react: enableReact = false,
     regexp: enableRegexp = true,
@@ -98,6 +95,14 @@ export async function defineConfig(
     unocss: enableUnoCSS = false,
     vue: enableVue = hasVue,
   } = options
+
+  let isInEditor = options.isInEditor
+  if (isInEditor == null) {
+    isInEditor = isInEditorEnv()
+    if (isInEditor)
+      // eslint-disable-next-line no-console
+      console.log('[@coderwyd/eslint-config] Detected running in editor, some rules are disabled.')
+  }
 
   const stylisticOptions
     = options.stylistic === false
@@ -115,13 +120,16 @@ export async function defineConfig(
     if (typeof enableGitignore !== 'boolean') {
       configs.push(
         interopDefault(import('eslint-config-flat-gitignore')).then(r => [
-          r(enableGitignore),
+          r({
+            ...enableGitignore,
+            name: 'coderwyd/gitignore',
+          }),
         ]),
       )
     }
     else {
       configs.push(interopDefault(import('eslint-config-flat-gitignore'))
-        .then(r => [r({ strict: false })]))
+        .then(r => [r({ name: 'coderwyd/gitignore', strict: false })]))
     }
   }
 
@@ -130,7 +138,7 @@ export async function defineConfig(
 
   // Base configs
   configs.push(
-    ignores(),
+    ignores(options.ignores),
     javascript({
       isInEditor,
       overrides: getOverrides(options, 'javascript'),
@@ -252,6 +260,10 @@ export async function defineConfig(
         typeof stylisticOptions === 'boolean' ? {} : stylisticOptions,
       ),
     )
+  }
+
+  if ('files' in options) {
+    throw new Error('[@coderwyd/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.')
   }
 
   // User can optionally pass a flat config item to the first argument
