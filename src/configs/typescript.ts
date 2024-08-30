@@ -18,7 +18,7 @@ export async function typescript(
   OptionsTypeScriptWithTypes &
   OptionsTypeScriptParserOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { componentExts = [], overrides = {}, parserOptions = {} } = options
+  const { componentExts = [], overrides = {}, overridesTypeAware = {}, parserOptions = {} } = options
 
   const files = options.files ?? [
     GLOB_TS,
@@ -105,8 +105,8 @@ export async function typescript(
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...(isTypeAware
       ? [
+          makeParser(false, files),
           makeParser(true, filesTypeAware, ignoresTypeAware),
-          makeParser(false, files, filesTypeAware),
         ]
       : [makeParser(false, files)]),
     {
@@ -170,8 +170,8 @@ export async function typescript(
             ignores: ignoresTypeAware,
             name: 'coderwyd/typescript/rules-type-aware',
             rules: {
-              ...(tsconfigPath ? typeAwareRules : {}),
-              ...overrides,
+              ...typeAwareRules,
+              ...overridesTypeAware,
             },
           },
         ]
