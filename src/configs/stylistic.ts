@@ -50,6 +50,7 @@ export async function stylistic(
       rules: {
         ...config.rules,
 
+        'antfu/consistent-chaining': 'error',
         'antfu/consistent-list-newline': 'error',
 
         'antfu/curly': 'error',
