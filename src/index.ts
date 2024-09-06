@@ -21,6 +21,7 @@ import {
   typescript,
   unicorn,
   unocss,
+  disables,
   vue,
 } from './configs'
 import {
@@ -261,6 +262,8 @@ export async function defineConfig(
       ),
     )
   }
+
+  configs.push(disables())
 
   if ('files' in options) {
     throw new Error('[@coderwyd/eslint-config] The first argument should not contain the "files" property as the options are supposed to be global. Place it in the second or later config instead.')
