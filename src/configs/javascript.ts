@@ -243,19 +243,5 @@ export function javascript(
         ...overrides,
       },
     },
-    {
-      files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
-      name: 'coderwyd/javascript/disables/cli',
-      rules: {
-        'no-console': 'off',
-      },
-    },
-    {
-      files: ['**/*.{test,spec}.js?(x)'],
-      name: 'coderwyd/javascript/disables/test',
-      rules: {
-        'no-unused-expressions': 'off',
-      },
-    },
   ]
 }

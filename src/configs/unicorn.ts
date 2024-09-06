@@ -12,6 +12,7 @@ export function unicorn(): TypedFlatConfigItem[] {
         // 'unicorn/better-regex': 'error',
         'unicorn/catch-error-name': 'error',
         'unicorn/consistent-empty-array-spread': 'error',
+        'unicorn/consistent-function-scoping': ['error', { checkArrowFunctions: false }],
         'unicorn/custom-error-definition': 'error',
         'unicorn/error-message': 'error',
         // 'unicorn/explicit-length-check': 'error',

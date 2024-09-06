@@ -32,13 +32,5 @@ export function imports(
           : {}),
       },
     },
-    {
-      files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
-      name: 'coderwyd/imports/disables/bin',
-      rules: {
-        'antfu/no-import-dist': 'off',
-        'antfu/no-import-node-modules-by-path': 'off',
-      },
-    },
   ]
 }
