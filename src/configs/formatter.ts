@@ -10,6 +10,7 @@ import {
   GLOB_YAML,
 } from '../constants/glob'
 import { ensurePackages, interopDefault, parserPlain } from '../shared'
+import { StylisticConfigDefaults } from './stylistic'
 import type {
   OptionsFormatters,
   PartialPrettierExtendedOptions,
@@ -17,7 +18,6 @@ import type {
   StylisticConfig,
   TypedFlatConfigItem,
 } from '../types'
-import { StylisticConfigDefaults } from './stylistic'
 
 export async function formatter(
   options: OptionsFormatters | true = {},

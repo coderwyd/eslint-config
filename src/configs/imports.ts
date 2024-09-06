@@ -1,4 +1,3 @@
-import { GLOB_SRC_EXT } from '../constants/glob'
 import { pluginAntfu, pluginImport } from '../plugins'
 import type { OptionsStylistic, TypedFlatConfigItem } from '../types'
 

@@ -1,5 +1,5 @@
-import type { ConfigNames, RuleOptions } from './typegen'
 import type { Linter } from 'eslint'
+import type { ConfigNames, RuleOptions } from './typegen'
 
 export type Rules = RuleOptions
 

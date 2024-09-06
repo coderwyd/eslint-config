@@ -39,7 +39,7 @@
     "build": "nr build:typegen && tsup",
     "dev": "npx @eslint/config-inspector",
     "lint": "eslint --flag unstable_ts_config .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "eslint --flag unstable_ts_config . --fix",
     "build:inspector": "pnpm build && npx @eslint/config-inspector build",
     "build:typegen": "tsx scripts/typegen.ts",
     "prepack": "nr build",

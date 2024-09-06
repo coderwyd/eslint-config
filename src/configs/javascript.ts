@@ -1,5 +1,4 @@
 import globals from 'globals'
-import { GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
 import { pluginUnusedImports } from '../plugins'
 import type {
   OptionsIsInEditor,

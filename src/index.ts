@@ -1,6 +1,8 @@
+import type { Linter } from 'eslint'
 import {
   command,
   comments,
+  disables,
   formatter,
   ignores,
   imports,
@@ -21,7 +23,6 @@ import {
   typescript,
   unicorn,
   unocss,
-  disables,
   vue,
 } from './configs'
 import {
@@ -37,7 +38,6 @@ import {
   resolveSubOptions,
 } from './shared'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
-import type { Linter } from 'eslint'
 
 const flatConfigProps = [
   'name',
