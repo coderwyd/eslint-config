@@ -1,7 +1,7 @@
 import { GLOB_DTS, GLOB_SRC, GLOB_SRC_EXT } from '../constants/glob'
 import type { TypedFlatConfigItem } from '../types'
 
-export async function disables(): Promise<TypedFlatConfigItem[]> {
+export function disables(): TypedFlatConfigItem[] {
   return [
     {
       files: [`scripts/${GLOB_SRC}`],
