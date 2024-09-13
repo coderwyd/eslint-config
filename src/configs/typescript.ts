@@ -13,10 +13,10 @@ import type {
 
 export async function typescript(
   options: OptionsFiles &
-  OptionsComponentExts &
-  OptionsOverrides &
-  OptionsTypeScriptWithTypes &
-  OptionsTypeScriptParserOptions = {},
+    OptionsComponentExts &
+    OptionsOverrides &
+    OptionsTypeScriptWithTypes &
+    OptionsTypeScriptParserOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
   const { componentExts = [], overrides = {}, overridesTypeAware = {}, parserOptions = {} } = options
 

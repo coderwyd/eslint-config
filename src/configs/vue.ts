@@ -12,10 +12,10 @@ import type {
 
 export async function vue(
   options: OptionsVue &
-  OptionsHasTypeScript &
-  OptionsOverrides &
-  OptionsStylistic &
-  OptionsFiles = {},
+    OptionsHasTypeScript &
+    OptionsOverrides &
+    OptionsStylistic &
+    OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
   const { files = [GLOB_VUE], overrides = {}, stylistic = true } = options
 

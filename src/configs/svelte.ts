@@ -10,9 +10,9 @@ import type {
 
 export async function svelte(
   options: OptionsHasTypeScript &
-  OptionsOverrides &
-  OptionsStylistic &
-  OptionsFiles = {},
+    OptionsOverrides &
+    OptionsStylistic &
+    OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
   const { files = [GLOB_SVELTE], overrides = {}, stylistic = true } = options
   const {
