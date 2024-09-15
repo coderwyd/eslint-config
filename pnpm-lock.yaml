@@ -39,8 +39,8 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0(eslint@9.10.0(jiti@1.21.6))
       eslint-plugin-command:
-        specifier: ^0.2.4
-        version: 0.2.4(eslint@9.10.0(jiti@1.21.6))
+        specifier: ^0.2.5
+        version: 0.2.5(eslint@9.10.0(jiti@1.21.6))
       eslint-plugin-eslint-comments:
         specifier: ^3.2.0
         version: 3.2.0(eslint@9.10.0(jiti@1.21.6))
@@ -1397,8 +1397,8 @@ packages:
     peerDependencies:
       eslint: '*'
 
-  eslint-plugin-command@0.2.4:
-    resolution: {integrity: sha512-IbZnQY21pOanbcCh/bAWWl+1BynV2HuDE75URMmk/28Tdn+PM7CoKeibXtPGrL7KQdIEHMgUEnRwwI8qmggVMA==}
+  eslint-plugin-command@0.2.5:
+    resolution: {integrity: sha512-mbCaSHD37MT8nVJnJUz2oeDfhz0wdOjfrqQVWkSpXuj3uU8m7/FK/niV2bL922af3M1js5x7Xcu3PwqWsrahfA==}
     peerDependencies:
       eslint: '*'
 
@@ -4207,7 +4207,7 @@ snapshots:
       '@antfu/utils': 0.7.10
       eslint: 9.10.0(jiti@1.21.6)
 
-  eslint-plugin-command@0.2.4(eslint@9.10.0(jiti@1.21.6)):
+  eslint-plugin-command@0.2.5(eslint@9.10.0(jiti@1.21.6)):
     dependencies:
       '@es-joy/jsdoccomment': 0.48.0
       eslint: 9.10.0(jiti@1.21.6)
