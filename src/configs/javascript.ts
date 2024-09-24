@@ -48,6 +48,8 @@ export function javascript(
           { enforceForClassMembers: true, setWithoutGet: true },
         ],
 
+        'antfu/no-top-level-await': 'error',
+
         'array-callback-return': 'error',
         'block-scoped-var': 'error',
         'constructor-super': 'error',

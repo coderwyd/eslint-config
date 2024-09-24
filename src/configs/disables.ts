@@ -4,17 +4,19 @@ import type { TypedFlatConfigItem } from '../types'
 export function disables(): TypedFlatConfigItem[] {
   return [
     {
-      files: [`scripts/${GLOB_SRC}`],
+      files: [`**/scripts/${GLOB_SRC}`],
       name: 'coderwyd/disables/scripts',
       rules: {
+        'antfu/no-top-level-await': 'off',
         'no-console': 'off',
         'ts/explicit-function-return-type': 'off',
       },
     },
     {
-      files: [`cli/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
+      files: [`**/cli/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
       name: 'coderwyd/disables/cli',
       rules: {
+        'antfu/no-top-level-await': 'off',
         'no-console': 'off',
       },
     },
@@ -40,6 +42,7 @@ export function disables(): TypedFlatConfigItem[] {
       files: ['**/*.{test,spec}.([tj])s?(x)'],
       name: 'coderwyd/disables/test',
       rules: {
+        'antfu/no-top-level-await': 'off',
         'no-unused-expressions': 'off',
       },
     },
