@@ -95,13 +95,11 @@ export function renamePluginInConfigs(
 ): TypedFlatConfigItem[] {
   return configs.map((i) => {
     const clone = { ...i }
-    if (clone.rules)
-      clone.rules = renameRules(clone.rules, map)
+    if (clone.rules) clone.rules = renameRules(clone.rules, map)
     if (clone.plugins) {
       clone.plugins = Object.fromEntries(
         Object.entries(clone.plugins).map(([key, value]) => {
-          if (key in map)
-            return [map[key], value]
+          if (key in map) return [map[key], value]
           return [key, value]
         }),
       )
@@ -134,12 +132,15 @@ export function isPackageInScope(name: string): boolean {
 }
 
 export async function ensurePackages(packages: string[]) {
-  if (process.env.CI || process.stdout.isTTY === false || isCwdInScope === false)
+  if (
+    process.env.CI ||
+    process.stdout.isTTY === false ||
+    isCwdInScope === false
+  )
     return
 
-  const nonExistingPackages = packages.filter(i => !isPackageInScope(i))
-  if (nonExistingPackages.length === 0)
-    return
+  const nonExistingPackages = packages.filter((i) => !isPackageInScope(i))
+  if (nonExistingPackages.length === 0) return
 
   const { default: prompts } = await import('prompts')
   const { result } = await prompts([
@@ -152,7 +153,7 @@ export async function ensurePackages(packages: string[]) {
     },
   ])
   if (result) {
-    await import('@antfu/install-pkg').then(i =>
+    await import('@antfu/install-pkg').then((i) =>
       i.installPackage(nonExistingPackages, { dev: true }),
     )
   }
@@ -176,24 +177,26 @@ export function getOverrides<K extends keyof OptionsConfig>(
 }
 
 export function isInEditorEnv(): boolean {
-  if (process.env.CI)
+  if (process.env.CI) return false
+  if (isInGitHooksOrLintStaged()) {
     return false
-  if (isInGitHooksOrLintStaged())
-    return false
-  return !!(process.env.VSCODE_PID
-    || process.env.VSCODE_CWD
-    || process.env.JETBRAINS_IDE
-    || process.env.VIM
-    || process.env.NVIM
-    || false
+  }
+  return !!(
+    process.env.VSCODE_PID ||
+    process.env.VSCODE_CWD ||
+    process.env.JETBRAINS_IDE ||
+    process.env.VIM ||
+    process.env.NVIM ||
+    false
   )
 }
 
 export function isInGitHooksOrLintStaged(): boolean {
-  return !!(process.env.GIT_PARAMS
-    || process.env.VSCODE_GIT_COMMAND
-    || process.env.npm_lifecycle_script?.startsWith('lint-staged')
-    || process.env.npm_lifecycle_script?.startsWith('nano-staged')
-    || false
+  return !!(
+    process.env.GIT_PARAMS ||
+    process.env.VSCODE_GIT_COMMAND ||
+    process.env.npm_lifecycle_script?.startsWith('lint-staged') ||
+    process.env.npm_lifecycle_script?.startsWith('nano-staged') ||
+    false
   )
 }

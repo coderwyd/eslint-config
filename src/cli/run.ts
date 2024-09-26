@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
@@ -52,8 +51,7 @@ export async function run(options: RuleOptions = {}) {
       name: 'confirmed',
       type: 'confirm',
     })
-    if (!confirmed)
-      return process.exit(1)
+    if (!confirmed) return process.exit(1)
   }
 
   // Update package.json
@@ -64,8 +62,7 @@ export async function run(options: RuleOptions = {}) {
   pkg.devDependencies ??= {}
   pkg.devDependencies['@coderwyd/eslint-config'] = `^${version}`
 
-  if (!pkg.devDependencies.eslint)
-    pkg.devDependencies.eslint = eslintVersion
+  if (!pkg.devDependencies.eslint) pkg.devDependencies.eslint = eslintVersion
 
   await fsp.writeFile(pathPackageJSON, JSON.stringify(pkg, null, 2))
   console.log(c.green(`${CHECK} changes wrote to package.json`))
@@ -82,8 +79,7 @@ export async function run(options: RuleOptions = {}) {
     for (const glob of globs) {
       if (glob.type === 'ignore') {
         eslintIgnores.push(...glob.patterns)
-      }
-      else if (glob.type === 'unignore') {
+      } else if (glob.type === 'unignore') {
         eslintIgnores.push(
           ...glob.patterns.map((pattern: string) => `!${pattern}`),
         )
@@ -100,8 +96,7 @@ import { defineConfig } from '@coderwyd/eslint-config'
 
 export default defineConfig({\n${coderwydConfig}\n})
 `.trimStart()
-  }
-  else {
+  } else {
     eslintConfigContent = `
 const { defineConfig } = require('@coderwyd/eslint-config')
 
@@ -145,8 +140,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
           },
         },
       )
-    }
-    catch (error: any) {
+    } catch (error: any) {
       console.log(error.message)
       return
     }
@@ -162,13 +156,12 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
       console.log(c.green(`${CHECK} created .vscode/settings.json`))
-    }
-    else {
+    } else {
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
       settingsContent = settingsContent.trim().replace(/\s*\}$/, '')
-      settingsContent
-        += settingsContent.endsWith(',') || settingsContent.endsWith('{')
+      settingsContent +=
+        settingsContent.endsWith(',') || settingsContent.endsWith('{')
           ? ''
           : ','
       settingsContent += `${vscodeSettingsString}}\n`

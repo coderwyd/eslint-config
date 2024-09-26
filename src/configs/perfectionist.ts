@@ -14,7 +14,10 @@ export function perfectionist(): TypedFlatConfigItem[] {
         perfectionist: pluginPerfectionist,
       },
       rules: {
-        'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
+        'perfectionist/sort-exports': [
+          'error',
+          { order: 'asc', type: 'natural' },
+        ],
         'perfectionist/sort-imports': [
           'warn',
           {

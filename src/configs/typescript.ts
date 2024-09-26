@@ -1,5 +1,10 @@
 import process from 'node:process'
-import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
+import {
+  GLOB_ASTRO_TS,
+  GLOB_MARKDOWN,
+  GLOB_TS,
+  GLOB_TSX,
+} from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules } from '../shared'
 import type {
@@ -18,12 +23,17 @@ export async function typescript(
     OptionsTypeScriptWithTypes &
     OptionsTypeScriptParserOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { componentExts = [], overrides = {}, overridesTypeAware = {}, parserOptions = {} } = options
+  const {
+    componentExts = [],
+    overrides = {},
+    overridesTypeAware = {},
+    parserOptions = {},
+  } = options
 
   const files = options.files ?? [
     GLOB_TS,
     GLOB_TSX,
-    ...componentExts.map(ext => `**/*.${ext}`),
+    ...componentExts.map((ext) => `**/*.${ext}`),
   ]
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX]
@@ -75,7 +85,7 @@ export async function typescript(
       languageOptions: {
         parser: parserTs,
         parserOptions: {
-          extraFileExtensions: componentExts.map(ext => `.${ext}`),
+          extraFileExtensions: componentExts.map((ext) => `.${ext}`),
           sourceType: 'module',
           ...(typeAware
             ? {
@@ -138,8 +148,11 @@ export async function typescript(
         'ts/no-dynamic-delete': 'off',
         'ts/no-empty-object-type': [
           'error',
-          { allowInterfaces: 'with-single-extends', // interface Derived extends Base {}
-            allowObjectTypes: 'never', allowWithName: 'Props$' },
+          {
+            allowInterfaces: 'with-single-extends', // interface Derived extends Base {}
+            allowObjectTypes: 'never',
+            allowWithName: 'Props$',
+          },
         ],
         'ts/no-explicit-any': 'off',
         'ts/no-extraneous-class': 'off',
@@ -148,11 +161,14 @@ export async function typescript(
         'ts/no-non-null-assertion': 'off',
         'ts/no-redeclare': ['error', { builtinGlobals: false }],
         'ts/no-require-imports': 'error',
-        'ts/no-unused-expressions': ['error', {
-          allowShortCircuit: true,
-          allowTaggedTemplates: true,
-          allowTernary: true,
-        }],
+        'ts/no-unused-expressions': [
+          'error',
+          {
+            allowShortCircuit: true,
+            allowTaggedTemplates: true,
+            allowTernary: true,
+          },
+        ],
         'ts/no-unused-vars': 'off',
         'ts/no-use-before-define': [
           'error',

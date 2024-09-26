@@ -59,8 +59,7 @@ Add the following settings to your `.vscode/settings.json`:
 
 ```jsonc
 {
-  // Disable the default formatter, use eslint instead
-  "prettier.enable": false,
+  "prettier.enable": true,
   "editor.formatOnSave": false,
 
   // Auto fix
@@ -68,34 +67,6 @@ Add the following settings to your `.vscode/settings.json`:
     "source.fixAll": "explicit",
     "source.organizeImports": "never"
   },
-
-  // Silent the stylistic rules in you IDE, but still auto fix them
-  "eslint.rules.customizations": [
-    { "rule": "style/*", "severity": "off", "fixable": true },
-    { "rule": "format/*", "severity": "off", "fixable": true },
-    { "rule": "*-indent", "severity": "off", "fixable": true },
-    { "rule": "*-spacing", "severity": "off", "fixable": true },
-    { "rule": "*-spaces", "severity": "off", "fixable": true },
-    { "rule": "*-order", "severity": "off", "fixable": true },
-    { "rule": "*-dangle", "severity": "off", "fixable": true },
-    { "rule": "*-newline", "severity": "off", "fixable": true },
-    { "rule": "*quotes", "severity": "off", "fixable": true },
-    { "rule": "*semi", "severity": "off", "fixable": true }
-  ],
-
-  // Enable eslint for all supported languages
-  "eslint.validate": [
-    "html",
-    "css",
-    "less",
-    "scss",
-    "json",
-    "jsonc",
-    "yaml",
-    "yml",
-    "markdown",
-    "toml"
-  ]
 }
 ```
 
@@ -157,14 +128,6 @@ interface OptionsConfig extends OptionsComponentExts {
    */
   typescript?: boolean | OptionsTypescript
 
-  /**
-   * Enable JSX related rules.
-   *
-   * Currently only stylistic rules are included.
-   *
-   * @default true
-   */
-  jsx?: boolean
 
   /**
    * Enable test support.
@@ -227,37 +190,12 @@ interface OptionsConfig extends OptionsComponentExts {
   unocss?: boolean | OptionsUnoCSS
 
   /**
-   * Enable stylistic rules.
-   *
-   * @see https://eslint.style/
-   * @default true
-   */
-  stylistic?: boolean | (StylisticConfig & OptionsOverrides)
-
-  /**
    * Enable regexp rules.
    *
    * @see https://ota-meshi.github.io/eslint-plugin-regexp/
    * @default true
    */
   regexp?: boolean | (OptionsRegExp & OptionsOverrides)
-
-  /**
-   * Use external formatters to format files.
-   *
-   * @default
-   * {
-   *  "html": true,
-   *  "css": true,
-   *  "graphql": false,
-   *  "markdown": false
-   *  "yaml": false
-   *  "toml": false
-   * }
-   *
-   * When set to `true`, it will enable all formatters.
-   */
-  formatter?: boolean | OptionsFormatters
 
   /**
    * Control to disable some rules in editors.

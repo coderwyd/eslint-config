@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import process from 'node:process'
 import c from 'picocolors'
 import yargs from 'yargs'
@@ -16,7 +15,7 @@ const instance = yargs(hideBin(process.argv))
   .command(
     '*',
     'Run the initialization or migration',
-    args =>
+    (args) =>
       args
         .option('yes', {
           alias: 'y',
@@ -29,8 +28,7 @@ const instance = yargs(hideBin(process.argv))
       console.log()
       try {
         await run(args)
-      }
-      catch (error) {
+      } catch (error) {
         console.error(c.inverse(c.red(' Failed to migrate ')))
         console.error(c.red(`${CROSS} ${String(error)}`))
         process.exit(1)

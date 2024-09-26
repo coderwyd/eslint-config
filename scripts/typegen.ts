@@ -5,18 +5,15 @@ import picocolors from 'picocolors'
 import {
   command,
   comments,
-  formatter,
   imports,
   javascript,
   jsdoc,
   jsonc,
-  jsx,
   node,
   perfectionist,
   react,
   regexp,
   sortPackageJson,
-  stylistic,
   svelte,
   tailwindcss,
   test,
@@ -36,17 +33,14 @@ const configs = await combine(
     },
   },
   comments(),
-  formatter(),
   imports(),
   javascript(),
   jsdoc(),
   jsonc(),
-  jsx(),
   node(),
   perfectionist(),
   react(),
   sortPackageJson(),
-  stylistic(),
   svelte(),
   test(),
   typescript(),
@@ -58,7 +52,7 @@ const configs = await combine(
   tailwindcss(),
 )
 
-const configNames = configs.map(i => i.name).filter(Boolean) as string[]
+const configNames = configs.map((i) => i.name).filter(Boolean) as string[]
 
 let dts = await flatConfigsToRulesDTS(configs, {
   includeAugmentation: false,
@@ -66,7 +60,7 @@ let dts = await flatConfigsToRulesDTS(configs, {
 
 dts += `
 // Names of all the configs
-export type ConfigNames = ${configNames.map(i => `'${i}'`).join(' | ')}
+export type ConfigNames = ${configNames.map((i) => `'${i}'`).join(' | ')}
 `
 
 await writeFile('src/types/typegen.d.ts', dts)

@@ -4,10 +4,7 @@ import type { TypedFlatConfigItem } from '../types'
 export function ignores(userIgnores: string[] = []): TypedFlatConfigItem[] {
   return [
     {
-      ignores: [
-        ...GLOB_EXCLUDE,
-        ...userIgnores,
-      ],
+      ignores: [...GLOB_EXCLUDE, ...userIgnores],
       name: 'coderwyd/ignores',
     },
   ]

@@ -16,8 +16,7 @@ export function regexp(
 
   if (options.level === 'warn') {
     Object.keys(rules).forEach((key) => {
-      if (rules[key] === 'error')
-        rules[key] = 'warn'
+      if (rules[key] === 'error') rules[key] = 'warn'
     })
   }
 

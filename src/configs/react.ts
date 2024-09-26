@@ -28,8 +28,8 @@ export async function react(
     : undefined
   const isTypeAware = !!tsconfigPath
 
-  const [pluginReact, pluginReactHooks, pluginReactRefresh, parserTs]
-    = await Promise.all([
+  const [pluginReact, pluginReactHooks, pluginReactRefresh, parserTs] =
+    await Promise.all([
       interopDefault(import('@eslint-react/eslint-plugin')),
       interopDefault(import('eslint-plugin-react-hooks')),
       interopDefault(import('eslint-plugin-react-refresh')),
@@ -37,7 +37,7 @@ export async function react(
     ] as const)
 
   const isAllowConstantExport = ReactRefreshAllowConstantExportPackages.some(
-    i => isPackageExists(i),
+    (i) => isPackageExists(i),
   )
 
   const plugins = pluginReact.configs.all.plugins
@@ -46,7 +46,7 @@ export async function react(
     {
       name: 'coderwyd/react/setup',
       plugins: {
-        'react': plugins['@eslint-react'],
+        react: plugins['@eslint-react'],
         'react-dom': plugins['@eslint-react/dom'],
         'react-hooks': pluginReactHooks,
         'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
