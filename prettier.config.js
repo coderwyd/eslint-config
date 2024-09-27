@@ -1,7 +1,6 @@
 export default {
   semi: false,
   singleQuote: true,
-  quoteProps: 'as-needed',
   overrides: [
     {
       files: [
@@ -29,12 +28,6 @@ export default {
       ],
       options: {
         requirePragma: true,
-      },
-    },
-    {
-      files: ['**/jsr.json'],
-      options: {
-        parser: 'json-stringify',
       },
     },
   ],
