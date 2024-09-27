@@ -1,10 +1,7 @@
 import { pluginAntfu, pluginImport } from '../plugins'
-import type { OptionsStylistic, TypedFlatConfigItem } from '../types'
+import type { TypedFlatConfigItem } from '../types'
 
-export function imports(
-  options: OptionsStylistic = {},
-): TypedFlatConfigItem[] {
-  const { stylistic = true } = options
+export function imports(): TypedFlatConfigItem[] {
   return [
     {
       name: 'coderwyd/imports/rules',
@@ -23,12 +20,6 @@ export function imports(
         'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
-
-        ...(stylistic
-          ? {
-              'import/newline-after-import': ['error', { count: 1 }],
-            }
-          : {}),
       },
     },
   ]

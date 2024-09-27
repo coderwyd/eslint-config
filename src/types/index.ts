@@ -1,11 +1,6 @@
-import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import type { ParserOptions } from '@typescript-eslint/parser'
 import type { FlatGitignoreOptions } from 'eslint-config-flat-gitignore'
-import type { Options as VueBlocksOptions } from 'eslint-processor-vue-blocks'
-import type {
-  PartialPrettierExtendedOptions,
-  TypedFlatConfigItem,
-} from './rule'
+import type { TypedFlatConfigItem } from './rule'
 
 export * from './rule'
 
@@ -21,46 +16,6 @@ export interface OptionsFiles {
 export type OptionsTypescript =
   | (OptionsTypeScriptWithTypes & OptionsOverrides)
   | (OptionsTypeScriptParserOptions & OptionsOverrides)
-
-export interface OptionsFormatters {
-  /**
-   * Enable formatting support for HTML.
-   */
-  html?: boolean
-
-  /**
-   * Enable formatting support for CSS, Less, Sass, and SCSS.
-   */
-  css?: boolean
-
-  /**
-   * Enable formatting support for Markdown.
-   */
-  markdown?: boolean
-
-  /**
-   * Enable formatting support for GraphQL.
-   */
-  graphql?: boolean
-
-  /**
-   * Enable formatting support for Yaml.
-   */
-  yaml?: boolean
-
-  /**
-   * Enable formatting support for Toml.
-   */
-  toml?: boolean
-
-  /**
-   * Custom options for Prettier.
-   *
-   * By default it's controlled by our own config.
-   *
-   */
-  prettierOptions?: PartialPrettierExtendedOptions
-}
 
 export interface OptionsComponentExts {
   /**
@@ -108,12 +63,6 @@ export interface OptionsHasTypeScript {
   typescript?: boolean
 }
 
-export interface OptionsStylistic {
-  stylistic?: boolean | StylisticConfig
-}
-
-export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi'> {}
-
 export interface OptionsIsInEditor {
   isInEditor?: boolean
 }
@@ -142,22 +91,7 @@ export interface OptionsUnoCSS extends OptionsOverrides {
   strict?: boolean
 }
 
-export interface OptionsVue extends OptionsOverrides {
-  /**
-   * Create virtual files for Vue SFC blocks to enable linting.
-   *
-   * @see https://github.com/antfu/eslint-processor-vue-blocks
-   * @default true
-   */
-  sfcBlocks?: boolean | VueBlocksOptions
-
-  /**
-   * The vue version
-   *
-   * @default 3
-   */
-  version?: 2 | 3
-}
+export interface OptionsVue extends OptionsOverrides {}
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
@@ -190,15 +124,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the dependencies
    */
   typescript?: boolean | OptionsTypescript
-
-  /**
-   * Enable JSX related rules.
-   *
-   * Currently only stylistic rules are included.
-   *
-   * @default true
-   */
-  jsx?: boolean
 
   /**
    * Enable test support.
@@ -261,37 +186,12 @@ export interface OptionsConfig extends OptionsComponentExts {
   unocss?: boolean | OptionsUnoCSS
 
   /**
-   * Enable stylistic rules.
-   *
-   * @see https://eslint.style/
-   * @default true
-   */
-  stylistic?: boolean | (StylisticConfig & OptionsOverrides)
-
-  /**
    * Enable regexp rules.
    *
    * @see https://ota-meshi.github.io/eslint-plugin-regexp/
    * @default true
    */
   regexp?: boolean | (OptionsRegExp & OptionsOverrides)
-
-  /**
-   * Use external formatters to format files.
-   *
-   * @default
-   * {
-   *  "html": true,
-   *  "css": true,
-   *  "graphql": false,
-   *  "markdown": false
-   *  "yaml": false
-   *  "toml": false
-   * }
-   *
-   * When set to `true`, it will enable all formatters.
-   */
-  formatter?: boolean | OptionsFormatters
 
   /**
    * Control to disable some rules in editors.

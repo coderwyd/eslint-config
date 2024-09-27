@@ -31,8 +31,6 @@ export const GLOB_YAML = '**/*.y?(a)ml'
 export const GLOB_TOML = '**/*.toml'
 export const GLOB_GRAPHQL = '**/*.{g,graph}ql'
 
-export const GLOB_PRETTIER_LINT = [GLOB_SRC, GLOB_VUE]
-
 export const GLOB_MARKDOWN_CODE = `${GLOB_MARKDOWN}/${GLOB_SRC}`
 
 export const GLOB_TS_CONFIG = '**/tsconfig.json'
