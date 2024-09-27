@@ -10,7 +10,6 @@
 - ✨ Support Vue, React, Svelte.
 - 🎯 Designed to work with TypeScript, Vue out-of-box
 - 🏆 Reasonable defaults, best practices, only one-line of config
-- 🎨 Use ESlint to format HTML, CSS, LESS, SCSS, YAML, TOML, Markdown, JSON, JSONC.
 
 ## Usage
 
@@ -65,7 +64,7 @@ Add the following settings to your `.vscode/settings.json`:
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports": "never"
+    "source.organizeImports": "never",
   },
 }
 ```
@@ -127,7 +126,6 @@ interface OptionsConfig extends OptionsComponentExts {
    * @default auto-detect based on the dependencies
    */
   typescript?: boolean | OptionsTypescript
-
 
   /**
    * Enable test support.

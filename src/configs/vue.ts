@@ -39,32 +39,6 @@ export async function vue(
 
   return [
     {
-      // This allows Vue plugin to work with auto imports
-      // https://github.com/vuejs/eslint-plugin-vue/pull/2422
-      languageOptions: {
-        globals: {
-          computed: 'readonly',
-          defineEmits: 'readonly',
-          defineExpose: 'readonly',
-          defineProps: 'readonly',
-          onMounted: 'readonly',
-          onUnmounted: 'readonly',
-          reactive: 'readonly',
-          ref: 'readonly',
-          shallowReactive: 'readonly',
-          shallowRef: 'readonly',
-          toRef: 'readonly',
-          toRefs: 'readonly',
-          watch: 'readonly',
-          watchEffect: 'readonly',
-        },
-      },
-      name: 'coderwyd/vue/setup',
-      plugins: {
-        vue: pluginVue,
-      },
-    },
-    {
       files,
       languageOptions: {
         parser: parserVue,
@@ -82,6 +56,9 @@ export async function vue(
         },
       },
       name: 'coderwyd/vue/rules',
+      plugins: {
+        vue: pluginVue,
+      },
       processor: pluginVue.processors!['.vue'],
       rules: {
         ...pluginVue.configs.base.rules,

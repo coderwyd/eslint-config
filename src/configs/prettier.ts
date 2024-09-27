@@ -1,5 +1,4 @@
 import prettierRules from 'eslint-config-prettier'
-import { GLOB_PRETTIER_LINT } from '../constants/glob'
 import { interopDefault } from '../shared'
 import type { TypedFlatConfigItem } from '../types'
 
@@ -10,7 +9,7 @@ export async function prettier(): Promise<TypedFlatConfigItem[]> {
 
   return [
     {
-      files: GLOB_PRETTIER_LINT,
+      name: 'coderwyd/prettier/rules',
       plugins: {
         prettier: pluginPrettier,
       },

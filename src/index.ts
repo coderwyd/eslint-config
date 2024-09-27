@@ -2,7 +2,6 @@ import type { Linter } from 'eslint'
 import {
   command,
   comments,
-  disables,
   ignores,
   imports,
   javascript,
@@ -15,6 +14,7 @@ import {
   regexp,
   sortPackageJson,
   sortTsconfig,
+  specials,
   svelte,
   tailwindcss,
   test,
@@ -221,7 +221,7 @@ export async function defineConfig(
     )
   }
 
-  configs.push(disables())
+  configs.push(specials())
 
   if ('files' in options) {
     throw new Error(
