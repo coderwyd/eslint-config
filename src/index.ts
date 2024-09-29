@@ -136,7 +136,6 @@ export async function defineConfig(
     imports(),
     unicorn(),
     command(),
-    prettier(),
 
     // Optional plugins (installed but not enabled by default)
     perfectionist(),
@@ -221,7 +220,7 @@ export async function defineConfig(
     )
   }
 
-  configs.push(specials())
+  configs.push(specials(), prettier())
 
   if ('files' in options) {
     throw new Error(
