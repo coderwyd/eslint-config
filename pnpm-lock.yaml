@@ -58,7 +58,7 @@ importers:
         version: 3.3.0
       eslint-plugin-perfectionist:
         specifier: ^3.8.0
-        version: 3.8.0(eslint@9.12.0(jiti@2.3.3))(svelte-eslint-parser@0.41.1(svelte@4.2.19))(svelte@4.2.19)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.12.0(jiti@2.3.3)))
+        version: 3.8.0(eslint@9.12.0(jiti@2.3.3))(svelte-eslint-parser@0.42.0(svelte@4.2.19))(svelte@4.2.19)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.12.0(jiti@2.3.3)))
       eslint-plugin-prettier:
         specifier: ^5.2.1
         version: 5.2.1(eslint-config-prettier@9.1.0(eslint@9.12.0(jiti@2.3.3)))(eslint@9.12.0(jiti@2.3.3))(prettier@3.3.3)
@@ -175,11 +175,11 @@ importers:
         specifier: ^4.2.19
         version: 4.2.19
       svelte-eslint-parser:
-        specifier: ^0.41.1
-        version: 0.41.1(svelte@4.2.19)
+        specifier: ^0.42.0
+        version: 0.42.0(svelte@4.2.19)
       tsup:
         specifier: ^8.3.0
-        version: 8.3.0(jiti@2.3.3)(postcss@8.4.39)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.5.0)
+        version: 8.3.0(jiti@2.3.3)(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.5.0)
       tsx:
         specifier: ^4.19.1
         version: 4.19.1
@@ -2918,6 +2918,15 @@ packages:
       svelte:
         optional: true
 
+  svelte-eslint-parser@0.42.0:
+    resolution: {integrity: sha512-e7LyqFPTuF43ZYhKOf0Gq1lzP+G64iWVJXAIcwVxohGx5FFyqdUkw7DEXNjZ+Fm+TAA98zPmDqWvgD1OpyMi5A==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      svelte: ^3.37.0 || ^4.0.0 || ^5.0.0-next.191
+    peerDependenciesMeta:
+      svelte:
+        optional: true
+
   svelte@4.2.19:
     resolution: {integrity: sha512-IY1rnGr6izd10B0A8LqsBfmlT5OILVuZ7XsI0vdGPEvuonFV7NYEUK4dAkm9Zg2q0Um92kYjTpS1CAP3Nh/KWw==}
     engines: {node: '>=16'}
@@ -4659,7 +4668,7 @@ snapshots:
 
   eslint-plugin-no-only-tests@3.3.0: {}
 
-  eslint-plugin-perfectionist@3.8.0(eslint@9.12.0(jiti@2.3.3))(svelte-eslint-parser@0.41.1(svelte@4.2.19))(svelte@4.2.19)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.12.0(jiti@2.3.3))):
+  eslint-plugin-perfectionist@3.8.0(eslint@9.12.0(jiti@2.3.3))(svelte-eslint-parser@0.42.0(svelte@4.2.19))(svelte@4.2.19)(typescript@5.6.3)(vue-eslint-parser@9.4.3(eslint@9.12.0(jiti@2.3.3))):
     dependencies:
       '@typescript-eslint/types': 8.8.0
       '@typescript-eslint/utils': 8.8.0(eslint@9.12.0(jiti@2.3.3))(typescript@5.6.3)
@@ -4668,7 +4677,7 @@ snapshots:
       natural-compare-lite: 1.4.0
     optionalDependencies:
       svelte: 4.2.19
-      svelte-eslint-parser: 0.41.1(svelte@4.2.19)
+      svelte-eslint-parser: 0.42.0(svelte@4.2.19)
       vue-eslint-parser: 9.4.3(eslint@9.12.0(jiti@2.3.3))
     transitivePeerDependencies:
       - supports-color
@@ -5748,12 +5757,12 @@ snapshots:
     optionalDependencies:
       postcss: 8.4.47
 
-  postcss-load-config@6.0.1(jiti@2.3.3)(postcss@8.4.39)(tsx@4.19.1)(yaml@2.5.0):
+  postcss-load-config@6.0.1(jiti@2.3.3)(postcss@8.4.47)(tsx@4.19.1)(yaml@2.5.0):
     dependencies:
       lilconfig: 3.1.2
     optionalDependencies:
       jiti: 2.3.3
-      postcss: 8.4.39
+      postcss: 8.4.47
       tsx: 4.19.1
       yaml: 2.5.0
 
@@ -5769,6 +5778,10 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.4.39):
     dependencies:
       postcss: 8.4.39
+
+  postcss-scss@4.0.9(postcss@8.4.47):
+    dependencies:
+      postcss: 8.4.47
 
   postcss-selector-parser@6.1.2:
     dependencies:
@@ -6082,6 +6095,16 @@ snapshots:
     optionalDependencies:
       svelte: 4.2.19
 
+  svelte-eslint-parser@0.42.0(svelte@4.2.19):
+    dependencies:
+      eslint-scope: 7.2.2
+      eslint-visitor-keys: 3.4.3
+      espree: 9.6.1
+      postcss: 8.4.47
+      postcss-scss: 4.0.9(postcss@8.4.47)
+    optionalDependencies:
+      svelte: 4.2.19
+
   svelte@4.2.19:
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -6200,7 +6223,7 @@ snapshots:
 
   tslib@2.7.0: {}
 
-  tsup@8.3.0(jiti@2.3.3)(postcss@8.4.39)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.5.0):
+  tsup@8.3.0(jiti@2.3.3)(postcss@8.4.47)(tsx@4.19.1)(typescript@5.6.3)(yaml@2.5.0):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.23.0)
       cac: 6.7.14
@@ -6211,7 +6234,7 @@ snapshots:
       execa: 5.1.1
       joycon: 3.1.1
       picocolors: 1.1.1
-      postcss-load-config: 6.0.1(jiti@2.3.3)(postcss@8.4.39)(tsx@4.19.1)(yaml@2.5.0)
+      postcss-load-config: 6.0.1(jiti@2.3.3)(postcss@8.4.47)(tsx@4.19.1)(yaml@2.5.0)
       resolve-from: 5.0.0
       rollup: 4.19.0
       source-map: 0.8.0-beta.0
@@ -6219,7 +6242,7 @@ snapshots:
       tinyglobby: 0.2.6
       tree-kill: 1.2.2
     optionalDependencies:
-      postcss: 8.4.39
+      postcss: 8.4.47
       typescript: 5.6.3
     transitivePeerDependencies:
       - jiti
