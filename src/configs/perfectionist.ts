@@ -34,7 +34,7 @@ export function perfectionist(): TypedFlatConfigItem[] {
               'style',
               'unknown',
             ],
-            internalPattern: ['~/**', '@/**', '#**'],
+            internalPattern: ['^[~@#]/.*'],
             newlinesBetween: 'ignore',
             order: 'asc',
             type: 'natural',
