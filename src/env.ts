@@ -24,9 +24,15 @@ const RemixPackages = [
 
 const NextJsPackages = ['next']
 
+// react refresh
+const ReactRefreshAllowConstantExportPackages = ['vite']
+
 // export const hasReact = hasPackages(['react', ...RemixPackages, ...NextJsPackages])
 export const isUsingRemix = hasPackages(RemixPackages)
 export const isUsingNext = hasPackages(NextJsPackages)
+export const isAllowConstantExport = hasPackages(
+  ReactRefreshAllowConstantExportPackages,
+)
 
 function hasPackages(packages: string[]) {
   return packages.some((name) => isPackageExists(name))
