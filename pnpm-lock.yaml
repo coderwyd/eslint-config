@@ -169,7 +169,7 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1
       svelte:
-        specifier: ^5.14.6
+        specifier: ^5.16.0
         version: 5.16.0
       svelte-eslint-parser:
         specifier: ^0.43.0
