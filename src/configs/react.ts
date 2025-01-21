@@ -5,7 +5,12 @@ import {
   GLOB_TS,
   GLOB_TSX,
 } from '../constants/glob'
-import { isAllowConstantExport, isUsingNext, isUsingRemix } from '../env'
+import {
+  isAllowConstantExport,
+  isUsingNext,
+  isUsingReactRouter,
+  isUsingRemix,
+} from '../env'
 
 import { ensurePackages, interopDefault } from '../shared'
 import type {
@@ -42,13 +47,17 @@ export async function react(
     'react/no-leaked-conditional-rendering': 'warn',
   }
 
-  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all(
-    [
-      interopDefault(import('@eslint-react/eslint-plugin')),
-      interopDefault(import('eslint-plugin-react-hooks')),
-      interopDefault(import('eslint-plugin-react-refresh')),
-    ] as const,
-  )
+  const [
+    pluginReact,
+    pluginReactHooks,
+    pluginReactRefresh,
+    pluginReactCompiler,
+  ] = await Promise.all([
+    interopDefault(import('@eslint-react/eslint-plugin')),
+    interopDefault(import('eslint-plugin-react-hooks')),
+    interopDefault(import('eslint-plugin-react-refresh')),
+    interopDefault(import('eslint-plugin-react-compiler')),
+  ] as const)
 
   const plugins = pluginReact.configs.all.plugins
 
@@ -62,6 +71,8 @@ export async function react(
         'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
         'react-naming-convention': plugins['@eslint-react/naming-convention'],
         'react-refresh': pluginReactRefresh,
+        'react-web-api': plugins['@eslint-react/web-api'],
+        'react-compiler': pluginReactCompiler,
       },
     },
     {
@@ -76,6 +87,12 @@ export async function react(
       },
       name: 'coderwyd/react/rules',
       rules: {
+        // recommended rules from @eslint-react/web-api
+        'react-web-api/no-leaked-event-listener': 'warn',
+        'react-web-api/no-leaked-interval': 'warn',
+        'react-web-api/no-leaked-resize-observer': 'warn',
+        'react-web-api/no-leaked-timeout': 'warn',
+
         // recommended rules from @eslint-react/dom
         'react-dom/no-children-in-void-dom-elements': 'warn',
         'react-dom/no-dangerously-set-innerhtml': 'warn',
@@ -88,6 +105,8 @@ export async function react(
         'react-dom/no-script-url': 'warn',
         'react-dom/no-unsafe-iframe-sandbox': 'warn',
         'react-dom/no-unsafe-target-blank': 'warn',
+
+        'react-compiler/react-compiler': 'warn',
 
         // recommended rules react-hooks
         'react-hooks/exhaustive-deps': 'warn',
@@ -116,7 +135,7 @@ export async function react(
                     'generateViewport',
                   ]
                 : []),
-              ...(isUsingRemix
+              ...(isUsingRemix || isUsingReactRouter
                 ? ['meta', 'links', 'headers', 'loader', 'action']
                 : []),
             ],

@@ -15,6 +15,11 @@ declare module 'eslint-plugin-import-x' {
 
   export default plugin
 }
+declare module 'eslint-plugin-react-compiler' {
+  const plugin: import('eslint').ESLint.Plugin
+
+  export default plugin
+}
 
 declare module 'eslint-plugin-vue' {
   export type VueConfigKey =
