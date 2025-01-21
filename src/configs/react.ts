@@ -66,13 +66,13 @@ export async function react(
       name: 'coderwyd/react/setup',
       plugins: {
         react: plugins['@eslint-react'],
+        'react-compiler': pluginReactCompiler,
         'react-dom': plugins['@eslint-react/dom'],
         'react-hooks': pluginReactHooks,
         'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
         'react-naming-convention': plugins['@eslint-react/naming-convention'],
         'react-refresh': pluginReactRefresh,
         'react-web-api': plugins['@eslint-react/web-api'],
-        'react-compiler': pluginReactCompiler,
       },
     },
     {
@@ -87,16 +87,12 @@ export async function react(
       },
       name: 'coderwyd/react/rules',
       rules: {
-        // recommended rules from @eslint-react/web-api
-        'react-web-api/no-leaked-event-listener': 'warn',
-        'react-web-api/no-leaked-interval': 'warn',
-        'react-web-api/no-leaked-resize-observer': 'warn',
-        'react-web-api/no-leaked-timeout': 'warn',
-
+        'react-compiler/react-compiler': 'warn',
         // recommended rules from @eslint-react/dom
         'react-dom/no-children-in-void-dom-elements': 'warn',
         'react-dom/no-dangerously-set-innerhtml': 'warn',
         'react-dom/no-dangerously-set-innerhtml-with-children': 'error',
+
         'react-dom/no-find-dom-node': 'error',
         'react-dom/no-missing-button-type': 'warn',
         'react-dom/no-missing-iframe-sandbox': 'warn',
@@ -105,13 +101,9 @@ export async function react(
         'react-dom/no-script-url': 'warn',
         'react-dom/no-unsafe-iframe-sandbox': 'warn',
         'react-dom/no-unsafe-target-blank': 'warn',
-
-        'react-compiler/react-compiler': 'warn',
-
         // recommended rules react-hooks
         'react-hooks/exhaustive-deps': 'warn',
         'react-hooks/rules-of-hooks': 'error',
-
         // react refresh
         'react-refresh/only-export-components': [
           'warn',
@@ -141,6 +133,14 @@ export async function react(
             ],
           },
         ],
+
+        // recommended rules from @eslint-react/web-api
+        'react-web-api/no-leaked-event-listener': 'warn',
+
+        'react-web-api/no-leaked-interval': 'warn',
+        'react-web-api/no-leaked-resize-observer': 'warn',
+
+        'react-web-api/no-leaked-timeout': 'warn',
 
         // recommended rules from @eslint-react
         'react/ensure-forward-ref-using-ref': 'warn',
