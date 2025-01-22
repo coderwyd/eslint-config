@@ -87,8 +87,8 @@
   "dependencies": {
     "@antfu/install-pkg": "^1.0.0",
     "@eslint-community/eslint-plugin-eslint-comments": "^4.4.1",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
     "@vitest/eslint-plugin": "^1.1.25",
     "eslint-config-flat-gitignore": "^1.0.0",
     "eslint-config-prettier": "^10.0.1",
