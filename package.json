@@ -127,7 +127,7 @@
     "@unocss/eslint-plugin": "^65.4.3",
     "bumpp": "^9.10.2",
     "eslint": "^9.18.0",
-    "eslint-plugin-react-compiler": "19.0.0-beta-decd7b8-20250118",
+    "eslint-plugin-react-compiler": "19.0.0-beta-e552027-20250112",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "eslint-plugin-svelte": "^2.46.1",
