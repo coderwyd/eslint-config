@@ -92,7 +92,7 @@
     "@vitest/eslint-plugin": "^1.1.25",
     "eslint-config-flat-gitignore": "^1.0.1",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-antfu": "^2.7.0",
+    "eslint-plugin-antfu": "^3.0.0",
     "eslint-plugin-command": "^2.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import-x": "^4.6.1",
