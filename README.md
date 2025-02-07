@@ -21,22 +21,11 @@ pnpm i -D eslint @coderwyd/eslint-config
 
 ### Create config file
 
-With [`"type": "module"`](https://nodejs.org/api/packages.html#type) in `package.json` (recommended):
-
 ```js
 // eslint.config.js
 import { defineConfig } from '@coderwyd/eslint-config'
 
 export default defineConfig()
-```
-
-With CJS:
-
-```js
-// eslint.config.js
-const { defineConfig } = require('@coderwyd/eslint-config')
-
-module.exports = defineConfig()
 ```
 
 ### Add script for package.json
