@@ -4,7 +4,7 @@ export default defineConfig({
   entry: ['src/index.ts', 'src/cli.ts'],
   clean: true,
   dts: true,
-  format: ['cjs', 'esm'],
+  format: ['esm'],
   sourcemap: false,
   // target: 'node14',
   minify: false,
