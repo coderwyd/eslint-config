@@ -24,7 +24,7 @@ export interface RuleOptions {
   yes?: boolean
 }
 
-export async function run(options: RuleOptions = {}) {
+export async function run(options: RuleOptions = {}): Promise<void> {
   const SKIP_PROMPT = !!process.env.SKIP_PROMPT || options.yes
   const SKIP_GIT_CHECK = !!process.env.SKIP_GIT_CHECK
 

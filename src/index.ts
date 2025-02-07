@@ -23,7 +23,7 @@ import {
   unocss,
   vue,
 } from './configs'
-import { hasTypeScript, hasVue } from './env'
+import { isUsingTypeScript, isUsingVue } from './env'
 import {
   combine,
   getOverrides,
@@ -81,9 +81,9 @@ export async function defineConfig(
     regexp: enableRegexp = true,
     svelte: enableSvelte = false,
     tailwindcss: enableTailwindCSS = false,
-    typescript: enableTypeScript = hasTypeScript,
+    typescript: enableTypeScript = isUsingTypeScript,
     unocss: enableUnoCSS = false,
-    vue: enableVue = hasVue,
+    vue: enableVue = isUsingVue,
   } = options
 
   let isInEditor = options.isInEditor

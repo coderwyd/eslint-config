@@ -1,12 +1,12 @@
 import c from 'picocolors'
 import { devDependencies, version } from '../../package.json'
 
-export const ARROW = c.cyan('→')
-export const CHECK = c.green('✔')
-export const CROSS = c.red('✘')
-export const WARN = c.yellow('ℹ')
+export const ARROW: string = c.cyan('→')
+export const CHECK: string = c.green('✔')
+export const CROSS: string = c.red('✘')
+export const WARN: string = c.yellow('ℹ')
 
-export const eslintVersion = devDependencies.eslint
+export const eslintVersion: string = devDependencies.eslint
 export { version }
 
 export const vscodeSettingsString = `

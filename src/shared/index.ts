@@ -1,36 +1,17 @@
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { getPackageInfoSync, isPackageExists } from 'local-pkg'
+import type { Linter } from 'eslint'
 import type {
   Awaitable,
   OptionsConfig,
   ResolvedOptions,
   TypedFlatConfigItem,
 } from '../types'
+import type { RuleOptions } from '../types/typegen'
 
 const scopeUrl = fileURLToPath(new URL('.', import.meta.url))
 const isCwdInScope = isPackageExists('@coderwyd/eslint-config')
-
-export const parserPlain = {
-  meta: {
-    name: 'parser-plain',
-  },
-  parseForESLint: (code: string) => ({
-    ast: {
-      body: [],
-      comments: [],
-      loc: { end: code.length, start: 0 },
-      range: [0, code.length],
-      tokens: [],
-      type: 'Program',
-    },
-    scopeManager: null,
-    services: { isPlain: true },
-    visitorKeys: {
-      Program: [],
-    },
-  }),
-}
 
 /**
  * Combine array and non-array configs into a single array.
@@ -63,7 +44,7 @@ export async function combine(
 export function renameRules(
   rules: Record<string, any>,
   map: Record<string, string>,
-) {
+): Record<string, any> {
   return Object.fromEntries(
     Object.entries(rules).map(([key, value]) => {
       for (const [from, to] of Object.entries(map)) {
@@ -108,7 +89,7 @@ export function renamePluginInConfigs(
   })
 }
 
-export function getVueVersion() {
+export function getVueVersion(): number {
   const pkg = getPackageInfoSync('vue', { paths: [process.cwd()] })
   if (pkg && typeof pkg.version === 'string' && !Number.isNaN(+pkg.version[0]))
     return +pkg.version[0]
@@ -131,7 +112,7 @@ export function isPackageInScope(name: string): boolean {
   return isPackageExists(name, { paths: [scopeUrl] })
 }
 
-export async function ensurePackages(packages: string[]) {
+export async function ensurePackages(packages: string[]): Promise<void> {
   if (
     process.env.CI ||
     process.stdout.isTTY === false ||
@@ -169,7 +150,7 @@ export function resolveSubOptions<K extends keyof OptionsConfig>(
 export function getOverrides<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
-) {
+): Partial<Linter.RulesRecord & RuleOptions> {
   const sub = resolveSubOptions(options, key)
   return {
     ...('overrides' in sub ? sub.overrides || {} : {}),

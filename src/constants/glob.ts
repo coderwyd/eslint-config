@@ -31,12 +31,12 @@ export const GLOB_YAML = '**/*.y?(a)ml'
 export const GLOB_TOML = '**/*.toml'
 export const GLOB_GRAPHQL = '**/*.{g,graph}ql'
 
-export const GLOB_MARKDOWN_CODE = `${GLOB_MARKDOWN}/${GLOB_SRC}`
+export const GLOB_MARKDOWN_CODE: string = `${GLOB_MARKDOWN}/${GLOB_SRC}`
 
 export const GLOB_TS_CONFIG = '**/tsconfig.json'
 export const GLOB_TS_OTHER_CONFIG = '**/tsconfig.*.json'
 
-export const GLOB_TESTS = [
+export const GLOB_TESTS: string[] = [
   `**/__tests__/**/*.${GLOB_SRC_EXT}`,
   `**/*.spec.${GLOB_SRC_EXT}`,
   `**/*.test.${GLOB_SRC_EXT}`,
@@ -44,7 +44,7 @@ export const GLOB_TESTS = [
   `**/*.benchmark.${GLOB_SRC_EXT}`,
 ]
 
-export const GLOB_ALL_SRC = [
+export const GLOB_ALL_SRC: string[] = [
   GLOB_SRC,
   GLOB_STYLE,
   GLOB_JSON,
@@ -55,7 +55,7 @@ export const GLOB_ALL_SRC = [
   GLOB_HTML,
 ]
 
-export const GLOB_EXCLUDE = [
+export const GLOB_EXCLUDE: string[] = [
   '**/node_modules',
   '**/dist',
   '**/package-lock.json',

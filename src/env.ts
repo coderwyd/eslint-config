@@ -1,7 +1,7 @@
 import process from 'node:process'
 import { isPackageExists } from 'local-pkg'
 
-export const isInEditor = !!(
+export const isInEditor: boolean = !!(
   (process.env.VSCODE_PID ||
     process.env.VSCODE_CWD ||
     process.env.JETBRAINS_IDE ||
@@ -9,11 +9,8 @@ export const isInEditor = !!(
     process.env.NVIM) &&
   !process.env.CI
 )
-export const hasTypeScript = isPackageExists('typescript')
 
 const VueJsPackages = ['vue', 'nuxt', 'vitepress', '@slidev/cli']
-
-export const hasVue = hasPackages(VueJsPackages)
 
 const RemixPackages = [
   '@remix-run/node',
@@ -34,11 +31,13 @@ const NextJsPackages = ['next']
 // react refresh
 const ReactRefreshAllowConstantExportPackages = ['vite']
 
+export const isUsingTypeScript: boolean = isPackageExists('typescript')
+export const isUsingVue: boolean = hasPackages(VueJsPackages)
 // export const hasReact = hasPackages(['react', ...RemixPackages, ...NextJsPackages])
-export const isUsingRemix = hasPackages(RemixPackages)
-export const isUsingReactRouter = hasPackages(ReactRouterPackages)
-export const isUsingNext = hasPackages(NextJsPackages)
-export const isAllowConstantExport = hasPackages(
+export const isUsingRemix: boolean = hasPackages(RemixPackages)
+export const isUsingReactRouter: boolean = hasPackages(ReactRouterPackages)
+export const isUsingNext: boolean = hasPackages(NextJsPackages)
+export const isAllowConstantExport: boolean = hasPackages(
   ReactRefreshAllowConstantExportPackages,
 )
 
