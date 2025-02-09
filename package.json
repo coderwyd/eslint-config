@@ -106,7 +106,7 @@
     "local-pkg": "^1.0.0",
     "parse-gitignore": "^2.0.0",
     "picocolors": "^1.1.1",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.0",
     "prompts": "^2.4.2",
     "vue-eslint-parser": "^9.4.3",
     "yargs": "^17.7.2"
