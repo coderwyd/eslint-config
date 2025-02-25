@@ -32,7 +32,7 @@ export function unicorn(): TypedFlatConfigItem[] {
         'unicorn/no-console-spaces': 'error',
         'unicorn/no-for-loop': 'error',
         'unicorn/no-hex-escape': 'error',
-        'unicorn/no-instanceof-array': 'error',
+        'unicorn/no-instanceof-builtins': 'error',
         'unicorn/no-invalid-remove-event-listener': 'error',
         'unicorn/no-length-as-slice-end': 'error',
         'unicorn/no-lonely-if': 'error',
