@@ -100,7 +100,7 @@
     "eslint-plugin-unicorn": "^57.0.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "eslint-plugin-vue": "^9.32.0",
-    "eslint-typegen": "^1.0.0",
+    "eslint-typegen": "^2.0.0",
     "globals": "^15.15.0",
     "jsonc-eslint-parser": "^2.4.0",
     "local-pkg": "^1.0.0",
