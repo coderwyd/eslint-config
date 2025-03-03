@@ -2,6 +2,7 @@ import type { Linter } from 'eslint'
 import {
   command,
   comments,
+  deMorgan,
   ignores,
   imports,
   javascript,
@@ -136,9 +137,10 @@ export async function defineConfig(
     imports(),
     unicorn(),
     command(),
+    deMorgan(),
+    perfectionist(),
 
     // Optional plugins (installed but not enabled by default)
-    perfectionist(),
   )
 
   if (enableVue) componentExts.push('vue')

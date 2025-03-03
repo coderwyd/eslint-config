@@ -5,6 +5,7 @@ import picocolors from 'picocolors'
 import {
   command,
   comments,
+  deMorgan,
   imports,
   javascript,
   jsdoc,
@@ -52,6 +53,7 @@ const configs = await combine(
   command(),
   regexp(),
   tailwindcss(),
+  deMorgan(),
 )
 
 const configNames = configs.map((i) => i.name).filter(Boolean) as string[]
