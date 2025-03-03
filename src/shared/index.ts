@@ -143,17 +143,19 @@ export async function ensurePackages(packages: string[]): Promise<void> {
 export function resolveSubOptions<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
-): ResolvedOptions<OptionsConfig[K]> {
-  return typeof options[key] === 'boolean' ? ({} as any) : options[key] || {}
+): Partial<ResolvedOptions<OptionsConfig[K]>> {
+  return typeof options[key] === 'boolean' ? {} : options[key] || {}
 }
 
 export function getOverrides<K extends keyof OptionsConfig>(
   options: OptionsConfig,
   key: K,
 ): Partial<Linter.RulesRecord & RuleOptions> {
-  const sub = resolveSubOptions(options, key)
+  const subOptions = resolveSubOptions(options, key)
   return {
-    ...('overrides' in sub ? sub.overrides || {} : {}),
+    ...('overrides' in subOptions && subOptions.overrides
+      ? subOptions.overrides
+      : {}),
   }
 }
 
