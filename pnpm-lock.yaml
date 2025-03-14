@@ -103,8 +103,8 @@ importers:
         version: 17.7.2
     devDependencies:
       '@antfu/ni':
-        specifier: ^23.3.1
-        version: 23.3.1
+        specifier: ^24.2.0
+        version: 24.2.0
       '@eslint-react/eslint-plugin':
         specifier: ^1.32.0
         version: 1.32.0(eslint@9.21.0(jiti@2.4.2))(ts-api-utils@2.0.1(typescript@5.8.2))(typescript@5.8.2)
@@ -182,8 +182,8 @@ packages:
   '@antfu/install-pkg@1.0.0':
     resolution: {integrity: sha512-xvX6P/lo1B3ej0OsaErAjqgFYzYVcJpamjLAFLYh9vRJngBrMoUG7aVnrGTeqM7yxbyTD5p3F2+0/QUEh8Vzhw==}
 
-  '@antfu/ni@23.3.1':
-    resolution: {integrity: sha512-C90iyzm/jLV7Lomv2UzwWUzRv9WZr1oRsFRKsX5HjQL4EXrbi9H/RtBkjCP+NF+ABZXUKpAa4F1dkoTaea4zHg==}
+  '@antfu/ni@24.2.0':
+    resolution: {integrity: sha512-+B9wzpv+KOhqbOgHjHcBAX7IwIKdDt4SFzYlxIPr4srANFJfjAABC7nU8KNFba+DYLymRe2EPSUfE7+reJb5UA==}
     hasBin: true
 
   '@antfu/utils@8.1.0':
@@ -1966,6 +1966,9 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
+  fzf@0.5.2:
+    resolution: {integrity: sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q==}
+
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -2421,6 +2424,9 @@ packages:
 
   package-manager-detector@0.2.9:
     resolution: {integrity: sha512-+vYvA/Y31l8Zk8dwxHhL3JfTuHPm6tlxM2A3GeQyl7ovYnSp1+mzAxClxaOr0qO1TtPxbQxetI7v5XqKLJZk7Q==}
+
+  package-manager-detector@1.0.0:
+    resolution: {integrity: sha512-7elnH+9zMsRo7aS72w6MeRugTpdRvInmEB4Kmm9BVvPw/SLG8gXUGQ+4wF0Mys0RSWPz0B9nuBbDe8vFeA2sfg==}
 
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -3160,7 +3166,12 @@ snapshots:
       package-manager-detector: 0.2.8
       tinyexec: 0.3.2
 
-  '@antfu/ni@23.3.1': {}
+  '@antfu/ni@24.2.0':
+    dependencies:
+      ansis: 3.17.0
+      fzf: 0.5.2
+      package-manager-detector: 1.0.0
+      tinyexec: 0.3.2
 
   '@antfu/utils@8.1.0': {}
 
@@ -5083,6 +5094,8 @@ snapshots:
 
   function-bind@1.1.2: {}
 
+  fzf@0.5.2: {}
+
   gensync@1.0.0-beta.2: {}
 
   get-caller-file@2.0.5: {}
@@ -5476,6 +5489,8 @@ snapshots:
   package-manager-detector@0.2.8: {}
 
   package-manager-detector@0.2.9: {}
+
+  package-manager-detector@1.0.0: {}
 
   parent-module@1.0.1:
     dependencies:
