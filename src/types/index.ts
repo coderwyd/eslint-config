@@ -147,6 +147,13 @@ export interface OptionsConfig extends OptionsComponentExts {
   jsonc?: boolean | OptionsOverrides
 
   /**
+   * Enable YAML support.
+   *
+   * @default true
+   */
+  yaml?: boolean | OptionsOverrides
+
+  /**
    * Enable react rules.
    *
    * Requires installing:
@@ -184,6 +191,8 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default false
    */
   unocss?: boolean | OptionsUnoCSS
+
+
 
   /**
    * Enable regexp rules.

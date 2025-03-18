@@ -23,6 +23,7 @@ import {
   unicorn,
   unocss,
   vue,
+  yaml,
 } from './configs'
 import { isUsingTypeScript, isUsingVue } from './env'
 import {
@@ -219,6 +220,16 @@ export async function defineConfig(
       }),
       sortPackageJson(),
       sortTsconfig(),
+    )
+  }
+
+
+
+  if (options.yaml ?? true) {
+    configs.push(
+      yaml({
+        overrides: getOverrides(options, 'yaml'),
+      }),
     )
   }
 

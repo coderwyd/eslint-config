@@ -64,6 +64,7 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
               'husky',
               'simple-git-hooks',
               'lint-staged',
+              'nano-staged',
               'eslintConfig',
             ],
             pathPattern: '^$',
