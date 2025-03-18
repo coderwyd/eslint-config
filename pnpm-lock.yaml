@@ -130,8 +130,8 @@ importers:
         specifier: ^17.0.33
         version: 17.0.33
       '@unocss/eslint-plugin':
-        specifier: ^66.1.0-beta.5
-        version: 66.1.0-beta.5(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
+        specifier: ^66.1.0-beta.6
+        version: 66.1.0-beta.6(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
       bumpp:
         specifier: ^10.1.0
         version: 10.1.0
@@ -1108,19 +1108,19 @@ packages:
     resolution: {integrity: sha512-AjOC3zfnxd6S4Eiy3jwktJPclqhFHNyd8L6Gycf9WUPoKZpgM5PjkxY1X7uSy61xVpiJDhhk7XT2NVsN3ALTWg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@unocss/config@66.1.0-beta.5':
-    resolution: {integrity: sha512-RBty/CVvdefTpeLmluQrIQIj+Po5bTIgIgcWgw+A3dMcUN3iRv0mYbw1d3FIRa0Ladx9zKaMxRFss0xkiS13yw==}
+  '@unocss/config@66.1.0-beta.6':
+    resolution: {integrity: sha512-jLAxHSgMCEhIjCwOwfENtFM3gevU4QDQeaG4VVEYGFJ/oj27JJrl/j6HlUBdhFiR0Q7yf6QFCXlKTP/+put0/Q==}
     engines: {node: '>=14'}
 
-  '@unocss/core@66.1.0-beta.5':
-    resolution: {integrity: sha512-1kZzSrB87KKd+xP+vMN7IP03j2UPEykna447aw3UaK5RYTDd/LuVtxoep6gvjN9TJiB4K+Qx0sAtgnfhPpka9Q==}
+  '@unocss/core@66.1.0-beta.6':
+    resolution: {integrity: sha512-TQLxpBZPl6m4HhS6/FMr0Vbn22tGWgbGPyfJyjTSYY/LTug42aIUPnTQnqFSRwGiUnBfp3+oAhG/t/lZ6U74tw==}
 
-  '@unocss/eslint-plugin@66.1.0-beta.5':
-    resolution: {integrity: sha512-5BRXjE8XJ9Yrf/lmgBCCmpfXRfiaebdS0zhkbmsFJmtXzhhun0epIF2cs/nXIya9rtvne+YKUAPXxIIoHV3lKA==}
+  '@unocss/eslint-plugin@66.1.0-beta.6':
+    resolution: {integrity: sha512-9XNgcSescihBdujBl+0g9jZL0e65kJ78fMGMRk7DA9lIfqx9crncb6prDOIhes4jgSCXupmaYtOEO1rEkM5r3Q==}
     engines: {node: '>=14'}
 
-  '@unocss/rule-utils@66.1.0-beta.5':
-    resolution: {integrity: sha512-G757sAnQAMNRUijgOTut8UkbkncSablI6Viwcq2VP4r0Lhi6RFOv/n6AOTWsDgGeUSuWTa/p3zb3NDHY7ztE9g==}
+  '@unocss/rule-utils@66.1.0-beta.6':
+    resolution: {integrity: sha512-9RxYUGq96Ro+5XbevFlzKKwtROIv9c6VZbG+i34pMaw8ALFsCj34iGFvBs4ohTf03XkCCyMlr2f2KdFc9cj/Sw==}
     engines: {node: '>=14'}
 
   '@unrs/rspack-resolver-binding-darwin-arm64@1.1.2':
@@ -3907,19 +3907,19 @@ snapshots:
       '@typescript-eslint/types': 8.26.1
       eslint-visitor-keys: 4.2.0
 
-  '@unocss/config@66.1.0-beta.5':
+  '@unocss/config@66.1.0-beta.6':
     dependencies:
-      '@unocss/core': 66.1.0-beta.5
+      '@unocss/core': 66.1.0-beta.6
       unconfig: 7.3.1
 
-  '@unocss/core@66.1.0-beta.5': {}
+  '@unocss/core@66.1.0-beta.6': {}
 
-  '@unocss/eslint-plugin@66.1.0-beta.5(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
+  '@unocss/eslint-plugin@66.1.0-beta.6(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)':
     dependencies:
       '@typescript-eslint/utils': 8.26.1(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
-      '@unocss/config': 66.1.0-beta.5
-      '@unocss/core': 66.1.0-beta.5
-      '@unocss/rule-utils': 66.1.0-beta.5
+      '@unocss/config': 66.1.0-beta.6
+      '@unocss/core': 66.1.0-beta.6
+      '@unocss/rule-utils': 66.1.0-beta.6
       magic-string: 0.30.17
       synckit: 0.9.2
     transitivePeerDependencies:
@@ -3927,9 +3927,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@unocss/rule-utils@66.1.0-beta.5':
+  '@unocss/rule-utils@66.1.0-beta.6':
     dependencies:
-      '@unocss/core': 66.1.0-beta.5
+      '@unocss/core': 66.1.0-beta.6
       magic-string: 0.30.17
 
   '@unrs/rspack-resolver-binding-darwin-arm64@1.1.2':
@@ -5366,7 +5366,7 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.5.3):
     dependencies:
       lilconfig: 3.1.3
-      yaml: 2.6.1
+      yaml: 2.7.0
     optionalDependencies:
       postcss: 8.5.3
 
@@ -5679,7 +5679,7 @@ snapshots:
   synckit@0.9.2:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.7.0
+      tslib: 2.8.1
 
   tailwindcss@3.4.13:
     dependencies:
@@ -5789,7 +5789,7 @@ snapshots:
   tsx@4.19.2:
     dependencies:
       esbuild: 0.23.0
-      get-tsconfig: 4.8.1
+      get-tsconfig: 4.10.0
     optionalDependencies:
       fsevents: 2.3.3
     optional: true
