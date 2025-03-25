@@ -1,20 +1,3 @@
-declare module 'eslint-plugin-n' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
-
-declare module 'eslint-plugin-unicorn' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
-
-declare module 'eslint-plugin-import-x' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
 declare module 'eslint-plugin-react-compiler' {
   const plugin: import('eslint').ESLint.Plugin
 
@@ -41,16 +24,6 @@ declare module 'eslint-plugin-vue' {
   export default plugin
 }
 
-declare module 'eslint-plugin-react-hooks' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
-declare module 'eslint-plugin-react-refresh' {
-  const plugin: import('eslint').ESLint.Plugin
-
-  export default plugin
-}
 declare module 'eslint-plugin-tailwindcss' {
   const plugin: import('eslint').ESLint.Plugin
 
