@@ -134,7 +134,7 @@
     "nano-staged": "^0.8.0",
     "simple-git-hooks": "^2.12.1",
     "svelte": "^5.25.3",
-    "svelte-eslint-parser": "^1.1.1",
+    "svelte-eslint-parser": "^1.1.2",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
   },
