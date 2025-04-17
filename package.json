@@ -136,7 +136,7 @@
     "svelte": "^5.25.12",
     "svelte-eslint-parser": "^1.1.2",
     "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
