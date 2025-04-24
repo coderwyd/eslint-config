@@ -31,7 +31,7 @@
     "node": ">=18.18.0"
   },
   "scripts": {
-    "build": "nr build:typegen && tsup",
+    "build": "nr build:typegen && tsdown",
     "dev": "pnpx @eslint/config-inspector",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -135,7 +135,7 @@
     "simple-git-hooks": "^2.12.1",
     "svelte": "^5.25.12",
     "svelte-eslint-parser": "^1.1.3",
-    "tsup": "^8.4.0",
+    "tsdown": "^0.9.6",
     "typescript": "^5.8.3"
   },
   "pnpm": {

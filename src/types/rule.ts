@@ -1,12 +1,8 @@
 import type { Linter } from 'eslint'
-import type { ConfigNames, RuleOptions } from './typegen'
-
-export type Rules = RuleOptions
-
-export type { ConfigNames }
+import type { RuleOptions } from './typegen'
 
 export type TypedFlatConfigItem = Omit<
-  Linter.Config<Linter.RulesRecord & Rules>,
+  Linter.Config<Linter.RulesRecord & RuleOptions>,
   'plugins'
 > & {
   // Relax plugins type limitation, as most of the plugins did not have correct type info yet.

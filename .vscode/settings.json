@@ -4,5 +4,5 @@
     "source.organizeImports": "never"
   },
   "editor.formatOnSave": true,
-  "cSpell.words": ["antfu", "astro", "coderwyd", "rspack", "unocss"]
+  "cSpell.words": ["antfu", "astro", "coderwyd", "rspack", "tsdown", "unocss"]
 }
