@@ -130,8 +130,8 @@ importers:
         specifier: ^17.0.33
         version: 17.0.33
       '@unocss/eslint-plugin':
-        specifier: ^66.1.0-beta.12
-        version: 66.1.0-beta.12(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
+        specifier: ^66.1.0-beta.13
+        version: 66.1.0-beta.13(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
       bumpp:
         specifier: ^10.1.0
         version: 10.1.0
@@ -1207,19 +1207,19 @@ packages:
     resolution: {integrity: sha512-QcGHmlRHWOl93o64ZUMNewCdwKGU6WItOU52H0djgNmn1EOrhVudrDzXz4OycCRSCPwFCDrE2iIt5vmuUdHxuQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@unocss/config@66.1.0-beta.12':
-    resolution: {integrity: sha512-u0dcWKFK+DZQ6Z3Qim2qzj6I6tsdCwl8O86NRRNN4Yt0H9C7IHzYLykfo6jgFFxay47aUKCZevl+mNLPUktk9w==}
+  '@unocss/config@66.1.0-beta.13':
+    resolution: {integrity: sha512-YBdjPWIAQPQYmU3uBF+NLbctFiGYGPviFolA9yOW6ijVioSCvrCESyyDK+gSW4gVnAU1u2St6LhePd6/kPzUaw==}
     engines: {node: '>=14'}
 
-  '@unocss/core@66.1.0-beta.12':
-    resolution: {integrity: sha512-8+KJAoqA7eHC5cBJtod1AqWqQbYKfhTvQEgVQzZJ2sTYNTuQz4qdzPhUgKF83wURUhznGkdDL1Jxc6YITB1KPg==}
+  '@unocss/core@66.1.0-beta.13':
+    resolution: {integrity: sha512-kf5QIlReypn5dE18CqaEP7pRQlSoVP0O+Y3Y0nSF6U/TU9eB4InDhLfZF1PzjgR2EWQIaqnVTFNtAN52uJIFYQ==}
 
-  '@unocss/eslint-plugin@66.1.0-beta.12':
-    resolution: {integrity: sha512-aGc8X1SsAREsbFDBGDNOGr7pL0HOX0E4P2xua/Xd4DOMZKF8AhoQk+V4G9Zd/4s0bRkyVA78JO3vgOvmfVyxJQ==}
+  '@unocss/eslint-plugin@66.1.0-beta.13':
+    resolution: {integrity: sha512-I4bMbvTxoOZsrYMloo8Pl7D5gYdzfnYsOYXVnCizeHDx/Z8BUL4TwI/lGtIcPbSWWnfZasc+3j9xQcOWZ6gA/A==}
     engines: {node: '>=14'}
 
-  '@unocss/rule-utils@66.1.0-beta.12':
-    resolution: {integrity: sha512-txhJO8pqut5FjGxhFC/OzqvLkeyeSaXgvZLaPaCTnpmuzt78ZTmqpszAHSchr9qCEXtBbK9dKHH78Zh10SRDLg==}
+  '@unocss/rule-utils@66.1.0-beta.13':
+    resolution: {integrity: sha512-YcMP+QZzoAz2J4Der/D4OXccx09ywSbYTD3v+KOfy0fSeofO4dn7gnCzuJ2OAhZ/G+y9D2Eoe63YX7T5CieiFg==}
     engines: {node: '>=14'}
 
   '@unrs/resolver-binding-darwin-arm64@1.6.1':
@@ -3056,9 +3056,6 @@ packages:
   ufo@1.5.4:
     resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
 
-  unconfig@7.3.1:
-    resolution: {integrity: sha512-LH5WL+un92tGAzWS87k7LkAfwpMdm7V0IXG2FxEjZz/QxiIW5J5LkcrKQThj0aRz6+h/lFmKI9EUXmK/T0bcrw==}
-
   unconfig@7.3.2:
     resolution: {integrity: sha512-nqG5NNL2wFVGZ0NA/aCFw0oJ2pxSf1lwg4Z5ill8wd7K4KX/rQbHlwbh+bjctXL5Ly1xtzHenHGOK0b+lG6JVg==}
 
@@ -4229,19 +4226,19 @@ snapshots:
       '@typescript-eslint/types': 8.31.0
       eslint-visitor-keys: 4.2.0
 
-  '@unocss/config@66.1.0-beta.12':
+  '@unocss/config@66.1.0-beta.13':
     dependencies:
-      '@unocss/core': 66.1.0-beta.12
-      unconfig: 7.3.1
+      '@unocss/core': 66.1.0-beta.13
+      unconfig: 7.3.2
 
-  '@unocss/core@66.1.0-beta.12': {}
+  '@unocss/core@66.1.0-beta.13': {}
 
-  '@unocss/eslint-plugin@66.1.0-beta.12(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)':
+  '@unocss/eslint-plugin@66.1.0-beta.13(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/utils': 8.30.1(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
-      '@unocss/config': 66.1.0-beta.12
-      '@unocss/core': 66.1.0-beta.12
-      '@unocss/rule-utils': 66.1.0-beta.12
+      '@typescript-eslint/utils': 8.31.0(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
+      '@unocss/config': 66.1.0-beta.13
+      '@unocss/core': 66.1.0-beta.13
+      '@unocss/rule-utils': 66.1.0-beta.13
       magic-string: 0.30.17
       synckit: 0.9.2
     transitivePeerDependencies:
@@ -4249,9 +4246,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@unocss/rule-utils@66.1.0-beta.12':
+  '@unocss/rule-utils@66.1.0-beta.13':
     dependencies:
-      '@unocss/core': 66.1.0-beta.12
+      '@unocss/core': 66.1.0-beta.13
       magic-string: 0.30.17
 
   '@unrs/resolver-binding-darwin-arm64@1.6.1':
@@ -6200,13 +6197,6 @@ snapshots:
   typescript@5.8.3: {}
 
   ufo@1.5.4: {}
-
-  unconfig@7.3.1:
-    dependencies:
-      '@quansync/fs': 0.1.1
-      defu: 6.1.4
-      jiti: 2.4.2
-      quansync: 0.2.8
 
   unconfig@7.3.2:
     dependencies:
