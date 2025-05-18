@@ -123,7 +123,7 @@
     "@types/prompts": "^2.4.9",
     "@types/yargs": "^17.0.33",
     "@unocss/eslint-plugin": "^66.1.2",
-    "bumpp": "^10.1.0",
+    "bumpp": "^10.1.1",
     "eslint": "^9.26.0",
     "eslint-plugin-react-compiler": "19.0.0-beta-ebf51a3-20250411",
     "eslint-plugin-react-hooks": "^5.2.0",
