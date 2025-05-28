@@ -1,4 +1,3 @@
-import type { Linter } from 'eslint'
 import {
   command,
   comments,
@@ -34,6 +33,7 @@ import {
   renamePluginInConfigs,
   resolveSubOptions,
 } from './shared'
+import type { Linter } from 'eslint'
 import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types'
 
 const flatConfigProps = [
@@ -222,8 +222,6 @@ export async function defineConfig(
       sortTsconfig(),
     )
   }
-
-
 
   if (options.yaml ?? true) {
     configs.push(
