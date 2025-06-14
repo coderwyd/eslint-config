@@ -51,8 +51,8 @@ importers:
         specifier: ^2.20.1
         version: 2.20.1(eslint@9.28.0(jiti@2.4.2))
       eslint-plugin-n:
-        specifier: ^17.18.0
-        version: 17.18.0(eslint@9.28.0(jiti@2.4.2))
+        specifier: ^17.20.0
+        version: 17.20.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
       eslint-plugin-no-only-tests:
         specifier: ^3.3.0
         version: 3.3.0
@@ -1802,8 +1802,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-plugin-n@17.18.0:
-    resolution: {integrity: sha512-hvZ/HusueqTJ7VDLoCpjN0hx4N4+jHIWTXD4TMLHy9F23XkDagR9v+xQWRWR57yY55GPF8NnD4ox9iGTxirY8A==}
+  eslint-plugin-n@17.20.0:
+    resolution: {integrity: sha512-IRSoatgB/NQJZG5EeTbv/iAx1byOGdbbyhQrNvWdCfTnmPxUT0ao9/eGOeG7ljD8wJBsxwE8f6tES5Db0FRKEw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -2097,9 +2097,6 @@ packages:
 
   get-port-please@3.1.2:
     resolution: {integrity: sha512-Gxc29eLs1fbn6LQ4jSU4vXjlwyZhF5HsGuMAa7gqBP4Rw4yxxltyDUuF5MBclFzDTXO+ACchGQoeela4DSfzdQ==}
-
-  get-tsconfig@4.10.0:
-    resolution: {integrity: sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==}
 
   get-tsconfig@4.10.1:
     resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
@@ -4887,17 +4884,22 @@ snapshots:
     transitivePeerDependencies:
       - '@eslint/json'
 
-  eslint-plugin-n@17.18.0(eslint@9.28.0(jiti@2.4.2)):
+  eslint-plugin-n@17.20.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3):
     dependencies:
-      '@eslint-community/eslint-utils': 4.5.1(eslint@9.28.0(jiti@2.4.2))
+      '@eslint-community/eslint-utils': 4.7.0(eslint@9.28.0(jiti@2.4.2))
+      '@typescript-eslint/utils': 8.34.0(eslint@9.28.0(jiti@2.4.2))(typescript@5.8.3)
       enhanced-resolve: 5.17.1
       eslint: 9.28.0(jiti@2.4.2)
       eslint-plugin-es-x: 7.8.0(eslint@9.28.0(jiti@2.4.2))
-      get-tsconfig: 4.10.0
+      get-tsconfig: 4.10.1
       globals: 15.15.0
       ignore: 5.3.2
       minimatch: 9.0.5
-      semver: 7.7.1
+      semver: 7.7.2
+      ts-declaration-location: 1.0.7(typescript@5.8.3)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   eslint-plugin-no-only-tests@3.3.0: {}
 
@@ -5305,10 +5307,6 @@ snapshots:
     optional: true
 
   get-port-please@3.1.2: {}
-
-  get-tsconfig@4.10.0:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
 
   get-tsconfig@4.10.1:
     dependencies:
