@@ -127,7 +127,7 @@
     "bumpp": "^10.2.0",
     "eslint": "^9.29.0",
     "eslint-plugin-import-lite": "^0.3.0",
-    "eslint-plugin-react-hooks": "6.0.0-rc.1",
+    "eslint-plugin-react-hooks": "6.0.0-rc1",
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-svelte": "^3.9.2",
     "eslint-plugin-tailwindcss": "^3.18.0",
