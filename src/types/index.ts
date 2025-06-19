@@ -27,6 +27,8 @@ export interface OptionsComponentExts {
   componentExts?: string[]
 }
 
+export interface OptionsUnicorn extends OptionsOverrides {}
+
 export interface OptionsTypeScriptParserOptions {
   /**
    * Additional parser options for TypeScript.
@@ -191,8 +193,6 @@ export interface OptionsConfig extends OptionsComponentExts {
    * @default false
    */
   unocss?: boolean | OptionsUnoCSS
-
-
 
   /**
    * Enable regexp rules.

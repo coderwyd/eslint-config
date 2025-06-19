@@ -1,7 +1,9 @@
 import { pluginUnicorn } from '../plugins'
-import type { TypedFlatConfigItem } from '../types'
+import type { OptionsUnicorn, TypedFlatConfigItem } from '../types'
 
-export function unicorn(): TypedFlatConfigItem[] {
+export function unicorn(options: OptionsUnicorn = {}): TypedFlatConfigItem[] {
+  const { overrides = {} } = options
+
   return [
     {
       name: 'coderwyd/unicorn/rules',
@@ -79,6 +81,8 @@ export function unicorn(): TypedFlatConfigItem[] {
         // 'unicorn/prefer-top-level-await': 'error',
         'unicorn/prefer-type-error': 'error',
         'unicorn/throw-new-error': 'error',
+
+        ...overrides,
       },
     },
   ]
