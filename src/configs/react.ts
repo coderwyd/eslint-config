@@ -48,17 +48,13 @@ export async function react(
     'react/no-leaked-conditional-rendering': 'warn',
   }
 
-  const [
-    pluginReact,
-    pluginReactHooks,
-    pluginReactRefresh,
-    pluginReactCompiler,
-  ] = await Promise.all([
-    interopDefault(import('@eslint-react/eslint-plugin')),
-    interopDefault(import('eslint-plugin-react-hooks')),
-    interopDefault(import('eslint-plugin-react-refresh')),
-    interopDefault(import('eslint-plugin-react-compiler')),
-  ] as const)
+  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all(
+    [
+      interopDefault(import('@eslint-react/eslint-plugin')),
+      interopDefault(import('eslint-plugin-react-hooks')),
+      interopDefault(import('eslint-plugin-react-refresh')),
+    ] as const,
+  )
 
   const plugins = pluginReact.configs.all.plugins
 
@@ -67,7 +63,6 @@ export async function react(
       name: 'coderwyd/react/setup',
       plugins: {
         react: plugins['@eslint-react'],
-        'react-compiler': pluginReactCompiler,
         'react-dom': plugins['@eslint-react/dom'],
         'react-hooks': pluginReactHooks,
         'react-hooks-extra': plugins['@eslint-react/hooks-extra'],
@@ -88,8 +83,6 @@ export async function react(
       },
       name: 'coderwyd/react/rules',
       rules: {
-        'react-compiler/react-compiler': 'warn',
-
         // recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
         'react/no-access-state-in-setstate': 'error',
         'react/no-array-index-key': 'warn',
@@ -150,6 +143,7 @@ export async function react(
         // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': 'warn',
         'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/react-compiler': 'warn',
 
         // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
         'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',
