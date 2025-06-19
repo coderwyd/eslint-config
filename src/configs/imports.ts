@@ -1,7 +1,10 @@
-import { pluginAntfu, pluginImport } from '../plugins'
+import { interopDefault } from '../shared'
+import { pluginAntfu } from '../plugins'
 import type { TypedFlatConfigItem } from '../types'
 
-export function imports(): TypedFlatConfigItem[] {
+export async function imports(): Promise<TypedFlatConfigItem[]> {
+  const pluginImport = await interopDefault(import('eslint-plugin-import-lite'))
+
   return [
     {
       name: 'coderwyd/imports/rules',
