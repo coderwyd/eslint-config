@@ -1,5 +1,5 @@
-import { interopDefault } from '../shared'
 import { pluginAntfu } from '../plugins'
+import { interopDefault } from '../shared'
 import type { TypedFlatConfigItem } from '../types'
 
 export async function imports(): Promise<TypedFlatConfigItem[]> {
