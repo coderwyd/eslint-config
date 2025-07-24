@@ -11,7 +11,7 @@ export const GLOB_TSX = '**/*.?([cm])tsx'
 export const GLOB_VUE = '**/*.vue'
 export const GLOB_ASTRO = '**/*.astro'
 export const GLOB_ASTRO_TS = '**/*.astro/*.ts'
-export const GLOB_SVELTE = '**/*.svelte'
+export const GLOB_SVELTE = '**/*.svelte?(.{js,ts})'
 
 export const GLOB_HTML = '**/*.htm?(l)'
 
