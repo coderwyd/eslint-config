@@ -17,7 +17,7 @@ export async function imports(): Promise<TypedFlatConfigItem[]> {
         'antfu/no-import-dist': 'error',
         'antfu/no-import-node-modules-by-path': 'error',
 
-        'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+        'import/consistent-type-specifier-style': ['error', 'top-level'],
         'import/first': 'error',
         'import/newline-after-import': ['error', { count: 1 }],
         'import/no-duplicates': 'error',
