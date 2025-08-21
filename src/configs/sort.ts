@@ -220,6 +220,7 @@ export function sortTsconfig(): TypedFlatConfigItem[] {
               'stripInternal',
               /* Interop Constraints */
               'allowSyntheticDefaultImports',
+              'erasableSyntaxOnly',
               'esModuleInterop',
               'forceConsistentCasingInFileNames',
               'isolatedDeclarations',

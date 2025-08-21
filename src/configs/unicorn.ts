@@ -53,6 +53,7 @@ export function unicorn(options: OptionsUnicorn = {}): TypedFlatConfigItem[] {
         'unicorn/prefer-array-some': 'error',
         'unicorn/prefer-at': 'error',
         'unicorn/prefer-blob-reading-methods': 'error',
+        'unicorn/prefer-class-fields': 'error',
         'unicorn/prefer-date-now': 'error',
         'unicorn/prefer-dom-node-append': 'error',
         'unicorn/prefer-dom-node-dataset': 'error',
@@ -80,6 +81,7 @@ export function unicorn(options: OptionsUnicorn = {}): TypedFlatConfigItem[] {
         // top level await is not supported in all environments
         // 'unicorn/prefer-top-level-await': 'error',
         'unicorn/prefer-type-error': 'error',
+        // 'unicorn/require-module-specifiers': 'error',
         'unicorn/throw-new-error': 'error',
 
         ...overrides,
