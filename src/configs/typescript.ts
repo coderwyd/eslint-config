@@ -48,6 +48,7 @@ export async function typescript(
   const typeAwareRules: TypedFlatConfigItem['rules'] = {
     'dot-notation': 'off',
     'no-implied-eval': 'off',
+    'require-await': 'off',
     'ts/await-thenable': 'error',
     'ts/dot-notation': ['error', { allowKeywords: true }],
     'ts/no-floating-promises': 'error',
