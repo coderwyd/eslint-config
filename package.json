@@ -124,7 +124,7 @@
     "@types/node": "^24.3.1",
     "@types/prompts": "^2.4.9",
     "@types/yargs": "^17.0.33",
-    "@unocss/eslint-plugin": "^66.5.0",
+    "@unocss/eslint-plugin": "^66.5.1",
     "bumpp": "^10.2.3",
     "eslint": "^9.35.0",
     "eslint-plugin-react-hooks": "6.0.0-rc1",
