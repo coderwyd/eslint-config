@@ -84,6 +84,9 @@ export async function react(
       name: 'coderwyd/react/rules',
       rules: {
         // recommended rules from eslint-plugin-react-x https://eslint-react.xyz/docs/rules/overview#core-rules
+        'react/jsx-no-comment-textnodes': 'warn',
+        'react/jsx-no-duplicate-props': 'warn',
+        'react/jsx-uses-vars': 'warn',
         'react/no-access-state-in-setstate': 'error',
         'react/no-array-index-key': 'warn',
         'react/no-children-count': 'warn',
@@ -92,7 +95,6 @@ export async function react(
         'react/no-children-only': 'warn',
         'react/no-children-to-array': 'warn',
         'react/no-clone-element': 'warn',
-        'react/no-comment-textnodes': 'warn',
         'react/no-component-will-mount': 'error',
         'react/no-component-will-receive-props': 'error',
         'react/no-component-will-update': 'error',
@@ -100,7 +102,6 @@ export async function react(
         'react/no-create-ref': 'error',
         'react/no-default-props': 'error',
         'react/no-direct-mutation-state': 'error',
-        'react/no-duplicate-jsx-props': 'warn',
         'react/no-duplicate-key': 'warn',
         'react/no-forward-ref': 'warn',
         'react/no-implicit-key': 'warn',
@@ -112,6 +113,7 @@ export async function react(
         'react/no-set-state-in-component-did-update': 'warn',
         'react/no-set-state-in-component-will-update': 'warn',
         'react/no-string-refs': 'error',
+        'react/no-unnecessary-use-prefix': 'warn',
         'react/no-unsafe-component-will-mount': 'warn',
         'react/no-unsafe-component-will-receive-props': 'warn',
         'react/no-unsafe-component-will-update': 'warn',
@@ -121,7 +123,7 @@ export async function react(
         'react/no-unused-state': 'warn',
         'react/no-use-context': 'warn',
         'react/no-useless-forward-ref': 'warn',
-        'react/use-jsx-vars': 'warn',
+        'react/prefer-use-state-lazy-initialization': 'warn',
 
         // recommended rules from eslint-plugin-react-dom https://eslint-react.xyz/docs/rules/overview#dom-rules
         'react-dom/no-dangerously-set-innerhtml': 'warn',
@@ -143,11 +145,9 @@ export async function react(
         // recommended rules eslint-plugin-react-hooks https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks/src/rules
         'react-hooks/exhaustive-deps': 'warn',
         'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/react-compiler': 'warn',
 
         // recommended rules from eslint-plugin-react-hooks-extra https://eslint-react.xyz/docs/rules/overview#hooks-extra-rules
         'react-hooks-extra/no-direct-set-state-in-use-effect': 'warn',
-        'react-hooks-extra/no-unnecessary-use-prefix': 'warn',
 
         // recommended rules from eslint-plugin-react-web-api https://eslint-react.xyz/docs/rules/overview#web-api-rules
         'react-web-api/no-leaked-event-listener': 'warn',
@@ -204,7 +204,7 @@ export async function react(
           {
             files: filesTypeAware,
             ignores: ignoresTypeAware,
-            name: 'antfu/react/type-aware-rules',
+            name: 'coderwyd/react/type-aware-rules',
             rules: {
               ...typeAwareRules,
             },
