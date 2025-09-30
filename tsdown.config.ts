@@ -7,4 +7,6 @@ export default defineConfig({
   clean: true,
   shims: true,
   exports: true,
+  publint: true,
+  unused: true,
 })
