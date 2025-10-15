@@ -42,7 +42,7 @@
     "build:typegen": "jiti scripts/typegen.ts",
     "prepack": "nr build",
     "prepare": "simple-git-hooks",
-    "release": "bumpp && pnpm publish",
+    "release": "bumpp",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
