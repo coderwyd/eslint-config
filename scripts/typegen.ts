@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises'
+import { styleText } from 'node:util'
 import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
-import picocolors from 'picocolors'
 import {
   command,
   comments,
@@ -69,4 +69,4 @@ export type ConfigNames = ${configNames.map((i) => `'${i}'`).join(' | ')}
 
 await writeFile('src/types/typegen.d.ts', dts)
 
-console.log(picocolors.green('Type definitions generated!'))
+console.log(styleText('green', 'Type definitions generated!'))

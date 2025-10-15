@@ -1,10 +1,10 @@
-import c from 'picocolors'
+import { styleText } from 'node:util'
 import { devDependencies, version } from '../../package.json'
 
-export const ARROW: string = c.cyan('→')
-export const CHECK: string = c.green('✔')
-export const CROSS: string = c.red('✘')
-export const WARN: string = c.yellow('ℹ')
+export const ARROW: string = styleText('cyan', '→')
+export const CHECK: string = styleText('green', '✔')
+export const CROSS: string = styleText('red', '✘')
+export const WARN: string = styleText('yellow', 'ℹ')
 
 export const eslintVersion: string = devDependencies.eslint
 export { version }

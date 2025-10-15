@@ -2,9 +2,9 @@ import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
+import { styleText } from 'node:util'
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
-import c from 'picocolors'
 
 import prompts from 'prompts'
 import {
@@ -36,7 +36,8 @@ export async function run(options: RuleOptions = {}): Promise<void> {
 
   if (fs.existsSync(pathFlatConfig)) {
     console.log(
-      c.yellow(
+      styleText(
+        'yellow',
         `${WARN} eslint.config.js already exists, migration wizard exited.`,
       ),
     )
@@ -55,7 +56,12 @@ export async function run(options: RuleOptions = {}): Promise<void> {
   }
 
   // Update package.json
-  console.log(c.cyan(`${ARROW} bumping @coderwyd/eslint-config to v${version}`))
+  console.log(
+    styleText(
+      'cyan',
+      `${ARROW} bumping @coderwyd/eslint-config to v${version}`,
+    ),
+  )
   const pkgContent = await fsp.readFile(pathPackageJSON, 'utf-8')
   const pkg: Record<string, any> = JSON.parse(pkgContent)
 
@@ -65,13 +71,13 @@ export async function run(options: RuleOptions = {}): Promise<void> {
   if (!pkg.devDependencies.eslint) pkg.devDependencies.eslint = eslintVersion
 
   await fsp.writeFile(pathPackageJSON, JSON.stringify(pkg, null, 2))
-  console.log(c.green(`${CHECK} changes wrote to package.json`))
+  console.log(styleText('green', `${CHECK} changes wrote to package.json`))
 
   // End update package.json
   // Update eslint files
   const eslintIgnores: string[] = []
   if (fs.existsSync(pathESLintIngore)) {
-    console.log(c.cyan(`${ARROW} migrating existing .eslintignore`))
+    console.log(styleText('cyan', `${ARROW} migrating existing .eslintignore`))
     const content = await fsp.readFile(pathESLintIngore, 'utf-8')
     const parsed = parse(content)
     const globs = parsed.globs()
@@ -105,7 +111,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   }
 
   await fsp.writeFile(pathFlatConfig, eslintConfigContent)
-  console.log(c.green(`${CHECK} created eslint.config.js`))
+  console.log(styleText('green', `${CHECK} created eslint.config.js`))
 
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
@@ -115,7 +121,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   })
   if (legacyConfig.length > 0) {
     console.log(`${WARN} you can now remove those files manually:`)
-    console.log(`   ${c.dim(legacyConfig.join(', '))}`)
+    console.log(`   ${styleText('dim', legacyConfig.join(', '))}`)
   }
 
   // End update eslint files
@@ -155,7 +161,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
 
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
-      console.log(c.green(`${CHECK} created .vscode/settings.json`))
+      console.log(styleText('green', `${CHECK} created .vscode/settings.json`))
     } else {
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
@@ -167,13 +173,13 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
       settingsContent += `${vscodeSettingsString}}\n`
 
       await fsp.writeFile(settingsPath, settingsContent, 'utf-8')
-      console.log(c.green(`${CHECK} updated .vscode/settings.json`))
+      console.log(styleText('green', `${CHECK} updated .vscode/settings.json`))
     }
   }
 
   // End update .vscode/settings.json
-  console.log(c.green(`${CHECK} migration completed`))
+  console.log(styleText('green', `${CHECK} migration completed`))
   console.log(
-    `Now you can update the dependencies and run ${c.blue('eslint . --fix')}\n`,
+    `Now you can update the dependencies and run ${styleText('blue', 'eslint . --fix')}\n`,
   )
 }

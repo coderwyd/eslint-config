@@ -1,12 +1,14 @@
 import process from 'node:process'
-import c from 'picocolors'
+import { styleText } from 'node:util'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { CROSS, version } from './constants'
 import { run } from './run'
 
 function header() {
-  console.log(`\n${c.green(`@coderwyd/eslint-config `)}${c.dim(`v${version}`)}`)
+  console.log(
+    `\n${styleText('green', `@coderwyd/eslint-config `)}${styleText('dim', `v${version}`)}`,
+  )
 }
 
 const instance = yargs(hideBin(process.argv))
@@ -29,8 +31,8 @@ const instance = yargs(hideBin(process.argv))
       try {
         await run(args)
       } catch (error) {
-        console.error(c.inverse(c.red(' Failed to migrate ')))
-        console.error(c.red(`${CROSS} ${String(error)}`))
+        console.error(styleText(['red', 'inverse'], ' Failed to migrate '))
+        console.error(styleText('red', `${CROSS} ${String(error)}`))
         process.exit(1)
       }
     },
