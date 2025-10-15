@@ -7,6 +7,10 @@
   "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "license": "MIT",
   "homepage": "https://github.com/coderwyd/eslint-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderwyd/eslint-config.git"
+  },
   "keywords": [
     "eslint",
     "eslint-config",
