@@ -1,7 +1,6 @@
 import process from 'node:process'
 import { styleText } from 'node:util'
-import yargs from 'yargs'
-import { hideBin } from 'yargs/helpers'
+import { cac } from 'cac'
 import { CROSS, version } from './constants'
 import { run } from './run'
 
@@ -11,36 +10,25 @@ function header() {
   )
 }
 
-const instance = yargs(hideBin(process.argv))
-  .scriptName('@coderwyd/eslint-config')
-  .usage('')
-  .command(
-    '*',
-    'Run the initialization or migration',
-    (args) =>
-      args
-        .option('yes', {
-          alias: 'y',
-          description: 'Skip prompts and use default values',
-          type: 'boolean',
-        })
-        .help(),
-    async (args) => {
-      header()
-      console.log()
-      try {
-        await run(args)
-      } catch (error) {
-        console.error(styleText(['red', 'inverse'], ' Failed to migrate '))
-        console.error(styleText('red', `${CROSS} ${String(error)}`))
-        process.exit(1)
-      }
-    },
-  )
-  .showHelpOnFail(false)
-  .alias('h', 'help')
-  .version('version', version)
-  .alias('v', 'version')
+const cli = cac('@coderwyd/eslint-config')
 
-// eslint-disable-next-line ts/no-unused-expressions
-instance.help().argv
+cli
+  .command('', 'Run the initialization or migration')
+  .option('--yes, -y', 'Skip prompts and use default values', {
+    default: false,
+  })
+  .action(async (args) => {
+    header()
+    console.log()
+    try {
+      await run(args)
+    } catch (error) {
+      console.error(styleText(['red', 'inverse'], ' Failed to migrate '))
+      console.error(styleText('red', `${CROSS} ${String(error)}`))
+      process.exit(1)
+    }
+  })
+
+cli.help()
+cli.version(version)
+cli.parse()

@@ -91,6 +91,7 @@
     "@typescript-eslint/eslint-plugin": "catalog:prod",
     "@typescript-eslint/parser": "catalog:prod",
     "@vitest/eslint-plugin": "catalog:prod",
+    "cac": "catalog:prod",
     "eslint-config-flat-gitignore": "catalog:prod",
     "eslint-config-prettier": "catalog:prod",
     "eslint-plugin-antfu": "catalog:prod",
@@ -114,8 +115,7 @@
     "parse-gitignore": "catalog:prod",
     "prompts": "catalog:prod",
     "vue-eslint-parser": "catalog:prod",
-    "yaml-eslint-parser": "catalog:prod",
-    "yargs": "catalog:prod"
+    "yaml-eslint-parser": "catalog:prod"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "catalog:peer",
@@ -123,7 +123,6 @@
     "@types/eslint-config-prettier": "catalog:dev",
     "@types/node": "catalog:dev",
     "@types/prompts": "catalog:dev",
-    "@types/yargs": "catalog:dev",
     "@unocss/eslint-plugin": "catalog:peer",
     "bumpp": "catalog:dev",
     "eslint": "catalog:peer",
