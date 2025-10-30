@@ -38,13 +38,13 @@
     "node": ">=18.18.0"
   },
   "scripts": {
-    "build": "nr build:typegen && tsdown",
+    "build": "pnpm build:typegen && tsdown",
     "dev": "pnpx @eslint/config-inspector",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "build:inspector": "pnpm build && pnpx @eslint/config-inspector build",
     "build:typegen": "jiti scripts/typegen.ts",
-    "prepack": "nr build",
+    "prepack": "pnpm build",
     "prepare": "simple-git-hooks",
     "release": "bumpp",
     "typecheck": "tsc --noEmit"
@@ -118,7 +118,6 @@
     "yargs": "catalog:prod"
   },
   "devDependencies": {
-    "@antfu/ni": "catalog:dev",
     "@eslint-react/eslint-plugin": "catalog:peer",
     "@eslint/config-inspector": "catalog:dev",
     "@types/eslint-config-prettier": "catalog:dev",
