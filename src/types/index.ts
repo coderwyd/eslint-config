@@ -195,6 +195,14 @@ export interface OptionsConfig extends OptionsComponentExts {
   unocss?: boolean | OptionsUnoCSS
 
   /**
+   * Enable pnpm (workspace/catalogs) support.
+   *
+   * @see https://github.com/antfu/pnpm-workspace-utils
+   * @default false
+   */
+  pnpm?: boolean
+
+  /**
    * Enable regexp rules.
    *
    * @see https://ota-meshi.github.io/eslint-plugin-regexp/

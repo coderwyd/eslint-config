@@ -9,6 +9,7 @@ import {
   jsonc,
   node,
   perfectionist,
+  pnpm,
   prettier,
   react,
   regexp,
@@ -79,6 +80,7 @@ export async function defineConfig(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    pnpm: enableCatalogs = false,
     react: enableReact = false,
     regexp: enableRegexp = true,
     svelte: enableSvelte = false,
@@ -221,6 +223,10 @@ export async function defineConfig(
       sortPackageJson(),
       sortTsconfig(),
     )
+  }
+
+  if (enableCatalogs) {
+    configs.push(pnpm())
   }
 
   if (options.yaml ?? true) {
