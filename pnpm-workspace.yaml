@@ -16,7 +16,7 @@ catalogs:
     unplugin-unused: ^0.5.6
 
   peer:
-    '@eslint-react/eslint-plugin': ^2.2.4
+    '@eslint-react/eslint-plugin': ^2.3.7
     '@unocss/eslint-plugin': ^66.5.9
     eslint: ^9.38.0
     eslint-plugin-react-hooks: 7.0.1
