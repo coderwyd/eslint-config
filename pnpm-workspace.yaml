@@ -55,7 +55,7 @@ catalogs:
     parse-gitignore: ^2.0.0
     prompts: ^2.4.2
     vue-eslint-parser: ^10.2.0
-    yaml-eslint-parser: ^1.3.0
+    yaml-eslint-parser: ^1.3.1
 onlyBuiltDependencies:
   - esbuild
   - simple-git-hooks
