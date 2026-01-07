@@ -5,7 +5,6 @@ import process from 'node:process'
 import { styleText } from 'node:util'
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
-
 import prompts from 'prompts'
 import {
   ARROW,

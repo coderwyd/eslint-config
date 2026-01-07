@@ -12,7 +12,6 @@ import {
   isUsingReactRouter,
   isUsingRemix,
 } from '../env'
-
 import { ensurePackages, interopDefault } from '../shared'
 import type {
   OptionsFiles,
@@ -56,6 +55,7 @@ export async function react(
     ] as const,
   )
 
+  // @ts-expect-error ignore
   const plugins = pluginReact.configs.all.plugins
 
   return [

@@ -5,7 +5,6 @@
     "jsxImportSource": "react",
     "lib": ["DOM", "ESNext"],
     "moduleDetection": "force",
-    "baseUrl": ".",
     "module": "preserve",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
