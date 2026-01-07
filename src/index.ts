@@ -14,6 +14,7 @@ import {
   react,
   regexp,
   sortPackageJson,
+  sortPnpmWorkspace,
   sortTsconfig,
   specials,
   svelte,
@@ -142,6 +143,7 @@ export async function defineConfig(
     command(),
     deMorgan(),
     perfectionist(),
+    sortPnpmWorkspace(),
 
     // Optional plugins (installed but not enabled by default)
   )

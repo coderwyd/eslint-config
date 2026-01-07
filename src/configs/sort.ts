@@ -31,6 +31,7 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
               'packageManager',
               'description',
               'author',
+              'contributors',
               'license',
               'funding',
               'homepage',
@@ -67,6 +68,8 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
               'lint-staged',
               'nano-staged',
               'eslintConfig',
+              'prettier',
+              'tsdown',
             ],
             pathPattern: '^$',
           },
@@ -77,7 +80,7 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^(?:resolutions|overrides|pnpm.overrides)$',
+            pathPattern: String.raw`^(?:resolutions|overrides|pnpm\.overrides)$`,
           },
           {
             order: ['types', 'import', 'require', 'default'],
@@ -232,6 +235,96 @@ export function sortTsconfig(): TypedFlatConfigItem[] {
               'skipLibCheck',
             ],
             pathPattern: '^compilerOptions$',
+          },
+        ],
+      },
+    },
+  ]
+}
+
+export function sortPnpmWorkspace(): TypedFlatConfigItem[] {
+  return [
+    {
+      files: ['**/pnpm-workspace.yaml'],
+      name: 'coderwyd/sort/pnpm-workspace',
+      rules: {
+        'yaml/sort-keys': [
+          'error',
+          {
+            order: [
+              // Settings
+              // @keep-sorted
+              ...[
+                'cacheDir',
+                'catalogMode',
+                'cleanupUnusedCatalogs',
+                'dedupeDirectDeps',
+                'deployAllFiles',
+                'enablePrePostScripts',
+                'engineStrict',
+                'extendNodePath',
+                'hoist',
+                'hoistPattern',
+                'hoistWorkspacePackages',
+                'ignoreCompatibilityDb',
+                'ignoreDepScripts',
+                'ignoreScripts',
+                'ignoreWorkspaceRootCheck',
+                'managePackageManagerVersions',
+                'minimumReleaseAge',
+                'minimumReleaseAgeExclude',
+                'modulesDir',
+                'nodeLinker',
+                'nodeVersion',
+                'optimisticRepeatInstall',
+                'packageManagerStrict',
+                'packageManagerStrictVersion',
+                'preferSymlinkedExecutables',
+                'preferWorkspacePackages',
+                'publicHoistPattern',
+                'registrySupportsTimeField',
+                'requiredScripts',
+                'resolutionMode',
+                'savePrefix',
+                'scriptShell',
+                'shamefullyHoist',
+                'shellEmulator',
+                'stateDir',
+                'supportedArchitectures',
+                'symlink',
+                'tag',
+                'trustPolicy',
+                'trustPolicyExclude',
+                'updateNotifier',
+              ],
+
+              // Packages and dependencies
+              'packages',
+              'overrides',
+              'patchedDependencies',
+              'catalog',
+              'catalogs',
+
+              // Other
+              // @keep-sorted
+              ...[
+                'allowedDeprecatedVersions',
+                'allowNonAppliedPatches',
+                'configDependencies',
+                'ignoredBuiltDependencies',
+                'ignoredOptionalDependencies',
+                'neverBuiltDependencies',
+                'onlyBuiltDependencies',
+                'onlyBuiltDependenciesFile',
+                'packageExtensions',
+                'peerDependencyRules',
+              ],
+            ],
+            pathPattern: '^$',
+          },
+          {
+            order: { type: 'asc' },
+            pathPattern: '.*',
           },
         ],
       },
