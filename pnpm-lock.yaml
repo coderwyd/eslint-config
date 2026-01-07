@@ -18,6 +18,9 @@ catalogs:
     '@types/prompts':
       specifier: ^2.4.9
       version: 2.4.9
+    '@typescript/native-preview':
+      specifier: 7.0.0-dev.20260107.1
+      version: 7.0.0-dev.20260107.1
     bumpp:
       specifier: ^10.3.2
       version: 10.3.2
@@ -276,7 +279,7 @@ importers:
         specifier: catalog:dev
         version: 2.4.9
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260107.1
+        specifier: catalog:dev
         version: 7.0.0-dev.20260107.1
       '@unocss/eslint-plugin':
         specifier: catalog:peer
