@@ -67,11 +67,17 @@ export function perfectionist(): TypedFlatConfigItem[] {
         ],
         'perfectionist/sort-named-exports': [
           'warn',
-          { groupKind: 'values-first', order: 'asc', type: 'natural' },
+          {
+          groups: ['value-export', 'type-export'],
+          type: 'natural',
+        },
         ],
         'perfectionist/sort-named-imports': [
           'warn',
-          { groupKind: 'values-first', order: 'asc', type: 'natural' },
+          {
+             groups: ['value-import', 'type-import'],
+          type: 'natural',
+        },
         ],
       },
     },
