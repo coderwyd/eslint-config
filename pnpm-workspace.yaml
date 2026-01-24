@@ -1,5 +1,3 @@
-trustPolicy: no-downgrade
-
 catalogs:
   dev:
     '@eslint/config-inspector': ^1.4.2

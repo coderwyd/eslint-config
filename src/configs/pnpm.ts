@@ -39,7 +39,7 @@ export async function pnpm(): Promise<TypedFlatConfigItem[]> {
           {
             settings: {
               shellEmulator: true,
-              trustPolicy: 'no-downgrade',
+              // trustPolicy: 'no-downgrade',
             },
           },
         ],
