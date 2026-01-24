@@ -6,14 +6,14 @@ declare module 'eslint-plugin-react-compiler' {
 
 declare module 'eslint-plugin-vue' {
   export type VueConfigKey =
-    | 'base'
-    | 'essential'
-    | 'no-layout-rules'
-    | 'recommended'
-    | 'strongly-recommended'
-    | 'vue2-essential'
-    | 'vue2-recommended'
-    | 'vue2-strongly-recommended'
+    | 'flat/base'
+    | 'flat/essential'
+    | 'flat/no-layout-rules'
+    | 'flat/recommended'
+    | 'flat/strongly-recommended'
+    | 'flat/vue2-essential'
+    | 'flat/vue2-recommended'
+    | 'flat/vue2-strongly-recommended'
 
   type VuePlugin = import('eslint').ESLint.Plugin & {
     configs: Record<VueConfigKey, import('eslint').ESLint.ConfigData>

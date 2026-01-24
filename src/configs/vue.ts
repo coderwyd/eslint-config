@@ -26,16 +26,38 @@ export async function vue(
   const isVue3 = getVueVersion() === 3
 
   const configKeys: VueConfigKey[] = isVue3
-    ? ['essential', 'strongly-recommended', 'recommended']
-    : ['vue2-essential', 'vue2-strongly-recommended', 'vue2-recommended']
-
-  const vueRules = configKeys.reduce((preRules, key) => {
-    const config = pluginVue.configs[key]
-    return {
-      ...preRules,
-      ...config.rules,
+    ? ['flat/essential', 'flat/strongly-recommended', 'flat/recommended']
+    : [
+        'flat/vue2-essential',
+        'flat/vue2-strongly-recommended',
+        'flat/vue2-recommended',
+      ]
+  function extractRules(config: any) {
+    if (Array.isArray(config)) {
+      return config.reduce(
+        (acc, c) => {
+          if (c && c.rules) {
+            Object.assign(acc, c.rules)
+          }
+          return acc
+        },
+        {} as Record<string, any>,
+      )
     }
-  }, {})
+
+    return config?.rules ?? {}
+  }
+
+  const vueRules = configKeys.reduce(
+    (preRules, key) => {
+      const config = pluginVue.configs[key]
+      return {
+        ...preRules,
+        ...extractRules(config),
+      }
+    },
+    {} as Record<string, any>,
+  )
 
   return [
     {
@@ -61,7 +83,7 @@ export async function vue(
       },
       processor: pluginVue.processors!['.vue'],
       rules: {
-        ...pluginVue.configs.base.rules,
+        ...pluginVue.configs['flat/base'].rules,
         ...vueRules,
         'antfu/no-top-level-await': 'off',
         'node/prefer-global/process': 'off',
@@ -82,7 +104,6 @@ export async function vue(
         // this is deprecated
         'vue/component-tags-order': 'off',
         'vue/custom-event-name-casing': ['error', 'camelCase'],
-        // 'vue/define-emits-declaration': ['warn', 'type-based'],
         'vue/define-macros-order': [
           'error',
           {
@@ -96,6 +117,7 @@ export async function vue(
         ],
         // 'vue/define-props-declaration': ['warn', 'type-based'],
         'vue/eqeqeq': ['error', 'smart'],
+        // 'vue/define-emits-declaration': ['warn', 'type-based'],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         // 'vue/next-tick-style': ['warn', 'promise'],
