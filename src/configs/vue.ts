@@ -96,18 +96,6 @@ export async function vue(
         ],
         // 'vue/define-props-declaration': ['warn', 'type-based'],
         'vue/eqeqeq': ['error', 'smart'],
-        'vue/html-self-closing': [
-          'error',
-          {
-            html: {
-              component: 'always',
-              normal: 'always',
-              void: 'any',
-            },
-            math: 'always',
-            svg: 'always',
-          },
-        ],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         // 'vue/next-tick-style': ['warn', 'promise'],
