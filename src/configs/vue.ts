@@ -61,6 +61,31 @@ export async function vue(
 
   return [
     {
+      // This allows Vue plugin to work with auto imports
+      languageOptions: {
+        globals: {
+          computed: 'readonly',
+          defineEmits: 'readonly',
+          defineExpose: 'readonly',
+          defineProps: 'readonly',
+          onMounted: 'readonly',
+          onUnmounted: 'readonly',
+          reactive: 'readonly',
+          ref: 'readonly',
+          shallowReactive: 'readonly',
+          shallowRef: 'readonly',
+          toRef: 'readonly',
+          toRefs: 'readonly',
+          watch: 'readonly',
+          watchEffect: 'readonly',
+        },
+      },
+      name: 'coderwyd/vue/setup',
+      plugins: {
+        vue: pluginVue,
+      },
+    },
+    {
       files,
       languageOptions: {
         parser: parserVue,
@@ -78,9 +103,6 @@ export async function vue(
         },
       },
       name: 'coderwyd/vue/rules',
-      plugins: {
-        vue: pluginVue,
-      },
       processor: pluginVue.processors!['.vue'],
       rules: {
         ...pluginVue.configs['flat/base'].rules,
@@ -115,13 +137,17 @@ export async function vue(
             ],
           },
         ],
+        'vue/dot-location': ['error', 'property'],
+        'vue/dot-notation': ['error', { allowKeywords: true }],
         // 'vue/define-props-declaration': ['warn', 'type-based'],
         'vue/eqeqeq': ['error', 'smart'],
+        'vue/html-quotes': ['error', 'double'],
         // 'vue/define-emits-declaration': ['warn', 'type-based'],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
         // 'vue/next-tick-style': ['warn', 'promise'],
         'vue/no-constant-condition': 'warn',
+        'vue/no-dupe-keys': 'off',
         'vue/no-duplicate-attr-inheritance': 'warn',
         'vue/no-empty-pattern': 'error',
         'vue/no-extra-parens': ['error', 'functions'],
