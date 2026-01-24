@@ -1,14 +1,15 @@
 import prettierRules from 'eslint-config-prettier'
 import type { TypedFlatConfigItem } from '../types'
 
-const { rules: eslintRules } = prettierRules
+const rules = prettierRules.rules
+delete rules['vue/html-self-closing']
 
 export function prettier(): TypedFlatConfigItem[] {
   return [
     {
       name: 'coderwyd/prettier/rules',
       rules: {
-        ...eslintRules,
+        ...rules,
         'arrow-body-style': 'off',
         'prefer-arrow-callback': 'off',
       },
