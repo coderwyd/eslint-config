@@ -180,7 +180,10 @@ export interface OptionsConfig extends OptionsComponentExts {
   /**
    * Enable tainwindcss rules.
    *
-   * @default auto-detect based on the dependencies
+   * Requires installing:
+   * - `eslint-plugin-tailwindcss`
+   *
+   * @default false
    */
   tailwindcss?: boolean | OptionsOverrides
 
