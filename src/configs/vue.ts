@@ -141,7 +141,18 @@ export async function vue(
         'vue/dot-notation': ['error', { allowKeywords: true }],
         // 'vue/define-props-declaration': ['warn', 'type-based'],
         'vue/eqeqeq': ['error', 'smart'],
-        'vue/html-quotes': ['error', 'double'],
+        'vue/html-self-closing': [
+          'error',
+          {
+            html: {
+              component: 'always',
+              normal: 'always',
+              void: 'any',
+            },
+            math: 'always',
+            svg: 'always',
+          },
+        ],
         // 'vue/define-emits-declaration': ['warn', 'type-based'],
         'vue/max-attributes-per-line': 'off',
         'vue/multi-word-component-names': 'off',
