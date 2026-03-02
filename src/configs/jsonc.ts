@@ -12,23 +12,18 @@ export async function jsonc(
   const { files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC], overrides = {} } =
     options || {}
 
-  const [pluginJsonc, parserJsonc] = await Promise.all([
-    interopDefault(import('eslint-plugin-jsonc')),
-    interopDefault(import('jsonc-eslint-parser')),
-  ] as const)
+  const pluginJsonc = await interopDefault(import('eslint-plugin-jsonc'))
 
   return [
     {
       name: 'coderwyd/jsonc/setup',
       plugins: {
-        jsonc: pluginJsonc as any,
+        jsonc: pluginJsonc,
       },
     },
     {
       files,
-      languageOptions: {
-        parser: parserJsonc as any,
-      },
+      language: 'jsonc/x',
       name: 'coderwyd/jsonc/rules',
       rules: {
         'jsonc/no-bigint-literals': 'error',

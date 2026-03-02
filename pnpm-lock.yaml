@@ -149,9 +149,6 @@ catalogs:
     globals:
       specifier: ^17.2.0
       version: 17.2.0
-    jsonc-eslint-parser:
-      specifier: ^2.4.2
-      version: 2.4.2
     local-pkg:
       specifier: ^1.1.2
       version: 1.1.2
@@ -244,9 +241,6 @@ importers:
       globals:
         specifier: catalog:prod
         version: 17.2.0
-      jsonc-eslint-parser:
-        specifier: catalog:prod
-        version: 2.4.2
       local-pkg:
         specifier: catalog:prod
         version: 1.1.2
@@ -2105,6 +2099,7 @@ packages:
   glob@10.3.16:
     resolution: {integrity: sha512-JDKXl1DiuuHJ6fVS2FXjownaavciiHNUU4mOvV/B793RLh05vZL1rcPnCSaOgv1hDT6RDlY7AB7ZUvFYAtPgAw==}
     engines: {node: '>=16 || 14 >=14.18'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globals@11.12.0:

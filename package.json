@@ -108,7 +108,6 @@
     "eslint-plugin-vue": "catalog:prod",
     "eslint-plugin-yml": "catalog:prod",
     "globals": "catalog:prod",
-    "jsonc-eslint-parser": "catalog:prod",
     "local-pkg": "catalog:prod",
     "parse-gitignore": "catalog:prod",
     "prompts": "catalog:prod",
