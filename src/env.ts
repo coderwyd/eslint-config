@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { isPackageExists } from 'local-pkg'
+import { isPackageExists } from './shared/utils'
 
 export const isInEditor: boolean = !!(
   (process.env.VSCODE_PID ||
@@ -23,6 +23,7 @@ const ReactRouterPackages = [
 
 const NextJsPackages = ['next']
 
+export const isCwdInScope: boolean = isPackageExists('@coderwyd/eslint-config')
 // react refresh
 const ReactRefreshAllowConstantExportPackages = ['vite']
 

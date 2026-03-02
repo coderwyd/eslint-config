@@ -1,12 +1,9 @@
 import process from 'node:process'
-import { fileURLToPath } from 'node:url'
-import { getPackageInfoSync, isPackageExists } from 'local-pkg'
+import { isCwdInScope } from '../env'
+import { isPackageExists } from './utils'
 import type { Linter } from 'eslint'
 import type { Awaitable, OptionsConfig, ResolvedOptions, TypedFlatConfigItem } from '../types'
 import type { RuleOptions } from '../types/typegen'
-
-const scopeUrl = fileURLToPath(new URL('.', import.meta.url))
-const isCwdInScope = isPackageExists('@coderwyd/eslint-config')
 
 /**
  * Combine array and non-array configs into a single array.
@@ -83,14 +80,6 @@ export function renamePluginInConfigs(
   })
 }
 
-export function getVueVersion(): number {
-  const pkg = getPackageInfoSync('vue', { paths: [process.cwd()] })
-  if (pkg && typeof pkg.version === 'string' && !Number.isNaN(+pkg.version[0]))
-    return +pkg.version[0]
-
-  return 3
-}
-
 export function toArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value]
 }
@@ -102,30 +91,29 @@ export async function interopDefault<T>(
   return (resolved as any).default || resolved
 }
 
-export function isPackageInScope(name: string): boolean {
-  return isPackageExists(name, { paths: [scopeUrl] })
-}
-
 export async function ensurePackages(packages: string[]): Promise<void> {
   if (process.env.CI || process.stdout.isTTY === false || isCwdInScope === false) return
 
-  const nonExistingPackages = packages.filter((i) => !isPackageInScope(i))
+  const nonExistingPackages = packages.filter((i) => !isPackageExists(i))
   if (nonExistingPackages.length === 0) return
 
   const { default: prompts } = await import('prompts')
+
+  const message = `${
+    nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'
+  } required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`
+
   const { result } = await prompts([
     {
-      message: `${
-        nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'
-      } required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`,
+      message,
       name: 'result',
       type: 'confirm',
     },
   ])
+
   if (result) {
-    await import('@antfu/install-pkg').then((i) =>
-      i.installPackage(nonExistingPackages, { dev: true }),
-    )
+    const { installPackage } = await import('@antfu/install-pkg')
+    await installPackage(nonExistingPackages, { dev: true })
   }
 }
 
