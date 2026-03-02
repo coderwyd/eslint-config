@@ -1,6 +1,6 @@
 {
   "name": "@coderwyd/eslint-config",
-  "version": "4.11.0",
+  "version": "4.11.1",
   "description": "Donny's ESLint config",
   "keywords": [
     "eslint",
