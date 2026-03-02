@@ -33,7 +33,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=20.19.0"
   },
   "scripts": {
     "build": "pnpm build:typegen && tsdown",
