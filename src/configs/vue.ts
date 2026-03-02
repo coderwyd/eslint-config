@@ -1,5 +1,5 @@
 import { GLOB_VUE } from '../constants/glob'
-import { getVueVersion, interopDefault } from '../shared'
+import { interopDefault } from '../shared'
 import type {
   OptionsFiles,
   OptionsHasTypeScript,
@@ -11,7 +11,7 @@ import type {
 export async function vue(
   options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_VUE], overrides = {} } = options
+  const { files = [GLOB_VUE], overrides = {}, vueVersion } = options
 
   const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
@@ -20,7 +20,7 @@ export async function vue(
 
   type VueConfigKey = import('eslint-plugin-vue').VueConfigKey
 
-  const isVue3 = getVueVersion() === 3
+  const isVue3 = vueVersion === 3
 
   const configKeys: VueConfigKey[] = isVue3
     ? ['flat/essential', 'flat/strongly-recommended', 'flat/recommended']

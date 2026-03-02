@@ -93,7 +93,14 @@ export interface OptionsUnoCSS extends OptionsOverrides {
   strict?: boolean
 }
 
-export interface OptionsVue extends OptionsOverrides {}
+export interface OptionsVue extends OptionsOverrides {
+  /**
+   * Vue version. Apply different rules set from `eslint-plugin-vue`.
+   *
+   * @default 3
+   */
+  vueVersion?: 2 | 3
+}
 
 export interface OptionsConfig extends OptionsComponentExts {
   /**
