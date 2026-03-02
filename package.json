@@ -48,11 +48,11 @@
     "typecheck": "tsgo --noEmit"
   },
   "peerDependencies": {
-    "@eslint-react/eslint-plugin": "^1.5.8 || ^2.0.0",
+    "@eslint-react/eslint-plugin": "^2.11.0",
     "@unocss/eslint-plugin": ">=0.50.0",
-    "eslint": "^9.5.0",
-    "eslint-plugin-react-hooks": "^4.6.0 || ^5.0.0 || ^7.0.0",
-    "eslint-plugin-react-refresh": "^0.4.4",
+    "eslint": "^9.10.0 || ^10.0.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.5.0",
     "eslint-plugin-svelte": ">=2.35.1",
     "eslint-plugin-tailwindcss": "^3.16.0",
     "svelte-eslint-parser": ">=0.37.0"
