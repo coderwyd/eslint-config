@@ -130,7 +130,7 @@ export async function defineConfig(
 
   // Base configs
   configs.push(
-    ignores(options.ignores),
+    ignores(options.ignores, !enableTypeScript),
     javascript({
       isInEditor,
       overrides: getOverrides(options, 'javascript'),
