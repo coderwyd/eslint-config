@@ -3,6 +3,7 @@
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "cSpell.words": ["antfu", "astro", "coderwyd", "rspack", "tsdown", "unocss"]
+  "cSpell.words": ["antfu", "astro", "coderwyd", "oxfmt", "rspack", "tsdown", "unocss"]
 }

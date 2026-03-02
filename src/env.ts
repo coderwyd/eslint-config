@@ -12,12 +12,7 @@ export const isInEditor: boolean = !!(
 
 const VueJsPackages = ['vue', 'nuxt', 'vitepress', '@slidev/cli']
 
-const RemixPackages = [
-  '@remix-run/node',
-  '@remix-run/react',
-  '@remix-run/serve',
-  '@remix-run/dev',
-]
+const RemixPackages = ['@remix-run/node', '@remix-run/react', '@remix-run/serve', '@remix-run/dev']
 
 const ReactRouterPackages = [
   '@react-router/node',
@@ -33,13 +28,12 @@ const ReactRefreshAllowConstantExportPackages = ['vite']
 
 export const isUsingTypeScript: boolean = isPackageExists('typescript')
 export const isUsingVue: boolean = hasPackages(VueJsPackages)
+export const isUsingOxfmt: boolean = hasPackages(['oxfmt'])
 // export const hasReact = hasPackages(['react', ...RemixPackages, ...NextJsPackages])
 export const isUsingRemix: boolean = hasPackages(RemixPackages)
 export const isUsingReactRouter: boolean = hasPackages(ReactRouterPackages)
 export const isUsingNext: boolean = hasPackages(NextJsPackages)
-export const isAllowConstantExport: boolean = hasPackages(
-  ReactRefreshAllowConstantExportPackages,
-)
+export const isAllowConstantExport: boolean = hasPackages(ReactRefreshAllowConstantExportPackages)
 
 function hasPackages(packages: string[]) {
   return packages.some((name) => isPackageExists(name))

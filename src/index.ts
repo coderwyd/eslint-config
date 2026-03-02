@@ -26,7 +26,7 @@ import {
   vue,
   yaml,
 } from './configs'
-import { isUsingTypeScript, isUsingVue } from './env'
+import { isUsingOxfmt, isUsingTypeScript, isUsingVue } from './env'
 import {
   combine,
   getOverrides,
@@ -73,9 +73,7 @@ export const defaultPluginRenaming = {
  */
 export async function defineConfig(
   options: OptionsConfig & Omit<TypedFlatConfigItem, 'files'> = {},
-  ...userConfigs: Awaitable<
-    TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.Config[]
-  >[]
+  ...userConfigs: Awaitable<TypedFlatConfigItem | TypedFlatConfigItem[] | Linter.Config[]>[]
 ): Promise<TypedFlatConfigItem[]> {
   const {
     autoRenamePlugins = true,
@@ -97,9 +95,7 @@ export async function defineConfig(
     isInEditor = isInEditorEnv()
     if (isInEditor)
       // eslint-disable-next-line no-console
-      console.log(
-        '[@coderwyd/eslint-config] Detected running in editor, some rules are disabled.',
-      )
+      console.log('[@coderwyd/eslint-config] Detected running in editor, some rules are disabled.')
   }
 
   const configs: Awaitable<TypedFlatConfigItem[]>[] = []
@@ -125,9 +121,7 @@ export async function defineConfig(
 
   const typescriptOptions = resolveSubOptions(options, 'typescript')
   const tsconfigPath =
-    'tsconfigPath' in typescriptOptions
-      ? typescriptOptions.tsconfigPath
-      : undefined
+    'tsconfigPath' in typescriptOptions ? typescriptOptions.tsconfigPath : undefined
 
   // Base configs
   configs.push(
@@ -164,8 +158,7 @@ export async function defineConfig(
     )
   }
 
-  if (enableRegexp)
-    configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
+  if (enableRegexp) configs.push(regexp(typeof enableRegexp === 'boolean' ? {} : enableRegexp))
 
   if (options.test ?? true) {
     configs.push(
@@ -226,9 +219,12 @@ export async function defineConfig(
       jsonc({
         overrides: getOverrides(options, 'jsonc'),
       }),
-      sortPackageJson(),
       sortTsconfig(),
     )
+
+    if (!isUsingOxfmt) {
+      configs.push(sortPackageJson())
+    }
   }
 
   if (enableCatalogs) {
@@ -261,8 +257,7 @@ export async function defineConfig(
 
   const merged = await combine(...configs, ...userConfigs)
 
-  if (autoRenamePlugins)
-    return renamePluginInConfigs(merged, defaultPluginRenaming)
+  if (autoRenamePlugins) return renamePluginInConfigs(merged, defaultPluginRenaming)
 
   return merged
 }

@@ -1,10 +1,5 @@
 import process from 'node:process'
-import {
-  GLOB_ASTRO_TS,
-  GLOB_MARKDOWN,
-  GLOB_TS,
-  GLOB_TSX,
-} from '../constants/glob'
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_TS, GLOB_TSX } from '../constants/glob'
 import { pluginAntfu } from '../plugins'
 import { interopDefault, renameRules } from '../shared'
 import type {
@@ -30,17 +25,10 @@ export async function typescript(
     parserOptions = {},
   } = options
 
-  const files = options.files ?? [
-    GLOB_TS,
-    GLOB_TSX,
-    ...componentExts.map((ext) => `**/*.${ext}`),
-  ]
+  const files = options.files ?? [GLOB_TS, GLOB_TSX, ...componentExts.map((ext) => `**/*.${ext}`)]
 
   const filesTypeAware = options.filesTypeAware ?? [GLOB_TS, GLOB_TSX]
-  const ignoresTypeAware = options.ignoresTypeAware ?? [
-    `${GLOB_MARKDOWN}/**`,
-    GLOB_ASTRO_TS,
-  ]
+  const ignoresTypeAware = options.ignoresTypeAware ?? [`${GLOB_MARKDOWN}/**`, GLOB_ASTRO_TS]
 
   const tsconfigPath = options.tsconfigPath
   const isTypeAware = !!tsconfigPath
@@ -144,19 +132,15 @@ export async function typescript(
     },
     // assign type-aware parser for type-aware files and type-unaware parser for the rest
     ...(isTypeAware
-      ? [
-          makeParser(false, files),
-          makeParser(true, filesTypeAware, ignoresTypeAware),
-        ]
+      ? [makeParser(false, files), makeParser(true, filesTypeAware, ignoresTypeAware)]
       : [makeParser(false, files)]),
     {
       files,
       name: 'coderwyd/typescript/rules',
       rules: {
-        ...renameRules(
-          pluginTs.configs['eslint-recommended'].overrides![0].rules!,
-          { '@typescript-eslint': 'ts' },
-        ),
+        ...renameRules(pluginTs.configs['eslint-recommended'].overrides![0].rules!, {
+          '@typescript-eslint': 'ts',
+        }),
         ...renameRules(pluginTs.configs.strict.rules!, {
           '@typescript-eslint': 'ts',
         }),
@@ -164,10 +148,7 @@ export async function typescript(
         'no-redeclare': 'off',
         'no-use-before-define': 'off',
         'no-useless-constructor': 'off',
-        'ts/ban-ts-comment': [
-          'error',
-          { 'ts-expect-error': 'allow-with-description' },
-        ],
+        'ts/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
         'ts/consistent-type-definitions': ['error', 'interface'],
         'ts/consistent-type-imports': [
           'error',
@@ -204,10 +185,7 @@ export async function typescript(
           },
         ],
         'ts/no-unused-vars': 'off',
-        'ts/no-use-before-define': [
-          'error',
-          { classes: false, functions: false, variables: true },
-        ],
+        'ts/no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
         'ts/no-useless-constructor': 'off',
         'ts/no-wrapper-object-types': 'error',
         'ts/triple-slash-reference': 'off',

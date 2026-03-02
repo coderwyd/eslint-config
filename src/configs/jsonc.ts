@@ -1,16 +1,11 @@
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../constants/glob'
 import { interopDefault } from '../shared'
-import type {
-  OptionsFiles,
-  OptionsOverrides,
-  TypedFlatConfigItem,
-} from '../types'
+import type { OptionsFiles, OptionsOverrides, TypedFlatConfigItem } from '../types'
 
 export async function jsonc(
   options: OptionsFiles & OptionsOverrides = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC], overrides = {} } =
-    options || {}
+  const { files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC], overrides = {} } = options || {}
 
   const pluginJsonc = await interopDefault(import('eslint-plugin-jsonc'))
 

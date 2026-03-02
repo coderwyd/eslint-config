@@ -1,87 +1,48 @@
 {
   "name": "@coderwyd/eslint-config",
-  "type": "module",
   "version": "4.10.5",
-  "packageManager": "pnpm@10.30.3",
   "description": "Donny's ESLint config",
-  "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
-  "license": "MIT",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "eslint-config-react",
+    "eslint-config-svelte",
+    "eslint-config-vue"
+  ],
   "homepage": "https://github.com/coderwyd/eslint-config",
+  "license": "MIT",
+  "author": "Donny Wang <donny526@outlook.com> (https://github.com/coderwyd/)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/coderwyd/eslint-config.git"
   },
-  "keywords": [
-    "eslint",
-    "eslint-config",
-    "eslint-config-vue",
-    "eslint-config-react",
-    "eslint-config-svelte"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "exports": {
-    ".": "./dist/index.mjs",
-    "./cli": "./dist/cli.mjs",
-    "./package.json": "./package.json"
-  },
-  "types": "./dist/index.d.mts",
   "bin": "./bin/index.mjs",
   "files": [
     "bin",
     "dist"
   ],
-  "engines": {
-    "node": ">=20.19.0"
+  "type": "module",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./cli": "./dist/cli.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "pnpm build:typegen && tsdown",
-    "dev": "pnpx @eslint/config-inspector",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "build:inspector": "pnpm build && pnpx @eslint/config-inspector build",
     "build:typegen": "jiti scripts/typegen.ts",
+    "dev": "pnpx @eslint/config-inspector",
+    "fmt": "oxfmt",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepack": "pnpm build",
     "prepare": "simple-git-hooks",
     "release": "bumpp",
     "typecheck": "tsgo --noEmit"
-  },
-  "peerDependencies": {
-    "@eslint-react/eslint-plugin": "^2.11.0",
-    "@unocss/eslint-plugin": ">=0.50.0",
-    "eslint": "^9.10.0 || ^10.0.0",
-    "eslint-plugin-react-hooks": "^7.0.0",
-    "eslint-plugin-react-refresh": "^0.5.0",
-    "eslint-plugin-svelte": ">=2.35.1",
-    "eslint-plugin-tailwindcss": "^3.16.0",
-    "svelte-eslint-parser": ">=0.37.0"
-  },
-  "peerDependenciesMeta": {
-    "@eslint-react/eslint-plugin": {
-      "optional": true
-    },
-    "@unocss/eslint-plugin": {
-      "optional": true
-    },
-    "eslint-plugin-react-compiler": {
-      "optional": true
-    },
-    "eslint-plugin-react-hooks": {
-      "optional": true
-    },
-    "eslint-plugin-react-refresh": {
-      "optional": true
-    },
-    "eslint-plugin-svelte": {
-      "optional": true
-    },
-    "eslint-plugin-tailwindcss": {
-      "optional": true
-    },
-    "svelte-eslint-parser": {
-      "optional": true
-    }
   },
   "dependencies": {
     "@antfu/install-pkg": "catalog:prod",
@@ -131,6 +92,7 @@
     "eslint-typegen": "catalog:dev",
     "jiti": "catalog:dev",
     "nano-staged": "catalog:dev",
+    "oxfmt": "catalog:dev",
     "prettier": "catalog:dev",
     "publint": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
@@ -139,10 +101,53 @@
     "typescript": "catalog:dev",
     "unplugin-unused": "catalog:dev"
   },
+  "peerDependencies": {
+    "@eslint-react/eslint-plugin": "^2.11.0",
+    "@unocss/eslint-plugin": ">=0.50.0",
+    "eslint": "^9.10.0 || ^10.0.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "eslint-plugin-svelte": ">=2.35.1",
+    "eslint-plugin-tailwindcss": "^3.16.0",
+    "svelte-eslint-parser": ">=0.37.0"
+  },
+  "peerDependenciesMeta": {
+    "@eslint-react/eslint-plugin": {
+      "optional": true
+    },
+    "@unocss/eslint-plugin": {
+      "optional": true
+    },
+    "eslint-plugin-react-compiler": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    },
+    "eslint-plugin-react-refresh": {
+      "optional": true
+    },
+    "eslint-plugin-svelte": {
+      "optional": true
+    },
+    "eslint-plugin-tailwindcss": {
+      "optional": true
+    },
+    "svelte-eslint-parser": {
+      "optional": true
+    }
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec nano-staged"
   },
   "nano-staged": {
-    "*": "eslint --fix"
-  }
+    "*": [
+      "oxfmt --no-error-on-unmatched-pattern",
+      "eslint --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "packageManager": "pnpm@10.30.3"
 }

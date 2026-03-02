@@ -14,10 +14,7 @@ export function perfectionist(): TypedFlatConfigItem[] {
         perfectionist: pluginPerfectionist,
       },
       rules: {
-        'perfectionist/sort-exports': [
-          'error',
-          { order: 'asc', type: 'natural' },
-        ],
+        'perfectionist/sort-exports': ['error', { order: 'asc', type: 'natural' }],
         'perfectionist/sort-imports': [
           'warn',
           {
@@ -68,16 +65,16 @@ export function perfectionist(): TypedFlatConfigItem[] {
         'perfectionist/sort-named-exports': [
           'warn',
           {
-          groups: ['value-export', 'type-export'],
-          type: 'natural',
-        },
+            groups: ['value-export', 'type-export'],
+            type: 'natural',
+          },
         ],
         'perfectionist/sort-named-imports': [
           'warn',
           {
-             groups: ['value-import', 'type-import'],
-          type: 'natural',
-        },
+            groups: ['value-import', 'type-import'],
+            type: 'natural',
+          },
         ],
       },
     },

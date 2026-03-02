@@ -1,10 +1,6 @@
 import globals from 'globals'
 import { pluginUnusedImports } from '../plugins'
-import type {
-  OptionsIsInEditor,
-  OptionsOverrides,
-  TypedFlatConfigItem,
-} from '../types'
+import type { OptionsIsInEditor, OptionsOverrides, TypedFlatConfigItem } from '../types'
 
 export function javascript(
   options: OptionsIsInEditor & OptionsOverrides = {},
@@ -43,10 +39,7 @@ export function javascript(
         'unused-imports': pluginUnusedImports,
       },
       rules: {
-        'accessor-pairs': [
-          'error',
-          { enforceForClassMembers: true, setWithoutGet: true },
-        ],
+        'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
 
         'antfu/no-top-level-await': 'error',
         'antfu/top-level-function': 'error',
@@ -59,10 +52,7 @@ export function javascript(
         eqeqeq: ['error', 'smart'],
         'for-direction': 'error',
         'getter-return': 'error',
-        'new-cap': [
-          'error',
-          { capIsNew: false, newIsCap: true, properties: true },
-        ],
+        'new-cap': ['error', { capIsNew: false, newIsCap: true, properties: true }],
         'no-alert': 'error',
         'no-array-constructor': 'error',
         'no-async-promise-executor': 'error',
@@ -123,8 +113,7 @@ export function javascript(
         'no-restricted-properties': [
           'error',
           {
-            message:
-              'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+            message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
             property: '__proto__',
           },
           {
@@ -144,11 +133,7 @@ export function javascript(
             property: '__lookupSetter__',
           },
         ],
-        'no-restricted-syntax': [
-          'error',
-          'TSEnumDeclaration[const=true]',
-          'TSExportAssignment',
-        ],
+        'no-restricted-syntax': ['error', 'TSEnumDeclaration[const=true]', 'TSExportAssignment'],
         'no-self-assign': ['error', { props: true }],
         'no-self-compare': 'error',
         'no-sequences': 'error',
@@ -175,10 +160,7 @@ export function javascript(
           },
         ],
         'no-unused-vars': 'off',
-        'no-use-before-define': [
-          'error',
-          { classes: false, functions: false, variables: true },
-        ],
+        'no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
         'no-useless-backreference': 'error',
         'no-useless-call': 'error',
         'no-useless-catch': 'error',
@@ -234,10 +216,7 @@ export function javascript(
             varsIgnorePattern: '^_',
           },
         ],
-        'use-isnan': [
-          'error',
-          { enforceForIndexOf: true, enforceForSwitchCase: true },
-        ],
+        'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
         yoda: ['error', 'never'],

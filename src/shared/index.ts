@@ -2,12 +2,7 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { getPackageInfoSync, isPackageExists } from 'local-pkg'
 import type { Linter } from 'eslint'
-import type {
-  Awaitable,
-  OptionsConfig,
-  ResolvedOptions,
-  TypedFlatConfigItem,
-} from '../types'
+import type { Awaitable, OptionsConfig, ResolvedOptions, TypedFlatConfigItem } from '../types'
 import type { RuleOptions } from '../types/typegen'
 
 const scopeUrl = fileURLToPath(new URL('.', import.meta.url))
@@ -48,8 +43,7 @@ export function renameRules(
   return Object.fromEntries(
     Object.entries(rules).map(([key, value]) => {
       for (const [from, to] of Object.entries(map)) {
-        if (key.startsWith(`${from}/`))
-          return [to + key.slice(from.length), value]
+        if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value]
       }
       return [key, value]
     }),
@@ -113,12 +107,7 @@ export function isPackageInScope(name: string): boolean {
 }
 
 export async function ensurePackages(packages: string[]): Promise<void> {
-  if (
-    process.env.CI ||
-    process.stdout.isTTY === false ||
-    isCwdInScope === false
-  )
-    return
+  if (process.env.CI || process.stdout.isTTY === false || isCwdInScope === false) return
 
   const nonExistingPackages = packages.filter((i) => !isPackageInScope(i))
   if (nonExistingPackages.length === 0) return
@@ -153,9 +142,7 @@ export function getOverrides<K extends keyof OptionsConfig>(
 ): Partial<Linter.RulesRecord & RuleOptions> {
   const subOptions = resolveSubOptions(options, key)
   return {
-    ...('overrides' in subOptions && subOptions.overrides
-      ? subOptions.overrides
-      : {}),
+    ...('overrides' in subOptions && subOptions.overrides ? subOptions.overrides : {}),
   }
 }
 

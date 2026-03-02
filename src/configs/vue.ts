@@ -9,10 +9,7 @@ import type {
 } from '../types'
 
 export async function vue(
-  options: OptionsVue &
-    OptionsHasTypeScript &
-    OptionsOverrides &
-    OptionsFiles = {},
+  options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
   const { files = [GLOB_VUE], overrides = {} } = options
 
@@ -27,11 +24,7 @@ export async function vue(
 
   const configKeys: VueConfigKey[] = isVue3
     ? ['flat/essential', 'flat/strongly-recommended', 'flat/recommended']
-    : [
-        'flat/vue2-essential',
-        'flat/vue2-strongly-recommended',
-        'flat/vue2-recommended',
-      ]
+    : ['flat/vue2-essential', 'flat/vue2-strongly-recommended', 'flat/vue2-recommended']
   function extractRules(config: any) {
     if (Array.isArray(config)) {
       return config.reduce(
@@ -95,9 +88,7 @@ export async function vue(
           },
           extraFileExtensions: ['.vue'],
           parser: options.typescript
-            ? ((await interopDefault(
-                import('@typescript-eslint/parser'),
-              )) as any)
+            ? ((await interopDefault(import('@typescript-eslint/parser'))) as any)
             : null,
           sourceType: 'module',
         },
@@ -115,9 +106,7 @@ export async function vue(
         'vue/block-order': [
           'error',
           {
-            order: isVue3
-              ? ['script', 'template', 'style']
-              : ['template', 'script', 'style'],
+            order: isVue3 ? ['script', 'template', 'style'] : ['template', 'script', 'style'],
           },
         ],
         // 'vue/component-api-style': ['warn', ['script-setup', 'composition']],
@@ -129,12 +118,7 @@ export async function vue(
         'vue/define-macros-order': [
           'error',
           {
-            order: [
-              'defineOptions',
-              'defineProps',
-              'defineEmits',
-              'defineSlots',
-            ],
+            order: ['defineOptions', 'defineProps', 'defineEmits', 'defineSlots'],
           },
         ],
         'vue/dot-location': ['error', 'property'],

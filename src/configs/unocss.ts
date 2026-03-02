@@ -1,9 +1,7 @@
 import { ensurePackages, interopDefault } from '../shared'
 import type { OptionsUnoCSS, TypedFlatConfigItem } from '../types'
 
-export async function unocss(
-  options: OptionsUnoCSS = {},
-): Promise<TypedFlatConfigItem[]> {
+export async function unocss(options: OptionsUnoCSS = {}): Promise<TypedFlatConfigItem[]> {
   const { attributify = true, strict = false } = options
 
   await ensurePackages(['@unocss/eslint-plugin'])

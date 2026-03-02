@@ -6,14 +6,7 @@ import { styleText } from 'node:util'
 // @ts-expect-error missing types
 import parse from 'parse-gitignore'
 import prompts from 'prompts'
-import {
-  ARROW,
-  CHECK,
-  eslintVersion,
-  version,
-  vscodeSettingsString,
-  WARN,
-} from './constants'
+import { ARROW, CHECK, eslintVersion, version, vscodeSettingsString, WARN } from './constants'
 import { isGitClean } from './utils'
 
 export interface RuleOptions {
@@ -35,10 +28,7 @@ export async function run(options: RuleOptions = {}): Promise<void> {
 
   if (fs.existsSync(pathFlatConfig)) {
     console.log(
-      styleText(
-        'yellow',
-        `${WARN} eslint.config.js already exists, migration wizard exited.`,
-      ),
+      styleText('yellow', `${WARN} eslint.config.js already exists, migration wizard exited.`),
     )
     return process.exit(1)
   }
@@ -46,8 +36,7 @@ export async function run(options: RuleOptions = {}): Promise<void> {
   if (!SKIP_GIT_CHECK && !isGitClean()) {
     const { confirmed } = await prompts({
       initial: false,
-      message:
-        'There are uncommitted changes in the current repository, are you sure to continue?',
+      message: 'There are uncommitted changes in the current repository, are you sure to continue?',
       name: 'confirmed',
       type: 'confirm',
     })
@@ -55,12 +44,7 @@ export async function run(options: RuleOptions = {}): Promise<void> {
   }
 
   // Update package.json
-  console.log(
-    styleText(
-      'cyan',
-      `${ARROW} bumping @coderwyd/eslint-config to v${version}`,
-    ),
-  )
+  console.log(styleText('cyan', `${ARROW} bumping @coderwyd/eslint-config to v${version}`))
   const pkgContent = await fsp.readFile(pathPackageJSON, 'utf-8')
   const pkg: Record<string, any> = JSON.parse(pkgContent)
 
@@ -85,9 +69,7 @@ export async function run(options: RuleOptions = {}): Promise<void> {
       if (glob.type === 'ignore') {
         eslintIgnores.push(...glob.patterns)
       } else if (glob.type === 'unignore') {
-        eslintIgnores.push(
-          ...glob.patterns.map((pattern: string) => `!${pattern}`),
-        )
+        eslintIgnores.push(...glob.patterns.map((pattern: string) => `!${pattern}`))
       }
     }
   }
@@ -115,8 +97,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
   const files = fs.readdirSync(cwd)
   const legacyConfig: string[] = []
   files.forEach((file) => {
-    if (/eslint|prettier/.test(file) && !/eslint.config./.test(file))
-      legacyConfig.push(file)
+    if (/eslint|prettier/.test(file) && !/eslint.config./.test(file)) legacyConfig.push(file)
   })
   if (legacyConfig.length > 0) {
     console.log(`${WARN} you can now remove those files manually:`)
@@ -134,8 +115,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
       promptResult = await prompts(
         {
           initial: true,
-          message:
-            'Update .vscode/settings.json for better VS Code experience?',
+          message: 'Update .vscode/settings.json for better VS Code experience?',
           name: 'updateVscodeSettings',
           type: 'confirm',
         },
@@ -155,8 +135,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
     const dotVscodePath: string = path.join(cwd, '.vscode')
     const settingsPath: string = path.join(dotVscodePath, 'settings.json')
 
-    if (!fs.existsSync(dotVscodePath))
-      await fsp.mkdir(dotVscodePath, { recursive: true })
+    if (!fs.existsSync(dotVscodePath)) await fsp.mkdir(dotVscodePath, { recursive: true })
 
     if (!fs.existsSync(settingsPath)) {
       await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, 'utf-8')
@@ -165,10 +144,7 @@ module.exports = defineConfig({\n${coderwydConfig}\n})
       let settingsContent = await fsp.readFile(settingsPath, 'utf8')
 
       settingsContent = settingsContent.trim().replace(/\s*\}$/, '')
-      settingsContent +=
-        settingsContent.endsWith(',') || settingsContent.endsWith('{')
-          ? ''
-          : ','
+      settingsContent += settingsContent.endsWith(',') || settingsContent.endsWith('{') ? '' : ','
       settingsContent += `${vscodeSettingsString}}\n`
 
       await fsp.writeFile(settingsPath, settingsContent, 'utf-8')

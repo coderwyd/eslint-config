@@ -75,8 +75,7 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
           },
           {
             order: { type: 'asc' },
-            pathPattern:
-              '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
+            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies(Meta)?$',
           },
           {
             order: { type: 'asc' },
@@ -107,6 +106,7 @@ export function sortPackageJson(): TypedFlatConfigItem[] {
     },
   ]
 }
+
 /**
  * Sort tsconfig.json
  *
@@ -122,14 +122,7 @@ export function sortTsconfig(): TypedFlatConfigItem[] {
         'jsonc/sort-keys': [
           'error',
           {
-            order: [
-              'extends',
-              'compilerOptions',
-              'references',
-              'files',
-              'include',
-              'exclude',
-            ],
+            order: ['extends', 'compilerOptions', 'references', 'files', 'include', 'exclude'],
             pathPattern: '^$',
           },
           {

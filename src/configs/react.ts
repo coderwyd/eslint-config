@@ -1,17 +1,6 @@
 /* eslint-disable perfectionist/sort-objects */
-import {
-  GLOB_ASTRO_TS,
-  GLOB_MARKDOWN,
-  GLOB_SRC,
-  GLOB_TS,
-  GLOB_TSX,
-} from '../constants/glob'
-import {
-  isAllowConstantExport,
-  isUsingNext,
-  isUsingReactRouter,
-  isUsingRemix,
-} from '../env'
+import { GLOB_ASTRO_TS, GLOB_MARKDOWN, GLOB_SRC, GLOB_TS, GLOB_TSX } from '../constants/glob'
+import { isAllowConstantExport, isUsingNext, isUsingReactRouter, isUsingRemix } from '../env'
 import { ensurePackages, interopDefault } from '../shared'
 import type {
   OptionsFiles,
@@ -47,13 +36,11 @@ export async function react(
     'react/no-leaked-conditional-rendering': 'warn',
   }
 
-  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all(
-    [
-      interopDefault(import('@eslint-react/eslint-plugin')),
-      interopDefault(import('eslint-plugin-react-hooks')),
-      interopDefault(import('eslint-plugin-react-refresh')),
-    ] as const,
-  )
+  const [pluginReact, pluginReactHooks, pluginReactRefresh] = await Promise.all([
+    interopDefault(import('@eslint-react/eslint-plugin')),
+    interopDefault(import('eslint-plugin-react-hooks')),
+    interopDefault(import('eslint-plugin-react-refresh')),
+  ] as const)
 
   // @ts-expect-error ignore
   const plugins = pluginReact.configs.all.plugins
