@@ -11,7 +11,7 @@ import type {
 export async function vue(
   options: OptionsVue & OptionsHasTypeScript & OptionsOverrides & OptionsFiles = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_VUE], overrides = {}, vueVersion } = options
+  const { files = [GLOB_VUE], overrides = {}, vueVersion = 3 } = options
 
   const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
