@@ -1,13 +1,18 @@
+import { GLOB_SRC } from '../constants/glob'
 import { pluginNode } from '../plugins'
 import type { TypedFlatConfigItem } from '../types'
 
 export function node(): TypedFlatConfigItem[] {
   return [
     {
-      name: 'coderwyd/node/rules',
+      name: 'coderwyd/node/setup',
       plugins: {
         node: pluginNode,
       },
+    },
+    {
+      files: [GLOB_SRC],
+      name: 'coderwyd/node/rules',
       rules: {
         'node/handle-callback-err': ['error', '^(err|error)$'],
         'node/no-deprecated-api': 'error',
