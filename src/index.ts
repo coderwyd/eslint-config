@@ -81,6 +81,7 @@ export async function defineConfig(
     autoRenamePlugins = true,
     componentExts = [],
     gitignore: enableGitignore = true,
+    perfectionist: enablePerfectionist = true,
     pnpm: enableCatalogs = false,
     react: enableReact = false,
     regexp: enableRegexp = true,
@@ -142,11 +143,14 @@ export async function defineConfig(
     unicorn(),
     command(),
     deMorgan(),
-    perfectionist(),
     sortPnpmWorkspace(),
 
     // Optional plugins (installed but not enabled by default)
   )
+
+  if (enablePerfectionist) {
+    configs.push(perfectionist())
+  }
 
   if (enableVue) componentExts.push('vue')
 

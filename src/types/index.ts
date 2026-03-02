@@ -214,6 +214,15 @@ export interface OptionsConfig extends OptionsComponentExts {
   regexp?: boolean | (OptionsRegExp & OptionsOverrides)
 
   /**
+   * Enable perfectionist rules.
+   *
+   * @see https://github.com/azat-io/eslint-plugin-perfectionist
+   * @default true
+   *
+   */
+  perfectionist?: boolean
+
+  /**
    * Control to disable some rules in editors.
    * @default auto-detect based on the process.env
    */
