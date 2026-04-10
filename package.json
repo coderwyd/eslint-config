@@ -42,25 +42,25 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@antfu/eslint-config": "catalog:prod",
-    "defu": "catalog:prod",
-    "eslint-flat-config-utils": "catalog:prod"
+    "@antfu/eslint-config": "^8.1.1",
+    "defu": "^6.1.7",
+    "eslint-flat-config-utils": "^3.1.0"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "catalog:dev",
-    "@types/node": "catalog:dev",
-    "@typescript/native-preview": "catalog:dev",
-    "bumpp": "catalog:dev",
-    "eslint": "catalog:peer",
-    "eslint-plugin-better-tailwindcss": "catalog:peer",
-    "eslint-typegen": "catalog:dev",
-    "nano-staged": "catalog:dev",
-    "oxfmt": "catalog:dev",
-    "publint": "catalog:dev",
-    "simple-git-hooks": "catalog:dev",
-    "tsdown": "catalog:dev",
-    "typescript": "catalog:dev",
-    "unplugin-unused": "catalog:dev"
+    "@eslint/config-inspector": "^1.5.0",
+    "@types/node": "^25.6.0",
+    "@typescript/native-preview": "7.0.0-dev.20260107.1",
+    "bumpp": "^11.0.1",
+    "eslint": "^10.2.0",
+    "eslint-plugin-better-tailwindcss": "^4.4.0",
+    "eslint-typegen": "^2.3.1",
+    "nano-staged": "^1.0.2",
+    "oxfmt": "^0.44.0",
+    "publint": "^0.3.18",
+    "simple-git-hooks": "^2.13.1",
+    "tsdown": "^0.21.7",
+    "typescript": "^6.0.2",
+    "unplugin-unused": "^0.5.7"
   },
   "peerDependencies": {
     "eslint": "^9.10.0 || ^10.0.0",

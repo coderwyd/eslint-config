@@ -4,117 +4,61 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  dev:
-    '@eslint/config-inspector':
-      specifier: ^1.5.0
-      version: 1.5.0
-    '@types/node':
-      specifier: ^25.6.0
-      version: 25.6.0
-    '@typescript/native-preview':
-      specifier: 7.0.0-dev.20260107.1
-      version: 7.0.0-dev.20260107.1
-    bumpp:
-      specifier: ^11.0.1
-      version: 11.0.1
-    eslint-typegen:
-      specifier: ^2.3.1
-      version: 2.3.1
-    nano-staged:
-      specifier: ^1.0.2
-      version: 1.0.2
-    oxfmt:
-      specifier: ^0.44.0
-      version: 0.44.0
-    publint:
-      specifier: ^0.3.18
-      version: 0.3.18
-    simple-git-hooks:
-      specifier: ^2.13.1
-      version: 2.13.1
-    tsdown:
-      specifier: ^0.21.7
-      version: 0.21.7
-    typescript:
-      specifier: ^6.0.2
-      version: 6.0.2
-    unplugin-unused:
-      specifier: ^0.5.7
-      version: 0.5.7
-  peer:
-    eslint:
-      specifier: ^10.2.0
-      version: 10.2.0
-    eslint-plugin-better-tailwindcss:
-      specifier: ^4.4.0
-      version: 4.4.0
-  prod:
-    '@antfu/eslint-config':
-      specifier: ^8.1.1
-      version: 8.1.1
-    defu:
-      specifier: ^6.1.7
-      version: 6.1.7
-    eslint-flat-config-utils:
-      specifier: ^3.1.0
-      version: 3.1.0
-
 importers:
 
   .:
     dependencies:
       '@antfu/eslint-config':
-        specifier: catalog:prod
+        specifier: ^8.1.1
         version: 8.1.1(@typescript-eslint/rule-tester@8.58.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(@typescript-eslint/typescript-estree@8.58.1(typescript@6.0.2))(@typescript-eslint/utils@8.58.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(@unocss/eslint-plugin@66.6.8(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(@vue/compiler-sfc@3.5.32)(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)
       defu:
-        specifier: catalog:prod
+        specifier: ^6.1.7
         version: 6.1.7
       eslint-flat-config-utils:
-        specifier: catalog:prod
+        specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
       '@eslint/config-inspector':
-        specifier: catalog:dev
+        specifier: ^1.5.0
         version: 1.5.0(eslint@10.2.0(jiti@2.6.1))
       '@types/node':
-        specifier: catalog:dev
+        specifier: ^25.6.0
         version: 25.6.0
       '@typescript/native-preview':
-        specifier: catalog:dev
+        specifier: 7.0.0-dev.20260107.1
         version: 7.0.0-dev.20260107.1
       bumpp:
-        specifier: catalog:dev
+        specifier: ^11.0.1
         version: 11.0.1
       eslint:
-        specifier: catalog:peer
+        specifier: ^10.2.0
         version: 10.2.0(jiti@2.6.1)
       eslint-plugin-better-tailwindcss:
-        specifier: catalog:peer
+        specifier: ^4.4.0
         version: 4.4.0(eslint@10.2.0(jiti@2.6.1))(tailwindcss@4.2.2)(typescript@6.0.2)
       eslint-typegen:
-        specifier: catalog:dev
+        specifier: ^2.3.1
         version: 2.3.1(eslint@10.2.0(jiti@2.6.1))
       nano-staged:
-        specifier: catalog:dev
+        specifier: ^1.0.2
         version: 1.0.2
       oxfmt:
-        specifier: catalog:dev
+        specifier: ^0.44.0
         version: 0.44.0
       publint:
-        specifier: catalog:dev
+        specifier: ^0.3.18
         version: 0.3.18
       simple-git-hooks:
-        specifier: catalog:dev
+        specifier: ^2.13.1
         version: 2.13.1
       tsdown:
-        specifier: catalog:dev
+        specifier: ^0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@typescript/native-preview@7.0.0-dev.20260107.1)(oxc-resolver@11.19.1(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2))(publint@0.3.18)(synckit@0.11.12)(typescript@6.0.2)(unplugin-unused@0.5.7)
       typescript:
-        specifier: catalog:dev
+        specifier: ^6.0.2
         version: 6.0.2
       unplugin-unused:
-        specifier: catalog:dev
+        specifier: ^0.5.7
         version: 0.5.7
 
 packages:
