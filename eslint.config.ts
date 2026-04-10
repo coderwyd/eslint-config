@@ -1,16 +1,9 @@
-import { defineConfig } from './src'
+import { defineConfig } from './src/index'
 
-export default defineConfig(
-  {
-    vue: true,
-    react: false,
-    typescript: true,
-    pnpm: true,
+export default defineConfig({
+  tailwindcss: true,
+  unocss: true,
+  rules: {
+    'jsonc/sort-keys': 'off',
   },
-  {
-    files: ['src/**/*.ts'],
-    rules: {
-      'perfectionist/sort-objects': 'error',
-    },
-  },
-)
+})

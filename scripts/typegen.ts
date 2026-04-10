@@ -1,74 +1,32 @@
-import { writeFile } from 'node:fs/promises'
-import { styleText } from 'node:util'
-import { flatConfigsToRulesDTS } from 'eslint-typegen/core'
-import { builtinRules } from 'eslint/use-at-your-own-risk'
-import {
-  command,
-  comments,
-  deMorgan,
-  imports,
-  javascript,
-  jsdoc,
-  jsonc,
-  node,
-  perfectionist,
-  pnpm,
-  prettier,
-  react,
-  regexp,
-  sortPackageJson,
-  svelte,
-  tailwindcss,
-  test,
-  typescript,
-  unicorn,
-  unocss,
-  vue,
-} from '../src/configs'
-import { combine } from '../src/shared'
+import fs from 'node:fs/promises'
+import eslintPluginBetterTailwindcss from 'eslint-plugin-better-tailwindcss'
+import { flatConfigsToPlugins, pluginsToRulesDTS } from 'eslint-typegen/core'
 
-const configs = await combine(
+const plugins = await flatConfigsToPlugins([
   {
     plugins: {
-      '': {
-        rules: Object.fromEntries(builtinRules.entries()),
-      },
+      tailwindcss: eslintPluginBetterTailwindcss,
     },
   },
-  comments(),
-  imports(),
-  javascript(),
-  jsdoc(),
-  jsonc(),
-  node(),
-  perfectionist(),
-  react(),
-  sortPackageJson(),
-  svelte(),
-  test(),
-  prettier(),
-  typescript(),
-  unicorn(),
-  unocss(),
-  pnpm(),
-  vue(),
-  command(),
-  regexp(),
-  tailwindcss(),
-  deMorgan(),
-)
+])
+const dts = await pluginsToRulesDTS(plugins, { includeAugmentation: false })
 
-const configNames = configs.map((i) => i.name).filter(Boolean) as string[]
+const ruleOptionsMatch = dts.match(/export interface RuleOptions \{[\s\S]*?\n\}/)
+const declarationsMatch = dts.match(/\/\* ======= Declarations ======= \*\/[\s\S]*/)
 
-let dts = await flatConfigsToRulesDTS(configs, {
-  includeAugmentation: false,
-})
+const ruleOptions = ruleOptionsMatch?.[0] ?? ''
+const declarations = declarationsMatch?.[0] ?? ''
 
-dts += `
-// Names of all the configs
-export type ConfigNames = ${configNames.map((i) => `'${i}'`).join(' | ')}
+const output = `/* eslint-disable */
+/* prettier-ignore */
+import '@antfu/eslint-config'
+import type { Linter } from 'eslint'
+
+declare module '@antfu/eslint-config' {
+${ruleOptions}
+}
+
+${declarations}
 `
 
-await writeFile('src/types/typegen.d.ts', dts)
-
-console.log(styleText('green', 'Type definitions generated!'))
+await fs.writeFile('src/eslint-typegen.d.ts', output)
