@@ -42,7 +42,7 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^8.1.1",
+    "@antfu/eslint-config": "^8.2.0",
     "defu": "^6.1.7",
     "eslint-flat-config-utils": "^3.1.0"
   },

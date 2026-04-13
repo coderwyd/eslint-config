@@ -17,6 +17,10 @@ export function mergeOptions(options?: Options): Options {
     typescript: {
       overrides: {
         'ts/consistent-type-definitions': 'off',
+        'ts/promise-function-async': 'off',
+        'ts/strict-boolean-expressions': 'off',
+        'ts/return-await': 'off',
+        'ts/switch-exhaustiveness-check': 'off',
         'ts/no-explicit-any': 'warn',
       },
     },
