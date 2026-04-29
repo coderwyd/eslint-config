@@ -49,7 +49,7 @@
   "devDependencies": {
     "@eslint/config-inspector": "^1.5.0",
     "@types/node": "^25.6.0",
-    "@typescript/native-preview": "7.0.0-dev.20260107.1",
+    "@typescript/native-preview": "7.0.0-dev.20260426.1",
     "bumpp": "^11.0.1",
     "eslint": "^10.2.0",
     "eslint-plugin-better-tailwindcss": "^4.4.0",
