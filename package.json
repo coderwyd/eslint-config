@@ -42,24 +42,24 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^8.2.0",
+    "@antfu/eslint-config": "^9.0.0",
     "defu": "^6.1.7",
-    "eslint-flat-config-utils": "^3.1.0"
+    "eslint-flat-config-utils": "^3.2.0"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "^1.5.0",
-    "@types/node": "^25.6.0",
+    "@eslint/config-inspector": "^3.0.3",
+    "@types/node": "^25.9.1",
     "@typescript/native-preview": "7.0.0-dev.20260107.1",
-    "bumpp": "^11.0.1",
-    "eslint": "^10.2.0",
-    "eslint-plugin-better-tailwindcss": "^4.4.0",
+    "bumpp": "^11.1.0",
+    "eslint": "^10.4.0",
+    "eslint-plugin-better-tailwindcss": "^4.5.0",
     "eslint-typegen": "^2.3.1",
     "nano-staged": "^1.0.2",
-    "oxfmt": "^0.44.0",
-    "publint": "^0.3.18",
+    "oxfmt": "^0.52.0",
+    "publint": "^0.3.21",
     "simple-git-hooks": "^2.13.1",
-    "tsdown": "^0.21.7",
-    "typescript": "^6.0.2",
+    "tsdown": "^0.22.0",
+    "typescript": "^6.0.3",
     "unplugin-unused": "^0.5.7"
   },
   "peerDependencies": {
@@ -81,7 +81,7 @@
     ]
   },
   "engines": {
-    "node": ">=20.19.0"
+    "node": "^22.18.0 || >=24.0.0"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@11.3.0"
 }
