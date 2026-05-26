@@ -1,11 +1,11 @@
 import type { OptionsFiles, OptionsOverrides, TypedFlatConfigItem } from '@antfu/eslint-config'
 import type { OptionsTailwindcss } from '../types'
-import { GLOB_SRC, interopDefault } from '@antfu/eslint-config'
+import { GLOB_SRC, GLOB_VUE, interopDefault } from '@antfu/eslint-config'
 
 export async function tailwindcss(
   options: OptionsOverrides & OptionsFiles & OptionsTailwindcss = {},
 ): Promise<TypedFlatConfigItem[]> {
-  const { files = [GLOB_SRC], overrides = {}, settings = {} } = options
+  const { files = [GLOB_SRC, GLOB_VUE], overrides = {}, settings = {} } = options
 
   const tailwindCSSPlugin = await interopDefault(import('eslint-plugin-better-tailwindcss'))
 

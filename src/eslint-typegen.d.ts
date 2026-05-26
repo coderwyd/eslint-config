@@ -408,6 +408,8 @@ type TailwindcssEnforceCanonicalClasses = []|[{
   
   collapse?: boolean
   
+  ignore?: string[]
+  
   logical?: boolean
 }]
 // ----- tailwindcss/enforce-consistent-class-order -----
@@ -1416,6 +1418,8 @@ type TailwindcssEnforceConsistentLineWrapping = []|[{
   printWidth?: number
   
   strictness?: ("strict" | "loose")
+  
+  tabWidth?: number
 }]
 // ----- tailwindcss/enforce-consistent-variable-syntax -----
 type TailwindcssEnforceConsistentVariableSyntax = []|[{
