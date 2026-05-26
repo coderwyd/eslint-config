@@ -1,8 +1,11 @@
 # @coderwyd/eslint-config
 
-[![release status](https://github.com/coderwyd/eslint-config/actions/workflows/release.yml/badge.svg)](https://github.com/coderwyd/eslint-config/actions/workflows/release.yml)
-[![npm](https://img.shields.io/npm/v/@coderwyd/eslint-config.svg)](https://npmjs.org/package/@coderwyd/eslint-config)
-[![downloads](https://img.shields.io/npm/dm/@coderwyd/eslint-config.svg)](https://npmjs.org/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/version/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/license/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/size/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/downloads-month/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/updated/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
+[![Open on npmx.dev](https://npmx.dev/api/registry/badge/engines/@coderwyd/eslint-config)](https://npmx.dev/package/@coderwyd/eslint-config)
 
 高度可配置的 ESLint 配置预设，开箱即用，支持 Vue、React、Svelte、TypeScript 等多个框架和语言。基于 [@antfu/eslint-config](https://github.com/antfu/eslint-config) 构建。
 
