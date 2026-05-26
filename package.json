@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^9.0.0",
-    "defu": "^6.1.7",
     "eslint-flat-config-utils": "^3.2.0"
   },
   "devDependencies": {

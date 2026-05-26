@@ -1,14 +1,28 @@
 import type { Options } from './types'
 import { resolveSubOptions } from '@antfu/eslint-config'
-import { createDefu } from 'defu'
 import { isPackageExists } from './utils'
 
-const defuOverrideArray = createDefu((obj, key, value) => {
-  if (Array.isArray(obj[key]) && Array.isArray(value)) {
-    obj[key] = value
-    return true
+// eslint-disable-next-line ts/no-explicit-any
+function deepMerge<T extends Record<string, any>>(user: T, defaults: T): T {
+  const result = { ...user }
+  for (const key of Object.keys(defaults) as (keyof T)[]) {
+    const userVal = result[key]
+    const defaultVal = defaults[key]
+    if (userVal === undefined) {
+      result[key] = defaultVal
+    } else if (userVal === true && typeof defaultVal === 'object') {
+      result[key] = defaultVal
+    } else if (
+      typeof userVal === 'object' &&
+      userVal !== null &&
+      typeof defaultVal === 'object' &&
+      defaultVal !== null
+    ) {
+      result[key] = deepMerge(userVal, defaultVal)
+    }
   }
-})
+  return result
+}
 
 export function mergeOptions(options?: Options): Options {
   const { vueVersion = 3 } = resolveSubOptions(options ?? {}, 'vue')
@@ -62,22 +76,5 @@ export function mergeOptions(options?: Options): Options {
 
   if (!options) return defaults
 
-  const result = { ...options }
-
-  for (const key of Object.keys(defaults) as (keyof typeof defaults)[]) {
-    const userValue = options[key]
-    const defaultValue = defaults[key]
-
-    if (userValue === undefined) {
-      ;(result as any)[key] = defaultValue
-    } else if (typeof defaultValue === 'boolean') {
-      // boolean defaults: keep user value as-is
-    } else if (userValue === true) {
-      ;(result as any)[key] = defaultValue
-    } else if (typeof userValue === 'object' && userValue !== null && defaultValue) {
-      ;(result as any)[key] = defuOverrideArray(userValue, defaultValue)
-    }
-  }
-
-  return result
+  return deepMerge(options, defaults)
 }
