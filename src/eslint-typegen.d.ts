@@ -46,6 +46,11 @@ export interface RuleOptions {
    */
   'tailwindcss/enforce-shorthand-classes'?: Linter.RuleEntry<TailwindcssEnforceShorthandClasses>
   /**
+   * Disallow concatenated classes in Tailwind CSS class strings.
+   * @see https://github.com/schoero/eslint-plugin-better-tailwindcss/blob/main/docs/rules/no-concatenated-classes.md
+   */
+  'tailwindcss/no-concatenated-classes'?: Linter.RuleEntry<TailwindcssNoConcatenatedClasses>
+  /**
    * Disallow classes that produce conflicting styles.
    * @see https://github.com/schoero/eslint-plugin-better-tailwindcss/blob/main/docs/rules/no-conflicting-classes.md
    */
@@ -1420,6 +1425,8 @@ type TailwindcssEnforceConsistentLineWrapping = []|[{
   strictness?: ("strict" | "loose")
   
   tabWidth?: number
+  
+  vueConvertToBinding?: boolean
 }]
 // ----- tailwindcss/enforce-consistent-variable-syntax -----
 type TailwindcssEnforceConsistentVariableSyntax = []|[{
@@ -2403,9 +2410,338 @@ type TailwindcssEnforceLogicalProperties = []|[{
   rootFontSize?: number
   
   cwd?: string
+  
+  ignore?: string[]
 }]
 // ----- tailwindcss/enforce-shorthand-classes -----
 type TailwindcssEnforceShorthandClasses = []|[{
+  
+  selectors?: ({
+    
+    kind: "attribute"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name: string
+  } | ({
+    
+    callTarget?: ("all" | "first" | "last" | number)
+    
+    kind: "callee"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name: string
+    
+    path?: string
+    
+    targetArgument?: ("all" | "first" | "last" | number)
+    
+    targetCall?: ("all" | "first" | "last" | number)
+  } | {
+    
+    callTarget?: ("all" | "first" | "last" | number)
+    
+    kind: "callee"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name?: string
+    
+    path: string
+    
+    targetArgument?: ("all" | "first" | "last" | number)
+    
+    targetCall?: ("all" | "first" | "last" | number)
+  }) | ({
+    
+    kind: "tag"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name: string
+    
+    path?: string
+  } | {
+    
+    kind: "tag"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name?: string
+    
+    path: string
+  }) | {
+    
+    kind: "variable"
+    
+    match?: ({
+      
+      type: "strings"
+    } | {
+      
+      path?: string
+      
+      type: "objectKeys"
+    } | {
+      
+      path?: string
+      
+      type: "objectValues"
+    } | {
+      
+      match: ({
+        
+        type: "strings"
+      } | {
+        
+        path?: string
+        
+        type: "objectKeys"
+      } | {
+        
+        path?: string
+        
+        type: "objectValues"
+      })[]
+      
+      type: "anonymousFunctionReturn"
+    })[]
+    
+    name: string
+  })[]
+  
+  callees?: ([string, ({
+    
+    match: "strings"
+  } | {
+    
+    match: "objectKeys"
+    
+    pathPattern?: string
+  } | {
+    
+    match: "objectValues"
+    
+    pathPattern?: string
+  })[]] | string)[]
+  
+  attributes?: (string | [string, ({
+    
+    match: "strings"
+  } | {
+    
+    match: "objectKeys"
+    
+    pathPattern?: string
+  } | {
+    
+    match: "objectValues"
+    
+    pathPattern?: string
+  })[]])[]
+  
+  variables?: ([string, ({
+    
+    match: "strings"
+  } | {
+    
+    match: "objectKeys"
+    
+    pathPattern?: string
+  } | {
+    
+    match: "objectValues"
+    
+    pathPattern?: string
+  })[]] | string)[]
+  
+  tags?: ([string, ({
+    
+    match: "strings"
+  } | {
+    
+    match: "objectKeys"
+    
+    pathPattern?: string
+  } | {
+    
+    match: "objectValues"
+    
+    pathPattern?: string
+  })[]] | string)[]
+  
+  entryPoint?: string
+  
+  messageStyle?: ("visual" | "compact" | "raw")
+  
+  tailwindConfig?: string
+  
+  tsconfig?: string
+  
+  detectComponentClasses?: boolean
+  
+  rootFontSize?: number
+  
+  cwd?: string
+}]
+// ----- tailwindcss/no-concatenated-classes -----
+type TailwindcssNoConcatenatedClasses = []|[{
   
   selectors?: ({
     
