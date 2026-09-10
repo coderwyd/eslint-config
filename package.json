@@ -30,9 +30,9 @@
   },
   "scripts": {
     "build": "pnpm build:typegen && tsdown",
-    "build:inspector": "pnpm build && pnpx @eslint/config-inspector build",
+    "build:inspector": "pnpm build && pnpx @eslint/config-inspector build --stats --config eslint.config.ts --out-dir ./.eslint-config-inspector",
     "build:typegen": "node scripts/typegen.ts",
-    "dev": "pnpx @eslint/config-inspector",
+    "dev": "pnpx @eslint/config-inspector --config eslint.config.ts",
     "fmt": "oxfmt",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -42,22 +42,22 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@antfu/eslint-config": "^9.3.0",
+    "@antfu/eslint-config": "^9.5.1",
     "eslint-flat-config-utils": "^3.2.0"
   },
   "devDependencies": {
-    "@eslint/config-inspector": "^3.2.0",
-    "@types/node": "^26.1.2",
+    "@eslint/config-inspector": "^3.4.0",
+    "@types/node": "^26.5.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "bumpp": "^12.1.1",
-    "eslint": "^10.8.0",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.10.0",
     "eslint-plugin-better-tailwindcss": "^4.7.0",
     "eslint-typegen": "^2.3.1",
     "nano-staged": "^1.0.2",
-    "oxfmt": "^0.62.0",
-    "publint": "^0.3.23",
-    "simple-git-hooks": "^2.13.1",
-    "tsdown": "^0.22.14",
+    "oxfmt": "^0.67.0",
+    "publint": "^0.3.24",
+    "simple-git-hooks": "^2.14.0",
+    "tsdown": "^0.23.0",
     "typescript": "^6.0.3",
     "unplugin-unused": "^0.6.0"
   },
@@ -82,5 +82,5 @@
   "engines": {
     "node": "^22.18.0 || >=24.0.0"
   },
-  "packageManager": "pnpm@11.20.0"
+  "packageManager": "pnpm@12.3.4"
 }
