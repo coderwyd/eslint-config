@@ -117,8 +117,8 @@ importers:
         version: 3.2.0
     devDependencies:
       '@eslint/config-inspector':
-        specifier: ^3.4.0
-        version: 3.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))(srvx@0.12.5)
+        specifier: ^3.4.1
+        version: 3.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))(srvx@0.12.5)
       '@types/node':
         specifier: ^26.5.1
         version: 26.5.1
@@ -337,8 +337,8 @@ packages:
     resolution: {integrity: sha512-DObd/KKUsU+FaFv4PLxSRenpXfQWmPXXP3pPZ6/K1PCrMu2vQpMDMuQe/BqYeoLcz8ro0bVDF1RxOJgfVEdhUw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@eslint/config-inspector@3.4.0':
-    resolution: {integrity: sha512-8TXN2JiWBX2pzY+bb5uccWBIZ3C1mSSzyvYDBwHaorAq+GaGJax9/BtwdnqbvWviVHUN5vHBgUkg2gYyd+js7w==}
+  '@eslint/config-inspector@3.4.1':
+    resolution: {integrity: sha512-E5pAF/gZR2yLIMG0N5EVhhFlhJ1K9AALgz+mnaRRm91ACvG1M0Zz6FOAWBylLhTtqpCLrDZqMfZYoFp04bHwJQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     hasBin: true
     peerDependencies:
@@ -1205,8 +1205,8 @@ packages:
     resolution: {integrity: sha512-y+8xyqdGLL+6sh0tVeHcfP/QDd8gUgbasolJJpY7NgeQGSZ739bDtSiaiDgtoicy+mtYB81dKLxO9xRhCyIB3A==}
     engines: {node: '>=12.20'}
 
-  devframe@0.9.16:
-    resolution: {integrity: sha512-DLn4oPFraGZYgdwaix7evNbofQXT9Q3UrHRDw7Ygy5713lLjYLu0jRvbpypbbMW7r7+EUBdj7KFKTKhz1rkq9w==}
+  devframe@0.9.19:
+    resolution: {integrity: sha512-8r76kTDuZb9vJgC6TI+1T9Bw0wxZx4K854/RT3Ocaz02nwgjwFfp701B8H8F2WkBTtKPq/FY8lvGmNbUjsJS8A==}
     hasBin: true
     peerDependencies:
       '@modelcontextprotocol/client': ^2.0.0
@@ -2599,12 +2599,12 @@ snapshots:
     dependencies:
       '@eslint/core': 1.2.1
 
-  '@eslint/config-inspector@3.4.0(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))(srvx@0.12.5)':
+  '@eslint/config-inspector@3.4.1(eslint@10.10.0(jiti@2.7.0)(supports-color@7.2.0))(srvx@0.12.5)':
     dependencies:
       ansis: 4.3.1
       cac: 7.0.0
       chokidar: 5.0.0
-      devframe: 0.9.16(cac@7.0.0)(srvx@0.12.5)
+      devframe: 0.9.19(cac@7.0.0)(srvx@0.12.5)
       eslint: 10.10.0(jiti@2.7.0)(supports-color@7.2.0)
       jiti: 2.7.0
       tinyglobby: 0.2.17
@@ -3313,7 +3313,7 @@ snapshots:
 
   detect-indent@7.0.2: {}
 
-  devframe@0.9.16(cac@7.0.0)(srvx@0.12.5):
+  devframe@0.9.19(cac@7.0.0)(srvx@0.12.5):
     dependencies:
       '@modelcontextprotocol/server': 2.0.0
       '@standard-schema/spec': 1.1.0
